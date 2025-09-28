@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "hintText": "Hint #1",
+    "puzzleId": 1,
+    "hintsUsed": 1,
+    "maxHints": 3
+  },
+  {
+    "id": 2,
+    "hintText": "Hint #2",
+    "puzzleId": 2,
+    "hintsUsed": 2,
+    "maxHints": 3
+  }
+]

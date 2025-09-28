@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "userId": "player1",
+    "score": 200,
+    "completionTime": "00:10:00"
+  },
+  {
+    "id": 2,
+    "userId": "player2",
+    "score": 200,
+    "completionTime": "00:15:00"
+  }
+]
