@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "userId": "player1",
+    "firstName": "Nitin",
+    "lastName": "B",
+    "email": "nitinb@email.com",
+    "role": "Player",
+    "penaltyPoints": 0,
+    "scorePoints": 200
+  },
+  {
+    "id": 2,
+    "userId": "player2",
+    "firstName": "Aashrith",
+    "lastName": "A",
+    "email": "aashirtha@email.com",
+    "role": "Player",
+    "penaltyPoints": 0,
+    "scorePoints": 200
+  }
+]
