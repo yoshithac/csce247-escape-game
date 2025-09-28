@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "type": "WordPuzzle",
+    "subtype": "Anagram",
+    "description": "Rearrange the letters 'CSEPAE' to form a word",
+    "difficulty": "EASY",
+    "isCompleted": false,
+    "solution": "escape"
+  },
+  {
+    "id": 2,
+    "type": "WordPuzzle",
+    "subtype": "Cipher",
+    "description": "Decode this Caesar cipher: 'khoor' (shift 3)",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "solution": "hello"
+  },
+  {
+    "id": 3,
+    "type": "WordPuzzle",
+    "subtype": "Riddle",
+    "description": "What has to be broken before you can use it?",
+    "difficulty": "HARD",
+    "isCompleted": false,
+    "solution": "egg"
+  }
+]

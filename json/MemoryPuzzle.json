@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "type": "MemoryPuzzle",
+    "description": "Repeat the sequence of colors",
+    "difficulty": "EASY",
+    "isCompleted": false,
+    "maxAttempts": 3,
+    "sequence": ["red", "blue", "green"]
+  },
+  {
+    "id": 2,
+    "type": "MemoryPuzzle",
+    "description": "Repeat the sound sequence",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "maxAttempts": 2,
+    "sequence": ["ding", "dong", "ding"]
+  }
+]
