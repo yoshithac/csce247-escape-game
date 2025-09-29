@@ -1,7 +1,7 @@
 [
   {
-    "id": 1,
     "userId": "player1",
+    "password": "hashed_password_123",
     "firstName": "Nitin",
     "lastName": "B",
     "email": "nitinb@email.com",
@@ -10,8 +10,8 @@
     "scorePoints": 200
   },
   {
-    "id": 2,
     "userId": "player2",
+    "password": "hashed_password_456",
     "firstName": "Aashrith",
     "lastName": "A",
     "email": "aashirtha@email.com",
