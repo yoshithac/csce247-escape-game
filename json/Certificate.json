@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "certificateId": "cert01",
     "certUserId": "player1",
     "description": "Completed Medium Escape Room",
@@ -8,7 +7,6 @@
     "difficulty": "MEDIUM"
   },
   {
-    "id": 2,
     "certificateId": "cert02",
     "certUserId": "player2",
     "description": "Completed Hard Escape Room",
