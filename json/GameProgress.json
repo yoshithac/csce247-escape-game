@@ -1,20 +1,118 @@
 [
   {
-    "id": 1,
     "userId": "player1",
-    "currentLevel": 2,
-    "currentPuzzleId": 1,
+    "currentPuzzle": {
+    "puzzleId": "w2",
+    "type": "Word-Riddle",
+    "prompt": "What has keys but can’t open locks?",
+    "answer": "Keyboard",
+    "description": "A riddle puzzle.",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "maxAttempts": 0
+  },
     "totalScore": 150,
-    "completedPuzzleIds": [2],
-    "toDoPuzzleIds": [1, 2, 3]
+    "completedPuzzles": [
+  {
+    "puzzleId": "w1",
+    "type": "Word-Cipher",
+    "prompt": "Unscramble the letters: CSEAPE",
+    "answer": "ESCAPE",
+    "description": "A simple word scramble puzzle.",
+    "difficulty": "EASY",
+    "isCompleted": false,
+    "maxAttempts": 0
   },
   {
-    "id": 2,
+    "puzzleId": "w2",
+    "type": "Word-Riddle",
+    "prompt": "What has keys but can’t open locks?",
+    "answer": "Keyboard",
+    "description": "A riddle puzzle.",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "maxAttempts": 0
+  },
+  {
+    "puzzleId": "w3",
+    "type": "Word-Anagram",
+    "prompt": "Unscramble the letters: SILENT",
+    "answer": "LISTEN",
+    "description": "An anagram puzzle.",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "maxAttempts": 0
+  }
+],
+    "toDoPuzzles": [
+  {
+    "puzzleId": "w1",
+    "type": "Word-Cipher",
+    "prompt": "Unscramble the letters: CSEAPE",
+    "answer": "ESCAPE",
+    "description": "A simple word scramble puzzle.",
+    "difficulty": "EASY",
+    "isCompleted": false,
+    "maxAttempts": 0
+  },
+  {
+    "puzzleId": "w2",
+    "type": "Word-Riddle",
+    "prompt": "What has keys but can’t open locks?",
+    "answer": "Keyboard",
+    "description": "A riddle puzzle.",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "maxAttempts": 0
+  },
+  {
+    "puzzleId": "w3",
+    "type": "Word-Anagram",
+    "prompt": "Unscramble the letters: SILENT",
+    "answer": "LISTEN",
+    "description": "An anagram puzzle.",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "maxAttempts": 0
+  }
+]
+  },
+  {
     "userId": "player2",
-    "currentLevel": 1,
-    "currentPuzzleId": 2,
+    "currentPuzzle": 2,
     "totalScore": 80,
-    "completedPuzzleIds": [],
-    "toDoPuzzleIds": [1, 2, 3]
+    "completedPuzzles": [],
+    "toDoPuzzles": [
+  {
+    "puzzleId": "w1",
+    "type": "Word-Cipher",
+    "prompt": "Unscramble the letters: CSEAPE",
+    "answer": "ESCAPE",
+    "description": "A simple word scramble puzzle.",
+    "difficulty": "EASY",
+    "isCompleted": false,
+    "maxAttempts": 0
+  },
+  {
+    "puzzleId": "w2",
+    "type": "Word-Riddle",
+    "prompt": "What has keys but can’t open locks?",
+    "answer": "Keyboard",
+    "description": "A riddle puzzle.",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "maxAttempts": 0
+  },
+  {
+    "puzzleId": "w3",
+    "type": "Word-Anagram",
+    "prompt": "Unscramble the letters: SILENT",
+    "answer": "LISTEN",
+    "description": "An anagram puzzle.",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "maxAttempts": 0
+  }
+]
   }
 ]
