@@ -186,5 +186,19 @@
       "earnDate": "2025-09-25T16:45:00",
       "difficulty": "HARD"
     }
+  ],
+  "hints": [
+    {
+      "hintsUsed": 1,
+      "maxHints": 3,
+      "puzzleId": "WP001",
+      "hintText": "This is a Caesar cipher. Try shifting each letter by a fixed number."
+    },
+    {
+      "hintsUsed": 0,
+      "maxHints": 3,
+      "puzzleId": "WP002",
+      "hintText": "Think of a common household pet."
+    }
   ]
 }
