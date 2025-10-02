@@ -19,4 +19,54 @@ public class Certificate {
         this.earnDate = earnDate;
         this.difficulty = difficulty;
     }
+
+    public String getCertificatId() {
+        return certificateId;
+    }
+
+    public void setCertificateId(String certificateId) {
+        this.certificateId = certificateId;
+    }
+
+    public String getCertUserId() {
+        return certUserId;
+    }
+
+    public void setCertUserId(String certUserId) {
+        this.certUserId = certUserId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public LocalDateTime getEarnDate() {
+        return earnDate;
+    }
+
+    public void setEarnDate(LocalDateTime earnDate) {
+        this.earnDate = earnDate;
+    }
+
+    public DifficultyLevel getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(DifficultyLevel difficulty) {
+        this.difficulty = difficulty;
+    }
+    
+    @Override
+    public String toString() {
+        return "Certificate{" +
+                "certificateId='" + certificateId + '\'' +
+                ", certUserId='" + certUserId + '\'' +
+                ", description='" + description + '\'' +
+                ", earnDate=" + earnDate +
+                ", difficulty=" + difficulty +
+                '}';
+    }
 }
