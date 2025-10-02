@@ -1,0 +1,190 @@
+{
+  "puzzles": [
+  {
+    "puzzleId": "WP001",
+    "type": "Word-Cipher",
+    "prompt": "Unscramble the letters: CSEAPE",
+    "answer": "ESCAPE",
+    "description": "A simple word scramble puzzle.",
+    "difficulty": "EASY",
+    "isCompleted": false,
+    "maxAttempts": 5
+  },
+  {
+    "puzzleId": "WP002",
+    "type": "Word-Riddle",
+    "prompt": "What has keys but can’t open locks?",
+    "answer": "Keyboard",
+    "description": "A riddle puzzle.",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "maxAttempts": 3
+  },
+  {
+    "puzzleId": "WP003",
+    "type": "Word-Anagram",
+    "prompt": "Rearrange the letters: SILENT",
+    "answer": "LISTEN",
+    "description": "An anagram puzzle.",
+    "difficulty": "MEDIUM",
+    "isCompleted": false,
+    "maxAttempts": 3
+  }
+],
+  "gameProgress": {
+    "currentPlayer": {
+      "userId": "user001",
+      "password": "hashedPassword123",
+      "email": "player1@example.com",
+      "firstName": "John",
+      "lastName": "Doe",
+      "role": "player",
+      "penaltyPoints": 5,
+      "scorePoints": 150
+    },
+    "currentPuzzle": {
+      "puzzleId": "WP003",
+      "type": "WordPuzzle",
+      "prompt": "I speak without a mouth and hear without ears. I have no body, but come alive with wind. What am I?",
+      "answer": "ECHO",
+      "description": "A classic riddle",
+      "difficulty": "MEDIUM",
+      "isCompleted": false,
+      "maxAttempts": 4
+    },
+    "totalScore": 150,
+    "completedPuzzles": [
+      {
+        "puzzleId": "WP001",
+        "type": "WordPuzzle",
+        "prompt": "Decode this Caesar cipher: KHOOR ZRUOG",
+        "answer": "HELLO WORLD",
+        "description": "A simple cipher puzzle using Caesar shift of 3",
+        "difficulty": "EASY",
+        "isCompleted": true,
+        "maxAttempts": 5
+      },
+      {
+        "puzzleId": "MP001",
+        "type": "MemoryPuzzle",
+        "prompt": "Remember this sequence: RED, BLUE, GREEN, YELLOW",
+        "answer": "RED,BLUE,GREEN,YELLOW",
+        "description": "Memorize and repeat the color sequence",
+        "difficulty": "EASY",
+        "isCompleted": true,
+        "maxAttempts": 3
+      }
+    ],
+    "toDoPuzzles": [
+      {
+        "puzzleId": "WP002",
+        "type": "WordPuzzle",
+        "prompt": "Unscramble this anagram: TAC",
+        "answer": "CAT",
+        "description": "Rearrange the letters to form a common animal",
+        "difficulty": "EASY",
+        "isCompleted": false,
+        "maxAttempts": 3
+      },
+      {
+        "puzzleId": "MP002",
+        "type": "MemoryPuzzle",
+        "prompt": "Match the audio sounds to their sources",
+        "answer": "DOG-BARK,CAT-MEOW,BIRD-CHIRP",
+        "description": "Audio matching memory game",
+        "difficulty": "MEDIUM",
+        "isCompleted": false,
+        "maxAttempts": 4
+      },
+      {
+        "puzzleId": "MZ001",
+        "type": "MazePuzzle",
+        "prompt": "Navigate through the simple maze",
+        "answer": "RIGHT,DOWN,RIGHT,DOWN,RIGHT",
+        "description": "Find your way from start to finish",
+        "difficulty": "EASY",
+        "isCompleted": false,
+        "maxAttempts": 5
+      },
+      {
+        "puzzleId": "MZ002",
+        "type": "MazePuzzle",
+        "prompt": "Navigate the trap maze avoiding obstacles",
+        "answer": "UP,RIGHT,RIGHT,DOWN,LEFT,DOWN,RIGHT",
+        "description": "Complex maze with traps",
+        "difficulty": "HARD",
+        "isCompleted": false,
+        "maxAttempts": 3
+      }
+    ]
+  },
+  "leaderboard": {
+    "entries": [
+      {
+        "player": {
+          "userId": "user001",
+          "password": "hashedPassword123",
+          "email": "player1@example.com",
+          "firstName": "John",
+          "lastName": "Doe",
+          "role": "player",
+          "penaltyPoints": 5,
+          "scorePoints": 150
+        },
+        "score": 150,
+        "completionTime": "00:25:30"
+      },
+      {
+        "player": {
+          "userId": "user002",
+          "password": "hashedPassword456",
+          "email": "player2@example.com",
+          "firstName": "Jane",
+          "lastName": "Smith",
+          "role": "player",
+          "penaltyPoints": 2,
+          "scorePoints": 200
+        },
+        "score": 200,
+        "completionTime": "00:18:45"
+      },
+      {
+        "player": {
+          "userId": "user003",
+          "password": "hashedPassword789",
+          "email": "player3@example.com",
+          "firstName": "Bob",
+          "lastName": "Johnson",
+          "role": "player",
+          "penaltyPoints": 0,
+          "scorePoints": 175
+        },
+        "score": 175,
+        "completionTime": "00:22:15"
+      }
+    ]
+  },
+  "certificate": [
+    {
+      "certificateId": "CERT001",
+      "certUserId": "user002",
+      "description": "Completed all EASY level puzzles with perfect score",
+      "earnDate": "2025-09-15T14:30:00",
+      "difficulty": "EASY"
+    },
+    {
+      "certificateId": "CERT002",
+      "certUserId": "user003",
+      "description": "Completed all MEDIUM level puzzles",
+      "earnDate": "2025-09-20T10:15:00",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "certificateId": "CERT003",
+      "certUserId": "user002",
+      "description": "Master achievement - Completed all HARD level puzzles",
+      "earnDate": "2025-09-25T16:45:00",
+      "difficulty": "HARD"
+    }
+  ]
+}
