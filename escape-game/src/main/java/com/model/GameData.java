@@ -12,4 +12,8 @@ public class GameData {
     private List<Hint> hints;
     private List<Certificate> certificates;
     
+    
+
+
+
 }

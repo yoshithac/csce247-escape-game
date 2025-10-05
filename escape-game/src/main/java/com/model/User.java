@@ -7,9 +7,9 @@ package com.model;
 public class User {
     private String userId;
     private String password;
-    private String email;
     private String firstName;
     private String lastName;
+    private String email;
     private String role;
     private int penaltyPoints;
     private int scorePoints;
@@ -17,15 +17,15 @@ public class User {
     /**
      * Constructor for User
      */
-    public User() {
-        this.userId = "";
-        this.password = "";
-        this.email = "";
-        this.firstName = "";
-        this.lastName = "";
-        this.role = "";
-        this.penaltyPoints = 0;
-        this.scorePoints = 0;
+    public User(String userId, String password, String firstName, String lastName, String email, String role, int penaltyPoints, int scorePoints) {
+        this.userId = userId;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.role = role;
+        this.penaltyPoints = penaltyPoints;
+        this.scorePoints = scorePoints;
     }
 
     /**
@@ -34,5 +34,61 @@ public class User {
      */
     public String getUserId() {
         return userId;
+    }
+
+    /**
+     * Getter for password
+     * @return password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Getter for firstName
+     * @return firstName
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * Getter for lastName
+     * @return lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * Getter for email
+     * @return email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Getter for role
+     * @return role
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * Getter for penaltyPoints
+     * @return penaltyPoints
+     */
+    public int getPenaltyPoints() {
+        return penaltyPoints;
+    }
+
+    /**
+     * Getter for scorePoints
+     * @return scorePoints
+     */
+    public int getScorePoints() {
+        return scorePoints;
     }
 }
