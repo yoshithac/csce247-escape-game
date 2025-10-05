@@ -1,5 +1,35 @@
 package com.model;
 
+/*
+ * This class represents a hint that can be given to players
+ * @author We're Getting an A
+ */
 public class Hint {
-    
+    private int hintsUsed;
+    private int maxHints;
+    private String puzzleId;
+    private String hintText;
+
+    public Hint(String puzzleId, String hintText, int maxHints) {
+        this.puzzleId = puzzleId;
+        this.hintText = hintText;
+        this.maxHints = maxHints;
+        this.hintsUsed = 0;
+    }
+
+    public String provideHint(String puzzleId) {
+        if (canUseHint()) {
+            hintsUsed++;
+            return hintText;
+        }
+        return "No more hints available.";
+    }
+
+    public boolean canUseHint() {
+        return hintsUsed < maxHints;
+    }
+
+    public void resetHints() {
+        hintsUsed = 0;
+    }
 }
