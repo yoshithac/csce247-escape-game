@@ -9,4 +9,7 @@ module com.escapegame {
 
     opens com.escapegame to javafx.fxml;
     exports com.escapegame;
+
+    opens com.model to com.google.gson;
+    exports com.model;
 }

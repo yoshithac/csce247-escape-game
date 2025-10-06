@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author We're Getting an A
  */
 public class GameDataFacade {
-    private GameDataFacade gameDataFacade;
+    private static GameDataFacade gameDataFacade;
     private GameDataLoader gameDataLoader;
     private GameDataWriter gameDataWriter;
     private List<Puzzle> puzzles;
@@ -18,11 +18,15 @@ public class GameDataFacade {
     private Leaderboard leaderboard;
     private List<Hint> hints;
 
+    private GameDataFacade() throws Exception {
+        gameDataLoader = new GameDataLoader();
+        users = gameDataLoader.loadUsers();
+    }
     /*
      * Singleton instance of GameDataFacade
      * @return the single instance of GameDataFacade
     */
-    public GameDataFacade getInstance() {
+    public static GameDataFacade getInstance() throws Exception {
         if (gameDataFacade == null) {
             gameDataFacade = new GameDataFacade();
         }
@@ -78,7 +82,7 @@ public class GameDataFacade {
      * Loads users from storage
      * @return A list of loaded users
      */
-    public List<User> loadUsers() {
+    public List<User> getUsers() {
         return users;
     }
 

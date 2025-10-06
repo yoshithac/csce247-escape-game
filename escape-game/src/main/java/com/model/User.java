@@ -33,7 +33,7 @@ public class User {
      * @return userId
      */
     public String getUserId() {
-        return userId;
+        return this.userId;
     }
 
     /**
@@ -41,7 +41,7 @@ public class User {
      * @return password
      */
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     /**
@@ -49,7 +49,7 @@ public class User {
      * @return firstName
      */
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
@@ -57,7 +57,7 @@ public class User {
      * @return lastName
      */
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
@@ -65,7 +65,7 @@ public class User {
      * @return email
      */
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     /**
@@ -73,7 +73,7 @@ public class User {
      * @return role
      */
     public String getRole() {
-        return role;
+        return this.role;
     }
 
     /**
@@ -81,7 +81,7 @@ public class User {
      * @return penaltyPoints
      */
     public int getPenaltyPoints() {
-        return penaltyPoints;
+        return this.penaltyPoints;
     }
 
     /**
@@ -89,6 +89,6 @@ public class User {
      * @return scorePoints
      */
     public int getScorePoints() {
-        return scorePoints;
+        return this.scorePoints;
     }
 }
