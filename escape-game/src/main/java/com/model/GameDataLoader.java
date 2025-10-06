@@ -16,11 +16,8 @@ public class GameDataLoader {
 
     /**
 	 * Loads the list of system usernames and permissions.
-	 *
 	 * @param usersFile
-	 *            the filename of the users file.
-	 * @throws GRADSFileException
-	 *             Exception.
+	 * @throws Exception
 	 */
 	public List<User> loadUsers() throws Exception {
     String usersFile = USER_FILE_NAME;
