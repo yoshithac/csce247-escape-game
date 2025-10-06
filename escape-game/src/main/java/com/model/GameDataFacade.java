@@ -85,6 +85,9 @@ public class GameDataFacade {
      * @return A list of loaded users
      */
     public List<User> loadUsers() {
+        if (gameDataLoader != null) {
+            users = gameDataLoader.loadUsers();
+        }
         return users;
     }
 
