@@ -1,7 +1,7 @@
 package com.model;
+
 import java.util.List;
 import java.util.ArrayList;
-
 
 /*
  * This class acts as a facade for accessing and managing game data
@@ -18,15 +18,11 @@ public class GameDataFacade {
     private Leaderboard leaderboard;
     private List<Hint> hints;
 
-    private GameDataFacade() throws Exception {
-        gameDataLoader = new GameDataLoader();
-        users = gameDataLoader.loadUsers();
-    }
     /*
      * Singleton instance of GameDataFacade
      * @return the single instance of GameDataFacade
     */
-    public static GameDataFacade getInstance() throws Exception {
+    public GameDataFacade getInstance() {
         if (gameDataFacade == null) {
             gameDataFacade = new GameDataFacade();
         }
@@ -39,6 +35,7 @@ public class GameDataFacade {
      * @return The user with the specified ID, or null if not found
      */
     public User getUser(String userId) {
+        if (users == null) return null;
         for (User user : users) {
             if (user.getUserId().equals(userId)) {
                 return user;
@@ -53,6 +50,7 @@ public class GameDataFacade {
      * @return A list of certificates belonging to the specified user
      */
     public List<Certificate> getCertificates(String userId) {
+        if (certificates == null) return new ArrayList<>();
         List<Certificate> userCertificates = new ArrayList<>();
         for (Certificate cert : certificates) {
             if (cert.getCertUserId().equals(userId)) {
@@ -67,7 +65,8 @@ public class GameDataFacade {
      * @return A list of hints for the current game session
      */
     public List<Hint> getHints() {
-        return hints;
+        // Prefer gameData's hints if available, otherwise return local hints
+        return (gameData != null && gameData.getHints() != null) ? gameData.getHints() : hints;
     }
 
     /**
@@ -75,14 +74,17 @@ public class GameDataFacade {
      * @return The loaded game data
      */
     public GameData loadGameData() {
-        return null;
+        if (gameDataLoader != null) {
+            gameData = gameDataLoader.readGameData();
+        }
+        return gameData;
     }
 
     /**
      * Loads users from storage
      * @return A list of loaded users
      */
-    public List<User> getUsers() {
+    public List<User> loadUsers() {
         return users;
     }
 
@@ -99,7 +101,9 @@ public class GameDataFacade {
      * @param user The user to be saved
      */
     public void saveUser(User user) {
-        
+        if (gameDataWriter != null) {
+            gameDataWriter.writeUser(user);
+        }
     }
 
     /**
@@ -107,6 +111,48 @@ public class GameDataFacade {
      * @param gameData The game data to be saved
      */
     public void saveGameData(GameData gameData) {
+        if (gameDataWriter != null) {
+            gameDataWriter.writeGameData(gameData);
+        }
+    }
 
+    public Leaderboard getLeaderboard() {
+        return leaderboard;
+    }
+
+    public void setLeaderboard(Leaderboard leaderboard) {
+        this.leaderboard = leaderboard;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void setPuzzles(List<Puzzle> puzzles) {
+        this.puzzles = puzzles;
+    }
+
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
+    }
+
+    public void setHints(List<Hint> hints) {
+        this.hints = hints;
+    }
+
+    @Override
+    public String toString() {
+        return "GameDataFacade{" +
+                "puzzles=" + puzzles +
+                ", users=" + users +
+                ", gameData=" + gameData +
+                ", certificates=" + certificates +
+                ", leaderboard=" + leaderboard +
+                ", hints=" + hints +
+                '}';
     }
 }
