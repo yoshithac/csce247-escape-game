@@ -22,7 +22,7 @@ public class GameDataFacade {
      * Singleton instance of GameDataFacade
      * @return the single instance of GameDataFacade
     */
-    public GameDataFacade getInstance() {
+    public static GameDataFacade getInstance() {
         if (gameDataFacade == null) {
             gameDataFacade = new GameDataFacade();
         }
