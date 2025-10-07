@@ -1,7 +1,7 @@
 package com.model;
 import java.util.List;
 
-/*
+/**
  * This class holds the game data for the escape game application
  * @author We're Getting an A
  */
@@ -62,6 +62,7 @@ public class GameData {
 
     /*
      * Returns the list of hints
+     * @return List of hints
      * @return List of hints applicable to the game
      */
     public List<Hint> getHints() {
