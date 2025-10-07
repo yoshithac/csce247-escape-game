@@ -2,7 +2,7 @@ package com.model;
 import java.util.List;
 import java.time.LocalTime;
 
-/*
+/**
  * This class represents the leaderboard for the game
  * @author We're Getting an A
  */
@@ -10,7 +10,7 @@ public class Leaderboard {
     private static Leaderboard leaderboard;
     private List<LeaderboardEntry> entries;
 
-    /*
+    /**
      * Singleton instance of Leaderboard
      * @return the single instance of Leaderboard
     */
