@@ -12,7 +12,13 @@ public class GameData {
     private List<Hint> hints;
     private List<Certificate> certificates;
     
-    
+    /*
+     * Returns the list of hints
+     * @return list of hints applicable to the game
+     */
+    public List<Hint> getHints() {
+        return hints;
+    }
 
 
 
