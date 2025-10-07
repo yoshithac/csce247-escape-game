@@ -15,6 +15,7 @@ public class GameData {
     /**
      * Returns the list of hints
      * @return List of hints
+     * @return List of hints applicable to the game
      */
     public List<Hint> getHints() {
         return hints;
