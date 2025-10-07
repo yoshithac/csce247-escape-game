@@ -1,4 +1,5 @@
 package com.model;
+
 import java.util.List;
 
 /*
@@ -19,7 +20,4 @@ public class GameData {
     public List<Hint> getHints() {
         return hints;
     }
-
-
-
 }
