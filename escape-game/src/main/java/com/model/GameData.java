@@ -20,6 +20,3 @@ public class GameData {
     public List<Hint> getHints() {
         return hints;
     }
-
-
-}
