@@ -4,7 +4,7 @@ package com.model;
  * This class represents a hint that can be given to players
  * @author We're Getting an A
  */
-public class Hint {
+public class Hint extends GameManager {
     private int hintsUsed;
     private int maxHints;
     private String puzzleId;
@@ -31,5 +31,15 @@ public class Hint {
 
     public void resetHints() {
         hintsUsed = 0;
+    }
+
+    public void setMaxHints(int maxHints) {
+        if (getDifficulty() == DifficultyLevel.EASY) {
+            this.maxHints = 5;
+        } else if (getDifficulty() == DifficultyLevel.MEDIUM) {
+            this.maxHints = 3;
+        } else if (getDifficulty() == DifficultyLevel.HARD) {
+            this.maxHints = 1;
+        }
     }
 }

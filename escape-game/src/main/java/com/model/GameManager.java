@@ -158,5 +158,13 @@ public class GameManager {
     public boolean isTimeUp() {
         return true;
     }
+
+    /**
+     * Gets the difficulty level of the game
+     * @return The difficulty level
+     */
+    public DifficultyLevel getDifficulty() {
+        return difficulty;
+    }
 }
 
