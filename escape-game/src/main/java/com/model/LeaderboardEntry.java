@@ -34,4 +34,28 @@ public class LeaderboardEntry {
         }
         return this.completionTime.compareTo(other.completionTime);
     }
+
+    /**
+     * Gets the time associated with this leaderboard entry
+     * @return The completion time
+     */
+    public LocalTime getCompletionTime() {
+    return completionTime;
+    }
+
+    /**
+     * Gets the score associated with this leaderboard entry
+     * @return The score
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * Gets the player associated with this leaderboard entry
+     * @return The user who completed the game
+     */
+    public User getPlayer() {
+        return player;
+    }
 }

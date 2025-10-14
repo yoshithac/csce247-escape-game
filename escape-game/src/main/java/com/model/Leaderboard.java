@@ -1,4 +1,6 @@
 package com.model;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.time.LocalTime;
 
@@ -37,6 +39,7 @@ public class Leaderboard {
      * @return A list of leaderboard entries sorted by completion time
      */
     public List<LeaderboardEntry> sortByTime() {
+        entries.sort(Comparator.comparing(LeaderboardEntry::getCompletionTime));
         return entries;
     }
 
@@ -45,6 +48,7 @@ public class Leaderboard {
      * @return A list of leaderboard entries sorted by score
      */
     public List<LeaderboardEntry> sortByScore() {
+        entries.sort(Comparator.comparingInt(LeaderboardEntry::getScore).reversed());
         return entries;
     }
 
@@ -53,6 +57,7 @@ public class Leaderboard {
      * @return A list of leaderboard entries sorted by player name
      */
     public List<LeaderboardEntry> sortByName() {
+        entries.sort(Comparator.comparing(entry -> ((LeaderboardEntry) entry).getPlayer().getFirstName().toLowerCase()));
         return entries;
     }
 }
