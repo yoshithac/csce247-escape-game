@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author We're Getting an A
  */
 public class GameDataFacade {
-    private static GameDataFacade gameDataFacade;
+    protected static GameDataFacade gameDataFacade;
     private GameDataLoader gameDataLoader;
     private GameDataWriter gameDataWriter;
     private List<Puzzle> puzzles;

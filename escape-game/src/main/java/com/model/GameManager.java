@@ -1,5 +1,7 @@
 package com.model;
 
+import static com.model.GameDataFacade.gameDataFacade;
+
 import java.util.List;
 import java.util.Timer;
 
@@ -7,7 +9,7 @@ import java.util.Timer;
  * This class manages the game flow and player interactions
  * @author We're Getting an A
  */
-public class GameManager {
+public class GameManager extends GameDataFacade{
     private User currentPlayer;
     private List<User> players;
     private DifficultyLevel difficulty;
@@ -22,14 +24,27 @@ public class GameManager {
      * Constructor for GameManager
      */
     public GameManager() {
-
+        currentPlayer = null;
+        players = null;
+        difficulty = DifficultyLevel.EASY;
+        startTime = 0;
+        isActive = false;
+        currentProgress = null;
+        currentPuzzles = null;
+        hints = null;
+        sessionTimer = null;
+        gameDataFacade = GameDataFacade.getInstance();
     }
 
     /**
      * Starts a new game session.
      */
     public void startGame() {
-
+        isActive = true;
+        startTime = (int) (System.currentTimeMillis() / 1000L);
+        currentPuzzles = gameDataFacade.getPuzzles();
+        currentProgress = new GameProgress(currentPuzzles);
+        startTimer();
     }
 
     /**
@@ -37,7 +52,18 @@ public class GameManager {
      * @param userId The ID of the user whose game is to be loaded
      */
     public void loadGame(String userId) {
-
+        User u = gameDataFacade.getUser(userId);
+        if (u == null) {
+            throw new IllegalArgumentException("User not found: " + userId);
+        }
+        currentPlayer = u;
+        GameData gd = gameDataFacade.loadGameData();
+        if (gd != null && gd.getGameProgress() != null) {
+            currentProgress = gd.getGameProgress();
+        } else {
+            currentProgress = new GameProgress(gameDataFacade.getPuzzles());
+            currentProgress.setCurrentPlayer(u);
+        }
     }
 
     /**
@@ -45,43 +71,72 @@ public class GameManager {
      * @param userId The ID of the user whose game is to be saved
      */
     public void saveGame(String userId) {
-
+        if (userId == null) return;
+        if (currentPlayer != null && userId.equals(currentPlayer.getUserId())) {
+            gameDataFacade.saveUser(currentPlayer);
+        }
+        if (gameDataFacade.loadGameData() != null) {
+            GameData gd = gameDataFacade.loadGameData();
+            try {
+                gd.setGameProgress(this.currentProgress);
+                gameDataFacade.saveGameData(gd);
+            } catch (Exception e) {
+                
+            }
+        }
     }
 
     /**
      * Pauses the current game session.
      */
     public void pauseGame() {
-
+        this.isActive = false;
+        if (this.sessionTimer != null) {
+            this.sessionTimer.cancel();
+            this.sessionTimer = null;
+        }
     }
 
     /**
      * Displays the leaderboard.
      */
     public void showLeaderboard() {
-
+        GameData gd = gameDataFacade.loadGameData();
+        System.out.println(gd.getLeaderboard());
     }
 
     /**
      * Ends the current game session.
      */
     public void endGame() {
-
+        this.isActive = false;
+        if (this.sessionTimer != null) {
+            this.sessionTimer.cancel();
+            this.sessionTimer = null;
+        }
     }
 
     /**
      * Registers a new user.
      * @param userData The data of the user to be registered
      */
-    public void registerUser(Object userData) {
-
+    public void registerUser(User userData) {
+        if (userData == null) return;
+        gameDataFacade.saveUser(userData);
     }
 
     /**
      * Starts the next puzzle for the current player.
      */
     public void startNextPuzzle() {
-
+        if (currentProgress == null) return;
+        currentProgress.checkProgress();
+        Puzzle next = currentProgress.getCurrentPuzzle();
+        if (next == null) {
+            handleGameEnd();
+        } else {
+            //ui to display puzzle
+        }
     }
 
     /**
@@ -89,14 +144,22 @@ public class GameManager {
      * @param direction The direction to move the player
      */
     public boolean loginUser(String userId, String password) {
-        return true;
+        User u = gameDataFacade.getUser(userId);
+        if (u == null) return false;
+        try {
+            return password != null && password.equals(u.getPassword());
+        } catch (Exception e) {
+            return true;
+        }
     }
 
     /**
      * Deletes the current user.
      */
     public void deleteUser(String userId) {
-
+        List<User> all = gameDataFacade.loadUsers();
+        if (all == null) return;
+        all.removeIf(u -> u != null && userId.equals(u.getUserId()));
     }
 
     /**
@@ -104,21 +167,24 @@ public class GameManager {
      * @param userId The ID of the user whose account is to be recovered
      */
     public void recoverAccount (String userId) {
-
+        User u = gameDataFacade.getUser(userId);
+        if (u == null) return;
+        //ui to display recovery options
     }
 
     /*
      * Loads users
      */
-    public void loadUsers() {
-
+    public List<User> loadUsers() {
+        players = gameDataFacade.loadUsers();
+        return players;
     }
 
     /*
      * Loads game data
      */
-    public void loadGameData() {
-
+    public GameData loadGameData() {
+        return gameDataFacade.loadGameData();
     }
 
     /**
@@ -126,21 +192,30 @@ public class GameManager {
      * @return True if the game is over, false otherwise
      */
     public boolean checkGameOver() {
-        return true;
+        if (currentProgress == null) return true;
+        return currentProgress.getCurrentPuzzle() == null && currentProgress.getToDoPuzzles().isEmpty();
     }
 
     /**
      * Handles the end of the game
      */
     public void handleGameEnd() {
-
+        this.isActive = false;
+        if (this.sessionTimer != null) {
+            this.sessionTimer.cancel();
+            this.sessionTimer = null;
+        }
+        //ui to display end game
     }
 
     /**
      * Starts the timer for the current game session
      */
     public void startTimer() {
-
+        if (this.sessionTimer != null) {
+            this.sessionTimer.cancel();
+        }
+        this.sessionTimer = new Timer(true);
     }
 
     /**
@@ -148,7 +223,10 @@ public class GameManager {
      * @return Remaining time in seconds
      */
     public int getRemainingTime() {
-        return 0;
+        final int sessionLengthSeconds = 60 * 30; // 30 minutes default
+        int now = (int) (System.currentTimeMillis() / 1000L);
+        int elapsed = Math.max(0, now - startTime);
+        return Math.max(0, sessionLengthSeconds - elapsed);
     }
 
     /**
@@ -156,7 +234,7 @@ public class GameManager {
      * @return True if time is up, false otherwise
      */
     public boolean isTimeUp() {
-        return true;
+        return getRemainingTime() <= 0;
     }
 
     /**

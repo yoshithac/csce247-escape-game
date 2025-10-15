@@ -18,22 +18,94 @@ public class GameProgress {
      * @param puzzles The list of puzzles to be completed
      */
     public GameProgress(List<Puzzle> puzzles) {
-        this.toDoPuzzles = puzzles;
-        this.completedPuzzles = new ArrayList<>();
         this.totalScore = 0;
+        this.completedPuzzles = new ArrayList<>();
+        this.toDoPuzzles = new ArrayList<>();
+        if (puzzles != null) {
+            for (Puzzle p : puzzles) {
+                if (p != null && !p.isCompleted()) {
+                    this.toDoPuzzles.add(p);
+                } else if (p != null && p.isCompleted()) {
+                    this.completedPuzzles.add(p);
+                }
+            }
+        }
+        this.currentPuzzle = this.toDoPuzzles.isEmpty() ? null : this.toDoPuzzles.get(0);
     }
 
     /**
      * Checks the progress of the current player.
      */
     public void checkProgress() {
-        
+        if (currentPuzzle == null && !toDoPuzzles.isEmpty()) {
+            currentPuzzle = toDoPuzzles.get(0);
+        }
     }
 
     /**
      * Updates the game progress after completing a puzzle.
      */
     public void updateProgress() {
-        
+        if (currentPuzzle == null) return;
+
+        currentPuzzle.setCompleted(true);
+        if (!completedPuzzles.contains(currentPuzzle)) {
+            completedPuzzles.add(currentPuzzle);
+        }
+        toDoPuzzles.remove(currentPuzzle);
+
+        if (currentPuzzle.getDifficulty() != null) {
+            switch (currentPuzzle.getDifficulty()) {
+                case EASY: totalScore += 10; break;
+                case MEDIUM: totalScore += 20; break;
+                case HARD: totalScore += 40; break;
+                default: totalScore += 10; break;
+            }
+        } else {
+            totalScore += 10;
+        }
+
+        currentPuzzle = toDoPuzzles.isEmpty() ? null : toDoPuzzles.get(0);
+    }
+
+    //helper getters
+    /**
+     * Gets the total score of the current player
+     * @return The total score
+     */
+    public int getTotalScore() { 
+        return totalScore; 
+    }
+
+    /**
+     * Gets the list of completed puzzles
+     * @return The list of completed puzzles
+     */
+    public List<Puzzle> getCompletedPuzzles() { 
+        return completedPuzzles; 
+    }
+
+    /**
+     * Gets the list of puzzles yet to be completed
+     * @return The list of puzzles yet to be completed
+     */
+    public List<Puzzle> getToDoPuzzles() { 
+        return toDoPuzzles; 
+    }
+
+    /**
+     * Gets the current puzzle
+     * @return The current puzzle
+     */
+    public Puzzle getCurrentPuzzle() { 
+        return currentPuzzle; 
+    }
+
+    /**
+     * Gets the current player
+     * @return The current player
+     */
+    public void setCurrentPlayer(User user) { 
+        this.currentPlayer = user; 
     }
 }
