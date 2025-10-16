@@ -91,4 +91,107 @@ public class User {
     public int getScorePoints() {
         return this.scorePoints;
     }
+    /**
+     * Setter for userId
+     * @param userId unique ID of the user
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * Setter for password
+     * @param password password of the user
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * Setter for firstName
+     * @param firstName first name of the user
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * Setter for lastName
+     * @param lastName last name of the user
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * Setter for email
+     * @param email email of the user
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Setter for role
+     * @param role role of the user
+     */
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    /**
+     * Setter for penaltyPoints
+     * @param penaltyPoints number of penalty points
+     */
+    public void setPenaltyPoints(int penaltyPoints) {
+        this.penaltyPoints = penaltyPoints;
+    }
+
+    /**
+     * Setter for scorePoints
+     * @param scorePoints number of score points
+     */
+    public void setScorePoints(int scorePoints) {
+        this.scorePoints = scorePoints;
+    }
+    
+    /**
+     * Adds score points to the user's total
+     * @param points number of points to add
+     */
+    public void addScorePoints(int points) {
+        if (points > 0) {
+            this.scorePoints += points;
+        }
+    }
+
+    /**
+     * Adds penalty points to the user's total
+     * @param points number of penalty points to add
+     */
+    public void addPenaltyPoints(int points) {
+        if (points > 0) {
+            this.penaltyPoints += points;
+        }
+    }
+
+    /**
+     * Checks if the user has an admin role
+     * @return true if user is admin, false otherwise
+     */
+    public boolean isAdmin() {
+        return role != null && role.equalsIgnoreCase("admin");
+    }
+
+    /**
+     * Compares two users based on scorePoints for leaderboard ranking
+     * @param other the other user to compare to
+     * @return comparison result (descending by score, then userId)
+     */
+    public int compareTo(User other) {
+        int scoreCompare = Integer.compare(other.scorePoints, this.scorePoints);
+        if (scoreCompare != 0) return scoreCompare;
+        return this.userId.compareToIgnoreCase(other.userId);
+    }
+
 }
