@@ -13,6 +13,46 @@ public class Puzzle {
     private DifficultyLevel difficulty;
     private boolean isCompleted;
     private int maxAttempts;
+    private int attemptsMade;
+
+    /**
+     * Constructor 
+     * Initializes the puzzle with default values
+     */
+    public Puzzle(){
+        this.puzzleId = "";
+        this.type = "";
+        this.prompt = "";
+        this.answer = "";
+        this.description = "";
+        this.difficulty = DifficultyLevel.MEDIUM;
+        this.isCompleted = false;
+        this.maxAttempts = 3;
+        this.attemptsMade = 0;
+    }
+
+    /**
+     * Constructs a new puzzle with specified parameters
+     * @param puzzleId The Inique ID for the puzzle
+     * @param type The type of puzzle
+     * @param prompt The puzzle promt or question
+     * @param answer The correct answer to the puzzle
+     * @param description Description for the puzzle
+     * @param difficulty The difficulty level of the puzzle
+     * @param maxAttempts Maximum number of attempts allowed
+     */
+    public Puzzle(String puzzleId, String type, String prompt, String answer, String description, DifficultyLevel difficulty, int maxAttempts){
+        this.puzzleId = puzzleId;
+        this.type = type;
+        this.prompt = prompt;
+        this.answer = answer;
+        this.description = description;
+        this.difficulty = difficulty != null ? difficulty : DifficultyLevel.MEDIUM;
+        this.maxAttempts = Math.max(1, maxAttempts);
+        this.isCompleted = false;
+        this.attemptsMade = 0;
+
+    }
 
     /**
      * Plays the puzzle
