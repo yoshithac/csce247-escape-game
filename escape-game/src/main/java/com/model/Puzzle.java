@@ -13,27 +13,10 @@ public class Puzzle {
     private DifficultyLevel difficulty;
     private boolean isCompleted;
     private int maxAttempts;
-    private int attemptsMade;
-
-    /**
-     * Constructor 
-     * Initializes the puzzle with default values
-     */
-    public Puzzle(){
-        this.puzzleId = "";
-        this.type = "";
-        this.prompt = "";
-        this.answer = "";
-        this.description = "";
-        this.difficulty = DifficultyLevel.MEDIUM;
-        this.isCompleted = false;
-        this.maxAttempts = 3;
-        this.attemptsMade = 0;
-    }
 
     /**
      * Constructs a new puzzle with specified parameters
-     * @param puzzleId The Inique ID for the puzzle
+     * @param puzzleId The unique ID for the puzzle
      * @param type The type of puzzle
      * @param prompt The puzzle promt or question
      * @param answer The correct answer to the puzzle
@@ -50,7 +33,6 @@ public class Puzzle {
         this.difficulty = difficulty != null ? difficulty : DifficultyLevel.MEDIUM;
         this.maxAttempts = Math.max(1, maxAttempts);
         this.isCompleted = false;
-        this.attemptsMade = 0;
 
     }
 

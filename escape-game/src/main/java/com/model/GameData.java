@@ -13,6 +13,17 @@ public class GameData {
     private List<Certificate> certificates;
     
     /**
+     * Constructor for User
+     */
+    public GameData(List<Puzzle> puzzles, GameProgress gameProgress, Leaderboard leaderboard, List<Hint> hints, List<Certificate> certificates) {
+        this.puzzles = puzzles;
+        this.gameProgress = gameProgress;
+        this.leaderboard = leaderboard;
+        this.hints = hints;
+        this.certificates = certificates;
+    }
+
+    /**
      * Returns the list of puzzles in the game
      * @return List of puzzles
      */
