@@ -13,7 +13,7 @@ public class GameData {
     private List<Certificate> certificates;
     
     /**
-     * Constructor for User
+     * Constructor for GameData
      */
     public GameData(List<Puzzle> puzzles, GameProgress gameProgress, Leaderboard leaderboard, List<Hint> hints, List<Certificate> certificates) {
         this.puzzles = puzzles;
@@ -28,7 +28,7 @@ public class GameData {
      * @return List of puzzles
      */
     public List<Puzzle> getPuzzles() {
-        return puzzles;
+        return this.puzzles;
     }
 
     /**
@@ -44,7 +44,7 @@ public class GameData {
      * @return GameProgress 
      */
     public GameProgress getGameProgress() {
-        return gameProgress;
+        return this.gameProgress;
     }
 
     /**
@@ -60,7 +60,7 @@ public class GameData {
      * @return Leaderboard object
      */
     public Leaderboard getLeaderboard() {
-        return leaderboard;
+        return this.leaderboard;
     }
 
     /**

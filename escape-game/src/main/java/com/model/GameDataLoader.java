@@ -14,12 +14,11 @@ public class GameDataLoader {
     /**
 	 * Loads the list of user data.
 	 * @param usersFile
-	 * @throws Exception
 	 */
-	public List<User> loadUsers() throws Exception {
+	public List<User> readUsers() {
     String usersFile = USER_FILE_NAME;
     
-    List<User> users;
+    List<User> users = null;
     try {
         users = new Gson().fromJson(
             new FileReader(usersFile),
@@ -35,35 +34,34 @@ public class GameDataLoader {
     } catch (Exception ex) {
         System.out.println("Could not find: " + usersFile);
         ex.printStackTrace();
-        throw new Exception("File not found: Users file not found", ex);
+        //throw new Exception("File not found: Users file not found", ex);
     }
     return users;
 }
 /**
  * Loads list of all game data (i.e. Leaderboeards, puzzles, etc)
  * @return gameDataFile
- * @throws Exception
  */
-public List<GameData> loadGameData() throws Exception {
+public GameData readGameData() {
 String gameDataFile = GAMEDATA_FILE_NAME;
 
-List<GameData> gameData;
+GameData gameData = null;
 try {
         gameData = new Gson().fromJson(
             new FileReader(gameDataFile),
-            new TypeToken<List<GameData>>() {}.getType()
+            new TypeToken<GameData>() {}.getType()
         );
         
         // Check if gameData is null
         if (gameData == null) {
             System.out.println("Warning: JSON file is empty or returned null");
-            gameData = new java.util.ArrayList<>(); // Return empty list instead of null
+            gameData = new GameData(null, null, null, null, null); // Return empty object instead of null
         }
         
     } catch (Exception ex) {
         System.out.println("Could not find: " + gameDataFile);
         ex.printStackTrace();
-        throw new Exception("File not found: Users file not found", ex);
+        //throw new Exception("File not found: Users file not found", ex);
     }
     return gameData;
 }
