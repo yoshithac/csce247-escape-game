@@ -9,7 +9,7 @@ public class Certificate {
     private String certificateId;
     private String certUserId;
     private String description;
-    private LocalDateTime earnDate;
+    public LocalDateTime earnDate;
     private DifficultyLevel difficulty;
 
     /**

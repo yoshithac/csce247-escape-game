@@ -1,8 +1,6 @@
 package com.model;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.time.LocalTime;
 
 /**
  * This class represents the leaderboard for the game
@@ -30,7 +28,7 @@ public class Leaderboard {
      * @param time The time taken to complete the puzzle
      */
     public void addEntry(User user, int score, int time) {
-        LeaderboardEntry entry = new LeaderboardEntry(user, score, LocalTime.ofSecondOfDay(time));
+        LeaderboardEntry entry = new LeaderboardEntry(user, score, time);
         entries.add(entry);
     }
 

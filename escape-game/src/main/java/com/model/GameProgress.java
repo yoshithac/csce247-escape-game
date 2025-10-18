@@ -108,4 +108,15 @@ public class GameProgress {
     public void setCurrentPlayer(User user) { 
         this.currentPlayer = user; 
     }
+
+    public User getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCompletedPuzzles(List<Puzzle> completedPuzzles) {
+        this.completedPuzzles = completedPuzzles;
+    }
+    public void setToDoPuzzles(List<Puzzle> toDoPuzzles) {
+        this.toDoPuzzles = toDoPuzzles;
+    }
 }

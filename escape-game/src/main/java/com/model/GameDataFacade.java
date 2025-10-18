@@ -1,7 +1,7 @@
 package com.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * This class acts as a facade for accessing and managing game data
@@ -17,6 +17,12 @@ public class GameDataFacade {
     private List<Certificate> certificates;
     private Leaderboard leaderboard;
     private List<Hint> hints;
+
+     private GameDataFacade() {
+        gameDataLoader = new GameDataLoader();
+        gameDataWriter = new GameDataWriter();
+        //users = gameDataLoader.loadUsers();
+    }
 
     /*
      * Singleton instance of GameDataFacade
@@ -84,11 +90,11 @@ public class GameDataFacade {
      * Loads users from storage
      * @return A list of loaded users
      */
-    public List<User> loadUsers() {
+    public void loadUsers() {
         if (gameDataLoader != null) {
             users = gameDataLoader.readUsers();
         }
-        return users;
+    
     }
 
     /**
@@ -103,9 +109,13 @@ public class GameDataFacade {
      * Saves a user to storage
      * @param user The user to be saved
      */
-    public void saveUser(User user) {
-        if (gameDataWriter != null) {
-            gameDataWriter.writeUser(user);
+    public boolean saveUsers() {
+        if (gameDataWriter != null && users != null) {
+            return gameDataWriter.writeUsers(users);
+        }
+        else {
+            System.out.println("Either users or DataWriter not available");
+            return false;
         }
     }
 
@@ -113,9 +123,13 @@ public class GameDataFacade {
      * Saves game data to storage
      * @param gameData The game data to be saved
      */
-    public void saveGameData(GameData gameData) {
-        if (gameDataWriter != null) {
-            gameDataWriter.writeGameData(gameData);
+    public boolean saveGameData() {
+        if (gameDataWriter != null && gameData != null) {
+            return gameDataWriter.writeGameData(gameData);
+        }
+        else {
+            System.out.println("Either game data or DataWriter not available");
+            return false;
         }
     }
 

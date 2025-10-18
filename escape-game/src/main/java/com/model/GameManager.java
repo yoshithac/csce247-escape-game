@@ -1,15 +1,14 @@
 package com.model;
 
-import static com.model.GameDataFacade.gameDataFacade;
-
 import java.util.List;
-import java.util.Timer;
+
+import static com.model.GameDataFacade.gameDataFacade;
 
 /*
  * This class manages the game flow and player interactions
  * @author We're Getting an A
  */
-public class GameManager extends GameDataFacade{
+public class GameManager{
     private User currentPlayer;
     private List<User> players;
     private DifficultyLevel difficulty;
@@ -18,7 +17,7 @@ public class GameManager extends GameDataFacade{
     private GameProgress currentProgress;
     private List<Puzzle> currentPuzzles;
     private List<Hint> hints;
-    private Timer sessionTimer;
+    //private Timer sessionTimer;
 
     /**
      * Constructor for GameManager
@@ -32,7 +31,7 @@ public class GameManager extends GameDataFacade{
         currentProgress = null;
         currentPuzzles = null;
         hints = null;
-        sessionTimer = null;
+        //sessionTimer = null;
         gameDataFacade = GameDataFacade.getInstance();
     }
 
@@ -71,7 +70,7 @@ public class GameManager extends GameDataFacade{
      * @param userId The ID of the user whose game is to be saved
      */
     public void saveGame(String userId) {
-        if (userId == null) return;
+        /* if (userId == null) return;
         if (currentPlayer != null && userId.equals(currentPlayer.getUserId())) {
             gameDataFacade.saveUser(currentPlayer);
         }
@@ -83,18 +82,20 @@ public class GameManager extends GameDataFacade{
             } catch (Exception e) {
                 
             }
-        }
+        } */
     }
 
     /**
      * Pauses the current game session.
      */
     public void pauseGame() {
+        /* 
         this.isActive = false;
         if (this.sessionTimer != null) {
             this.sessionTimer.cancel();
             this.sessionTimer = null;
         }
+        */
     }
 
     /**
@@ -109,11 +110,13 @@ public class GameManager extends GameDataFacade{
      * Ends the current game session.
      */
     public void endGame() {
+        /*
         this.isActive = false;
         if (this.sessionTimer != null) {
             this.sessionTimer.cancel();
             this.sessionTimer = null;
         }
+            */
     }
 
     /**
@@ -121,8 +124,8 @@ public class GameManager extends GameDataFacade{
      * @param userData The data of the user to be registered
      */
     public void registerUser(User userData) {
-        if (userData == null) return;
-        gameDataFacade.saveUser(userData);
+        //if (userData == null) return;
+        //gameDataFacade.saveUser(userData);
     }
 
     /**
@@ -157,9 +160,7 @@ public class GameManager extends GameDataFacade{
      * Deletes the current user.
      */
     public void deleteUser(String userId) {
-        List<User> all = gameDataFacade.loadUsers();
-        if (all == null) return;
-        all.removeIf(u -> u != null && userId.equals(u.getUserId()));
+        
     }
 
     /**
@@ -175,9 +176,8 @@ public class GameManager extends GameDataFacade{
     /*
      * Loads users
      */
-    public List<User> loadUsers() {
-        players = gameDataFacade.loadUsers();
-        return players;
+    public void loadUsers() {
+        
     }
 
     /*
@@ -200,11 +200,13 @@ public class GameManager extends GameDataFacade{
      * Handles the end of the game
      */
     public void handleGameEnd() {
+        /*
         this.isActive = false;
         if (this.sessionTimer != null) {
             this.sessionTimer.cancel();
             this.sessionTimer = null;
         }
+            */
         //ui to display end game
     }
 
@@ -212,10 +214,12 @@ public class GameManager extends GameDataFacade{
      * Starts the timer for the current game session
      */
     public void startTimer() {
+        /* 
         if (this.sessionTimer != null) {
             this.sessionTimer.cancel();
         }
         this.sessionTimer = new Timer(true);
+        */
     }
 
     /**

@@ -1,5 +1,4 @@
 package com.model;
-import java.time.LocalTime;
 
 /*
  * This class represents an entry in the leaderboard
@@ -8,7 +7,7 @@ import java.time.LocalTime;
 public class LeaderboardEntry {
     private User player;
     private int score;
-    private LocalTime completionTime;
+    public int completionTime;
 
     /**
      * Constructor for LeaderboardEntry
@@ -16,7 +15,7 @@ public class LeaderboardEntry {
      * @param score The score achieved by the user
      * @param completionTime The time taken to complete the puzzle
      */
-    public LeaderboardEntry(User player, int score, LocalTime completionTime) {
+    public LeaderboardEntry(User player, int score, int completionTime) {
         this.player = player;
         this.score = score;
         this.completionTime = completionTime;
@@ -28,18 +27,15 @@ public class LeaderboardEntry {
      * @return A negative integer, zero, or a positive integer as this entry is less than,
      * equal to, or greater than the specified entry
      */
-    public int compareTo(LeaderboardEntry other) {
-        if (this.score != other.score) {
-            return Integer.compare(this.score, other.score);
-        }
-        return this.completionTime.compareTo(other.completionTime);
+    public boolean  compareTo(LeaderboardEntry other) {
+        return false;
     }
 
     /**
      * Gets the time associated with this leaderboard entry
      * @return The completion time
      */
-    public LocalTime getCompletionTime() {
+    public int getCompletionTime() {
     return completionTime;
     }
 
@@ -57,5 +53,9 @@ public class LeaderboardEntry {
      */
     public User getPlayer() {
         return player;
+    }
+
+    public void setCompletionTime(int completionTime) {
+        this.completionTime = completionTime;
     }
 }
