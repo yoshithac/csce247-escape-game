@@ -19,8 +19,8 @@ public class GameDataWriter {
         .setPrettyPrinting()
         .create();
     
-    protected static final String USER_FILE_NAME = "src/main/resources/Users1.json";
-    protected static final String GAMEDATA_FILE_NAME = "src/main/resources/GameData1.json";
+    protected static final String USER_FILE_NAME = "src/main/resources/Users.json";
+    protected static final String GAMEDATA_FILE_NAME = "src/main/resources/GameData.json";
 
     /**
      * Writes the list of user data to file.

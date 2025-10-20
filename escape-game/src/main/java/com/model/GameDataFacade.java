@@ -21,7 +21,12 @@ public class GameDataFacade {
      private GameDataFacade() {
         gameDataLoader = new GameDataLoader();
         gameDataWriter = new GameDataWriter();
-        //users = gameDataLoader.loadUsers();
+        // load users from DataBase
+        users = gameDataLoader.readUsers();
+        // load all other Game Data from DataBase
+        gameData = gameDataLoader.readGameData();
+        leaderboard = Leaderboard.getInstance();
+        
     }
 
     /*
@@ -76,27 +81,27 @@ public class GameDataFacade {
     }
 
     /**
-     * Loads game data from storage
+     * Gets GameData
      * @return The loaded game data
      */
-    public GameData loadGameData() {
-        if (gameDataLoader != null) {
-            gameData = gameDataLoader.readGameData();
-        }
+    
+    public GameData getGameData() {        
         return gameData;
     }
+    
 
     /**
      * Loads users from storage
      * @return A list of loaded users
      */
+    /*
     public void loadUsers() {
         if (gameDataLoader != null) {
             users = gameDataLoader.readUsers();
         }
     
     }
-
+    */
     /**
      * Gets the list of puzzles in the game
      * @return A list of puzzles
@@ -145,8 +150,8 @@ public class GameDataFacade {
         return users;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void addUser(User newUser) {
+        this.users.add(newUser);
     }
 
     public void setPuzzles(List<Puzzle> puzzles) {

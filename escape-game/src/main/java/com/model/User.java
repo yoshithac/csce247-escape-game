@@ -194,4 +194,15 @@ public class User {
         return this.userId.compareToIgnoreCase(other.userId);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("userId=").append(userId);        
+        sb.append(", firstName=").append(firstName);
+        sb.append(", lastName=").append(lastName);
+        sb.append(", email=").append(email);        
+        
+        return sb.toString();
+    }
+
 }

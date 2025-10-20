@@ -1,43 +1,43 @@
 {
   "puzzles": [
-  {
-    "puzzleId": "WP001",
-    "type": "Word-Cipher",
-    "prompt": "Unscramble the letters: CSEAPE",
-    "answer": "ESCAPE",
-    "description": "A simple word scramble puzzle.",
-    "difficulty": "EASY",
-    "isCompleted": false,
-    "maxAttempts": 5
-  },
-  {
-    "puzzleId": "WP002",
-    "type": "Word-Riddle",
-    "prompt": "What has keys but can’t open locks?",
-    "answer": "Keyboard",
-    "description": "A riddle puzzle.",
-    "difficulty": "MEDIUM",
-    "isCompleted": false,
-    "maxAttempts": 3
-  },
-  {
-    "puzzleId": "WP003",
-    "type": "Word-Anagram",
-    "prompt": "Rearrange the letters: SILENT",
-    "answer": "LISTEN",
-    "description": "An anagram puzzle.",
-    "difficulty": "MEDIUM",
-    "isCompleted": false,
-    "maxAttempts": 3
-  }
-],
+    {
+      "puzzleId": "WP001",
+      "type": "Word-Cipher",
+      "prompt": "Unscramble the letters: CSEAPE",
+      "answer": "ESCAPE",
+      "description": "A simple word scramble puzzle.",
+      "difficulty": "EASY",
+      "isCompleted": false,
+      "maxAttempts": 5
+    },
+    {
+      "puzzleId": "WP002",
+      "type": "Word-Riddle",
+      "prompt": "What has keys but can’t open locks?",
+      "answer": "Keyboard",
+      "description": "A riddle puzzle.",
+      "difficulty": "MEDIUM",
+      "isCompleted": false,
+      "maxAttempts": 3
+    },
+    {
+      "puzzleId": "WP003",
+      "type": "Word-Anagram",
+      "prompt": "Rearrange the letters: SILENT",
+      "answer": "LISTEN",
+      "description": "An anagram puzzle.",
+      "difficulty": "MEDIUM",
+      "isCompleted": false,
+      "maxAttempts": 3
+    }
+  ],
   "gameProgress": {
     "currentPlayer": {
       "userId": "user001",
       "password": "hashedPassword123",
-      "email": "player1@example.com",
       "firstName": "John",
       "lastName": "Doe",
+      "email": "player1@example.com",
       "role": "player",
       "penaltyPoints": 5,
       "scorePoints": 150
@@ -122,25 +122,11 @@
     "entries": [
       {
         "player": {
-          "userId": "user001",
-          "password": "hashedPassword123",
-          "email": "player1@example.com",
-          "firstName": "John",
-          "lastName": "Doe",
-          "role": "player",
-          "penaltyPoints": 5,
-          "scorePoints": 150
-        },
-        "score": 150,
-        "completionTime": 140
-      },
-      {
-        "player": {
           "userId": "user002",
           "password": "hashedPassword456",
-          "email": "player2@example.com",
           "firstName": "Jane",
           "lastName": "Smith",
+          "email": "player2@example.com",
           "role": "player",
           "penaltyPoints": 2,
           "scorePoints": 200
@@ -152,18 +138,50 @@
         "player": {
           "userId": "user003",
           "password": "hashedPassword789",
-          "email": "player3@example.com",
           "firstName": "Bob",
           "lastName": "Johnson",
+          "email": "player3@example.com",
           "role": "player",
           "penaltyPoints": 0,
           "scorePoints": 175
         },
         "score": 175,
         "completionTime": 150
+      },
+      {
+        "player": {
+          "userId": "user001",
+          "password": "hashedPassword123",
+          "firstName": "John",
+          "lastName": "Doe",
+          "email": "player1@example.com",
+          "role": "player",
+          "penaltyPoints": 5,
+          "scorePoints": 150
+        },
+        "score": 150,
+        "completionTime": 140
       }
     ]
   },
+  "hints": [
+    {
+      "hintsUsed": 1,
+      "maxHints": 3,
+      "puzzleId": "WP001",
+      "hintText": "This is a Caesar cipher. Try shifting each letter by a fixed number.",
+      "startTime": 0,
+      "isActive": false
+    },
+    {
+      "hintsUsed": 0,
+      "maxHints": 3,
+      "puzzleId": "WP002",
+      "hintText": "Think of a common household pet.",
+      "startTime": 0,
+      "isActive": false
+    }
+  ],
   "certificates": [
     {
       "certificateId": "CERT001",
@@ -185,20 +203,6 @@
       "description": "Master achievement - Completed all HARD level puzzles",
       "earnDate": "2025-09-25T16:45:00",
       "difficulty": "HARD"
-    }
-  ],
-  "hints": [
-    {
-      "hintsUsed": 1,
-      "maxHints": 3,
-      "puzzleId": "WP001",
-      "hintText": "This is a Caesar cipher. Try shifting each letter by a fixed number."
-    },
-    {
-      "hintsUsed": 0,
-      "maxHints": 3,
-      "puzzleId": "WP002",
-      "hintText": "Think of a common household pet."
     }
   ]
 }

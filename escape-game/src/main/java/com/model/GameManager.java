@@ -56,7 +56,7 @@ public class GameManager{
             throw new IllegalArgumentException("User not found: " + userId);
         }
         currentPlayer = u;
-        GameData gd = gameDataFacade.loadGameData();
+        GameData gd = gameDataFacade.getGameData();
         if (gd != null && gd.getGameProgress() != null) {
             currentProgress = gd.getGameProgress();
         } else {
@@ -99,11 +99,11 @@ public class GameManager{
     }
 
     /**
-     * Displays the leaderboard.
+     * Gets the leaderboard.
      */
-    public void showLeaderboard() {
-        GameData gd = gameDataFacade.loadGameData();
-        System.out.println(gd.getLeaderboard());
+    public Leaderboard getLeaderboard() {
+        return gameDataFacade.getGameData().getLeaderboard();
+        
     }
 
     /**
@@ -121,11 +121,23 @@ public class GameManager{
 
     /**
      * Registers a new user.
-     * @param userData The data of the user to be registered
+     * @param newUser The data of the user to be registered
      */
-    public void registerUser(User userData) {
-        //if (userData == null) return;
-        //gameDataFacade.saveUser(userData);
+    public String registerUser(String userId, String passWord, String firstName, String lastName, String email) {
+        
+        if (gameDataFacade.getUsers() != null) {
+            for (User user : gameDataFacade.getUsers()) {
+                if (user.getUserId().equals(userId)){
+                    return "userId already used. Please register with different UserId";
+                }
+            }
+            User newUser = new User(userId,passWord,firstName,lastName,email,"user",0,0);
+            gameDataFacade.addUser(newUser);
+            this.currentPlayer = newUser;
+            return "Successfull registered";
+        }
+        
+        return "User Database not available. Please comeback";
     }
 
     /**
@@ -147,13 +159,15 @@ public class GameManager{
      * @param direction The direction to move the player
      */
     public boolean loginUser(String userId, String password) {
-        User u = gameDataFacade.getUser(userId);
-        if (u == null) return false;
-        try {
-            return password != null && password.equals(u.getPassword());
-        } catch (Exception e) {
+        User user = gameDataFacade.getUser(userId);
+        if (user == null) return false;
+        if(password != null && password.equals(user.getPassword())){
+            this.currentPlayer = user;
             return true;
+        }else{
+            return false;
         }
+        
     }
 
     /**
@@ -184,7 +198,7 @@ public class GameManager{
      * Loads game data
      */
     public GameData loadGameData() {
-        return gameDataFacade.loadGameData();
+        return gameDataFacade.getGameData();
     }
 
     /**
@@ -247,6 +261,10 @@ public class GameManager{
      */
     public DifficultyLevel getDifficulty() {
         return difficulty;
+    }
+
+    public User getCurrentPlayer() {
+        return currentPlayer;
     }
 }
 

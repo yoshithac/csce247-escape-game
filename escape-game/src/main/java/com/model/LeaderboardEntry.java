@@ -58,4 +58,16 @@ public class LeaderboardEntry {
     public void setCompletionTime(int completionTime) {
         this.completionTime = completionTime;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("| player=").append(player.getUserId());
+        sb.append(", score=").append(score);
+        sb.append(", completionTime=").append(completionTime);
+        sb.append(" |");
+        
+        return sb.toString();
+    }
 }

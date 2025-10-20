@@ -122,20 +122,6 @@
     "entries": [
       {
         "player": {
-          "userId": "user001",
-          "password": "hashedPassword123",
-          "firstName": "John",
-          "lastName": "Doe",
-          "email": "player1@example.com",
-          "role": "player",
-          "penaltyPoints": 5,
-          "scorePoints": 150
-        },
-        "score": 150,
-        "completionTime": 140
-      },
-      {
-        "player": {
           "userId": "user002",
           "password": "hashedPassword456",
           "firstName": "Jane",
@@ -161,6 +147,20 @@
         },
         "score": 175,
         "completionTime": 150
+      },
+      {
+        "player": {
+          "userId": "user001",
+          "password": "hashedPassword123",
+          "firstName": "John",
+          "lastName": "Doe",
+          "email": "player1@example.com",
+          "role": "player",
+          "penaltyPoints": 5,
+          "scorePoints": 150
+        },
+        "score": 150,
+        "completionTime": 140
       }
     ]
   },
