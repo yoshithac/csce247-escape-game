@@ -36,7 +36,7 @@ public class LeaderboardEntry {
      * @return The completion time
      */
     public int getCompletionTime() {
-    return completionTime;
+        return completionTime;
     }
 
     /**
