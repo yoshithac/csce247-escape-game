@@ -190,8 +190,19 @@ public class GameManager{
     /*
      * Loads users
      */
-    public void loadUsers() {
-        
+    public boolean saveUsers() {
+        return gameDataFacade.saveUsers();
+    }
+
+    /**
+     * 
+     */
+    public boolean saveGameData() {
+            return gameDataFacade.saveGameData();
+    }
+
+    public List<User> getUsers() {
+        return gameDataFacade.getUsers();
     }
 
     /*

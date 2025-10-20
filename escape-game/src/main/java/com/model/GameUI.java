@@ -9,14 +9,11 @@ public class GameUI {
 
 private String[] mainMenuOptions = {"Register Account", "Login", "Play Game","Continue Game","Show Leader Board","Show all users","Logout"};
 private Scanner scanner;
-private GameDataFacade gameDataFacade;
 private GameManager gameManager;
 
 public GameUI(){
 		scanner = new Scanner(System.in);
     gameManager = new GameManager();
-		gameDataFacade = GameDataFacade.getInstance();  
-    
 	}
 
   public void run() {
@@ -126,7 +123,8 @@ public GameUI(){
 		}    
 
     private void playGame() {
-        GameData gameData = gameDataFacade.getGameData();
+        //GameData gameData = gameDataFacade.getGameData();
+				GameData gameData = gameManager.loadGameData();
     List<Puzzle> puzzles = gameData.getPuzzles();
     for (Puzzle puzzle : puzzles) {
       System.out.println("Puzzle ID: " + puzzle.getPuzzleId() + ", prompt: " + puzzle.getType() + "\nanswer:" + puzzle.getAnswer());
@@ -148,7 +146,7 @@ public GameUI(){
     }
 
     private void showAllUsers() {
-    List<User> users = gameDataFacade.getUsers();
+    List<User> users = gameManager.getUsers();
     for (User user : users) {
       System.out.println(user);
     }
@@ -157,9 +155,9 @@ public GameUI(){
     private void logout() {
     
     //Save User data
-    System.out.println(gameDataFacade.saveUsers() ? "saved user successfully":"user failed to save");
+    System.out.println(gameManager.saveUsers() ? "saved user successfully":"user failed to save");
     //save all other Game Data
-    System.out.println(gameDataFacade.saveGameData() ? "saved game data successfully":"game data failed to save");
+    System.out.println(gameManager.saveGameData() ? "saved game data successfully":"game data failed to save");
     
     }
 
