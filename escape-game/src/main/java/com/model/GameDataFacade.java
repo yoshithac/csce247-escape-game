@@ -21,31 +21,14 @@ public class GameDataFacade {
      private GameDataFacade() {
         gameDataLoader = new GameDataLoader();
         gameDataWriter = new GameDataWriter();
-
         // load users from DataBase
         users = gameDataLoader.readUsers();
-        if (users == null) {
-            users = new ArrayList<>();
-        }
-
         // load all other Game Data from DataBase
         gameData = gameDataLoader.readGameData();
-
-        // Initialize puzzles from loaded gameData if available.
-        if (gameData != null && gameData.getPuzzles() != null) {
-            this.puzzles = gameData.getPuzzles();
-        } else {
-            // Fallback: use an empty list to avoid NPEs.
-            // Optionally, use RandomPuzzleFactory to provide sample puzzles:
-            // RandomPuzzleFactory factory = new RandomPuzzleFactory();
-            // this.puzzles = factory.createPuzzleSet(null);
-            this.puzzles = new ArrayList<>();
-            System.out.println("Warning: GameData missing or empty. Initialized empty puzzle list in GameDataFacade.");
-        }
-
-        // Load leaderboard singleton
         leaderboard = Leaderboard.getInstance();
+        
     }
+
     /*
      * Singleton instance of GameDataFacade
      * @return the single instance of GameDataFacade
@@ -124,16 +107,8 @@ public class GameDataFacade {
      * @return A list of puzzles
      */
     public List<Puzzle> getPuzzles() {
-        if (gameData != null && gameData.getPuzzles() != null) {
-            return gameData.getPuzzles();
-        }
-        // Otherwise return the local list
-        if (puzzles == null) {
-            puzzles = new ArrayList<>();
-        }
         return puzzles;
     }
-
 
     /**
      * Saves a user to storage
