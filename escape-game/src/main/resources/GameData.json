@@ -1,32 +1,62 @@
 {
   "puzzles": [
     {
-      "puzzleId": "WP001",
-      "type": "Word-Cipher",
-      "prompt": "Unscramble the letters: CSEAPE",
-      "answer": "ESCAPE",
-      "description": "A simple word scramble puzzle.",
+      "puzzleId": "R001",
+      "type": "RIDDLE",
+      "prompt": "I have a face and two hands but no arms or legs. What am I?",
+      "answer": "clock",
+      "description": "Easy riddle",
       "difficulty": "EASY",
       "isCompleted": false,
       "maxAttempts": 5
     },
     {
-      "puzzleId": "WP002",
-      "type": "Word-Riddle",
-      "prompt": "What has keys but can’t open locks?",
-      "answer": "Keyboard",
-      "description": "A riddle puzzle.",
+      "puzzleId": "R002",
+      "type": "RIDDLE",
+      "prompt": "I have keys but no locks. I have space but no room. You can enter but not go outside. What am I?",
+      "answer": "keyboard",
+      "description": "Hard riddle",
+      "difficulty": "HARD",
+      "isCompleted": false,
+      "maxAttempts": 3
+    },
+    {
+      "puzzleId": "A001",
+      "type": "ANAGRAM",
+      "prompt": "PEPLA",
+      "answer": "apple",
+      "description": "Easy anagram (fruit)",
+      "difficulty": "EASY",
+      "isCompleted": false,
+      "maxAttempts": 5
+    },
+    {
+      "puzzleId": "A002",
+      "type": "ANAGRAM",
+      "prompt": "MASTER",
+      "answer": "stream",
+      "description": "Medium anagram (fish)",
       "difficulty": "MEDIUM",
       "isCompleted": false,
       "maxAttempts": 3
     },
     {
-      "puzzleId": "WP003",
-      "type": "Word-Anagram",
-      "prompt": "Rearrange the letters: SILENT",
-      "answer": "LISTEN",
-      "description": "An anagram puzzle.",
+      "puzzleId": "C001",
+      "type": "CIPHER",
+      "prompt": "Vhh brx vrrq",
+      "answer": "see you soon",
+      "description": "Cipher. KEY: Right 3",
       "difficulty": "MEDIUM",
+      "isCompleted": false,
+      "maxAttempts": 3
+    },
+    {
+      "puzzleId": "C002",
+      "type": "CIPHER",
+      "prompt": "S T E N I Q L S E N T U I A",
+      "answer": "quintessential",
+      "description": "Hard substitution/spacing cipher",
+      "difficulty": "HARD",
       "isCompleted": false,
       "maxAttempts": 3
     }
