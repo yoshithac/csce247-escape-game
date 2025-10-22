@@ -130,12 +130,33 @@ public class MemoryPuzzle {
     }
   }
   private void printMaskedGrid() {
-    System.out.println("Current grid (matched cards are shown, otherd are '*'):");
+    System.out.println("Current grid (matched cards are shown, others are '*'):");
     for (int r = 0; r < CARD_ROWS; r++) {
         for (int c = 0; c < CARD_COLS; c++) {
             System.out.print((grid[r][c].matched ? grid[r][c].color : "*") + "\t");
         }
         System.out.println();
+    }
+}
+    private String revealCardColor(int r, int c) {
+        if (!validCardCoord(r, c)) {
+            throw new IllegalArgumentException("Invalid card coordinates: " + r + "," + c);  
+        }
+        return grid[r][c].color;
+            
+    }
+    
+    private boolean checkCardMatch(int r1, int c1, int r2, int c2) {
+        cardAttempts++;
+
+        Card card1 = grid[r1][c1];
+        Card card2 = grid[r2][c2];
+
+        if (card1.matched || card2.matched) {
+            return true;
+        } else {
+            return false;
+        }
     }
    
 
