@@ -85,10 +85,10 @@ public class MazePuzzle {
         playerPosition.x = newRow;
         playerPosition.y = newCol;
 
-        char currentTile = maze[newRow][newCol];
+        char current = maze[newRow][newCol];
 
-        if (currentTile == 'E') return; // Reached exit
-        if (currentTile == 'T') {
+        if (current == 'E') return; // Reached exit
+        if (current == 'T') {
             System.out.println("You fell into a trap! Returning to start.");
             playerPosition.setLocation(startArea);
         }
@@ -101,7 +101,7 @@ public class MazePuzzle {
      */
     private void showScore() {
         int elapsed = (int)(System.currentTimeMillis() - startTime) / 1000;
-        int score = Math.max(0, 1000 - (int)(elapsed * 10 + moveCount * 5));
+        int score = Math.max(0, 300 - (int)(elapsed * 10 + moveCount * 5));
         System.out.println("Maze Completed!");
         System.out.println("Time: " + elapsed + " seconds");
         System.out.println("Moves: " + moveCount);
