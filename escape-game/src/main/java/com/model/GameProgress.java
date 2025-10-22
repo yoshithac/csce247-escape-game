@@ -6,21 +6,23 @@ import java.util.List;
  * This class tracks the progress of the game for each player
  * @author We're Getting an A
  */
-public class GameProgress {
+public class GameProgress extends GameManager{
     private User currentPlayer;
     private Puzzle currentPuzzle;
     private int totalScore;
     private List<Puzzle> completedPuzzles;
     private List<Puzzle> toDoPuzzles;
+    private int currentTime;
 
     /**
      * Constructor for GameProgress
      * @param puzzles The list of puzzles to be completed
      */
     public GameProgress(List<Puzzle> puzzles) {
-        this.totalScore = 0;
-        this.completedPuzzles = new ArrayList<>();
-        this.toDoPuzzles = new ArrayList<>();
+        totalScore = 0;
+        completedPuzzles = new ArrayList<>();
+        toDoPuzzles = new ArrayList<>();
+        currentTime = 0;
         if (puzzles != null) {
             for (Puzzle p : puzzles) {
                 if (p != null && !p.isCompleted()) {
@@ -43,7 +45,7 @@ public class GameProgress {
     }
 
     /**
-     * Updates the game progress after completing a puzzle.
+     * Updates the game progress score after completing a puzzle.
      */
     public void updateProgress() {
         if (currentPuzzle == null) return;
@@ -64,11 +66,11 @@ public class GameProgress {
         } else {
             totalScore += 10;
         }
-
         currentPuzzle = toDoPuzzles.isEmpty() ? null : toDoPuzzles.get(0);
+        currentTime = getElapsedTime();
     }
 
-    //helper getters
+    //helper getters and setters
     /**
      * Gets the total score of the current player
      * @return The total score
@@ -109,14 +111,43 @@ public class GameProgress {
         this.currentPlayer = user; 
     }
 
+    /**
+     * Gets the current player
+     * @return The current player
+     */
     public User getCurrentPlayer() {
         return currentPlayer;
     }
 
+    /**
+     * Sets the current puzzle
+     * @param puzzle The current puzzle
+     */
     public void setCompletedPuzzles(List<Puzzle> completedPuzzles) {
         this.completedPuzzles = completedPuzzles;
     }
+
+    /**
+     * Sets the list of puzzles to be completed
+     * @param toDoPuzzles The list of puzzles yet to be completed
+     */
     public void setToDoPuzzles(List<Puzzle> toDoPuzzles) {
         this.toDoPuzzles = toDoPuzzles;
+    }
+
+    /**
+     * Gets the current time
+     * @return The current time
+     */
+    public int getCurrentTime() {
+        return currentTime;
+    }
+    
+    /**
+     * Sets the current time
+     * @param currentTime The current time
+     */
+    public void setCurrentTime(int currentTime) {
+        this.currentTime = currentTime;
     }
 }

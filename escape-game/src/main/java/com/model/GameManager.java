@@ -13,11 +13,11 @@ public class GameManager{
     private List<User> players;
     private DifficultyLevel difficulty;
     private int startTime;
-    private boolean isActive;
+    private boolean isActive = false;
     private GameProgress currentProgress;
     private List<Puzzle> currentPuzzles;
     private List<Hint> hints;
-    //private Timer sessionTimer;
+    private int timer;
 
     /**
      * Constructor for GameManager
@@ -31,7 +31,6 @@ public class GameManager{
         currentProgress = null;
         currentPuzzles = null;
         hints = null;
-        //sessionTimer = null;
         gameDataFacade = GameDataFacade.getInstance();
     }
 
@@ -90,12 +89,7 @@ public class GameManager{
      */
     public void pauseGame() {
         /* 
-        this.isActive = false;
-        if (this.sessionTimer != null) {
-            this.sessionTimer.cancel();
-            this.sessionTimer = null;
-        }
-        */
+        this.isActive = false; */
     }
 
     /**
@@ -112,10 +106,6 @@ public class GameManager{
     public void endGame() {
         /*
         this.isActive = false;
-        if (this.sessionTimer != null) {
-            this.sessionTimer.cancel();
-            this.sessionTimer = null;
-        }
             */
     }
 
@@ -225,13 +215,7 @@ public class GameManager{
      * Handles the end of the game
      */
     public void handleGameEnd() {
-        /*
-        this.isActive = false;
-        if (this.sessionTimer != null) {
-            this.sessionTimer.cancel();
-            this.sessionTimer = null;
-        }
-            */
+        isActive = false;
         //ui to display end game
     }
 
@@ -239,12 +223,10 @@ public class GameManager{
      * Starts the timer for the current game session
      */
     public void startTimer() {
-        /* 
-        if (this.sessionTimer != null) {
-            this.sessionTimer.cancel();
+        if(!isActive) {
+            isActive = true;
         }
-        this.sessionTimer = new Timer(true);
-        */
+        startTime = (int) (System.currentTimeMillis() / 1000L);
     }
 
     /**
@@ -252,10 +234,30 @@ public class GameManager{
      * @return Remaining time in seconds
      */
     public int getRemainingTime() {
-        final int sessionLengthSeconds = 60 * 30; // 30 minutes default
-        int now = (int) (System.currentTimeMillis() / 1000L);
-        int elapsed = Math.max(0, now - startTime);
-        return Math.max(0, sessionLengthSeconds - elapsed);
+        return 1800 - ((int) (System.currentTimeMillis() / 1000L) - startTime);
+    }
+
+    /**
+     * Pauses the timer for the current game session
+     */
+    public void pauseTimer() {
+        isActive = false;
+        timer += (int) (System.currentTimeMillis() / 1000L) - startTime;
+        startTime = 0;
+    }
+
+    /**
+     * Gets elapsed time in the current game session
+     * @return Elapsed time in seconds
+     */
+    public int getElapsedTime() {
+        return timer;
+    }
+
+    public void clearTimer() {
+        timer = 0;
+        startTime = 0;  
+        isActive = false;
     }
 
     /**
@@ -274,8 +276,20 @@ public class GameManager{
         return difficulty;
     }
 
+    /**
+     * Gets the current player
+     * @return The current player
+     */
     public User getCurrentPlayer() {
         return currentPlayer;
     }
+
+    /**
+     * Gets the start time of the game session
+     * @return The start time in seconds since epoch
+     */
+    public int getStartTime() {
+        return startTime;
+    }   
 }
 
