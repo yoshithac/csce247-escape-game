@@ -108,26 +108,19 @@ public class Puzzle {
             return false;
         }
 
-        // If already completed, treat as correct (or you could return false to avoid re-checking)
         if (isCompleted) {
             return true;
         }
 
-        // Normalize both strings: trim and lower-case for simple comparison
         String cleanCandidate = candidate.trim().toLowerCase();
         String correct = (answer == null) ? "" : answer.trim().toLowerCase();
 
         // Count attempt
         attemptsUsed++;
 
-        // Check if we've exceeded max attempts - still allow the check, but you can alter behavior if desired
         if (attemptsUsed > maxAttempts) {
-            // The game might disallow further tries; here we still check but caller can inspect attemptsUsed/maxAttempts
-            // If you'd rather block checking after maxAttempts, uncomment next lines:
-            // return false;
         }
 
-        // Compare
         boolean correctAnswer = cleanCandidate.equals(correct);
         if (correctAnswer) {
             this.isCompleted = true;
@@ -136,9 +129,7 @@ public class Puzzle {
     }
 
     /**
-     * Return a short, helpful hint depending on puzzle type.
-     * Beginner-friendly and small: not a full solution, just a nudge.
-     * 
+     * Return a short hint depending on puzzle type.
      *  - RIDDLE  -> returns the first letter of the answer if available
      *  - ANAGRAM -> reveals first letter
      *  - CIPHER  -> looks for "KEY:<n>" or "KEY=<n>" in description and suggests a Caesar shift if found
@@ -158,14 +149,12 @@ public class Puzzle {
             switch (t) {
                 case "RIDDLE":
                     if (!ans.isEmpty()) {
-                        // Show first letter, but don't reveal too much
                         return "Hint: the answer starts with '" + ans.charAt(0) + "'";
                     } else {
                         return "Hint: think about the riddle carefully.";
                     }
                 case "ANAGRAM":
                     if (!ans.isEmpty()) {
-                        // Reveal a single letter (first) as a small clue
                         return "Hint: one letter in the answer is '" + ans.charAt(0) + "'";
                     } else {
                         return "Hint: try rearranging the letters.";
@@ -175,14 +164,12 @@ public class Puzzle {
                     if (key != null) {
                         return "Hint: try a Caesar shift of " + key + ".";
                     } else {
-                        // If there's no explicit key, give a gentle nudge
                         return "Hint: think about letter shifts or substitution.";
                     }
                 default:
                     return safePromptHint();
             }
         } catch (Exception e) {
-            // In case anything unexpected happens, return a safe fallback
             return safePromptHint();
         }
     }
@@ -208,21 +195,18 @@ public class Puzzle {
 
         String desc = description.toUpperCase();
 
-        // Look for "KEY:" pattern
         int idx = desc.indexOf("KEY:");
         if (idx >= 0) {
             String rest = desc.substring(idx + 4).trim();
             return parseLeadingInteger(rest);
         }
 
-        // Look for "KEY=" pattern
         idx = desc.indexOf("KEY=");
         if (idx >= 0) {
             String rest = desc.substring(idx + 4).trim();
             return parseLeadingInteger(rest);
         }
 
-        // Nothing found
         return null;
     }
 
