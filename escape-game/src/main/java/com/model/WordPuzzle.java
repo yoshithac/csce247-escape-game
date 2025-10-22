@@ -7,39 +7,12 @@ package com.model;
 public class WordPuzzle {
 
     /**
-     * Constructor for WordPuzzle
-     */
-    public WordPuzzle() {
-        
-    }
-
-    /**
-     * Represents a Cipher puzzle
-     */
-    public void Cipher() {
-        
-    }
-
-    /**
-     * Represents an Anagram puzzle
-     */
-    public void Anagram() {
-        
-    }
-
-    /**
-     * Represents a Riddle puzzle
-     */
-    public void Riddle() {
-        
-    }
-    /**
      * Configure a puzzle as a RIDDLE.
      * @param p the puzzle to configure
      * @param riddle the riddle text shown to the player
      * @param answer the correct answer (plain text)
      */
-    public static void configureRiddle(Puzzle p, String riddle, String answer) {
+    public void Riddle(Puzzle p, String riddle, String answer) {
         if (p == null) return;
         p.setType("RIDDLE");
         p.setPrompt(riddle);
@@ -53,7 +26,7 @@ public class WordPuzzle {
      * @param scrambled the scrambled letters shown to the player
      * @param solution the correct unscrambled answer
      */
-    public static void configureAnagram(Puzzle p, String scrambled, String solution) {
+    public void Anagram(Puzzle p, String scrambled, String solution) {
         if (p == null) return;
         p.setType("ANAGRAM");
         p.setPrompt("Unscramble: " + scrambled);
@@ -68,7 +41,7 @@ public class WordPuzzle {
      * @param plaintext the decoded answer
      * @param key optional Caesar shift key (null if not applicable)
      */
-    public static void configureCipher(Puzzle p, String ciphertext, String plaintext, Integer key) {
+    public void Cipher(Puzzle p, String ciphertext, String plaintext, Integer key) {
         if (p == null) return;
         p.setType("CIPHER");
         p.setPrompt(ciphertext);
