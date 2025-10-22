@@ -16,8 +16,7 @@ public class Puzzle {
     private int attemptsUsed = 0;
     private DifficultyLevel difficulty;
 
-    public Puzzle() {
-    }
+    public Puzzle() {}
 
     public Puzzle(String puzzleId, String type, String prompt, String answer, String description, DifficultyLevel difficulty, int maxAttempts) {
         this.puzzleId = puzzleId;
@@ -99,6 +98,10 @@ public class Puzzle {
 
     public void setDifficulty(DifficultyLevel difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public boolean checkComplete() {
+        return isCompleted;
     }
 
     public boolean tryAnswer(String candidate) {
