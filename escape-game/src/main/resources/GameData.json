@@ -51,12 +51,22 @@
       "maxAttempts": 3
     },
     {
-      "puzzleId": "C002",
-      "type": "CIPHER",
-      "prompt": "S T E N I Q L S E N T U I A",
-      "answer": "quintessential",
-      "description": "Hard substitution/spacing cipher",
-      "difficulty": "HARD",
+      "puzzleId": "WP004",
+      "type": "Maze-Simple",
+      "prompt": "Navigate through the maze.",
+      "answer": "s, s, s, d, d, d, w, w, w, d",
+      "description": "A simple maze puzzle.",
+      "difficulty": "EASY",
+      "isCompleted": false,
+      "maxAttempts": 3
+    },
+    {
+      "puzzleId": "WP005",
+      "type": "Maze-Trap",
+      "prompt": "Navigate through the maze. Watch for traps!",
+      "answer": "d, d, d, s, s, d, d, w, w, d",
+      "description": "A trap maze puzzle.",
+      "difficulty": "MEDIUM",
       "isCompleted": false,
       "maxAttempts": 3
     }
