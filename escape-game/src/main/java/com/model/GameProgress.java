@@ -10,6 +10,7 @@ public class GameProgress extends GameManager{
     private User currentPlayer;
     private Puzzle currentPuzzle;
     private int totalScore;
+    private int completionPercentage;
     private List<Puzzle> completedPuzzles;
     private List<Puzzle> toDoPuzzles;
     private int currentTime;
@@ -68,6 +69,7 @@ public class GameProgress extends GameManager{
         }
         currentPuzzle = toDoPuzzles.isEmpty() ? null : toDoPuzzles.get(0);
         currentTime = getElapsedTime();
+        completionPercentage = (int) (((double) completedPuzzles.size() / (completedPuzzles.size() + toDoPuzzles.size())) * 100);
     }
 
     //helper getters and setters
