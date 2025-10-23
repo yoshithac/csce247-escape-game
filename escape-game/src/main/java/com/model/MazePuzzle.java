@@ -71,6 +71,9 @@ public class MazePuzzle {
             case 's': newRow++; break;
             case 'a': newCol--; break;
             case 'd': newCol++; break;
+            case 'r': 
+                resetMaze();
+                return;
             default:
                 System.out.println("Use W/A/S/D to move");
                 return;
@@ -90,7 +93,7 @@ public class MazePuzzle {
         if (current == 'E') return; // Reached exit
         if (current == 'T') {
             System.out.println("You fell into a trap! Returning to start.");
-            playerPosition.setLocation(startArea);
+            resetMaze();
         }
 
         maze[playerPosition.x][playerPosition.y] = 'P';
@@ -106,6 +109,15 @@ public class MazePuzzle {
         System.out.println("Time: " + elapsed + " seconds");
         System.out.println("Moves: " + moveCount);
         System.out.println("Score: " + score);
+    }
+
+    /*
+     * Resets the maze to the starting position
+     */
+    private void resetMaze() {
+        maze[playerPosition.x][playerPosition.y] = '0';
+        playerPosition.setLocation(startArea);
+        maze[playerPosition.x][playerPosition.y] = 'P';
     }
 
     //tester methods for maze movement and display -- delete later
@@ -130,7 +142,10 @@ public class MazePuzzle {
         else game.simpleMaze();
 
         System.out.println("\nNavigate the maze using W/A/S/D. Reach 'E' to win!");
-        System.out.println("Avoid traps marked as 'T'!\n");
+        if (game.maze == trapMaze) {
+            System.out.println("Avoid traps marked as 'T'!\n");
+        }
+        System.out.println("Type 'R' to reset the maze\n");
 
         game.startTime = (int)System.currentTimeMillis();
 
