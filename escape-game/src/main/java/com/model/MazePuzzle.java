@@ -8,6 +8,7 @@ public class MazePuzzle {
     private Point playerPosition;
     private int moveCount = 0;
     private int startTime;
+    private int maxAttempts;
 
     //console ui mazes
     char[][] maze;
@@ -42,7 +43,7 @@ public class MazePuzzle {
      * Creates a simple maze layout
      */
     private void simpleMaze() {
-        
+        maxAttempts = 5;
         maze = simpleMaze;
         endArea = new Point(5, 1);
         for (char[] row : simpleMaze) {
@@ -55,7 +56,7 @@ public class MazePuzzle {
      * Creates a trap maze layout
      */
     private void trapMaze() {
-        
+        maxAttempts = 5;
         maze = trapMaze;
         endArea = new Point(7, 1);
     }
@@ -118,6 +119,7 @@ public class MazePuzzle {
         maze[playerPosition.x][playerPosition.y] = '0';
         playerPosition.setLocation(startArea);
         maze[playerPosition.x][playerPosition.y] = 'P';
+        maxAttempts--;
     }
 
     //tester methods for maze movement and display -- delete later
