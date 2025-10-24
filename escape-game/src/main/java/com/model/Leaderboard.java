@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Leaderboard {
     private static Leaderboard leaderboard;
-    private List<LeaderboardEntry> entries;
+    private List<LeaderboardEntry> entries = new java.util.ArrayList<>();
 
     /**
      * Singleton instance of Leaderboard
