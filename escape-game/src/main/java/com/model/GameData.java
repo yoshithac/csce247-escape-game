@@ -11,6 +11,7 @@ public class GameData {
     private Leaderboard leaderboard;
     private List<Hint> hints;
     private List<Certificate> certificates;
+    private List<Room> rooms;
     
     /**
      * Constructor for GameData
@@ -21,6 +22,7 @@ public class GameData {
         this.leaderboard = leaderboard;
         this.hints = hints;
         this.certificates = certificates;
+        this.rooms = rooms;
     }
 
     /**
@@ -102,5 +104,19 @@ public class GameData {
      */
     public void setCertificate(List<Certificate> certificates) {
         this.certificates = certificates;
+    }
+
+    /**
+     * Returns the list of rooms in the game
+     * @return List of rooms
+     */    
+    public List<Room> getRooms() {
+        GameDataLoader loader = new GameDataLoader();
+        GameData gameData = loader.readGameData();
+
+        if (gameData != null && gameData.getRooms() != null) {
+            return gameData.getRooms();
+        }
+        return null;
     }
 }

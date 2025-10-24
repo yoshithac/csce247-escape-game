@@ -86,7 +86,7 @@ public class GameDataFacade {
      */
     
     public GameData getGameData() {        
-        return gameData;
+        return new GameData(puzzles, null, leaderboard, hints, certificates);
     }
     
 

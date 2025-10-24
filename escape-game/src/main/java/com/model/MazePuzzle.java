@@ -45,9 +45,9 @@ public class MazePuzzle {
         {'#',' ','#','#',' ','#',' ','#','#'},
         {'#',' ','#','#',' ',' ',' ',' ','#'},
         {'#',' ','#','#','#','#','#',' ','#'},
-        {'#',' ',' ',' ',' ','T','#',' ','#'},
+        {'#',' ',' ',' ',' ','_','#',' ','#'},
         {'#','#','#','#','#','#','#',' ','#'},
-        {'#','T',' ',' ',' ',' ',' ',' ','#'},
+        {'#','_',' ',' ',' ',' ',' ',' ','#'},
         {'#','#','#','#','#','#','#','#','#'}};
 
     /**
@@ -98,24 +98,32 @@ public class MazePuzzle {
                 System.out.println("Use W/A/S/D to move");
                 return;
         }
-        if (maze[newRow][newCol] == '1') {
+        if (maze[newRow][newCol] == '#') {
             System.out.println("You hit a wall");
             return;
         }
 
         moveCount++;
-        maze[playerPosition.x][playerPosition.y] = '0';
+        maze[playerPosition.x][playerPosition.y] = ' ';
+        //maze[playerPosition.x][playerPosition.y] = '0';
         playerPosition.x = newRow;
         playerPosition.y = newCol;
 
         char current = maze[newRow][newCol];
 
         if (current == 'E') return; // Reached exit
-        if (current == 'T') {
+        if (current == '_') {
             System.out.println("You fell into a trap! Returning to start.");
             resetMaze();
         }
-
+        if (maxAttempts <= 0) {
+            System.out.println("No attempts left! Game Over.");
+            System.exit(0);
+        }
+        if ((int)(System.currentTimeMillis()) > startTime + 30000) {
+            System.out.println("Time's up! Game Over.");
+            resetMaze();
+        }
         maze[playerPosition.x][playerPosition.y] = 'P';
     }
 
@@ -135,7 +143,8 @@ public class MazePuzzle {
      * Resets the maze to the starting position
      */
     private void resetMaze() {
-        maze[playerPosition.x][playerPosition.y] = '0';
+        maze[playerPosition.x][playerPosition.y] = ' ';
+        //maze[playerPosition.x][playerPosition.y] = '0';
         playerPosition.setLocation(startArea);
         maze[playerPosition.x][playerPosition.y] = 'P';
         maxAttempts--;
@@ -164,7 +173,7 @@ public class MazePuzzle {
 
         System.out.println("\nNavigate the maze using W/A/S/D. Reach 'E' to win!");
         if (game.maze == trapMaze) {
-            System.out.println("Avoid traps marked as 'T'!\n");
+            System.out.println("Avoid traps marked as '_'!\n");
         }
         System.out.println("Type 'R' to reset the maze\n");
 

@@ -123,12 +123,30 @@ public GameUI(){
 		}    
 
     private void playGame() {
+		System.out.println("\nWelcome to Escape Games! Please choose a room to play:\n1: Shipwreck\n2: Prison\n3: Forest");
+		String roomChoice = scanner.nextLine();
+		if (roomChoice.equals("1")) {
+			System.out.println("You have chosen the Shipwreck room.\n");
+
+		} else if (roomChoice.equals("2")) {
+			System.out.println("You have chosen the Prison room.\n");
+		} else if (roomChoice.equals("3")) {
+			System.out.println("You have chosen the Forest room.\n");
+		} else {
+			System.out.println("Please select 1, 2, or 3.");
+			return;
+		}
         //GameData gameData = gameDataFacade.getGameData();
-				GameData gameData = gameManager.loadGameData();
-    List<Puzzle> puzzles = gameData.getPuzzles();
-    for (Puzzle puzzle : puzzles) {
-      System.out.println("Puzzle ID: " + puzzle.getPuzzleId() + ", prompt: " + puzzle.getType() + "\nanswer:" + puzzle.getAnswer());
-    }
+			GameData gameData = gameManager.loadGameData();
+			Room chosenRoom = gameData.getRooms().get(Integer.parseInt(roomChoice)-1);
+    		System.out.println("Room: " + chosenRoom.getName());
+    		System.out.println(chosenRoom.getDescription());
+    		System.out.println("----------------------");
+		
+   	 	List<Puzzle> puzzles = gameData.getPuzzles();
+    	for (Puzzle puzzle : puzzles) {
+      		System.out.println("Puzzle ID: " + puzzle.getPuzzleId() + ", prompt: " + puzzle.getType() + "\nanswer:" + puzzle.getAnswer());
+   		}
     }
 
     private void continueGame() {

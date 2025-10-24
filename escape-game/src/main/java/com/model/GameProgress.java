@@ -7,7 +7,6 @@ import java.util.List;
  * @author We're Getting an A
  */
 public class GameProgress extends GameManager{
-    private User currentPlayer;
     private Puzzle currentPuzzle;
     private int totalScore;
     private int completionPercentage;
@@ -103,22 +102,6 @@ public class GameProgress extends GameManager{
      */
     public Puzzle getCurrentPuzzle() { 
         return currentPuzzle; 
-    }
-
-    /**
-     * Gets the current player
-     * @return The current player
-     */
-    public void setCurrentPlayer(User user) { 
-        this.currentPlayer = user; 
-    }
-
-    /**
-     * Gets the current player
-     * @return The current player
-     */
-    public User getCurrentPlayer() {
-        return currentPlayer;
     }
 
     /**

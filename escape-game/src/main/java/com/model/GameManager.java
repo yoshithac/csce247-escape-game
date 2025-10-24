@@ -60,7 +60,7 @@ public class GameManager{
             currentProgress = gd.getGameProgress();
         } else {
             currentProgress = new GameProgress(gameDataFacade.getPuzzles());
-            currentProgress.setCurrentPlayer(u);
+            setCurrentPlayer(u);
         }
     }
 
@@ -282,6 +282,14 @@ public class GameManager{
      */
     public User getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    /**
+     * Sets the current player
+     * @param user The user to be set as the current player
+     */    
+    public void setCurrentPlayer(User user) {
+        this.currentPlayer = user;
     }
 
     /**
