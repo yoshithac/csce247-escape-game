@@ -248,12 +248,13 @@ public GameUI(){
 								}
 							}
 						}
-					System.out.println("Do you want to continue exploring the room or exit?");
+					System.out.println("Do you want to continue exploring the room or exit? ('continue' or 'exit'?)");
 					String continueChoice = scanner.nextLine().trim().toLowerCase();
 					if (continueChoice.equals("continue")) {
 						for (Puzzle puzzle : puzzles) {	
-								if (puzzle.getType() == "MazePuzzle" && !puzzle.isCompleted()) {
+								if (puzzle.getType().equals("MazePuzzle") && !puzzle.isCompleted()) {
 									puzzle.playPuzzle();
+									System.out.println(puzzle.getType());
 									if (puzzle.checkComplete()) {
 										System.out.println("You have successfully completed the maze puzzle!");
 										puzzle.setCompleted(true);
@@ -268,8 +269,8 @@ public GameUI(){
 						continue;
 					}
 					else if (continueChoice.equals("M")) {
-				displayGameMenu();
-			}
+						displayGameMenu();
+					}
 				} else {
 					System.out.println("The door is locked. You need a key to open it.");
 				}

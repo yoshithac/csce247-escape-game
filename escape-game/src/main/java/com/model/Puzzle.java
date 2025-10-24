@@ -74,6 +74,7 @@ public class Puzzle {
             }
         }
         sc.close();
+        isCompleted = true;
         }
     }
 
