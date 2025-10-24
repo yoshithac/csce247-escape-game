@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.Scanner;
+
 /**
  * Represents a puzzle in the escape game
  * @author We're Getting an A
@@ -40,7 +42,39 @@ public class Puzzle {
      * Plays the puzzle
      */
     public void playPuzzle() {
-        
+        if (type.equals("MazePuzzle")) {
+            Scanner sc = new Scanner(System.in);
+        MazePuzzle game = new MazePuzzle();
+
+        System.out.println("Choose your maze type:");
+        System.out.println("1. Simple Maze");
+        System.out.println("2. Trap Maze");
+        System.out.print("Enter choice: ");
+        int choice = sc.nextInt();
+
+        if (choice == 2) game.trapMaze();
+        else game.simpleMaze();
+
+        System.out.println("\nNavigate the maze using W/A/S/D. Reach 'E' to win!");
+        if (game.getType().equals("Trap")) {
+            System.out.println("Avoid traps marked as '_'!\n");
+        }
+        System.out.println("Type 'R' to reset the maze\n");
+
+        game.setStartTime((int)System.currentTimeMillis());
+
+        while (true) {
+            game.displayMaze();
+            System.out.print("Move (W/A/S/D): ");
+            char move = Character.toLowerCase(sc.next().charAt(0));
+            game.movePlayer(move);
+            game.mazeEnd();
+            if (game.getCompleted()) {
+                break;
+            }
+        }
+        sc.close();
+        }
     }
 
     /**
