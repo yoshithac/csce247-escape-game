@@ -3,7 +3,7 @@ package com.model;
 
 import java.util.List;
 import java.util.Scanner;
-
+import com.speech.Speak;
 
 public class GameUI {
 
@@ -143,6 +143,7 @@ public GameUI(){
 			Room chosenRoom = rooms.get(Integer.parseInt(roomChoice)-1);
     		System.out.println("Room: " + chosenRoom.getName());
     		System.out.println(chosenRoom.getDescription());
+			Speak.speak(chosenRoom.getDescription());
     		System.out.println("----------------------");
 		
    	 	List<Puzzle> puzzles = gameData.getPuzzles();

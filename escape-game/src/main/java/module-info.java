@@ -3,6 +3,7 @@ module com.escapegame {
     requires javafx.fxml;
     requires com.google.gson;
     requires java.base;
+    requires freetts;
 
     requires java.desktop;
 
