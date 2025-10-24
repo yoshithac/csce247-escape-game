@@ -137,8 +137,10 @@ public GameUI(){
 			return;
 		}
         //GameData gameData = gameDataFacade.getGameData();
-			GameData gameData = gameManager.loadGameData();
-			Room chosenRoom = gameData.getRooms().get(Integer.parseInt(roomChoice)-1);
+			GameDataLoader loader = new GameDataLoader();
+			GameData gameData = loader.readGameData();
+			List<Room> rooms = gameData.getRooms();
+			Room chosenRoom = rooms.get(Integer.parseInt(roomChoice)-1);
     		System.out.println("Room: " + chosenRoom.getName());
     		System.out.println(chosenRoom.getDescription());
     		System.out.println("----------------------");
