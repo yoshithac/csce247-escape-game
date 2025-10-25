@@ -219,9 +219,6 @@ public class MemoryPuzzle extends Puzzle {
        
         AudioGame();
 
-<<<<<<< HEAD
-
-=======
         while (true) {
             System.out.print("Enter guess, 'hint', or 'q': ");
             String line = scanner.nextLine().trim();
@@ -262,7 +259,6 @@ public class MemoryPuzzle extends Puzzle {
         audioHintsUsed = Math.min(audioHintsUsed + 1, audioSequence.size());
         return new ArrayList<>(audioSequence.subList(0, audioHintsUsed));
     }
->>>>>>> 635f783739aea10daf99529ecba9d40bb414247b
 
     /**
      * Now auto-selects a mini-game at random (user does not choose).
