@@ -24,8 +24,8 @@ public class GameDataWriter {
         .setPrettyPrinting()
         .create();
     
-    protected static final String USER_FILE_NAME = "src/main/resources/users.json";
-    protected static final String GAMEDATA_FILE_NAME = "src/main/resources/gamedata.json";
+    protected static final String USER_FILE_NAME = "escape-game/src/main/resources/users.json";
+    protected static final String GAMEDATA_FILE_NAME = "escape-game/src/main/resources/gamedata.json";
     
     /**
      * Writes the list of users to users.json

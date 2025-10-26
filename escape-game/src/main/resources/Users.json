@@ -1,21 +1,15 @@
 [
   {
-    "userId": "a1234",
-    "password": "a123",
-    "firstName": "Admin",
-    "lastName": "User",
-    "email": "admin@puzzlegame.com",
-    "role": "ADMIN",
-    "createdAt": "2025-10-24T10:00:00",
-    "lastLoginAt": "2025-10-25T01:30:00"
-  },
-  {
-    "userId": "U1001",
-    "password": "p123",
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john.doe@example.com",
+    "userId": "sunny",
+    "password": "sunny",
+    "firstName": "sunny",
+    "lastName": "sunny",
+    "email": "sunny@gmail.com",
     "role": "USER",
+<<<<<<< HEAD
+    "createdAt": "2025-10-26T17:35:00.155435",
+    "lastLoginAt": "2025-10-26T17:35:09.484425"
+=======
     "createdAt": "2025-10-24T14:30:00",
     "lastLoginAt": "2025-10-25T18:24:38.6331254"
   },
@@ -48,6 +42,7 @@
     "role": "USER",
     "createdAt": "2025-10-26T18:30:55.409726",
     "lastLoginAt": "2025-10-26T18:31:03.042991"
+<<<<<<< HEAD
   },
   {
     "userId": "remyr",
@@ -68,5 +63,8 @@
     "role": "USER",
     "createdAt": "2025-10-26T19:35:29.164869",
     "lastLoginAt": "2025-10-26T19:35:34.611301"
+=======
+>>>>>>> 34bf38a11b6e33d772380518f9687d3d7f7de144
+>>>>>>> e07e327f8c8a0bf06e786335831a06d9617a212d
   }
 ]
