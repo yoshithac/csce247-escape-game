@@ -958,7 +958,7 @@
       "title": "Planet Cipher",
       "description": "Decrypt the planet name.",
       "data": {
-        "prompt": "SDUWP",
+        "prompt": "RETAH",
         "answer": "EARTH",
         "category": "Space",
         "maxAttempts": 4.0
@@ -971,7 +971,7 @@
       "title": "River Cipher",
       "description": "Which river is hidden?",
       "data": {
-        "prompt": "YLJS",
+        "prompt": "ILNE",
         "answer": "NILE",
         "category": "Geography",
         "maxAttempts": 4.0
@@ -984,7 +984,7 @@
       "title": "Colorful Cipher",
       "description": "A color encrypted.",
       "data": {
-        "prompt": "UOHWW",
+        "prompt": "HIETW",
         "answer": "WHITE",
         "category": "Color",
         "maxAttempts": 4.0
@@ -1010,7 +1010,7 @@
       "title": "Season Anagram",
       "description": "A time of year.",
       "data": {
-        "prompt": "WNITER",
+        "prompt": "WNIETR",
         "answer": "WINTER",
         "category": "Season",
         "maxAttempts": 4.0
@@ -1023,7 +1023,7 @@
       "title": "Capital Anagram",
       "description": "Capital city name.",
       "data": {
-        "prompt": "RAPIS",
+        "prompt": "RASIP",
         "answer": "PARIS",
         "category": "Cities",
         "maxAttempts": 4.0
