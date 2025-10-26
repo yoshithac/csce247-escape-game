@@ -82,10 +82,10 @@ public class GameController {
             // Handle menu selection
             if (choiceNum == START_NEW) {
                 startNewPuzzle();
-                progress.setStartTime();
+                progress.resetTimer();  
+                progress.startTimer();
             } else if (choiceNum == RESUME && hasSavedGame) {
                 resumeSavedGame();
-                progress.setStartTime();
             } else if (choiceNum == VIEW_PROGRESS) {
                 viewProgress();
             } else if (choiceNum == VIEW_LEADERBOARD) {
@@ -236,7 +236,7 @@ public class GameController {
     private void resumeSavedGame() {
         String userId = authService.getCurrentUser().getUserId();
         UserProgress progress = progressService.getUserProgress(userId);
-        progress.setStartTime();
+        progress.startTimer();
 
         if (!progress.hasGameInProgress()) {
             view.showMessage("\nNo saved game found!");
@@ -288,6 +288,7 @@ public class GameController {
                 UserProgress progress = progressService.getUserProgress(userId);
                 progress.clearGameState();
                 dataFacade.saveUserProgress(progress);
+                progress.resetTimer();
                 waitForUser();
                 return;
             }
@@ -337,7 +338,7 @@ public class GameController {
         Map<String, Object> gameState = game.saveState();
         progress.saveGameState(puzzle.getPuzzleId(), gameState);
         dataFacade.saveUserProgress(progress);
-        progress.getTimer();
+        progress.pauseTimer();
 
         view.showMessage("\nGame saved! You can resume later.");
         waitForUser();
