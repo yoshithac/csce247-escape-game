@@ -1,4 +1,5 @@
 package com.model;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class GameData {
         this.leaderboard = leaderboard;
         this.hints = hints;
         this.certificates = certificates;
-        this.rooms = rooms;
+        this.rooms = (rooms != null) ? rooms : new ArrayList<>();
     }
 
     /**
@@ -111,12 +112,14 @@ public class GameData {
      * @return List of rooms
      */    
     public List<Room> getRooms() {
-        GameDataLoader loader = new GameDataLoader();
-        GameData gameData = loader.readGameData();
+        return rooms;
+    }
 
-        if (gameData != null && gameData.getRooms() != null) {
-            return gameData.getRooms();
-        }
-        return null;
+    /**
+     * Sets the list of rooms in the game
+     * @param rooms List of rooms
+     */    
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms; 
     }
 }

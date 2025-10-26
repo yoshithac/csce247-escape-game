@@ -58,5 +58,15 @@
     "role": "user",
     "penaltyPoints": 0,
     "scorePoints": 0
+  },
+  {
+    "userId": "007",
+    "password": "007",
+    "firstName": "remy",
+    "lastName": "r",
+    "email": "remyr@email.com",
+    "role": "user",
+    "penaltyPoints": 0,
+    "scorePoints": 0
   }
 ]
