@@ -144,7 +144,7 @@ public GameUI(){
 			Room chosenRoom = rooms.get(Integer.parseInt(roomChoice)-1);
     		System.out.println("Room: " + chosenRoom.getName());
     		System.out.println(chosenRoom.getDescription());
-			Speak.speak(chosenRoom.getDescription());
+			//Speak.speak(chosenRoom.getDescription());
     		System.out.println("----------------------");
 		
    	 	List<Puzzle> puzzles = gameData.getPuzzles();
@@ -238,22 +238,24 @@ public GameUI(){
 					System.out.println("\nYou use the key to unlock the door and proceed into the room. It appears to be a maze.");
 					System.out.println("\nDo you want to continue exploring the room or exit? ('continue' or 'exit'?)");
 					String continueChoice = scanner.nextLine().trim().toLowerCase();
-					if (continueChoice.equals("continue")) {
+					while (continueChoice.equals("continue")) {
 						for (Puzzle puzzle : puzzles) {	
 								if ((puzzle.getType().equals("Maze-Simple") || puzzle.getType().equals("Maze-Trap")) && !puzzle.isCompleted()) {
 									puzzle.playPuzzle();
-									//System.out.println(puzzle.getType());
 									if (puzzle.isCompleted()) {
 										System.out.println("You have successfully completed the maze puzzle!");
 									}
 								else {
 									System.out.println("No more maze puzzles available to complete.\n");
 								}
-								continue;
+								continueChoice = "exit";
+							}
+							if (continueChoice.equals("exit")) {
+								break;
 							}
 						}
 					}
-					else if (continueChoice.equals("exit")) {
+					if (continueChoice.equals("exit")) {
 						continue;
 					}
 					else if (continueChoice.equals("M")) {
@@ -331,7 +333,10 @@ public GameUI(){
 		System.out.println("5. End game");
 		System.out.print("Enter your choice: ");
 		String ans = scanner.nextLine(); 
-		if (ans.equals("2")) {
+		if (ans.equals("1")) {
+			//continue
+		}
+		else if (ans.equals("2")) {
 			//return progress.useHint();
 		}
 		else if (ans.equals("3")) {

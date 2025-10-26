@@ -46,14 +46,24 @@ public class Puzzle {
             Scanner sc = new Scanner(System.in);
         MazePuzzle game = new MazePuzzle();
 
-        System.out.println("Choose your maze type:");
+        /*System.out.println("Choose your maze type:");
         System.out.println("1. Simple Maze");
         System.out.println("2. Trap Maze");
         System.out.print("Enter choice: ");
         int choice = sc.nextInt();
-
         if (choice == 2) game.trapMaze();
-        else game.simpleMaze();
+        else game.simpleMaze();*/
+
+        if (type.equals("Maze-Simple")) {
+            System.out.println("You are playing the simple maze.");
+            game.simpleMaze();
+            game.setStop(false);
+        }
+        else {
+            System.out.println("You are playing the trap maze.");
+            game.trapMaze();
+            game.setStop(false);
+        }
 
         System.out.println("\nNavigate the maze using W/A/S/D. Reach 'E' to win!");
         if (game.getType().equals("Trap")) {
@@ -69,11 +79,10 @@ public class Puzzle {
             char move = Character.toLowerCase(sc.next().charAt(0));
             game.movePlayer(move);
             game.mazeEnd();
-            if (game.getCompleted()) {
+            if (game.getCompleted() || game.getStop()) {
                 break;
             }
         }
-        sc.close();
         isCompleted = true;
         }
     }

@@ -11,6 +11,7 @@ public class MazePuzzle {
     private int maxAttempts;
     private String type;
     private boolean completed = false;
+    private boolean stop = false;
 
     //console ui mazes
     char[][] maze;
@@ -36,10 +37,10 @@ public class MazePuzzle {
     static char[][] simpleMaze = {
         {'#','#','#','#','#','#','#'},
         {'#','P',' ','#',' ','E','#'},
-        {'#',' ',' ','#',' ','0','#'},
+        {'#',' ',' ','#',' ',' ','#'},
         {'#',' ','#','#',' ','#','#'},
         {'#',' ',' ','#',' ',' ','#'},
-        {'#',' ','#',' ','#','#','#'},
+        {'#','#',' ',' ',' ','#','#'},
         {'#','#','#','#','#','#','#'}};
 
     static char[][] trapMaze = {
@@ -144,6 +145,7 @@ public class MazePuzzle {
         if ((int)(System.currentTimeMillis()) > startTime + 30000) {
             System.out.println("Time's up! Game Over.");
             resetMaze();
+            stop = true;
         }
         maze[playerPosition.x][playerPosition.y] = 'P';
     }
@@ -184,6 +186,22 @@ public class MazePuzzle {
                 showMazeScore();
                 completed = true;
         }
+    }
+
+    /**
+     * sets stop boolean
+     * @param b stop boolean
+     */
+    public void setStop(boolean b) {
+        stop = b;
+    }
+
+    /**
+     * Gets stop boolean
+     * @return stop boolean
+     */
+    public boolean getStop() {
+        return stop;
     }
 
     //tester methods for maze movement and display -- delete later
