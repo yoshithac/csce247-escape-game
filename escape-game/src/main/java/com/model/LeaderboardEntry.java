@@ -1,73 +1,73 @@
 package com.model;
 
-/*
- * This class represents an entry in the leaderboard
- * @author We're Getting an A
+import java.time.LocalDateTime;
+
+/**
+ * Leaderboard entry for ranking players
+ * Automatically updated by GameDataFacade when user progress changes
  */
 public class LeaderboardEntry {
-    private User player;
-    private int score;
-    public int completionTime;
-
-    /**
-     * Constructor for LeaderboardEntry
-     * @param player The user who completed the puzzle
-     * @param score The score achieved by the user
-     * @param completionTime The time taken to complete the puzzle
-     */
-    public LeaderboardEntry(User player, int score, int completionTime) {
-        this.player = player;
-        this.score = score;
-        this.completionTime = completionTime;
+    private String userId;
+    private String userName;
+    private int totalScore;
+    private int puzzlesCompleted;
+    private LocalDateTime lastUpdated;
+    
+    public LeaderboardEntry() {
+        this.lastUpdated = LocalDateTime.now();
     }
-
-    /**
-     * Compares this leaderboard entry to another entry.
-     * @param other The other leaderboard entry to compare to
-     * @return A negative integer, zero, or a positive integer as this entry is less than,
-     * equal to, or greater than the specified entry
-     */
-    public boolean  compareTo(LeaderboardEntry other) {
-        return false;
+    
+    public LeaderboardEntry(String userId, String userName, int totalScore, int puzzlesCompleted) {
+        this();
+        this.userId = userId;
+        this.userName = userName;
+        this.totalScore = totalScore;
+        this.puzzlesCompleted = puzzlesCompleted;
     }
-
-    /**
-     * Gets the time associated with this leaderboard entry
-     * @return The completion time
-     */
-    public int getCompletionTime() {
-        return completionTime;
+    
+    // Getters and Setters
+    public String getUserId() { 
+        return userId; 
     }
-
-    /**
-     * Gets the score associated with this leaderboard entry
-     * @return The score
-     */
-    public int getScore() {
-        return score;
+    
+    public void setUserId(String userId) { 
+        this.userId = userId; 
     }
-
-    /**
-     * Gets the player associated with this leaderboard entry
-     * @return The user who completed the game
-     */
-    public User getPlayer() {
-        return player;
+    
+    public String getUserName() { 
+        return userName; 
     }
-
-    public void setCompletionTime(int completionTime) {
-        this.completionTime = completionTime;
+    
+    public void setUserName(String userName) { 
+        this.userName = userName; 
     }
-
+    
+    public int getTotalScore() { 
+        return totalScore; 
+    }
+    
+    public void setTotalScore(int totalScore) { 
+        this.totalScore = totalScore; 
+    }
+    
+    public int getPuzzlesCompleted() { 
+        return puzzlesCompleted; 
+    }
+    
+    public void setPuzzlesCompleted(int puzzlesCompleted) { 
+        this.puzzlesCompleted = puzzlesCompleted; 
+    }
+    
+    public LocalDateTime getLastUpdated() { 
+        return lastUpdated; 
+    }
+    
+    public void setLastUpdated(LocalDateTime lastUpdated) { 
+        this.lastUpdated = lastUpdated; 
+    }
+    
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        
-        sb.append("| player=").append(player.getUserId());
-        sb.append(", score=").append(score);
-        sb.append(", completionTime=").append(completionTime);
-        sb.append(" |");
-        
-        return sb.toString();
+        return String.format("%s: %d pts (%d puzzles)", userName, totalScore, puzzlesCompleted);
     }
 }

@@ -1,216 +1,254 @@
 package com.model;
+import java.util.*;
+import java.util.stream.Collectors;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/*
- * This class acts as a facade for accessing and managing game data
- * @author We're Getting an A
+/**
+ * Singleton Facade for all game data operations
+ * Delegates to GameDataLoader and GameDataWriter
+ * Provides unified access to all game data
  */
 public class GameDataFacade {
-    protected static GameDataFacade gameDataFacade;
-    private GameDataLoader gameDataLoader;
-    private GameDataWriter gameDataWriter;
-    private List<Puzzle> puzzles;
+    private static GameDataFacade instance;
+    
+    private final GameDataLoader loader;
+    private final GameDataWriter writer;
+    
+    // In-memory data stores
     private List<User> users;
     private GameData gameData;
-    private List<Certificate> certificates;
-    private Leaderboard leaderboard;
-    private List<Hint> hints;
-
-     private GameDataFacade() {
-        gameDataLoader = new GameDataLoader();
-        gameDataWriter = new GameDataWriter();
-        // load users from DataBase
-        users = gameDataLoader.readUsers();
-        // load all other Game Data from DataBase
-        gameData = gameDataLoader.readGameData();
-        leaderboard = Leaderboard.getInstance();
-        
+    
+    // Private constructor for singleton
+    private GameDataFacade() {
+        this.loader = new GameDataLoader();
+        this.writer = new GameDataWriter();
+        loadAllData();
     }
-
-    /*
-     * Singleton instance of GameDataFacade
-     * @return the single instance of GameDataFacade
-    */
+    
+    /**
+     * Get singleton instance
+     */
     public static GameDataFacade getInstance() {
-        if (gameDataFacade == null) {
-            gameDataFacade = new GameDataFacade();
+        if (instance == null) {
+            instance = new GameDataFacade();
         }
-        return gameDataFacade;
-    }
-
-    /**
-     * Gets a user by their ID
-     * @param userId The ID of the user to retrieve
-     * @return The user with the specified ID, or null if not found
-     */
-    public User getUser(String userId) {
-        if (users == null) return null;
-        for (User user : users) {
-            if (user.getUserId().equals(userId)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Gets certificates for a specific user
-     * @param userId The ID of the user whose certificates are to be retrieved
-     * @return A list of certificates belonging to the specified user
-     */
-    public List<Certificate> getCertificates(String userId) {
-        if (certificates == null) return new ArrayList<>();
-        List<Certificate> userCertificates = new ArrayList<>();
-        for (Certificate cert : certificates) {
-            if (cert.getCertUserId().equals(userId)) {
-                userCertificates.add(cert);
-            }
-        }
-        return userCertificates;
-    }
-
-    /**
-     * Gets hints for the current game session
-     * @return A list of hints for the current game session
-     */
-    public List<Hint> getHints() {
-        // Prefer gameData's hints if available, otherwise return local hints
-        return (gameData != null && gameData.getHints() != null) ? gameData.getHints() : hints;
-    }
-
-    /**mvn exec:java -Dexec.mainClass="com.model.GameUI"
-     * Gets GameData
-     * @return The loaded game data
-     */
-    
-    public GameData getGameData() {        
-        return new GameData(puzzles, null, leaderboard, hints, certificates);
+        return instance;
     }
     
-
     /**
-     * Loads users from storage
-     * @return A list of loaded users
+     * Load all data from JSON files
      */
-    /*
-    public void loadUsers() {
-        if (gameDataLoader != null) {
-            users = gameDataLoader.readUsers();
-        }
+    private void loadAllData() {
+        this.users = loader.readUsers();
+        this.gameData = loader.readGameData();
+    }
     
-    }
-    */
     /**
-     * Gets the list of puzzles in the game
-     * @return A list of puzzles
+     * Save all data to JSON files
      */
-    public List<Puzzle> getPuzzles() {
-        return puzzles;
+    private void saveAllData() {
+        writer.writeUsers(users);
+        writer.writeGameData(gameData);
     }
-
-    /**
-     * Saves a user to storage
-     * @param user The user to be saved
-     */
-    public boolean saveUsers() {
-        if (gameDataWriter != null && users != null) {
-            return gameDataWriter.writeUsers(users);
-        }
-        else {
-            System.out.println("Either users or DataWriter not available");
+    
+    // ===== USER OPERATIONS =====
+    
+    public Optional<User> getUser(String userId) {
+        return users.stream()
+            .filter(u -> u.getUserId().equals(userId))
+            .findFirst();
+    }
+    
+    public boolean addUser(User user) {
+        if (userIdExists(user.getUserId()) || emailExists(user.getEmail())) {
             return false;
         }
+        users.add(user);
+        
+        // Create UserProgress for new user
+        UserProgress progress = new UserProgress(user.getUserId());
+        gameData.getUserProgress().add(progress);
+        
+        saveAllData();
+        return true;
     }
-
-    /**
-     * Saves game data to storage
-     * @param gameData The game data to be saved
-     */
-    public boolean saveGameData() {
-        if (gameDataWriter != null && gameData != null) {
-            return gameDataWriter.writeGameData(gameData);
-        }
-        else {
-            System.out.println("Either game data or DataWriter not available");
+    
+    public boolean updateUser(User user) {
+        Optional<User> existingUser = getUser(user.getUserId());
+        if (!existingUser.isPresent()) {
             return false;
         }
+        
+        users.removeIf(u -> u.getUserId().equals(user.getUserId()));
+        users.add(user);
+        saveAllData();
+        return true;
+    }
+    
+    public boolean userIdExists(String userId) {
+        return users.stream().anyMatch(u -> u.getUserId().equals(userId));
+    }
+    
+    public boolean emailExists(String email) {
+        return users.stream().anyMatch(u -> u.getEmail().equals(email));
+    }
+    
+    // ===== PUZZLE OPERATIONS =====
+    
+    public List<Puzzle> getAllPuzzles() {
+        return new ArrayList<>(gameData.getPuzzles());
+    }
+    
+    public Optional<Puzzle> getPuzzle(String puzzleId) {
+        return gameData.getPuzzles().stream()
+            .filter(p -> p.getPuzzleId().equals(puzzleId))
+            .findFirst();
+    }
+    
+    public List<Puzzle> getPuzzlesByType(String puzzleType) {
+        return gameData.getPuzzles().stream()
+            .filter(p -> p.getPuzzleType().equalsIgnoreCase(puzzleType))
+            .collect(Collectors.toList());
+    }
+    
+    public List<Puzzle> getPuzzlesByDifficulty(String puzzleType, String difficulty) {
+        return gameData.getPuzzles().stream()
+            .filter(p -> p.getPuzzleType().equalsIgnoreCase(puzzleType))
+            .filter(p -> p.getDifficulty().equalsIgnoreCase(difficulty))
+            .collect(Collectors.toList());
+    }
+    
+    public Set<String> getAvailablePuzzleTypes() {
+        return gameData.getPuzzles().stream()
+            .map(Puzzle::getPuzzleType)
+            .collect(Collectors.toSet());
+    }
+    
+    // ===== HINT OPERATIONS =====
+    
+    public List<Hint> getHintsForPuzzle(String puzzleId) {
+        return gameData.getHints().stream()
+            .filter(h -> h.getPuzzleId().equals(puzzleId))
+            .sorted()
+            .collect(Collectors.toList());
+    }
+    
+    // ===== USER PROGRESS OPERATIONS =====
+    
+    public UserProgress getUserProgress(String userId) {
+        Optional<UserProgress> progress = gameData.getUserProgress().stream()
+            .filter(up -> up.getUserId().equals(userId))
+            .findFirst();
+        
+        if (progress.isPresent()) {
+            return progress.get();
+        } else {
+            // Create new progress for user
+            UserProgress newProgress = new UserProgress(userId);
+            gameData.getUserProgress().add(newProgress);
+            saveAllData();
+            return newProgress;
+        }
+    }
+    
+    public void saveUserProgress(UserProgress progress) {
+        gameData.getUserProgress().removeIf(up -> up.getUserId().equals(progress.getUserId()));
+        gameData.getUserProgress().add(progress);
+        
+        // Update leaderboard
+        updateLeaderboard(progress);
+        
+        saveAllData();
+    }
+    
+    public boolean isPuzzleCompleted(String userId, String puzzleId) {
+        UserProgress progress = getUserProgress(userId);
+        return progress.isPuzzleCompleted(puzzleId);
+    }
+    
+    public void completePuzzle(String userId, String puzzleId, int score) {
+        UserProgress progress = getUserProgress(userId);
+        progress.addCompletedPuzzle(puzzleId, score);
+        progress.clearGameState(); // Clear any saved game
+        saveUserProgress(progress);
     }
 
-    public Leaderboard getLeaderboard() {
-        return leaderboard;
-    }
-
-    public void setLeaderboard(Leaderboard leaderboard) {
-        this.leaderboard = leaderboard;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void addUser(User newUser) {
-        this.users.add(newUser);
-    }
-
-    public void setPuzzles(List<Puzzle> puzzles) {
-        this.puzzles = puzzles;
-    }
-
-    public void setCertificates(List<Certificate> certificates) {
-        this.certificates = certificates;
-    }
-
-    /**
-     * Adds a certificate to the game data and persists it.
-     */
+    // ===== CERTIFICATE OPERATIONS =====
+    
     public void addCertificate(Certificate certificate) {
-        if (certificate == null) return;
-
-        if (this.certificates == null) {
-            this.certificates = new ArrayList<>();
-        }
-
-        this.certificates.add(certificate);
-
-        if (this.gameData != null) {
-            this.gameData.setCertificate(this.certificates);
-        }
-
-        // persist the change
-        saveGameData();
+        gameData.getCertificates().add(certificate);
+        saveAllData();
     }
-
-
-    /**
-     * Returns true if the given user already has a certificate for the given difficulty.
-     */
-    public boolean userHasCertificateForDifficulty(String userId, DifficultyLevel difficulty) {
-        if (userId == null || difficulty == null) return false;
-        if (this.certificates == null) return false;
-
-        for (Certificate c : this.certificates) {
-            if (c != null && userId.equals(c.getCertUserId()) && difficulty == c.getDifficulty()) {
-                return true;
+    
+    public List<Certificate> getUserCertificates(String userId) {
+        return gameData.getCertificates().stream()
+            .filter(c -> c.getUserId().equals(userId))
+            .sorted((c1, c2) -> c2.getEarnedAt().compareTo(c1.getEarnedAt()))
+            .collect(Collectors.toList());
+    }
+    
+    public Map<String, Integer> getCertificateStats(String userId) {
+        Map<String, Integer> stats = new HashMap<>();
+        stats.put("EASY", 0);
+        stats.put("MEDIUM", 0);
+        stats.put("HARD", 0);
+        
+        gameData.getCertificates().stream()
+            .filter(c -> c.getUserId().equals(userId))
+            .forEach(c -> {
+                String difficulty = c.getDifficulty().toUpperCase();
+                stats.put(difficulty, stats.get(difficulty) + 1);
+            });
+        
+        return stats;
+    }
+    
+    public boolean hasCertificate(String userId, String puzzleId) {
+        return gameData.getCertificates().stream()
+            .anyMatch(c -> c.getUserId().equals(userId) && c.getPuzzleId().equals(puzzleId));
+    }
+    
+    // ===== LEADERBOARD OPERATIONS =====
+    
+    private void updateLeaderboard(UserProgress progress) {
+        String userId = progress.getUserId();
+        Optional<User> userOpt = getUser(userId);
+        
+        if (!userOpt.isPresent()) {
+            return;
+        }
+        
+        User user = userOpt.get();
+        
+        // Remove existing entry
+        gameData.getLeaderboard().removeIf(e -> e.getUserId().equals(userId));
+        
+        // Add new entry
+        LeaderboardEntry entry = new LeaderboardEntry(
+            userId,
+            user.getFullName(),
+            progress.getTotalScore(),
+            progress.getCompletedCount()
+        );
+        gameData.getLeaderboard().add(entry);
+        
+        // Sort leaderboard by score (descending)
+        gameData.getLeaderboard().sort((e1, e2) -> 
+            Integer.compare(e2.getTotalScore(), e1.getTotalScore()));
+    }
+    
+    public List<LeaderboardEntry> getLeaderboard(int limit) {
+        return gameData.getLeaderboard().stream()
+            .limit(limit)
+            .collect(Collectors.toList());
+    }
+    
+    public int getUserRank(String userId) {
+        List<LeaderboardEntry> leaderboard = gameData.getLeaderboard();
+        for (int i = 0; i < leaderboard.size(); i++) {
+            if (leaderboard.get(i).getUserId().equals(userId)) {
+                return i + 1;
             }
         }
-        return false;
-    }
-
-    public void setHints(List<Hint> hints) {
-        this.hints = hints;
-    }
-
-    @Override
-    public String toString() {
-        return "GameDataFacade{" +
-                "puzzles=" + puzzles +
-                ", users=" + users +
-                ", gameData=" + gameData +
-                ", certificates=" + certificates +
-                ", leaderboard=" + leaderboard +
-                ", hints=" + hints +
-                '}';
+        return -1;
     }
 }
