@@ -1,42 +1,12 @@
 [
   {
-    "userId": "a1234",
-    "password": "a123",
-    "firstName": "Admin",
-    "lastName": "User",
-    "email": "admin@puzzlegame.com",
-    "role": "ADMIN",
-    "createdAt": "2025-10-24T10:00:00",
-    "lastLoginAt": "2025-10-25T01:30:00"
-  },
-  {
-    "userId": "U1001",
-    "password": "p123",
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john.doe@example.com",
+    "userId": "sunny",
+    "password": "sunny",
+    "firstName": "sunny",
+    "lastName": "sunny",
+    "email": "sunny@gmail.com",
     "role": "USER",
-    "createdAt": "2025-10-24T14:30:00",
-    "lastLoginAt": "2025-10-25T18:24:38.6331254"
-  },
-  {
-    "userId": "U1002",
-    "password": "P456",
-    "firstName": "Jane",
-    "lastName": "Smith",
-    "email": "jane.smith@example.com",
-    "role": "USER",
-    "createdAt": "2025-10-23T09:00:00",
-    "lastLoginAt": "2025-10-26T00:09:06.2159961"
-  },
-  {
-    "userId": "yoshi",
-    "password": "1234",
-    "firstName": "yoshi",
-    "lastName": "chil",
-    "email": "yoshi@gmail.com",
-    "role": "USER",
-    "createdAt": "2025-10-25T15:44:44.4791578",
-    "lastLoginAt": "2025-10-26T14:44:45.797754"
+    "createdAt": "2025-10-26T17:35:00.155435",
+    "lastLoginAt": "2025-10-26T17:35:09.484425"
   }
 ]
