@@ -182,8 +182,8 @@ public class MazePuzzle {
         if (playerPosition.equals(endArea) || maze[playerPosition.x][playerPosition.y] == 'E') {
                 displayMaze();
                 showMazeScore();
+                completed = true;
         }
-        completed = true;
     }
 
     //tester methods for maze movement and display -- delete later

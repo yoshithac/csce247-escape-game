@@ -42,7 +42,7 @@ public class Puzzle {
      * Plays the puzzle
      */
     public void playPuzzle() {
-        if (type.equals("MazePuzzle")) {
+        if (type.equals("Maze-Simple") || type.equals("Maze-Trap")) {
             Scanner sc = new Scanner(System.in);
         MazePuzzle game = new MazePuzzle();
 
@@ -78,13 +78,6 @@ public class Puzzle {
         }
     }
 
-    /**
-     * Checks if the puzzle is completed
-     * @return true if completed, false otherwise
-     */
-    public boolean checkComplete() {
-        return isCompleted;
-    }
 
     /**
      * Provides a hint for the puzzle

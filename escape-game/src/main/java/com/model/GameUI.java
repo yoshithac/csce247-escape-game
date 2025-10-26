@@ -162,34 +162,34 @@ public GameUI(){
 				break;
 			}
 			System.out.println("There is a desk to investigate and a door to another room.\n" +
-			"Which do you want to investigate? (Type 'desk' or 'door')");
+			"Which do you want to investigate? (Type 'desk' or 'door')\n");
 			String firstChoice = scanner.nextLine().trim().toLowerCase();
 			if (firstChoice.equals("desk")) {
-				System.out.println("You walk over to the desk and find a locked drawer. Inside is a notebook. It may have some useful information.\n"
-				+ "Do you want to read the notebook, or further explore the desk? (Type 'read' or 'explore')");
+				System.out.println("\nYou walk over to the desk and find a locked drawer. Inside is a notebook. It may have some useful information.\n"
+				+ "Do you want to read the notebook, or further explore the desk? (Type 'read' or 'explore')\n");
 				String deskChoice = scanner.nextLine().trim().toLowerCase();
 				if (deskChoice.equals("read")) {
-					System.out.println("You open the notebook and find what appears to be a diary. There are some strange doodles and writings in the margins.\n" +
-					"As you read further, you notice a series of numbers that seem to be a code: 4-6-3-1. This might be useful later.\n" +
+					System.out.println("\nYou open the notebook and find what appears to be a diary. There are some strange doodles and writings in the margins.\n" +
+					"As you read further, you notice a series of numbers that seem to be a code: 4-6-3-1. This might be useful later.\n\n" +
 					"You close the notebook and ponder its significance. Do you want to investigate further? (Type 'yes' or 'no')");
 					String investigateChoice = scanner.nextLine().trim().toLowerCase();
 					if (investigateChoice.equals("yes")) {
-						System.out.println("You investigate further and notice that the notes and doodles seem to have patterns. \nDo you want to try to decode the pictures or the words now? (Type 'pictures' or 'words')");
+						System.out.println("\nYou investigate further and notice that the notes and doodles seem to have patterns. \nDo you want to try to decode the pictures or the words now? (Type 'pictures' or 'words')");
 						String decodeChoice = scanner.nextLine().trim().toLowerCase();
 						if (decodeChoice.equals("pictures")) {
 							for (Puzzle puzzle : puzzles) {	
 								if (puzzle.getType() == "MemoryPuzzle" && !puzzle.isCompleted()) {
-									System.out.println("You focus on the memory puzzle.");
+									System.out.println("\nYou focus on the memory puzzle.");
 									puzzle.playPuzzle();
-									if (puzzle.checkComplete()) {
-										System.out.println("You have successfully decoded the memory puzzle!");
+									if (puzzle.isCompleted()) {
+										System.out.println("\nYou have successfully decoded the memory puzzle!\n");
 										puzzle.setCompleted(true);
 									}
 								else {
-									System.out.println("No more picture puzzles available to decode.");
+									System.out.println("\nNo more picture puzzles available to decode.\n");
 								}
 								if (progress.getToDoPuzzles().isEmpty()) {
-									System.out.println("Congratulations! You have completed all puzzles in this room.");
+									System.out.println("\nCongratulations! You have completed all puzzles in this room.\n");
 									break;
 								}
 								}
@@ -197,14 +197,14 @@ public GameUI(){
 						} else if (decodeChoice.equals("words")) {
 							for (Puzzle puzzle : puzzles) {	
 								if (puzzle.getType() == "WordPuzzle" && !puzzle.isCompleted()) {
-									System.out.println("You focus on the word puzzle.");
+									System.out.println("\nYou focus on the word puzzle.");
 									puzzle.playPuzzle();
-									if (puzzle.checkComplete()) {
-										System.out.println("You have successfully decoded the words!");
+									if (puzzle.isCompleted()) {
+										System.out.println("\nYou have successfully decoded the words!");
 										puzzle.setCompleted(true);
 									}
 									else {
-										System.out.println("No more word puzzles available to decode.");
+										System.out.println("\nNo more word puzzles available to decode.");
 										}
 									}
 								}
@@ -213,7 +213,7 @@ public GameUI(){
 							displayGameMenu();
 						}
 						else {
-							System.out.println("You decide to hold off on decoding for now.");
+							System.out.println("\nYou decide to hold off on decoding for now.\n");
 							continue;
 						}
 					}
@@ -221,11 +221,11 @@ public GameUI(){
 						displayGameMenu();
 					}
 					else {
-						System.out.println("You decide to hold off on decoding for now.");
+						System.out.println("You decide to hold off on decoding for now.\n");
 						continue;
 					}
 				} else if (deskChoice.equals("explore")) {
-					System.out.println("You explore the desk further and find a hidden compartment containing a small key. This could be useful later.");
+					System.out.println("\nYou explore the desk further and find a hidden compartment containing a small key. This could be useful later.");
 					keyFound = true;
 					continue;
 				}	
@@ -235,33 +235,21 @@ public GameUI(){
 				gameManager.startNextPuzzle();
 			} else if (firstChoice.equals("door")) {
 				if (keyFound) {
-					System.out.println("You use the key to unlock the door and proceed into the room. It appears to be a maze. Good luck!");
-					for (Puzzle puzzle : puzzles) {	
-								if (puzzle.getType() == "MazePuzzle" && !puzzle.isCompleted()) {
-									puzzle.playPuzzle();
-									if (puzzle.checkComplete()) {
-										System.out.println("You have successfully completed the maze puzzle!");
-										puzzle.setCompleted(true);
-									}
-								else {
-									System.out.println("No more maze puzzles available to complete.");
-								}
-							}
-						}
-					System.out.println("Do you want to continue exploring the room or exit? ('continue' or 'exit'?)");
+					System.out.println("\nYou use the key to unlock the door and proceed into the room. It appears to be a maze.");
+					System.out.println("\nDo you want to continue exploring the room or exit? ('continue' or 'exit'?)");
 					String continueChoice = scanner.nextLine().trim().toLowerCase();
 					if (continueChoice.equals("continue")) {
 						for (Puzzle puzzle : puzzles) {	
-								if (puzzle.getType().equals("MazePuzzle") && !puzzle.isCompleted()) {
+								if ((puzzle.getType().equals("Maze-Simple") || puzzle.getType().equals("Maze-Trap")) && !puzzle.isCompleted()) {
 									puzzle.playPuzzle();
-									System.out.println(puzzle.getType());
-									if (puzzle.checkComplete()) {
+									//System.out.println(puzzle.getType());
+									if (puzzle.isCompleted()) {
 										System.out.println("You have successfully completed the maze puzzle!");
-										puzzle.setCompleted(true);
 									}
 								else {
-									System.out.println("No more maze puzzles available to complete.");
+									System.out.println("No more maze puzzles available to complete.\n");
 								}
+								continue;
 							}
 						}
 					}
@@ -272,7 +260,7 @@ public GameUI(){
 						displayGameMenu();
 					}
 				} else {
-					System.out.println("The door is locked. You need a key to open it.");
+					System.out.println("The door is locked. You need a key to open it.\n");
 				}
 			}
 			else if (!firstChoice.equals("M")) {
@@ -282,11 +270,11 @@ public GameUI(){
 				System.out.println("Invalid choice. Please type 'desk' or 'door'.");
 			}
 		}
-		System.out.println("You are almost out! You find the end of the maze and see an exit door. There is a keypad next to it.\n" +
+		System.out.println("\nYou are almost out! You find the end of the maze and see an exit door. There is a keypad next to it.\n" +
 		"What do you enter on the keypad to unlock the door?");
 		String keypadEntry = scanner.nextLine().trim();
 		if (keypadEntry.equals("4631")) {
-			System.out.println("The door unlocks and you step outside, escaping the room! Congratulations!");
+			System.out.println("\nThe door unlocks and you step outside, escaping the room! Congratulations!");
 			gameManager.endGame();
 			progress.updateProgress();
 			int finalScore = progress.getTotalScore();
@@ -335,7 +323,7 @@ public GameUI(){
 	}
 
 	private void displayGameMenu() {
-		System.out.println("Main Menu:");
+		System.out.println("Game Menu:");
 		System.out.println("1. Continue Game");
 		System.out.println("2. Get hint");
 		System.out.println("3. Show progress");
