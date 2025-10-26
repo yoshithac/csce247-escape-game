@@ -16,7 +16,15 @@ public class Certificate {
     public Certificate() {
         this.earnedAt = LocalDateTime.now();
     }
-
+    /**
+     * Constructs a Certificate with the specified details
+     * @param certificateId the unique identifier of the certificate
+     * @param userId the ID of the user who earned the certificate 
+     * @param puzzleId the ID of the puzzle associated with the certificate
+     * @param description a description of the certificate 
+     * @param difficulty the difficulty level of the puzzle
+     * @param scoreAchieved the score the user achieved
+     */
     public Certificate(String certificateId, String userId, String puzzleId,
                       String description, String difficulty, int scoreAchieved) {
         this();
@@ -29,6 +37,11 @@ public class Certificate {
     }
 
     // Getters
+    /**
+     *  Gets the unique identifier of the certificate 
+     * 
+     * @return the certificate ID
+     */
     public String getCertificateId() { return certificateId; }
     public String getUserId() { return userId; }
     public String getPuzzleId() { return puzzleId; }
@@ -38,6 +51,11 @@ public class Certificate {
     public LocalDateTime getEarnedAt() { return earnedAt; }  // add this getter
 
     // Setters
+    /**
+     * Sets the unique identifier of the certificate
+     * 
+     * @param certificateId the new certificate ID
+     */
     public void setCertificateId(String certificateId) { this.certificateId = certificateId; }
     public void setUserId(String userId) { this.userId = userId; }
     public void setPuzzleId(String puzzleId) { this.puzzleId = puzzleId; }
