@@ -21,7 +21,7 @@ public class RandomPuzzleFactory implements PuzzleFactory {
 
         for (int i = 0; i < numberOfPuzzles; i++) {
             Puzzle puzzle = allPuzzles.get(random.nextInt(allPuzzles.size()));
-            if (!puzzle.checkComplete()) {
+            if (!puzzle.isCompleted()) {
                 puzzleSet.add(puzzle);
             }
         }
