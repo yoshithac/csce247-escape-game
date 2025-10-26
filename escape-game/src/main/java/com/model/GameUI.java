@@ -156,6 +156,8 @@ public GameUI(){
 		System.out.println("You quickly take a look around. The room is fairly bare.");
 		boolean firstChoiceB = true;
 		boolean keyFound = false;
+		int completedMazes = 0;
+
 		while (firstChoiceB) {
 			if (progress.getToDoPuzzles().isEmpty()) {
 				System.out.println("Congratulations! You have completed all puzzles in this room. Go investigate the end of the maze to escape!");
@@ -239,15 +241,17 @@ public GameUI(){
 					System.out.println("\nDo you want to continue exploring the room or exit? ('continue' or 'exit'?)");
 					String continueChoice = scanner.nextLine().trim().toLowerCase();
 					while (continueChoice.equals("continue")) {
+						if (completedMazes >= 2) {
+							System.out.println("No more puzzles to complete in this room.");
+							break;
+						}
 						for (Puzzle puzzle : puzzles) {	
 								if ((puzzle.getType().equals("Maze-Simple") || puzzle.getType().equals("Maze-Trap")) && !puzzle.isCompleted()) {
 									puzzle.playPuzzle();
 									if (puzzle.isCompleted()) {
 										System.out.println("You have successfully completed the maze puzzle!");
+										completedMazes++;
 									}
-								else {
-									System.out.println("No more maze puzzles available to complete.\n");
-								}
 								continueChoice = "exit";
 							}
 							if (continueChoice.equals("exit")) {

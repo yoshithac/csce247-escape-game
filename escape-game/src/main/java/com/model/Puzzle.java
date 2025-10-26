@@ -83,7 +83,12 @@ public class Puzzle {
                 break;
             }
         }
-        isCompleted = true;
+        if (game.getStop()) {
+            //continue
+        }
+        else {
+            isCompleted = true;
+        }
         }
     }
 
