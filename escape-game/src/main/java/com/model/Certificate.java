@@ -107,4 +107,13 @@ public class Certificate {
     public void setDifficulty(DifficultyLevel difficulty) {
         this.difficulty = difficulty;
     }
+
+    @Override
+    public String toString() {
+        return "Certificate ID: " + certificateId + "\n"
+                + "User ID: " + certUserId + "\n"
+                + "Description: " + description + "\n"
+                + "Earned On: " + (earnDate != null ? earnDate.format(java.time.format.DateTimeFormatter.ofPattern("MMMM dd, yyyy, h:mm a")) : "N/A") + "\n"
+                + "Difficulty: " + (difficulty != null ? difficulty.name() : "N/A");
+    }
 }
