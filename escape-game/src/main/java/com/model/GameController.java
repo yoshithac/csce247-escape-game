@@ -83,6 +83,7 @@ public class GameController {
 
             // Handle menu selection
             if (choiceNum == START_NEW) {
+                progress.clearGameState();
                 startNewPuzzle();
             } else if (choiceNum == RESUME && hasSavedGame) {
                 resumeSavedGame();
@@ -123,7 +124,7 @@ public class GameController {
         if (sessionDifficulty == null) {
             sessionDifficulty = selectDifficulty();
         }
-        
+
         String userId = authService.getCurrentUser().getUserId();
         String difficulty = sessionDifficulty;
         //Game intro starts here
