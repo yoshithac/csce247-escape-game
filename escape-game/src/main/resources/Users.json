@@ -40,16 +40,6 @@
     "lastLoginAt": "2025-10-26T14:44:45.797754"
   },
   {
-    "userId": "remyr",
-    "password": "remyr",
-    "firstName": "remy",
-    "lastName": "rogers",
-    "email": "rtrogers@email.sc.edu",
-    "role": "USER",
-    "createdAt": "2025-10-26T17:03:23.63986",
-    "lastLoginAt": "2025-10-26T18:26:06.885352"
-  },
-  {
     "userId": "remy2",
     "password": "remy2",
     "firstName": "remy",
@@ -58,5 +48,25 @@
     "role": "USER",
     "createdAt": "2025-10-26T18:30:55.409726",
     "lastLoginAt": "2025-10-26T18:31:03.042991"
+  },
+  {
+    "userId": "remyr",
+    "password": "remyr",
+    "firstName": "remy",
+    "lastName": "rogers",
+    "email": "rtrogers@email.sc.edu",
+    "role": "USER",
+    "createdAt": "2025-10-26T17:03:23.63986",
+    "lastLoginAt": "2025-10-26T19:30:40.310728"
+  },
+  {
+    "userId": "timer",
+    "password": "test",
+    "firstName": "timer",
+    "lastName": "test",
+    "email": "",
+    "role": "USER",
+    "createdAt": "2025-10-26T19:35:29.164869",
+    "lastLoginAt": "2025-10-26T19:35:34.611301"
   }
 ]

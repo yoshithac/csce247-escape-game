@@ -14,8 +14,6 @@ public class UserProgress {
     private List<String> completedPuzzles;
     private Map<String, Integer> puzzleScores;
     private int totalScore;
-    private int startTime;
-    private int timer;
     
     // For save/resume functionality
     private String currentPuzzleId;
@@ -82,54 +80,6 @@ public class UserProgress {
         this.gameState = gameState; 
     }
 
-    /**
-     * starts game timer
-     */
-    public void startTimer() {
-     if (this.startTime == 0) {
-            this.startTime = (int)System.currentTimeMillis();
-        }
-    }   
-
-    /**
-     * pauses game timer
-     */
-    public void pauseTimer() {
-        if (this.startTime != 0) {
-            int now = (int) System.currentTimeMillis();
-            this.timer += (now - this.startTime);
-            this.startTime = 0;
-        }
-    }
-
-    /**
-     * gets timer
-     * @return int timer
-     */
-    public int getTimer() {
-        if (this.startTime != 0) {
-        return this.timer + (int)(System.currentTimeMillis() - this.startTime);
-    } else {
-        return this.timer;
-    }
-    }
-
-    /**
-     * sets start time to time parameter
-     * @param int time
-     */
-    public void setStartTime(int time) {
-        startTime = time;
-    }
-
-    /**
-     * resets timer
-     */
-    public void resetTimer() {
-    this.timer = 0;
-    this.startTime = 0;
-}
-
     
     // Business methods
     public void addCompletedPuzzle(String puzzleId, int score) {
@@ -164,7 +114,6 @@ public class UserProgress {
     public void clearGameState() {
         this.currentPuzzleId = null;
         this.gameState = null;
-        this.timer = 0;
     }
     
     /**
