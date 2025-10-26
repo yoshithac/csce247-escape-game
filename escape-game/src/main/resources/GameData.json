@@ -234,10 +234,10 @@
   ],
   "certificates": [
     {
-      "certificateId": "79a9fa9f-b8db-4155-b741-9441467b3d55",
+      "certificateId": "223beb09-9501-47a7-8c17-9acedd09c30b",
       "certUserId": "testuser",
       "description": "Congratulations Test! You have successfully escaped the room at EASY difficulty!",
-      "earnDate": "2025-10-26T14:27:17.9795799",
+      "earnDate": "2025-10-26T14:38:45.64408",
       "difficulty": "EASY"
     }
   ],

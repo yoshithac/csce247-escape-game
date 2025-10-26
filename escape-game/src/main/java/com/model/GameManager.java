@@ -267,7 +267,7 @@ public class GameManager{
         }
 
         // Show / confirm in console (replace with UI hook if you have one)
-        System.out.println("🏆 Certificate awarded to " + currentPlayer.getFirstName() + " (" + currentPlayer.getUserId() + ")");
+        System.out.println("Certificate awarded to " + currentPlayer.getFirstName() + " (" + currentPlayer.getUserId() + ")");
         System.out.println(certificate.getDescription());
 
         certificateCreatedForThisRun = true;
