@@ -9,6 +9,8 @@ public class MazePuzzle {
     private int moveCount = 0;
     private int startTime;
     private int maxAttempts;
+    private String type;
+    private boolean completed = false;
 
     //console ui mazes
     char[][] maze;
@@ -39,6 +41,7 @@ public class MazePuzzle {
         {'#',' ',' ','#',' ',' ','#'},
         {'#',' ','#',' ','#','#','#'},
         {'#','#','#','#','#','#','#'}};
+
     static char[][] trapMaze = {
         {'#','#','#','#','#','#','#','#','#'},
         {'#','P',' ',' ',' ','#',' ','E','#'},
@@ -61,9 +64,10 @@ public class MazePuzzle {
     /**
      * Creates a simple maze layout
      */
-    private void simpleMaze() {
+    public void simpleMaze() {
         maxAttempts = 5;
         maze = simpleMaze;
+        type = "Simple";
         endArea = new Point(5, 1);
         for (char[] row : simpleMaze) {
             for (char c : row) System.out.print(c);
@@ -74,17 +78,34 @@ public class MazePuzzle {
     /**
      * Creates a trap maze layout
      */
-    private void trapMaze() {
+    public void trapMaze() {
         maxAttempts = 5;
         maze = trapMaze;
+        type = "Trap";
         endArea = new Point(7, 1);
+    }
+
+    /**
+     * Gets start time
+     * @return int start time
+     */
+    public void setStartTime(int st) {
+        startTime = st;
+    }
+
+    /**
+     * Gets maze type
+     * @param string maze type
+     */
+    public String getType() {
+        return type;
     }
 
     /**
      * Private helper method to move the player in the maze
      * @param direction (a, w, s, d)
      */
-    private void movePlayer(char direction) {
+    public void movePlayer(char direction) {
         int newRow = playerPosition.x, newCol = playerPosition.y;
         switch (direction) {
             case 'w': newRow--; break;
@@ -130,7 +151,7 @@ public class MazePuzzle {
     /*
      * Displays the results and score upon completing the maze
      */
-    private void showScore() {
+    private void showMazeScore() {
         int elapsed = (int)(System.currentTimeMillis() - startTime) / 1000;
         int score = Math.max(0, 300 - (int)(elapsed * 10 + moveCount * 5));
         System.out.println("Maze Completed!");
@@ -150,15 +171,30 @@ public class MazePuzzle {
         maxAttempts--;
     }
 
+    public boolean getCompleted() {
+        return completed;
+    }
+
+    /**
+     * Ends maze
+     */
+    public void mazeEnd() {
+        if (playerPosition.equals(endArea) || maze[playerPosition.x][playerPosition.y] == 'E') {
+                displayMaze();
+                showMazeScore();
+        }
+        completed = true;
+    }
+
     //tester methods for maze movement and display -- delete later
-    private void displayMaze() {
+    public void displayMaze() {
         for (char[] row : maze) {
             for (char c : row) System.out.print(c);
             System.out.println();
         }
     }
 
-    public static void main(String[] args) {
+    public void playMaze() {
         Scanner sc = new Scanner(System.in);
         MazePuzzle game = new MazePuzzle();
 
@@ -185,13 +221,11 @@ public class MazePuzzle {
             char move = Character.toLowerCase(sc.next().charAt(0));
             game.movePlayer(move);
 
-            if (game.playerPosition.equals(game.endArea) || game.maze[game.playerPosition.x][game.playerPosition.y] == 'E') {
-                game.displayMaze();
-                game.showScore();
+            game.mazeEnd();
+            if (completed) {
                 break;
             }
         }
-
         sc.close();
     }
 }

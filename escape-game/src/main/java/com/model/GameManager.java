@@ -299,5 +299,9 @@ public class GameManager{
     public int getStartTime() {
         return startTime;
     }   
+
+    public int getNumHints(){
+        return hints.size();
+    }
 }
 

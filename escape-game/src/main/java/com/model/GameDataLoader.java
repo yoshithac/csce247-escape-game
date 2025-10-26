@@ -2,9 +2,12 @@ package com.model;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -24,7 +27,7 @@ public class GameDataLoader {
         .create();
 	
     protected static final String USER_FILE_NAME = "src/main/resources/Users.json";
-    protected static final String GAMEDATA_FILE_NAME = "src/main/resources/GameData.json";
+    protected static final String GAMEDATA_FILE_NAME = "GameData.json";
 
     /**
      * Loads the list of user data.
@@ -58,26 +61,31 @@ public class GameDataLoader {
      * Loads list of all game data (i.e. Leaderboards, puzzles, etc)
      * @return gameDataFile
      */
-    public GameData readGameData() {
-        String gameDataFile = GAMEDATA_FILE_NAME;
 
+    public GameData readGameData() {
         GameData gameData = null;
-        try {
-            // FIXED: Use the configured gson instance instead of new Gson()
-            gameData = gson.fromJson(
-                new FileReader(gameDataFile),
-                new TypeToken<GameData>() {}.getType()
-            );
-            
-            // Check if gameData is null
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(GAMEDATA_FILE_NAME)) {
+            if (is == null) {
+                System.out.println("Could not find: " + GAMEDATA_FILE_NAME);
+                return new GameData(new ArrayList<>(), null, null, null, null);
+            }
+
+            String json = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+
+            gameData = gson.fromJson(json, GameData.class);
             if (gameData == null) {
-                System.out.println("Warning: JSON file is empty or returned null");
-                gameData = new GameData(null, null, null, null, null);
+                System.out.println("File returned null");
+                gameData = new GameData(new ArrayList<>(), null, null, null, null);
+            }
+
+            if (gameData.getRooms() == null) {
+                gameData.setRooms(new ArrayList<>());
             }
             
         } catch (Exception ex) {
-            System.out.println("Could not find: " + gameDataFile);
+            System.out.println("Could not find: " + GAMEDATA_FILE_NAME);
             ex.printStackTrace();
+            gameData = new GameData(null, null, null, null, null);
         }
         return gameData;
     }

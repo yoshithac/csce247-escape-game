@@ -135,4 +135,12 @@ public class GameProgress extends GameManager{
     public void setCurrentTime(int currentTime) {
         this.currentTime = currentTime;
     }
+
+    /**
+     * Gets the completion percentage
+     * @return The completion percentage
+     */
+    public int getCompletionPercentage() {
+        return completionPercentage;
+    }
 }

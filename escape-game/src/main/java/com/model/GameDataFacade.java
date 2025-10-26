@@ -80,7 +80,7 @@ public class GameDataFacade {
         return (gameData != null && gameData.getHints() != null) ? gameData.getHints() : hints;
     }
 
-    /**
+    /**mvn exec:java -Dexec.mainClass="com.model.GameUI"
      * Gets GameData
      * @return The loaded game data
      */
