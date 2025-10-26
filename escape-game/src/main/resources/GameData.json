@@ -160,6 +160,7 @@
       "scorePoints": 150
     },
     "startTime": 0,
+    "certificateCreatedForThisRun": false,
     "isActive": false,
     "timer": 0
   },
@@ -216,6 +217,7 @@
       "puzzleId": "WP001",
       "hintText": "This is a Caesar cipher. Try shifting each letter by a fixed number.",
       "startTime": 0,
+      "certificateCreatedForThisRun": false,
       "isActive": false,
       "timer": 0
     },
@@ -225,50 +227,37 @@
       "puzzleId": "WP002",
       "hintText": "Think of a common household pet.",
       "startTime": 0,
+      "certificateCreatedForThisRun": false,
       "isActive": false,
       "timer": 0
     }
   ],
   "certificates": [
     {
-      "certificateId": "CERT001",
-      "certUserId": "user002",
-      "description": "Completed all EASY level puzzles with perfect score",
-      "earnDate": "2025-09-15T14:30:00",
+      "certificateId": "79a9fa9f-b8db-4155-b741-9441467b3d55",
+      "certUserId": "testuser",
+      "description": "Congratulations Test! You have successfully escaped the room at EASY difficulty!",
+      "earnDate": "2025-10-26T14:27:17.9795799",
       "difficulty": "EASY"
-    },
-    {
-      "certificateId": "CERT002",
-      "certUserId": "user003",
-      "description": "Completed all MEDIUM level puzzles",
-      "earnDate": "2025-09-20T10:15:00",
-      "difficulty": "MEDIUM"
-    },
-    {
-      "certificateId": "CERT003",
-      "certUserId": "user002",
-      "description": "Master achievement - Completed all HARD level puzzles",
-      "earnDate": "2025-09-25T16:45:00",
-      "difficulty": "HARD"
     }
   ],
   "rooms": [
     {
       "roomId": "ROOM001",
       "name": "Shipwreck",
-      "description": "You are the captain of a ship headed on a treacherous journey to find treasure. You are sailing with your crew\nwhen suddenly a storm hits. You hear a loud boom and see water flooding in. You are stuck in the cabin of a sinking ship. Find\nyour way out for you and your crew before it submerges completely! You have 30 minutes. Good luck!\n\nType 'M' to open the menu at any time to pause, view hints, view progress, or exit the game.",
+      "description": "You are the captain of a ship headed on a treacherous journey to find treasure. You are sailing with your crew\nwhen suddenly a storm hits. You hear a loud boom and see water flooding in. You are stuck in the cabin of a sinking ship. Find\nyour way out for you and your crew before it submerges completely! You have 30 minutes. Good luck!\n\nType \u0027M\u0027 to open the menu at any time to pause, view hints, view progress, or exit the game.",
       "isCompleted": false
     },
     {
       "roomId": "ROOM002",
       "name": "Prison",
-      "description": "You are going about your day when you hear sirens outside of your home. You are suddenly taken away and thrown into\na high-security prison. You have no idea why you were taken or who took you. You need to find a way to escape before it\u0027s too late.\nYou have 30 minutes to find your way out of the prison and back to safety. Good luck!\n\nType 'M' to open the menu at any time to pause, view hints, view progress, or exit the game.",
+      "description": "You are going about your day when you hear sirens outside of your home. You are suddenly taken away and thrown into\na high-security prison. You have no idea why you were taken or who took you. You need to find a way to escape before it\u0027s too late.\nYou have 30 minutes to find your way out of the prison and back to safety. Good luck!\n\nType \u0027M\u0027 to open the menu at any time to pause, view hints, view progress, or exit the game.",
       "isCompleted": false
     },
     {
       "roomId": "ROOM003",
       "name": "Forest",
-      "description": "You are on a trip to the mountains with your friends. While hiking through the forest, you get separated from\nyour group and lose your way. As night falls, you realize you need to find shelter and a way back before it gets too dark. You find\na small cabin and need to find clues to get out of the woods before time runs out. You have 30 minutes to find your way out of the forest and reunite with your friends. Good luck!\n\nType 'M' to open the menu at any time to pause, view hints, view progress, or exit the game.",
+      "description": "You are on a trip to the mountains with your friends. While hiking through the forest, you get separated from\nyour group and lose your way. As night falls, you realize you need to find shelter and a way back before it gets too dark. You find\na small cabin and need to find clues to get out of the woods before time runs out. You have 30 minutes to find your way out of the forest and reunite with your friends. Good luck!\n\nType \u0027M\u0027 to open the menu at any time to pause, view hints, view progress, or exit the game.",
       "isCompleted": false
     }
   ]

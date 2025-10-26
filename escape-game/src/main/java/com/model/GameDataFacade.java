@@ -162,6 +162,42 @@ public class GameDataFacade {
         this.certificates = certificates;
     }
 
+    /**
+     * Adds a certificate to the game data and persists it.
+     */
+    public void addCertificate(Certificate certificate) {
+        if (certificate == null) return;
+
+        if (this.certificates == null) {
+            this.certificates = new ArrayList<>();
+        }
+
+        this.certificates.add(certificate);
+
+        if (this.gameData != null) {
+            this.gameData.setCertificate(this.certificates);
+        }
+
+        // persist the change
+        saveGameData();
+    }
+
+
+    /**
+     * Returns true if the given user already has a certificate for the given difficulty.
+     */
+    public boolean userHasCertificateForDifficulty(String userId, DifficultyLevel difficulty) {
+        if (userId == null || difficulty == null) return false;
+        if (this.certificates == null) return false;
+
+        for (Certificate c : this.certificates) {
+            if (c != null && userId.equals(c.getCertUserId()) && difficulty == c.getDifficulty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void setHints(List<Hint> hints) {
         this.hints = hints;
     }

@@ -1,8 +1,8 @@
 package com.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
-
-import static com.model.GameDataFacade.gameDataFacade;
+import java.util.UUID;
 
 /*
  * This class manages the game flow and player interactions
@@ -13,7 +13,9 @@ public class GameManager{
     private List<User> players;
     private DifficultyLevel difficulty;
     private int startTime;
+    private boolean certificateCreatedForThisRun = false;
     private boolean isActive = false;
+    private GameDataFacade gameDataFacade;
     private GameProgress currentProgress;
     private List<Puzzle> currentPuzzles;
     private List<Hint> hints;
@@ -215,8 +217,60 @@ public class GameManager{
      * Handles the end of the game
      */
     public void handleGameEnd() {
-        isActive = false;
-        //ui to display end game
+    isActive = false;
+
+    // Determine success: checkGameOver() returns true when all puzzles are done
+    boolean success = checkGameOver();
+
+        if (!success) {
+            System.out.println("Game ended without success — no certificate awarded.");
+            return;
+        }
+
+        if (currentPlayer == null) {
+            System.out.println("No current player set — cannot award certificate.");
+            return;
+        }
+
+        // Avoid creating more than one certificate per run
+        if (certificateCreatedForThisRun) {
+            System.out.println("Certificate already created for this run.");
+            return;
+        }
+
+        // Optional: avoid duplicates across runs (same user + difficulty)
+        if (gameDataFacade != null && gameDataFacade.userHasCertificateForDifficulty(currentPlayer.getUserId(), difficulty)) {
+            System.out.println("User already has a certificate for this difficulty; not creating a new one.");
+            certificateCreatedForThisRun = true;
+            return;
+        }
+
+        // Create certificate object
+        String certificateId = UUID.randomUUID().toString();
+        String description = "Congratulations " + currentPlayer.getFirstName()
+                + "! You have successfully escaped the room at " + difficulty + " difficulty!";
+        LocalDateTime earnDate = LocalDateTime.now();
+
+        Certificate certificate = new Certificate(
+                certificateId,
+                currentPlayer.getUserId(),
+                description,
+                earnDate,
+                difficulty
+        );
+
+        // Persist certificate through facade
+        if (gameDataFacade != null) {
+            gameDataFacade.addCertificate(certificate);
+        } else {
+            System.out.println("Warning: gameDataFacade is null — certificate not persisted.");
+        }
+
+        // Show / confirm in console (replace with UI hook if you have one)
+        System.out.println("🏆 Certificate awarded to " + currentPlayer.getFirstName() + " (" + currentPlayer.getUserId() + ")");
+        System.out.println(certificate.getDescription());
+
+        certificateCreatedForThisRun = true;
     }
 
     /**
