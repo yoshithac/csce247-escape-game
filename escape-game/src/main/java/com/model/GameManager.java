@@ -90,8 +90,8 @@ public class GameManager{
      * Pauses the current game session.
      */
     public void pauseGame() {
-        /* 
-        this.isActive = false; */
+        pauseTimer();
+        currentProgress.updateProgress();
     }
 
     /**
@@ -280,7 +280,7 @@ public class GameManager{
         if(!isActive) {
             isActive = true;
         }
-        startTime = (int) (System.currentTimeMillis() / 1000L);
+        startTime = (int)(System.currentTimeMillis() / 1000L);
     }
 
     /**
@@ -305,7 +305,7 @@ public class GameManager{
      * @return Elapsed time in seconds
      */
     public int getElapsedTime() {
-        return timer;
+        return timer + (int)(System.currentTimeMillis() / 1000L) - startTime;
     }
 
     public void clearTimer() {
@@ -355,7 +355,12 @@ public class GameManager{
     }   
 
     public int getNumHints(){
-        return hints.size();
+        if (hints != null) {
+            return hints.size();
+        }
+        else {
+            return 0;
+        }
     }
 }
 

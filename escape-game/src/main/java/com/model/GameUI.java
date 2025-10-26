@@ -148,10 +148,11 @@ public GameUI(){
     		System.out.println("----------------------");
 		
    	 	List<Puzzle> puzzles = gameData.getPuzzles();
-    	for (Puzzle puzzle : puzzles) {
+    	/*for (Puzzle puzzle : puzzles) {
       		System.out.println("Puzzle ID: " + puzzle.getPuzzleId() + ", prompt: " + puzzle.getType() + "\nanswer:" + puzzle.getAnswer());
-   		}
+   		}*/
 		progress = new GameProgress(puzzles);
+		gameManager.startGame();
 		gameManager.startTimer();
 		System.out.println("You quickly take a look around. The room is fairly bare.");
 		boolean firstChoiceB = true;
@@ -181,6 +182,10 @@ public GameUI(){
 						System.out.println("\nYou investigate further and notice that the notes and doodles seem to have patterns. \nDo you want to try to decode the pictures or the words now? (Type 'pictures' or 'words')");
 						String decodeChoice = scanner.nextLine().trim().toLowerCase();
 						if (decodeChoice.equals("pictures")) {
+							if (completedMemory >= 2) {
+							System.out.println("No more meomry puzzles to complete in this room.");
+							break;
+							}
 							for (Puzzle puzzle : puzzles) {	
 								if (puzzle.getType() == "MemoryPuzzle" && !puzzle.isCompleted()) {
 									System.out.println("\nYou focus on the memory puzzle.");
@@ -191,10 +196,6 @@ public GameUI(){
 									}
 								else {
 									System.out.println("\nNo more picture puzzles available to decode.\n");
-								}
-								if (progress.getToDoPuzzles().isEmpty()) {
-									System.out.println("\nCongratulations! You have completed all puzzles in this room.\n");
-									break;
 								}
 								}
 							}
@@ -352,7 +353,7 @@ public GameUI(){
 		else if (ans.equals("3")) {
 			progress.updateProgress();
 			System.out.println("Percent complete: " + progress.getCompletionPercentage() + "%, Hints left: " + 
-			gameManager.getNumHints() + "Time elapsed: " + gameManager.getElapsedTime() + " seconds.");
+			gameManager.getNumHints() + " Time elapsed: " + gameManager.getElapsedTime() + " seconds.");
 		}
 		else if (ans.equals("4")) {
 			gameManager.pauseGame();
