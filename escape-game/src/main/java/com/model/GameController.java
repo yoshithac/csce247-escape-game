@@ -24,6 +24,7 @@ public class GameController {
     private final GameView view;
     private String sessionDifficulty = null; // Difficulty for session
 
+
     public GameController(GameView view, AuthenticationService authService) {
         this.view = view;
         this.authService = authService;
@@ -43,6 +44,7 @@ public class GameController {
             view.clear();
             String userId = authService.getCurrentUser().getUserId();
             String userName = authService.getCurrentUser().getFullName();
+            
 
             view.showMessage("\n" + "=".repeat(50));
             view.showMessage("     Welcome, " + userName + "!");
@@ -52,7 +54,6 @@ public class GameController {
             // Check for saved game
             UserProgress progress = progressService.getUserProgress(userId);
             boolean hasSavedGame = progress.hasGameInProgress();
-                       
             
 
          // Build menu dynamically
@@ -81,6 +82,8 @@ public class GameController {
             // Handle menu selection
             if (choiceNum == START_NEW) {
                 startNewPuzzle();
+                progress.resetTimer();  
+                progress.startTimer();
             } else if (choiceNum == RESUME && hasSavedGame) {
                 resumeSavedGame();
             } else if (choiceNum == VIEW_PROGRESS) {
@@ -233,6 +236,7 @@ public class GameController {
     private void resumeSavedGame() {
         String userId = authService.getCurrentUser().getUserId();
         UserProgress progress = progressService.getUserProgress(userId);
+        progress.startTimer();
 
         if (!progress.hasGameInProgress()) {
             view.showMessage("\nNo saved game found!");
@@ -284,6 +288,7 @@ public class GameController {
                 UserProgress progress = progressService.getUserProgress(userId);
                 progress.clearGameState();
                 dataFacade.saveUserProgress(progress);
+                progress.resetTimer();
                 waitForUser();
                 return;
             }
@@ -333,6 +338,7 @@ public class GameController {
         Map<String, Object> gameState = game.saveState();
         progress.saveGameState(puzzle.getPuzzleId(), gameState);
         dataFacade.saveUserProgress(progress);
+        progress.pauseTimer();
 
         view.showMessage("\nGame saved! You can resume later.");
         waitForUser();
@@ -358,6 +364,7 @@ public class GameController {
         view.showMessage("Puzzles Completed: " + stats.get("completed") + "/" + stats.get("totalPuzzles"));
         view.showMessage("Completion: " + stats.get("completionPercentage") + "%");
         view.showMessage("Remaining: " + stats.get("remaining"));
+        view.showMessage("Time Elapsed: " + progress.getTimer()/60 + " minutes, " + progress.getTimer()%60 + " seconds");
         waitForUser();
     }
 
