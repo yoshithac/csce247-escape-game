@@ -148,15 +148,17 @@ public GameUI(){
     		System.out.println("----------------------");
 		
    	 	List<Puzzle> puzzles = gameData.getPuzzles();
-    	/*for (Puzzle puzzle : puzzles) {
+    	for (Puzzle puzzle : puzzles) {
       		System.out.println("Puzzle ID: " + puzzle.getPuzzleId() + ", prompt: " + puzzle.getType() + "\nanswer:" + puzzle.getAnswer());
-   		}*/
+   		}
 		progress = new GameProgress(puzzles);
 		gameManager.startTimer();
 		System.out.println("You quickly take a look around. The room is fairly bare.");
 		boolean firstChoiceB = true;
 		boolean keyFound = false;
 		int completedMazes = 0;
+		int completedWord = 0;
+		int completedMemory = 0;
 
 		while (firstChoiceB) {
 			if (progress.getToDoPuzzles().isEmpty()) {
@@ -197,19 +199,23 @@ public GameUI(){
 								}
 							}
 						} else if (decodeChoice.equals("words")) {
-							for (Puzzle puzzle : puzzles) {	
-								if (puzzle.getType() == "WordPuzzle" && !puzzle.isCompleted()) {
-									System.out.println("\nYou focus on the word puzzle.");
+							if (completedWord >= 2) {
+							System.out.println("No more word puzzles to complete in this room.");
+							break;
+							}
+						for (Puzzle puzzle : puzzles) {	
+								if ((puzzle.getType().equals("CIPHER") || puzzle.getType().equals("ANAGRAM") || puzzle.getType().equals("RIDDLE")) && !puzzle.isCompleted()) {
 									puzzle.playPuzzle();
 									if (puzzle.isCompleted()) {
-										System.out.println("\nYou have successfully decoded the words!");
-										puzzle.setCompleted(true);
+										System.out.println("You have successfully completed the word puzzle!");
+										completedWord++;
 									}
-									else {
-										System.out.println("\nNo more word puzzles available to decode.");
-										}
-									}
-								}
+								decodeChoice = "exit";
+							}
+							if (decodeChoice.equals("exit")) {
+								break;
+							}
+						}
 						}
 						else if (decodeChoice.equals("M")) {
 							displayGameMenu();
