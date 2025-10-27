@@ -1510,7 +1510,7 @@
       "title": "Science Cipher",
       "description": "Decrypt the element.",
       "data": {
-        "prompt": "HOFRGHQ",
+        "prompt": "XOGYNE",
         "answer": "OXYGEN",
         "category": "Science",
         "maxAttempts": 3.0
@@ -1523,7 +1523,7 @@
       "title": "Galaxy Cipher",
       "description": "Find the name of a planet.",
       "data": {
-        "prompt": "NBST",
+        "prompt": "SRAM",
         "answer": "MARS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -1536,7 +1536,7 @@
       "title": "Composer Cipher",
       "description": "A famous classical composer.",
       "data": {
-        "prompt": "FDVKZHZ",
+        "prompt": "CHAB",
         "answer": "BACH",
         "category": "Music",
         "maxAttempts": 5.0
@@ -1549,7 +1549,7 @@
       "title": "Astronomy Anagram",
       "description": "Unscramble the planet.",
       "data": {
-        "prompt": "SNURA",
+        "prompt": "SNURAU",
         "answer": "URANUS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -1562,7 +1562,7 @@
       "title": "Mythology Mix",
       "description": "Unscramble a Greek god.",
       "data": {
-        "prompt": "IPOSDEN",
+        "prompt": "IPOSDENO",
         "answer": "POSEIDON",
         "category": "Mythology",
         "maxAttempts": 4.0
@@ -2222,7 +2222,8 @@
         "cipher_e1",
         "maze_e2",
         "anag_e2",
-        "cipher_e3"
+        "cipher_e3",
+        "anag_e1"
       ],
       "puzzleScores": {
         "ridd_e2": 247,
@@ -2235,26 +2236,10 @@
         "cipher_e1": 239,
         "maze_e2": 220,
         "anag_e2": 186,
-        "cipher_e3": 248
+        "cipher_e3": 248,
+        "anag_e1": 150
       },
-      "totalScore": 2465,
-      "currentPuzzleId": "anag_e1",
-      "gameState": {
-        "maxAttempts": 4,
-        "revealedHints": [
-          "A planet with rings.",
-          "It\u0027s blue and cold."
-        ],
-        "attemptsUsed": 0,
-        "answer": "URANUS",
-        "won": false,
-        "puzzleType": "ANAGRAM",
-        "startTime": 1761531530408,
-        "guesses": [],
-        "puzzleId": "anag_e1",
-        "category": "Space",
-        "prompt": "SNURA"
-      }
+      "totalScore": 2615
     }
   ],
   "certificates": [
@@ -2527,6 +2512,15 @@
       "difficulty": "EASY",
       "scoreAchieved": 248,
       "earnedAt": "2025-10-26T22:18:38.77747"
+    },
+    {
+      "certificateId": "CERT_remyr_anag_e1_1761531733570",
+      "userId": "remyr",
+      "puzzleId": "anag_e1",
+      "description": "Completed \u0027Astronomy Anagram\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 150,
+      "earnedAt": "2025-10-26T22:22:13.570893"
     }
   ],
   "leaderboard": [
@@ -2540,9 +2534,9 @@
     {
       "userId": "remyr",
       "userName": "remy r",
-      "totalScore": 2465,
-      "puzzlesCompleted": 11,
-      "lastUpdated": "2025-10-26T22:19:28.553552"
+      "totalScore": 2615,
+      "puzzlesCompleted": 12,
+      "lastUpdated": "2025-10-26T22:22:13.580159"
     },
     {
       "userId": "U1002",
