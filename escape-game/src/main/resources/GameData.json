@@ -1510,7 +1510,7 @@
       "title": "Science Cipher",
       "description": "Decrypt the element.",
       "data": {
-        "prompt": "HOFRGHQ",
+        "prompt": "XOGYNE",
         "answer": "OXYGEN",
         "category": "Science",
         "maxAttempts": 3.0
@@ -1523,7 +1523,7 @@
       "title": "Galaxy Cipher",
       "description": "Find the name of a planet.",
       "data": {
-        "prompt": "NBST",
+        "prompt": "SRAM",
         "answer": "MARS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -1536,7 +1536,7 @@
       "title": "Composer Cipher",
       "description": "A famous classical composer.",
       "data": {
-        "prompt": "FDVKZHZ",
+        "prompt": "CHAB",
         "answer": "BACH",
         "category": "Music",
         "maxAttempts": 5.0
@@ -1549,7 +1549,7 @@
       "title": "Astronomy Anagram",
       "description": "Unscramble the planet.",
       "data": {
-        "prompt": "SNURA",
+        "prompt": "SNURAU",
         "answer": "URANUS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -1562,7 +1562,7 @@
       "title": "Mythology Mix",
       "description": "Unscramble a Greek god.",
       "data": {
-        "prompt": "IPOSDEN",
+        "prompt": "IPOSDENO",
         "answer": "POSEIDON",
         "category": "Mythology",
         "maxAttempts": 4.0
@@ -2210,19 +2210,17 @@
   ],
   "userProgress": [
     {
-      "userId": "remyr",
+      "userId": "nitin",
       "completedPuzzles": [
-        "ridd_e2",
-        "maze_e3",
-        "ridd_e3",
-        "maze_e1",
-        "anag_e3",
         "ridd_e1",
+        "match_e1",
+        "ridd_e3",
         "match_e2",
         "cipher_e1",
         "maze_e2",
         "anag_e2",
-        "cipher_e3"
+        "cipher_e3",
+        "anag_e1"
       ],
       "puzzleScores": {
         "ridd_e2": 247,
@@ -2235,26 +2233,10 @@
         "cipher_e1": 239,
         "maze_e2": 220,
         "anag_e2": 186,
-        "cipher_e3": 248
+        "cipher_e3": 248,
+        "anag_e1": 150
       },
-      "totalScore": 2465,
-      "currentPuzzleId": "anag_e1",
-      "gameState": {
-        "maxAttempts": 4,
-        "revealedHints": [
-          "A planet with rings.",
-          "It\u0027s blue and cold."
-        ],
-        "attemptsUsed": 0,
-        "answer": "URANUS",
-        "won": false,
-        "puzzleType": "ANAGRAM",
-        "startTime": 1761531530408,
-        "guesses": [],
-        "puzzleId": "anag_e1",
-        "category": "Space",
-        "prompt": "SNURA"
-      }
+      "totalScore": 2615
     }
   ],
   "certificates": [
@@ -2430,73 +2412,46 @@
       "earnedAt": "2025-10-26T14:46:39.876733"
     },
     {
-      "certificateId": "CERT_remyr_ridd_e2_1761530393677",
-      "userId": "remyr",
-      "puzzleId": "ridd_e2",
-      "description": "Completed \u0027Word Riddle\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 247,
-      "earnedAt": "2025-10-26T21:59:53.681376"
-    },
-    {
-      "certificateId": "CERT_remyr_maze_e3_1761530408181",
-      "userId": "remyr",
-      "puzzleId": "maze_e3",
-      "description": "Completed \u0027Labyrinth X\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 232,
-      "earnedAt": "2025-10-26T22:00:08.181745"
-    },
-    {
-      "certificateId": "CERT_remyr_ridd_e3_1761530508537",
-      "userId": "remyr",
-      "puzzleId": "ridd_e3",
-      "description": "Completed \u0027Invisible Home\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 248,
-      "earnedAt": "2025-10-26T22:01:48.541529"
-    },
-    {
-      "certificateId": "CERT_remyr_maze_e1_1761530522896",
-      "userId": "remyr",
-      "puzzleId": "maze_e1",
-      "description": "Completed \u0027Maze Inferno\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 233,
-      "earnedAt": "2025-10-26T22:02:02.89671"
-    },
-    {
-      "certificateId": "CERT_remyr_anag_e3_1761530552146",
-      "userId": "remyr",
-      "puzzleId": "anag_e3",
-      "description": "Completed \u0027World City\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 229,
-      "earnedAt": "2025-10-26T22:02:32.147656"
-    },
-    {
-      "certificateId": "CERT_remyr_ridd_e1_1761530995877",
-      "userId": "remyr",
+      "certificateId": "CERT_nitin_ridd_e1_1761512771004",
+      "userId": "nitin",
       "puzzleId": "ridd_e1",
       "description": "Completed \u0027The Endless Room\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 244,
-      "earnedAt": "2025-10-26T22:09:55.880514"
+      "scoreAchieved": 225,
+      "earnedAt": "2025-10-26T17:06:11.00701"
     },
     {
-      "certificateId": "CERT_remyr_match_e2_1761531109314",
-      "userId": "remyr",
+      "certificateId": "CERT_nitin_match_e1_1761512883168",
+      "userId": "nitin",
+      "puzzleId": "match_e1",
+      "description": "Completed \u0027Alphabet Pairing\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 145,
+      "earnedAt": "2025-10-26T17:08:03.1684503"
+    },
+    {
+      "certificateId": "CERT_nitin_ridd_e3_1761513242841",
+      "userId": "nitin",
+      "puzzleId": "ridd_e3",
+      "description": "Completed \u0027Invisible Home\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 178,
+      "earnedAt": "2025-10-26T17:14:02.845944"
+    },
+    {
+      "certificateId": "CERT_nitin_match_e2_1761513412957",
+      "userId": "nitin",
       "puzzleId": "match_e2",
       "description": "Completed \u0027Vehicles Match\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 139,
-      "earnedAt": "2025-10-26T22:11:49.314653"
+      "scoreAchieved": 143,
+      "earnedAt": "2025-10-26T17:16:52.9570532"
     },
     {
-      "certificateId": "CERT_remyr_cipher_e1_1761531127374",
-      "userId": "remyr",
-      "puzzleId": "cipher_e1",
-      "description": "Completed \u0027Science Cipher\u0027 puzzle",
+      "certificateId": "CERT_nitin_anag_e1_1761513474323",
+      "userId": "nitin",
+      "puzzleId": "anag_e1",
+      "description": "Completed \u0027Astronomy Anagram\u0027 puzzle",
       "difficulty": "EASY",
       "scoreAchieved": 239,
       "earnedAt": "2025-10-26T22:12:07.37431"
@@ -2527,6 +2482,15 @@
       "difficulty": "EASY",
       "scoreAchieved": 248,
       "earnedAt": "2025-10-26T22:18:38.77747"
+    },
+    {
+      "certificateId": "CERT_remyr_anag_e1_1761531733570",
+      "userId": "remyr",
+      "puzzleId": "anag_e1",
+      "description": "Completed \u0027Astronomy Anagram\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 150,
+      "earnedAt": "2025-10-26T22:22:13.570893"
     }
   ],
   "leaderboard": [
@@ -2540,9 +2504,9 @@
     {
       "userId": "remyr",
       "userName": "remy r",
-      "totalScore": 2465,
-      "puzzlesCompleted": 11,
-      "lastUpdated": "2025-10-26T22:19:28.553552"
+      "totalScore": 2615,
+      "puzzlesCompleted": 12,
+      "lastUpdated": "2025-10-26T22:22:13.580159"
     },
     {
       "userId": "U1002",
