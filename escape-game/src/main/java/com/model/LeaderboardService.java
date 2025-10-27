@@ -1,6 +1,6 @@
 package com.model;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * Service for managing leaderboard and rankings

@@ -1,6 +1,8 @@
 package com.model;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Maze game implementation with save/resume functionality

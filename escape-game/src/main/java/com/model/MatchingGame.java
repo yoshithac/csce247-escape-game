@@ -21,7 +21,7 @@ public class MatchingGame implements PuzzleGame {
     private int rows;
     private int cols;
     private boolean showingPair;
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public void initialize(Map<String, Object> puzzleData) {
@@ -107,10 +107,8 @@ public class MatchingGame implements PuzzleGame {
     }
 
     /**
-     * Returns whether a pair of cards is currently visible to the player.
-     * @return {@code true} if a pair is being shown, otherwise {@code false}
+     * Check if we're currently showing a pair of cards
      */
-    
     public boolean isShowingPair() {
         return showingPair;
     }
@@ -171,6 +169,21 @@ public class MatchingGame implements PuzzleGame {
         startTime = System.currentTimeMillis();
     }
 
+    /*
+    @Override
+    public Map<String, Object> saveState() {
+        Map<String, Object> state = new HashMap<>();
+        state.put("rows", rows);
+        state.put("cols", cols);
+        state.put("board", board);
+        state.put("matched", matched);
+        state.put("moveCount", moveCount);
+        state.put("startTime", startTime);
+        state.put("firstCard", firstCard);
+        state.put("secondCard", secondCard);
+        return state;
+    }
+*/
     @Override
     public Map<String, Object> saveState() {
         Map<String, Object> state = new HashMap<>();
@@ -206,6 +219,8 @@ public class MatchingGame implements PuzzleGame {
         return state;
     }
 
+    
+    
     @Override
     @SuppressWarnings("unchecked")
     public void restoreState(Map<String, Object> savedState) {
