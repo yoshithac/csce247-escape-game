@@ -27,8 +27,13 @@ public class GameDataLoader {
         .setPrettyPrinting()
         .create();
     
+<<<<<<< HEAD
     protected static final String USER_FILE_NAME = "src/main/resources/users.json";
     protected static final String GAMEDATA_FILE_NAME = "src/main/resources/gamedata.json";
+=======
+    protected static final String USER_FILE_NAME = "src/resources/users.json";
+    protected static final String GAMEDATA_FILE_NAME = "src/resources/gamedata.json";
+>>>>>>> main
     
     /**
      * Loads the list of user data from users.json

@@ -18,6 +18,12 @@ import com.google.gson.stream.JsonWriter;
  * 1. users.json - User accounts
  * 2. gamedata.json - Everything else
  */
+/**
+ * Writes data to JSON files using Gson
+ * Writes to TWO JSON files:
+ * 1. users.json - User accounts
+ * 2. gamedata.json - Everything else
+ */
 public class GameDataWriter {
     private static final Gson gson = new GsonBuilder()
         .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
@@ -29,14 +35,17 @@ public class GameDataWriter {
     
     /**
      * Writes the list of users to users.json
+     * Writes the list of users to users.json
      * @param users The list of users to write
      * @return true if write was successful, false otherwise
      */
     public boolean writeUsers(List<User> users) {
         try (FileWriter writer = new FileWriter(USER_FILE_NAME)) {
+        try (FileWriter writer = new FileWriter(USER_FILE_NAME)) {
             gson.toJson(users, writer);
             return true;
         } catch (IOException ex) {
+            System.out.println("Could not write to: " + USER_FILE_NAME);
             System.out.println("Could not write to: " + USER_FILE_NAME);
             ex.printStackTrace();
             return false;
@@ -46,19 +55,27 @@ public class GameDataWriter {
     /**
      * Writes game data to gamedata.json
      * @param gameData The game data container to write
+     * Writes game data to gamedata.json
+     * @param gameData The game data container to write
      * @return true if write was successful, false otherwise
      */
     public boolean writeGameData(GameData gameData) {
         try (FileWriter writer = new FileWriter(GAMEDATA_FILE_NAME)) {
+        try (FileWriter writer = new FileWriter(GAMEDATA_FILE_NAME)) {
             gson.toJson(gameData, writer);
             return true;
         } catch (IOException ex) {
+            System.out.println("Could not write to: " + GAMEDATA_FILE_NAME);
             System.out.println("Could not write to: " + GAMEDATA_FILE_NAME);
             ex.printStackTrace();
             return false;
         }
     }
     
+    /**
+     * Custom adapter for LocalDateTime serialization/deserialization
+     * Handles conversion between JSON string and LocalDateTime objects
+     */
     /**
      * Custom adapter for LocalDateTime serialization/deserialization
      * Handles conversion between JSON string and LocalDateTime objects

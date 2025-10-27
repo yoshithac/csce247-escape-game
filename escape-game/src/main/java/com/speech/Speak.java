@@ -21,4 +21,8 @@ public class Speak {
         voice.speak(text);
         voice.deallocate();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

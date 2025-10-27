@@ -1502,8 +1502,12 @@
           "col": 7.0
         }
       }
+<<<<<<< HEAD
     },
     {
+=======
+    },{
+>>>>>>> main
       "puzzleId": "cipher_e1",
       "puzzleType": "CIPHER",
       "difficulty": "EASY",
@@ -2071,8 +2075,12 @@
       "hintText": "Small but can cross the globe.",
       "puzzleId": "ridd_m3",
       "hintPriority": 3
+<<<<<<< HEAD
     },
     {
+=======
+    },{
+>>>>>>> main
       "hintText": "Atomic number is 8.",
       "puzzleId": "cipher_e1",
       "hintPriority": 1
@@ -2206,6 +2214,7 @@
       "hintText": "It glows in the dark.",
       "puzzleId": "ridd_e3",
       "hintPriority": 3
+<<<<<<< HEAD
     }
   ],
   "userProgress": [
@@ -2267,8 +2276,11 @@
           ]
         ]
       }
+=======
+>>>>>>> main
     }
   ],
+  "userProgress": [],
   "certificates": [
     {
       "certificateId": "CERT_U1002_ridd_m2_1761446264892",
@@ -2440,6 +2452,7 @@
       "difficulty": "HARD",
       "scoreAchieved": 190,
       "earnedAt": "2025-10-26T14:46:39.876733"
+<<<<<<< HEAD
     },
     {
       "certificateId": "CERT_yoshi_ridd_e2_1761527970866",
@@ -2476,15 +2489,23 @@
       "difficulty": "EASY",
       "scoreAchieved": 246,
       "earnedAt": "2025-10-26T21:20:17.6270332"
+=======
+>>>>>>> main
     }
   ],
   "leaderboard": [
     {
       "userId": "yoshi",
       "userName": "yoshi chil",
+<<<<<<< HEAD
       "totalScore": 963,
       "puzzlesCompleted": 4,
       "lastUpdated": "2025-10-26T21:20:30.8692259"
+=======
+      "totalScore": 3324,
+      "puzzlesCompleted": 15,
+      "lastUpdated": "2025-10-26T14:46:39.8825124"
+>>>>>>> main
     },
     {
       "userId": "U1002",

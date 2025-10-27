@@ -37,6 +37,10 @@
     "email": "yoshi@gmail.com",
     "role": "USER",
     "createdAt": "2025-10-25T15:44:44.4791578",
+<<<<<<< HEAD
     "lastLoginAt": "2025-10-26T21:18:38.7620303"
+=======
+    "lastLoginAt": "2025-10-26T14:44:45.797754"
+>>>>>>> main
   }
 ]

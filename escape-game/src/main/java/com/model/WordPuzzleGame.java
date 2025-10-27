@@ -177,4 +177,8 @@ public class WordPuzzleGame implements PuzzleGame {
             revealedHints.add(nextHint.getHintText());
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

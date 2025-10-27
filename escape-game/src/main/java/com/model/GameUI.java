@@ -1,12 +1,30 @@
 package com.model;
+<<<<<<< HEAD
 import com.speech.Speak;
 import java.util.Scanner;
 
+=======
+
+import java.util.Scanner;
+
+import com.speech.Speak;
+
+>>>>>>> main
 /**
  * Main entry point for Puzzle Game application
  * Initializes MVC components and starts the application
  */
 public class GameUI {
+<<<<<<< HEAD
+=======
+
+    /**
+     * Application entry point Initializes Scanner, the Console view, services,
+     * and controllers.
+     * 
+     * @param args command line arguments
+     */
+>>>>>>> main
     public static void main(String[] args) {
         // Initialize Scanner for console input
         Scanner scanner = new Scanner(System.in);

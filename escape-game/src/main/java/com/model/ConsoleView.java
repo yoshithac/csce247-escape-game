@@ -1,4 +1,8 @@
 package com.model;
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,10 +16,22 @@ import com.speech.Speak;
 public class ConsoleView implements GameView {
     private final Scanner scanner;
 
+<<<<<<< HEAD
     public ConsoleView(Scanner scanner) {
         this.scanner = scanner;
     }
 
+=======
+    /**
+     * Constructs a {@code ConsoleView} with the specified scanner.
+     *
+     * @param scanner the {@link Scanner} used for user input
+     */
+    public ConsoleView(Scanner scanner) {
+        this.scanner = scanner;
+    }
+    
+>>>>>>> main
     @Override
     public void showMessage(String message) {
         System.out.println(message);
@@ -64,6 +80,14 @@ public class ConsoleView implements GameView {
         }
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Displays the current state of the Maze game,
+     * including player position, walls, exit, and move count.
+     * @param state the current maze game state
+     */
+>>>>>>> main
     private void displayMaze(Map<String, Object> state) {
         Maze maze = (Maze) state.get("maze");
         Player player = (Player) state.get("player");
@@ -93,7 +117,15 @@ public class ConsoleView implements GameView {
         System.out.println("\nControls: W=Up, S=Down, A=Left, D=Right");
         System.out.println("Type 'save' to save and quit, 'quit' to quit without saving");
     }
+<<<<<<< HEAD
 
+=======
+     /**
+      * Displays the current state of a Matching game.
+      Shows flipped and matched cards and move count
+      * @param state the current matching game state
+      */
+>>>>>>> main
     private void displayMatching(Map<String, Object> state) {
         String[][] board = (String[][]) state.get("board");
         boolean[][] matched = (boolean[][]) state.get("matched");
@@ -138,7 +170,15 @@ public class ConsoleView implements GameView {
         System.out.println("\nEnter row col (e.g., 0 1)");
         System.out.println("Type 'save' to save and quit, 'quit' to quit without saving");
     }
+<<<<<<< HEAD
 
+=======
+    /**
+     * Displays a word based puzzle like a cipher, riddle, or anagram.
+     * Shows prompt, category, guesses, hints, and attempts.
+     * @param state the current word puzzle game state
+     */
+>>>>>>> main
     private void displayWordPuzzle(Map<String, Object> state) {
         String puzzleType = (String) state.get("puzzleType");
         String prompt = (String) state.get("prompt");

@@ -79,6 +79,10 @@ public class UserProgress {
     public void setGameState(Map<String, Object> gameState) { 
         this.gameState = gameState; 
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     
     // Business methods
     public void addCompletedPuzzle(String puzzleId, int score) {

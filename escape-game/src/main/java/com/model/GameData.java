@@ -1,5 +1,10 @@
 package com.model;
+<<<<<<< HEAD
 import java.util.*;
+=======
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> main
 
 /**
  * Container class for all game data stored in gamedata.json
@@ -27,6 +32,19 @@ public class GameData {
     }
     
     // Constructor with all fields
+<<<<<<< HEAD
+=======
+    /**
+     * Constructs a {@code GameData} instance with all fields initialized.
+     * 
+     * @param puzzles the list of the puzzles 
+     * @param hints the list of hints
+     * @param userProgress the list of user progress records
+     * @param certificates the list of certificates
+     * @param leaderboard the list of leaderboard entries
+     */
+    
+>>>>>>> main
     public GameData(List<Puzzle> puzzles, List<Hint> hints, 
                     List<UserProgress> userProgress, List<Certificate> certificates,
                     List<LeaderboardEntry> leaderboard) {
