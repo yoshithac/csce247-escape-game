@@ -478,7 +478,7 @@
       "title": "Science Cipher",
       "description": "Decrypt the element.",
       "data": {
-        "prompt": "HOFRGHQ",
+        "prompt": "GEOYNX",
         "answer": "OXYGEN",
         "category": "Science",
         "maxAttempts": 3.0
@@ -491,7 +491,7 @@
       "title": "Galaxy Cipher",
       "description": "Find the name of a planet.",
       "data": {
-        "prompt": "WBP",
+        "prompt": "SRMA",
         "answer": "MARS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -504,7 +504,7 @@
       "title": "Composer Cipher",
       "description": "A famous classical composer.",
       "data": {
-        "prompt": "FDVKZHZ",
+        "prompt": "CBAH",
         "answer": "BACH",
         "category": "Music",
         "maxAttempts": 5.0
@@ -517,7 +517,7 @@
       "title": "Astronomy Anagram",
       "description": "Unscramble the planet.",
       "data": {
-        "prompt": "SNURA",
+        "prompt": "SNURAU",
         "answer": "URANUS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -530,7 +530,7 @@
       "title": "Mythology Mix",
       "description": "Unscramble a Greek god.",
       "data": {
-        "prompt": "IPOSDEN",
+        "prompt": "IPOSDENO",
         "answer": "POSEIDON",
         "category": "Mythology",
         "maxAttempts": 4.0
@@ -958,7 +958,7 @@
       "title": "Planet Cipher",
       "description": "Decrypt the planet name.",
       "data": {
-        "prompt": "SDUWP",
+        "prompt": "RATEH",
         "answer": "EARTH",
         "category": "Space",
         "maxAttempts": 4.0
@@ -971,7 +971,7 @@
       "title": "River Cipher",
       "description": "Which river is hidden?",
       "data": {
-        "prompt": "YLJS",
+        "prompt": "ILNE",
         "answer": "NILE",
         "category": "Geography",
         "maxAttempts": 4.0
@@ -984,7 +984,7 @@
       "title": "Colorful Cipher",
       "description": "A color encrypted.",
       "data": {
-        "prompt": "UOHWW",
+        "prompt": "ETWIH",
         "answer": "WHITE",
         "category": "Color",
         "maxAttempts": 4.0
@@ -997,7 +997,7 @@
       "title": "Animal Anagram",
       "description": "Rearrange to get an animal.",
       "data": {
-        "prompt": "LFOX",
+        "prompt": "XFO",
         "answer": "FOX",
         "category": "Animal",
         "maxAttempts": 4.0
@@ -1010,7 +1010,7 @@
       "title": "Season Anagram",
       "description": "A time of year.",
       "data": {
-        "prompt": "WNITER",
+        "prompt": "WNIRET",
         "answer": "WINTER",
         "category": "Season",
         "maxAttempts": 4.0
@@ -1023,7 +1023,7 @@
       "title": "Capital Anagram",
       "description": "Capital city name.",
       "data": {
-        "prompt": "RAPIS",
+        "prompt": "RASPI",
         "answer": "PARIS",
         "category": "Cities",
         "maxAttempts": 4.0
@@ -1502,7 +1502,8 @@
           "col": 7.0
         }
       }
-    },{
+    },
+    {
       "puzzleId": "cipher_e1",
       "puzzleType": "CIPHER",
       "difficulty": "EASY",
@@ -2070,7 +2071,8 @@
       "hintText": "Small but can cross the globe.",
       "puzzleId": "ridd_m3",
       "hintPriority": 3
-    },{
+    },
+    {
       "hintText": "Atomic number is 8.",
       "puzzleId": "cipher_e1",
       "hintPriority": 1
@@ -2206,7 +2208,26 @@
       "hintPriority": 3
     }
   ],
-  "userProgress": [],
+  "userProgress": [
+    {
+      "userId": "remyr",
+      "completedPuzzles": [
+        "ridd_e2",
+        "maze_e3",
+        "ridd_e3",
+        "maze_e1",
+        "anag_e3"
+      ],
+      "puzzleScores": {
+        "ridd_e2": 247,
+        "maze_e3": 232,
+        "ridd_e3": 248,
+        "maze_e1": 233,
+        "anag_e3": 229
+      },
+      "totalScore": 1189
+    }
+  ],
   "certificates": [
     {
       "certificateId": "CERT_U1002_ridd_m2_1761446264892",
@@ -2378,6 +2399,51 @@
       "difficulty": "HARD",
       "scoreAchieved": 190,
       "earnedAt": "2025-10-26T14:46:39.876733"
+    },
+    {
+      "certificateId": "CERT_remyr_ridd_e2_1761530393677",
+      "userId": "remyr",
+      "puzzleId": "ridd_e2",
+      "description": "Completed \u0027Word Riddle\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 247,
+      "earnedAt": "2025-10-26T21:59:53.681376"
+    },
+    {
+      "certificateId": "CERT_remyr_maze_e3_1761530408181",
+      "userId": "remyr",
+      "puzzleId": "maze_e3",
+      "description": "Completed \u0027Labyrinth X\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 232,
+      "earnedAt": "2025-10-26T22:00:08.181745"
+    },
+    {
+      "certificateId": "CERT_remyr_ridd_e3_1761530508537",
+      "userId": "remyr",
+      "puzzleId": "ridd_e3",
+      "description": "Completed \u0027Invisible Home\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 248,
+      "earnedAt": "2025-10-26T22:01:48.541529"
+    },
+    {
+      "certificateId": "CERT_remyr_maze_e1_1761530522896",
+      "userId": "remyr",
+      "puzzleId": "maze_e1",
+      "description": "Completed \u0027Maze Inferno\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 233,
+      "earnedAt": "2025-10-26T22:02:02.89671"
+    },
+    {
+      "certificateId": "CERT_remyr_anag_e3_1761530552146",
+      "userId": "remyr",
+      "puzzleId": "anag_e3",
+      "description": "Completed \u0027World City\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 229,
+      "earnedAt": "2025-10-26T22:02:32.147656"
     }
   ],
   "leaderboard": [
@@ -2387,6 +2453,13 @@
       "totalScore": 3324,
       "puzzlesCompleted": 15,
       "lastUpdated": "2025-10-26T14:46:39.8825124"
+    },
+    {
+      "userId": "remyr",
+      "userName": "remy r",
+      "totalScore": 1189,
+      "puzzlesCompleted": 5,
+      "lastUpdated": "2025-10-26T22:02:32.151361"
     },
     {
       "userId": "U1002",

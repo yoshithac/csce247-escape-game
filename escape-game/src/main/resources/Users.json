@@ -38,5 +38,15 @@
     "role": "USER",
     "createdAt": "2025-10-25T15:44:44.4791578",
     "lastLoginAt": "2025-10-26T14:44:45.797754"
+  },
+  {
+    "userId": "remyr",
+    "password": "remyr",
+    "firstName": "remy",
+    "lastName": "r",
+    "email": "remyr",
+    "role": "USER",
+    "createdAt": "2025-10-26T21:50:00.869575",
+    "lastLoginAt": "2025-10-26T22:01:05.846593"
   }
 ]
