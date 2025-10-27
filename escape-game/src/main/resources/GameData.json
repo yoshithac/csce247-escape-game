@@ -1510,7 +1510,7 @@
       "title": "Science Cipher",
       "description": "Decrypt the element.",
       "data": {
-        "prompt": "NEXYOG",
+        "prompt": "XOGYNE",
         "answer": "OXYGEN",
         "category": "Science",
         "maxAttempts": 3.0
@@ -1523,7 +1523,7 @@
       "title": "Galaxy Cipher",
       "description": "Find the name of a planet.",
       "data": {
-        "prompt": "SMAR",
+        "prompt": "SRAM",
         "answer": "MARS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -2216,30 +2216,27 @@
         "match_e1",
         "ridd_e3",
         "match_e2",
-        "anag_e1",
-        "cipher_e2",
-        "maze_e3",
-        "maze_e1",
+        "cipher_e1",
         "maze_e2",
         "anag_e2",
-        "anag_e3",
-        "ridd_e2"
+        "cipher_e3",
+        "anag_e1"
       ],
       "puzzleScores": {
-        "match_e1": 145,
-        "ridd_e1": 225,
-        "ridd_e3": 178,
-        "match_e2": 143,
-        "anag_e1": 241,
-        "cipher_e2": 226,
-        "maze_e3": 190,
-        "maze_e1": 227,
-        "maze_e2": 229,
-        "anag_e2": 244,
-        "anag_e3": 242,
-        "ridd_e2": 248
+        "ridd_e2": 247,
+        "maze_e3": 232,
+        "ridd_e3": 248,
+        "maze_e1": 233,
+        "anag_e3": 229,
+        "ridd_e1": 244,
+        "match_e2": 139,
+        "cipher_e1": 239,
+        "maze_e2": 220,
+        "anag_e2": 186,
+        "cipher_e3": 248,
+        "anag_e1": 150
       },
-      "totalScore": 2538
+      "totalScore": 2615
     }
   ],
   "certificates": [
@@ -2456,71 +2453,44 @@
       "puzzleId": "anag_e1",
       "description": "Completed \u0027Astronomy Anagram\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 241,
-      "earnedAt": "2025-10-26T17:17:54.3239213"
+      "scoreAchieved": 239,
+      "earnedAt": "2025-10-26T22:12:07.37431"
     },
     {
-      "certificateId": "CERT_nitin_cipher_e2_1761513525087",
-      "userId": "nitin",
-      "puzzleId": "cipher_e2",
-      "description": "Completed \u0027Galaxy Cipher\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 226,
-      "earnedAt": "2025-10-26T17:18:45.0870497"
-    },
-    {
-      "certificateId": "CERT_nitin_maze_e3_1761513652954",
-      "userId": "nitin",
-      "puzzleId": "maze_e3",
-      "description": "Completed \u0027Labyrinth X\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 190,
-      "earnedAt": "2025-10-26T17:20:52.9542368"
-    },
-    {
-      "certificateId": "CERT_nitin_maze_e1_1761515197763",
-      "userId": "nitin",
-      "puzzleId": "maze_e1",
-      "description": "Completed \u0027Maze Inferno\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 227,
-      "earnedAt": "2025-10-26T17:46:37.7668085"
-    },
-    {
-      "certificateId": "CERT_nitin_maze_e2_1761529909901",
-      "userId": "nitin",
+      "certificateId": "CERT_remyr_maze_e2_1761531214684",
+      "userId": "remyr",
       "puzzleId": "maze_e2",
       "description": "Completed \u0027Maze Twister\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 229,
-      "earnedAt": "2025-10-26T21:51:49.9044581"
+      "scoreAchieved": 220,
+      "earnedAt": "2025-10-26T22:13:34.68662"
     },
     {
-      "certificateId": "CERT_nitin_anag_e2_1761530149242",
-      "userId": "nitin",
+      "certificateId": "CERT_remyr_anag_e2_1761531289045",
+      "userId": "remyr",
       "puzzleId": "anag_e2",
       "description": "Completed \u0027Mythology Mix\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 244,
-      "earnedAt": "2025-10-26T21:55:49.2427345"
+      "scoreAchieved": 186,
+      "earnedAt": "2025-10-26T22:14:49.046223"
     },
     {
-      "certificateId": "CERT_nitin_anag_e3_1761530220967",
-      "userId": "nitin",
-      "puzzleId": "anag_e3",
-      "description": "Completed \u0027World City\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 242,
-      "earnedAt": "2025-10-26T21:57:00.9670049"
-    },
-    {
-      "certificateId": "CERT_nitin_ridd_e2_1761530369939",
-      "userId": "nitin",
-      "puzzleId": "ridd_e2",
-      "description": "Completed \u0027Word Riddle\u0027 puzzle",
+      "certificateId": "CERT_remyr_cipher_e3_1761531518774",
+      "userId": "remyr",
+      "puzzleId": "cipher_e3",
+      "description": "Completed \u0027Composer Cipher\u0027 puzzle",
       "difficulty": "EASY",
       "scoreAchieved": 248,
-      "earnedAt": "2025-10-26T21:59:29.939978"
+      "earnedAt": "2025-10-26T22:18:38.77747"
+    },
+    {
+      "certificateId": "CERT_remyr_anag_e1_1761531733570",
+      "userId": "remyr",
+      "puzzleId": "anag_e1",
+      "description": "Completed \u0027Astronomy Anagram\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 150,
+      "earnedAt": "2025-10-26T22:22:13.570893"
     }
   ],
   "leaderboard": [
@@ -2532,11 +2502,11 @@
       "lastUpdated": "2025-10-26T14:46:39.8825124"
     },
     {
-      "userId": "nitin",
-      "userName": "Nitin Raju",
-      "totalScore": 2538,
+      "userId": "remyr",
+      "userName": "remy r",
+      "totalScore": 2615,
       "puzzlesCompleted": 12,
-      "lastUpdated": "2025-10-26T21:59:29.941482"
+      "lastUpdated": "2025-10-26T22:22:13.580159"
     },
     {
       "userId": "U1002",
