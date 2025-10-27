@@ -1,106 +1,80 @@
 package com.model;
-import java.util.List;
+import java.util.*;
 
 /**
- * This class holds the game data for the escape game application
- * @author We're Getting an A
+ * Container class for all game data stored in gamedata.json
+ * This single class holds ALL non-user data:
+ * - Puzzles
+ * - Hints
+ * - User progress (including saved game states)
+ * - Certificates
+ * - Leaderboard
  */
 public class GameData {
     private List<Puzzle> puzzles;
-    private GameProgress gameProgress;
-    private Leaderboard leaderboard;
     private List<Hint> hints;
+    private List<UserProgress> userProgress;
     private List<Certificate> certificates;
+    private List<LeaderboardEntry> leaderboard;
     
-    /**
-     * Constructor for GameData
-     */
-    public GameData(List<Puzzle> puzzles, GameProgress gameProgress, Leaderboard leaderboard, List<Hint> hints, List<Certificate> certificates) {
-        this.puzzles = puzzles;
-        this.gameProgress = gameProgress;
-        this.leaderboard = leaderboard;
-        this.hints = hints;
-        this.certificates = certificates;
+    // Default constructor - initializes empty lists
+    public GameData() {
+        this.puzzles = new ArrayList<>();
+        this.hints = new ArrayList<>();
+        this.userProgress = new ArrayList<>();
+        this.certificates = new ArrayList<>();
+        this.leaderboard = new ArrayList<>();
     }
-
-    /**
-     * Returns the list of puzzles in the game
-     * @return List of puzzles
-     */
-    public List<Puzzle> getPuzzles() {
-        return this.puzzles;
+    
+    // Constructor with all fields
+    public GameData(List<Puzzle> puzzles, List<Hint> hints, 
+                    List<UserProgress> userProgress, List<Certificate> certificates,
+                    List<LeaderboardEntry> leaderboard) {
+        this.puzzles = puzzles != null ? puzzles : new ArrayList<>();
+        this.hints = hints != null ? hints : new ArrayList<>();
+        this.userProgress = userProgress != null ? userProgress : new ArrayList<>();
+        this.certificates = certificates != null ? certificates : new ArrayList<>();
+        this.leaderboard = leaderboard != null ? leaderboard : new ArrayList<>();
     }
-
-    /**
-     * Sets the list of puzzles in the game
-     * @param puzzles Puzzle list of puzzles
-     */
-    public void setPuzzles(List<Puzzle> puzzles) {
-        this.puzzles = puzzles;
+    
+    // Getters and Setters
+    public List<Puzzle> getPuzzles() { 
+        return puzzles; 
     }
-
-    /**
-     * Returns the current game progress
-     * @return GameProgress 
-     */
-    public GameProgress getGameProgress() {
-        return this.gameProgress;
+    
+    public void setPuzzles(List<Puzzle> puzzles) { 
+        this.puzzles = puzzles; 
     }
-
-    /**
-     * Sets the game progress
-     * @param gameProgress GameProgress
-     */
-    public void setGameProgress(GameProgress gameProgress) {
-        this.gameProgress = gameProgress;
+    
+    public List<Hint> getHints() { 
+        return hints; 
     }
-
-    /**
-     * Returns the leaderboard of the game
-     * @return Leaderboard object
-     */
-    public Leaderboard getLeaderboard() {
-        return this.leaderboard;
+    
+    public void setHints(List<Hint> hints) { 
+        this.hints = hints; 
     }
-
-    /**
-     * Sets the leaderboard for thegame
-     * @param leaderboard Leaderboard 
-     */
-    public void setLeaderboard(Leaderboard leaderboard) {
-        this.leaderboard = leaderboard;
+    
+    public List<UserProgress> getUserProgress() { 
+        return userProgress; 
     }
-
-    /*
-     * Returns the list of hints
-     * @return List of hints
-     * @return List of hints applicable to the game
-     */
-    public List<Hint> getHints() {
-        return hints;
+    
+    public void setUserProgress(List<UserProgress> userProgress) { 
+        this.userProgress = userProgress; 
     }
-
-    /**
-     * Sets the list of hints for the game
-     * @param hints List of hints
-     */
-    public void setHints(List<Hint> hints) {
-        this.hints = hints;
+    
+    public List<Certificate> getCertificates() { 
+        return certificates; 
     }
-
-    /**
-     * Returns the certificates earned in the game
-     * @return List of certificates
-     */
-    public List<Certificate> getCertificates() {
-        return certificates;
+    
+    public void setCertificates(List<Certificate> certificates) { 
+        this.certificates = certificates; 
     }
-
-    /**
-     * Sets the list of certificates for the game
-     * @param certificates List of certificates
-     */
-    public void setCertificate(List<Certificate> certificates) {
-        this.certificates = certificates;
+    
+    public List<LeaderboardEntry> getLeaderboard() { 
+        return leaderboard; 
+    }
+    
+    public void setLeaderboard(List<LeaderboardEntry> leaderboard) { 
+        this.leaderboard = leaderboard; 
     }
 }

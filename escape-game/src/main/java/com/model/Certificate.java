@@ -1,110 +1,55 @@
 package com.model;
 import java.time.LocalDateTime;
 
-/*
- * This class represents a Certificate in the escape game application
- * @author We're Getting an A
+/**
+ * Certificate entity for puzzle completion achievements
  */
 public class Certificate {
     private String certificateId;
-    private String certUserId;
+    private String userId;
+    private String puzzleId;
     private String description;
-    public LocalDateTime earnDate;
-    private DifficultyLevel difficulty;
+    private String difficulty;
+    private int scoreAchieved;
+    private LocalDateTime earnedAt;  // add this field
 
-    /**
-     * Constructor for Certificate
-     * @param certificateId The unique ID of the certificate
-     * @param certUserId The ID of the user who earned the certificate
-     * @param description A description of the certificate
-     * @param earnDate The date and time when the certificate was earned
-     * @param difficulty The difficulty level of the puzzle associated with the certificate
-     */
-    public Certificate(String certificateId, String certUserId, String description, LocalDateTime earnDate, DifficultyLevel difficulty) {
+    public Certificate() {
+        this.earnedAt = LocalDateTime.now();
+    }
+
+    public Certificate(String certificateId, String userId, String puzzleId,
+                      String description, String difficulty, int scoreAchieved) {
+        this();
         this.certificateId = certificateId;
-        this.certUserId = certUserId;
+        this.userId = userId;
+        this.puzzleId = puzzleId;
         this.description = description;
-        this.earnDate = earnDate;
         this.difficulty = difficulty;
+        this.scoreAchieved = scoreAchieved;
     }
 
-    /**
-     * Gets the certificate ID
-     * @return The certificate ID
-     */
-    public String getCertificateId() {
-        return certificateId;
-    }
+    // Getters
+    public String getCertificateId() { return certificateId; }
+    public String getUserId() { return userId; }
+    public String getPuzzleId() { return puzzleId; }
+    public String getDescription() { return description; }
+    public String getDifficulty() { return difficulty; }
+    public int getScoreAchieved() { return scoreAchieved; }
+    public LocalDateTime getEarnedAt() { return earnedAt; }  // add this getter
 
-    /**
-     * Sets the certificate ID
-     * @param certificateId The certificate ID to set
-     */
-    public void setCertificateId(String certificateId) {
-        this.certificateId = certificateId;
-    }
+    // Setters
+    public void setCertificateId(String certificateId) { this.certificateId = certificateId; }
+    public void setUserId(String userId) { this.userId = userId; }
+    public void setPuzzleId(String puzzleId) { this.puzzleId = puzzleId; }
+    public void setDescription(String description) { this.description = description; }
+    public void setDifficulty(String difficulty) { this.difficulty = difficulty; }
+    public void setScoreAchieved(int scoreAchieved) { this.scoreAchieved = scoreAchieved; }
+    public void setEarnedAt(LocalDateTime earnedAt) { this.earnedAt = earnedAt; } // add this setter
 
-    /**
-     * Gets the user ID associated with the certificate
-     * @return The user ID
-     */
-    public String getCertUserId() {
-        return certUserId;
-    }
 
-    /**
-     * Sets the user ID associated with the certificate
-     * @param certUserId The user ID to set
-     */
-    public void setCertUserId(String certUserId) {
-        this.certUserId = certUserId;
-    }
-
-    /**
-     * Gets the description of the certificate
-     * @return The description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Sets the description of the certificate
-     * @param description The description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * Gets the date and time when the certificate was earned
-     * @return The earn date
-     */
-    public LocalDateTime getEarnDate() {
-        return earnDate;
-    }
-
-    /**
-     * Sets the date and time when the certificate was earned
-     * @param earnDate The earn date to set
-     */
-    public void setEarnDate(LocalDateTime earnDate) {
-        this.earnDate = earnDate;
-    }
-
-    /**
-     * Gets the difficulty level of the puzzle associated with the certificate
-     * @return The difficulty level
-     */
-    public DifficultyLevel getDifficulty() {
-        return difficulty;
-    }
-
-    /**
-     * Sets the difficulty level of the puzzle associated with the certificate
-     * @param difficulty The difficulty level to set
-     */
-    public void setDifficulty(DifficultyLevel difficulty) {
-        this.difficulty = difficulty;
+    @Override
+    public String toString() {
+        return String.format("Certificate[%s] %s - %s (%s)", 
+            certificateId, description, difficulty, earnedAt);
     }
 }

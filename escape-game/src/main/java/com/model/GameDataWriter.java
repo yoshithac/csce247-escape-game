@@ -12,53 +12,57 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+/**
+ * Writes data to JSON files using Gson
+ * Writes to TWO JSON files:
+ * 1. users.json - User accounts
+ * 2. gamedata.json - Everything else
+ */
 public class GameDataWriter {
-
     private static final Gson gson = new GsonBuilder()
         .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
         .setPrettyPrinting()
         .create();
     
-    protected static final String USER_FILE_NAME = "src/main/resources/Users.json";
-    protected static final String GAMEDATA_FILE_NAME = "src/main/resources/GameData.json";
-
+    protected static final String USER_FILE_NAME = "src/main/resources/users.json";
+    protected static final String GAMEDATA_FILE_NAME = "src/main/resources/gamedata.json";
+    
     /**
-     * Writes the list of user data to file.
+     * Writes the list of users to users.json
      * @param users The list of users to write
      * @return true if write was successful, false otherwise
      */
     public boolean writeUsers(List<User> users) {
-        String usersFile = USER_FILE_NAME;
-        
-        try (FileWriter writer = new FileWriter(usersFile)) {
+        try (FileWriter writer = new FileWriter(USER_FILE_NAME)) {
             gson.toJson(users, writer);
             return true;
         } catch (IOException ex) {
-            System.out.println("Could not write to: " + usersFile);
+            System.out.println("Could not write to: " + USER_FILE_NAME);
             ex.printStackTrace();
             return false;
         }
     }
     
     /**
-     * Writes game data (i.e. Leaderboards, puzzles, etc) to file.
-     * @param gameData The game data to write
+     * Writes game data to gamedata.json
+     * @param gameData The game data container to write
      * @return true if write was successful, false otherwise
      */
     public boolean writeGameData(GameData gameData) {
-        String gameDataFile = GAMEDATA_FILE_NAME;
-        
-        try (FileWriter writer = new FileWriter(gameDataFile)) {
+        try (FileWriter writer = new FileWriter(GAMEDATA_FILE_NAME)) {
             gson.toJson(gameData, writer);
             return true;
         } catch (IOException ex) {
-            System.out.println("Could not write to: " + gameDataFile);
+            System.out.println("Could not write to: " + GAMEDATA_FILE_NAME);
             ex.printStackTrace();
             return false;
         }
     }
     
-    // Custom adapter for LocalDateTime
+    /**
+     * Custom adapter for LocalDateTime serialization/deserialization
+     * Handles conversion between JSON string and LocalDateTime objects
+     */
     private static class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
         private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
         

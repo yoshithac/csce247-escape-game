@@ -1,62 +1,42 @@
 [
   {
-    "userId": "player1",
-    "password": "hashed_password_123",
-    "firstName": "Nitin",
-    "lastName": "B",
-    "email": "nitinb@email.com",
-    "role": "Player",
-    "penaltyPoints": 0,
-    "scorePoints": 200
+    "userId": "a1234",
+    "password": "a123",
+    "firstName": "Admin",
+    "lastName": "User",
+    "email": "admin@puzzlegame.com",
+    "role": "ADMIN",
+    "createdAt": "2025-10-24T10:00:00",
+    "lastLoginAt": "2025-10-25T01:30:00"
   },
   {
-    "userId": "player2",
-    "password": "hashed_password_456",
-    "firstName": "Aashrith",
-    "lastName": "A",
-    "email": "aashirtha@email.com",
-    "role": "Player",
-    "penaltyPoints": 0,
-    "scorePoints": 200
-  },
-  {
-    "userId": "user001",
-    "password": "hashedPassword123",
+    "userId": "U1001",
+    "password": "p123",
     "firstName": "John",
     "lastName": "Doe",
-    "email": "player1@example.com",
-    "role": "player",
-    "penaltyPoints": 5,
-    "scorePoints": 150
+    "email": "john.doe@example.com",
+    "role": "USER",
+    "createdAt": "2025-10-24T14:30:00",
+    "lastLoginAt": "2025-10-25T18:24:38.6331254"
   },
   {
-    "userId": "user002",
-    "password": "hashedPassword456",
+    "userId": "U1002",
+    "password": "P456",
     "firstName": "Jane",
     "lastName": "Smith",
-    "email": "player2@example.com",
-    "role": "player",
-    "penaltyPoints": 2,
-    "scorePoints": 200
-  },
-  {
-    "userId": "user003",
-    "password": "hashedPassword789",
-    "firstName": "Bob",
-    "lastName": "Johnson",
-    "email": "player3@example.com",
-    "role": "player",
-    "penaltyPoints": 0,
-    "scorePoints": 175
+    "email": "jane.smith@example.com",
+    "role": "USER",
+    "createdAt": "2025-10-23T09:00:00",
+    "lastLoginAt": "2025-10-26T00:09:06.2159961"
   },
   {
     "userId": "yoshi",
-    "password": "123",
+    "password": "1234",
     "firstName": "yoshi",
-    "lastName": "chilukuri",
-    "email": "yoshi@email.com",
-    "role": "user",
-    "penaltyPoints": 0,
-    "scorePoints": 0
+    "lastName": "chil",
+    "email": "yoshi@gmail.com",
+    "role": "USER",
+    "createdAt": "2025-10-25T15:44:44.4791578",
+    "lastLoginAt": "2025-10-26T21:18:38.7620303"
   }
 ]

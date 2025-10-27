@@ -1,6 +1,7 @@
 module com.escapegame {
     requires javafx.controls;
     requires javafx.fxml;
+    requires freetts;
     requires com.google.gson;
     requires java.base;
 
