@@ -1510,7 +1510,7 @@
       "title": "Science Cipher",
       "description": "Decrypt the element.",
       "data": {
-        "prompt": "HOFRGHQ",
+        "prompt": "NEXYOG",
         "answer": "OXYGEN",
         "category": "Science",
         "maxAttempts": 3.0
@@ -1523,7 +1523,7 @@
       "title": "Galaxy Cipher",
       "description": "Find the name of a planet.",
       "data": {
-        "prompt": "NBST",
+        "prompt": "SMAR",
         "answer": "MARS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -1536,7 +1536,7 @@
       "title": "Composer Cipher",
       "description": "A famous classical composer.",
       "data": {
-        "prompt": "FDVKZHZ",
+        "prompt": "CHAB",
         "answer": "BACH",
         "category": "Music",
         "maxAttempts": 5.0
@@ -1549,7 +1549,7 @@
       "title": "Astronomy Anagram",
       "description": "Unscramble the planet.",
       "data": {
-        "prompt": "SNURA",
+        "prompt": "SNURAU",
         "answer": "URANUS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -1562,7 +1562,7 @@
       "title": "Mythology Mix",
       "description": "Unscramble a Greek god.",
       "data": {
-        "prompt": "IPOSDEN",
+        "prompt": "IPOSDENO",
         "answer": "POSEIDON",
         "category": "Mythology",
         "maxAttempts": 4.0
@@ -2216,16 +2216,22 @@
         "maze_e3",
         "ridd_e3",
         "maze_e1",
-        "anag_e3"
+        "anag_e3",
+        "ridd_e1",
+        "match_e2",
+        "cipher_e1"
       ],
       "puzzleScores": {
         "ridd_e2": 247,
         "maze_e3": 232,
         "ridd_e3": 248,
         "maze_e1": 233,
-        "anag_e3": 229
+        "anag_e3": 229,
+        "ridd_e1": 244,
+        "match_e2": 139,
+        "cipher_e1": 239
       },
-      "totalScore": 1189
+      "totalScore": 1811
     }
   ],
   "certificates": [
@@ -2444,6 +2450,33 @@
       "difficulty": "EASY",
       "scoreAchieved": 229,
       "earnedAt": "2025-10-26T22:02:32.147656"
+    },
+    {
+      "certificateId": "CERT_remyr_ridd_e1_1761530995877",
+      "userId": "remyr",
+      "puzzleId": "ridd_e1",
+      "description": "Completed \u0027The Endless Room\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 244,
+      "earnedAt": "2025-10-26T22:09:55.880514"
+    },
+    {
+      "certificateId": "CERT_remyr_match_e2_1761531109314",
+      "userId": "remyr",
+      "puzzleId": "match_e2",
+      "description": "Completed \u0027Vehicles Match\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 139,
+      "earnedAt": "2025-10-26T22:11:49.314653"
+    },
+    {
+      "certificateId": "CERT_remyr_cipher_e1_1761531127374",
+      "userId": "remyr",
+      "puzzleId": "cipher_e1",
+      "description": "Completed \u0027Science Cipher\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 239,
+      "earnedAt": "2025-10-26T22:12:07.37431"
     }
   ],
   "leaderboard": [
@@ -2457,9 +2490,9 @@
     {
       "userId": "remyr",
       "userName": "remy r",
-      "totalScore": 1189,
-      "puzzlesCompleted": 5,
-      "lastUpdated": "2025-10-26T22:02:32.151361"
+      "totalScore": 1811,
+      "puzzlesCompleted": 8,
+      "lastUpdated": "2025-10-26T22:12:07.377885"
     },
     {
       "userId": "U1002",
