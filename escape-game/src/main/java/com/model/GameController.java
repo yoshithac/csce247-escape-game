@@ -23,6 +23,9 @@ public class GameController {
     private final GameDataFacade dataFacade;
     private final GameView view;
     private String sessionDifficulty = null; // Difficulty for session
+    private int startTime;
+    private int timer;
+
 
     public GameController(GameView view, AuthenticationService authService) {
         this.view = view;
@@ -137,6 +140,8 @@ public class GameController {
         waitForUser();
         view.clear();
         //Game intro ends here
+        resetTimer();  
+        startTimer();
         // Step 1: Get all puzzle types
         Set<String> allTypes = dataFacade.getAvailablePuzzleTypes();
         
@@ -200,6 +205,7 @@ public class GameController {
             // Check if user wants to exit
             if (choiceNum == menuOptions.size()) {
                 view.showMessage("Exiting game session...");
+                pauseTimer();
                 waitForUser();
                 return;
             }
@@ -222,6 +228,7 @@ public class GameController {
         // End of final key message 
         // All puzzles completed!
         view.clear();
+        pauseTimer();
         view.showMessage("=".repeat(50));
         view.showMessage(" CONGRATULATIONS!");
         view.showMessage("You completed all puzzles in this session!");
@@ -239,6 +246,7 @@ public class GameController {
             waitForUser();
             return;
         }
+        startTimer();
         String puzzleId = progress.getCurrentPuzzleId();
         Optional<Puzzle> puzzleOpt = dataFacade.getPuzzle(puzzleId);
         if (!puzzleOpt.isPresent()) {
@@ -282,6 +290,7 @@ public class GameController {
             if (input.equalsIgnoreCase("quit")) {
                 view.showMessage("Game abandoned.");
                 UserProgress progress = progressService.getUserProgress(userId);
+                resetTimer();
                 progress.clearGameState();
                 dataFacade.saveUserProgress(progress);
                 waitForUser();
@@ -317,6 +326,7 @@ public class GameController {
         boolean won = (boolean) result.get("won");
         if (won) {
             int score = calculateScore(result);
+            pauseTimer();
             progressService.completePuzzle(userId, puzzle.getPuzzleId(), score);
             certificateService.awardCertificate(userId, puzzle, score);
             view.showMessage("* Certificate earned!");
@@ -358,6 +368,7 @@ public class GameController {
         view.showMessage("Puzzles Completed: " + stats.get("completed") + "/" + stats.get("totalPuzzles"));
         view.showMessage("Completion: " + stats.get("completionPercentage") + "%");
         view.showMessage("Remaining: " + stats.get("remaining"));
+        view.showMessage("Time Elapsed: " + getTimer()/60 + " minutes, " + getTimer()%60 + " seconds");
         waitForUser();
     }
 
@@ -412,6 +423,54 @@ public class GameController {
 
     private void waitForUser() {
         view.getUserInput("\nPress Enter to continue...");
+    }
+
+    /**
+     * starts game timer
+     */
+    public void startTimer() {
+     if (this.startTime == 0) {
+            this.startTime = (int)(System.currentTimeMillis()/1000);
+        }
+    }   
+
+    /**
+     * pauses game timer
+     */
+    public void pauseTimer() {
+        if (this.startTime != 0) {
+            int now = (int)(System.currentTimeMillis()/1000);
+            this.timer += (now - this.startTime);
+            this.startTime = 0;
+        }
+    }
+
+    /**
+     * gets timer
+     * @return int timer
+     */
+    public int getTimer() {
+        if (this.startTime != 0) {
+        return this.timer + (int)(System.currentTimeMillis()/1000) - this.startTime;
+        } else {
+            return this.timer;
+        }  
+    }
+
+    /**
+     * sets start time to time parameter
+     * @param int time
+     */
+    public void setStartTime(int time) {
+        startTime = time;
+    }
+
+    /**
+     * resets timer
+     */
+    public void resetTimer() {
+        this.timer = 0;
+        this.startTime = 0;
     }
 }
 
