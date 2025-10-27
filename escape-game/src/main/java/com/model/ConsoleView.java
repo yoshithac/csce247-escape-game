@@ -13,22 +13,40 @@ import com.speech.Speak;
 public class ConsoleView implements GameView {
     private final Scanner scanner;
 
+    /**
+     * Constructor for console view
+     * @param scanner
+     */
     public ConsoleView(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    @Override
+    /**
+     * show message method to display messages to console
+     * @Override
+     * @return message Message to display
+     */
     public void showMessage(String message) {
         System.out.println(message);
     }
 
-    @Override
+    /**
+     * gets user input from console
+     * @Override
+     * @param String prompt to display
+     * @return user input
+     */
     public String getUserInput(String prompt) {
         System.out.print(prompt);
         return scanner.nextLine();
     }
 
-    @Override
+    /**
+     * show menu method to display menu to console
+     * @Override
+     * @param String[] menu display
+     * @return user choice
+     */
     public String showMenu(String[] options) {
         for (int i = 0; i < options.length; i++) {
             System.out.println((i + 1) + ". " + options[i]);
@@ -37,7 +55,12 @@ public class ConsoleView implements GameView {
         return scanner.nextLine();
     }
 
-    @Override
+    /**
+     * show puzzles menu method to display puzzles menu to console
+     * @Override
+     * @param String [] menu display
+     * @return user choice
+     */
     public String showPuzzlesMenu(String[] options) {
         for (int i = 0; i < options.length; i++) {
             System.out.println("ROOM " + (i + 1) + ". " + options[i]);
@@ -46,7 +69,12 @@ public class ConsoleView implements GameView {
         return scanner.nextLine();
     }
 
-    @Override
+    /**
+     * show message method to display messages to console
+     * @Override
+     * @param gameState Current game state
+     * @param gameType Type of game (MAZE, MATCHING, CIPHER, ANAGRAM, RIDDLE)
+     */
     public void displayGame(Map<String, Object> gameState, String gameType) {
         switch (gameType.toUpperCase()) {
             case "MAZE":
@@ -65,6 +93,10 @@ public class ConsoleView implements GameView {
         }
     }
 
+    /**
+     * Display maze game state
+     * @param state
+     */
     private void displayMaze(Map<String, Object> state) {
         Maze maze = (Maze) state.get("maze");
         Player player = (Player) state.get("player");
@@ -95,6 +127,10 @@ public class ConsoleView implements GameView {
         System.out.println("Type 'save' to save and quit, 'quit' to quit without saving");
     }
 
+    /**
+     * Display matching game state
+     * @param state
+     */
     private void displayMatching(Map<String, Object> state) {
         String[][] board = (String[][]) state.get("board");
         boolean[][] matched = (boolean[][]) state.get("matched");
@@ -140,6 +176,10 @@ public class ConsoleView implements GameView {
         System.out.println("Type 'save' to save and quit, 'quit' to quit without saving");
     }
 
+    /**
+     * Display word puzzle game state (cipher, anagram, riddle)
+     * @param state
+     */
     private void displayWordPuzzle(Map<String, Object> state) {
         String puzzleType = (String) state.get("puzzleType");
         String prompt = (String) state.get("prompt");
@@ -180,7 +220,11 @@ public class ConsoleView implements GameView {
         System.out.println("\nType 'save' to save and quit, 'quit' to quit without saving");
     }
 
-    @Override
+    /**
+     * Display game result
+     * @Override
+     * @param result Current game result
+     */
     public void showResult(Map<String, Object> result) {
         boolean won = (boolean) result.get("won");
         long timeMs = (long) result.get("time");
@@ -211,7 +255,10 @@ public class ConsoleView implements GameView {
         System.out.println("=".repeat(50));
     }
 
-    @Override
+    /**  
+     * Clear console screen
+     * @Override
+     */
     public void clear() {
         // ANSI escape code to clear screen
         System.out.print("\033[H\033[2J");

@@ -9,6 +9,9 @@ import java.util.List;
 public class LeaderboardService {
     private final GameDataFacade dataFacade;
     
+    /**
+     * Constructor for leaderboard service
+     */
     public LeaderboardService() {
         this.dataFacade = GameDataFacade.getInstance();
     }

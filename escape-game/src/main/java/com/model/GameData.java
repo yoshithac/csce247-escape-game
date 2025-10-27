@@ -43,38 +43,74 @@ public class GameData {
         return puzzles; 
     }
     
+    /**
+     * Set puzzles list
+     * @param puzzles
+     */
     public void setPuzzles(List<Puzzle> puzzles) { 
         this.puzzles = puzzles; 
     }
     
+    /**
+     * Get hints list
+     * @return List of hints
+     */
     public List<Hint> getHints() { 
         return hints; 
     }
     
+    /**
+     * Set hints list
+     * @param hints
+     */
     public void setHints(List<Hint> hints) { 
         this.hints = hints; 
     }
     
+    /**
+     * Get user progress list
+     * @return List of user progress
+     */
     public List<UserProgress> getUserProgress() { 
         return userProgress; 
     }
     
+    /**
+     * Set user progress list
+     * @param userProgress
+     */
     public void setUserProgress(List<UserProgress> userProgress) { 
         this.userProgress = userProgress; 
     }
     
+    /**
+     * Get certificates list
+     * @return List of certificates
+     */
     public List<Certificate> getCertificates() { 
         return certificates; 
     }
     
+    /**
+     * Set certificates list
+     * @param certificates
+     */
     public void setCertificates(List<Certificate> certificates) { 
         this.certificates = certificates; 
     }
     
+    /**
+     * Get leaderboard list
+     * @return List of leaderboard entries
+     */
     public List<LeaderboardEntry> getLeaderboard() { 
         return leaderboard; 
     }
     
+    /**
+     * Set leaderboard list
+     * @param leaderboard
+     */
     public void setLeaderboard(List<LeaderboardEntry> leaderboard) { 
         this.leaderboard = leaderboard; 
     }

@@ -14,6 +14,7 @@ import com.speech.Speak;
 /**
  * Main game controller - handles all game flow after login
  * Uses a single difficulty selection for all puzzles in the session
+ * @author We're Getting an A
  */
 public class GameController {
     private final AuthenticationService authService;
@@ -26,7 +27,11 @@ public class GameController {
     private int startTime = 0;
     private int timer = 0;
 
-
+    /**
+     * Constructor
+     * @param view
+     * @param authService
+     */
     public GameController(GameView view, AuthenticationService authService) {
         this.view = view;
         this.authService = authService;
@@ -36,6 +41,9 @@ public class GameController {
         this.dataFacade = GameDataFacade.getInstance();
     }
 
+    /**
+     * Main game loop after login
+     */
     public void start() {
         while (authService.isLoggedIn()) {
             // Prompt for difficulty if not set, or allow changing it explicitly
@@ -104,6 +112,10 @@ public class GameController {
         }
     }
 
+    /**
+     * Prompt user to select difficulty for session
+     * @return selected difficulty
+     */
     private String selectDifficulty() {
         view.clear();
         view.showMessage("\nSelect difficulty for this session:");
@@ -120,6 +132,9 @@ public class GameController {
         return difficulties[diffIndex];
     }
     
+    /**
+     * Start a new game session
+     */
     private void startNewPuzzle() {
         // Prompt for difficulty if not set
         if (sessionDifficulty == null) {
@@ -236,7 +251,9 @@ public class GameController {
         waitForUser();
     }
 
-
+    /**
+     * Resume saved game session
+     */
     private void resumeSavedGame() {
         String userId = authService.getCurrentUser().getUserId();
         UserProgress progress = progressService.getUserProgress(userId);
@@ -337,6 +354,11 @@ public class GameController {
         waitForUser();
     }
 
+    /**
+     * Save current game state
+     * @param puzzle
+     * @param game
+     */
     private void saveGame(Puzzle puzzle, PuzzleGame game) {
         String userId = authService.getCurrentUser().getUserId();
         UserProgress progress = progressService.getUserProgress(userId);
@@ -348,6 +370,11 @@ public class GameController {
         waitForUser();
     }
 
+    /**
+     * Calculate score based on time and moves
+     * @param result
+     * @return score
+     */
     private int calculateScore(Map<String, Object> result) {
         long timeMs = (long) result.get("time");
         int moves = (int) result.get("moves");
@@ -357,6 +384,9 @@ public class GameController {
         return baseScore + timeBonus + moveBonus;
     }
 
+    /**
+     * View user's progress
+     */
     private void viewProgress() {
         String userId = authService.getCurrentUser().getUserId();
         UserProgress progress = progressService.getUserProgress(userId);
@@ -372,6 +402,9 @@ public class GameController {
         waitForUser();
     }
 
+    /**
+     * View leaderboard
+     */
     private void viewLeaderboard() {
         List<LeaderboardEntry> top10 = leaderboardService.getTopPlayers(10);
         String userId = authService.getCurrentUser().getUserId();
@@ -394,6 +427,9 @@ public class GameController {
         waitForUser();
     }
 
+    /**
+     * View user's certificates
+     */
     private void viewCertificates() {
         String userId = authService.getCurrentUser().getUserId();
         List<Certificate> certs = certificateService.getUserCertificates(userId);
@@ -413,6 +449,11 @@ public class GameController {
         waitForUser();
     }
 
+    /**
+     * Parse user menu choice
+     * @param choice
+     * @return choice number or -1 if invalid
+     */
     private int parseChoice(String choice) {
         try {
             return Integer.parseInt(choice.trim());
@@ -421,6 +462,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Wait for user to press Enter
+     */
     private void waitForUser() {
         view.getUserInput("\nPress Enter to continue...");
     }

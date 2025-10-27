@@ -14,7 +14,12 @@ public class MazeGame implements PuzzleGame {
     private int moveCount;
     private long startTime;
     
-    @Override
+    /**
+     * Initialize maze game with puzzle data
+     * @param puzzleData Map of puzzle data
+     * @Override
+     * @SuppressWarnings("unchecked")
+     */
     public void initialize(Map<String, Object> puzzleData) {
         // Extract maze data
         int width = ((Number) puzzleData.get("width")).intValue();
@@ -48,7 +53,12 @@ public class MazeGame implements PuzzleGame {
         this.startTime = System.currentTimeMillis();
     }
     
-    @Override
+    /**
+     * Process player input for movement
+     * @param input Player input command (WASD)
+     * @return boolean indicating if move was successful
+     * @Override
+     */
     public boolean processInput(String input) {
         input = input.toUpperCase().trim();
         
@@ -81,13 +91,19 @@ public class MazeGame implements PuzzleGame {
         return true;
     }
     
-    @Override
+    /**
+     * Check if game is over (player reached end)
+     * @return boolean indicating if game is over
+     */
     public boolean isGameOver() {
         return player.row == maze.getEnd().getRow() && 
                player.col == maze.getEnd().getCol();
     }
     
-    @Override
+    /**
+     * Get current game state for display
+     * @return Map<String, Object> representing game state
+     */
     public Map<String, Object> getGameState() {
         Map<String, Object> state = new HashMap<>();
         state.put("maze", maze);
@@ -96,12 +112,20 @@ public class MazeGame implements PuzzleGame {
         return state;
     }
     
-    @Override
+    /**
+     * Get game type
+     * @return String game type
+     * @Override
+     */
     public String getGameType() {
         return "MAZE";
     }
     
-    @Override
+    /**
+     * Get result summary
+     * @return Map<String, Object> result data
+     * @Override
+     */
     public Map<String, Object> getResult() {
         Map<String, Object> result = new HashMap<>();
         result.put("won", isGameOver());
@@ -110,7 +134,10 @@ public class MazeGame implements PuzzleGame {
         return result;
     }
     
-    @Override
+    /**
+     * Reset game to initial state
+     * @Override
+     */
     public void reset() {
         player.row = maze.getStart().getRow();
         player.col = maze.getStart().getCol();
@@ -118,7 +145,11 @@ public class MazeGame implements PuzzleGame {
         startTime = System.currentTimeMillis();
     }
     
-    @Override
+    /**
+     * Save game state for resume functionality
+     * @return Map<String, Object> saved state
+     * @Override
+     */
     public Map<String, Object> saveState() {
         Map<String, Object> state = new HashMap<>();
         
@@ -144,7 +175,11 @@ public class MazeGame implements PuzzleGame {
         return state;
     }
     
-    @Override
+    /**
+     * Restore game state from saved data
+     * @param savedState Map<String, Object> saved state
+     * @Override
+     */
     public void restoreState(Map<String, Object> savedState) {
         // Restore maze
         Map<String, Object> mazeData = (Map<String, Object>) savedState.get("maze");

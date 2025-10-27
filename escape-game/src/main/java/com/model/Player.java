@@ -10,6 +10,11 @@ public class Player {
     
     public Player() {}
     
+    /**
+     * Constructor with position
+     * @param row
+     * @param col
+     */
     public Player(int row, int col) {
         this.row = row;
         this.col = col;

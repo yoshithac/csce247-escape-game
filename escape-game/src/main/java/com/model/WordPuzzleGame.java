@@ -24,7 +24,11 @@ public class WordPuzzleGame implements PuzzleGame {
     private boolean won;
     private long startTime;
     
-    @Override
+    /**
+     * Initialize word puzzle game with puzzle data
+     * @param puzzleData Map of puzzle data
+     * @Override
+     */
     public void initialize(Map<String, Object> puzzleData) {
         this.prompt = (String) puzzleData.get("prompt");
         this.answer = ((String) puzzleData.get("answer")).toUpperCase();
@@ -38,7 +42,12 @@ public class WordPuzzleGame implements PuzzleGame {
         this.startTime = System.currentTimeMillis();
     }
     
-    @Override
+    /**
+     * Process player input for guessing or hint request
+     * @param input Player input command
+     * @return boolean indicating if input was processed
+     * @Override
+     */
     public boolean processInput(String input) {
         input = input.trim().toUpperCase();
         
@@ -63,12 +72,20 @@ public class WordPuzzleGame implements PuzzleGame {
         return true;
     }
     
-    @Override
+    /**
+     * Check if game is over (won or max attempts reached)
+     * @return true if game over
+     * @Override
+     */
     public boolean isGameOver() {
         return won || attemptsUsed >= maxAttempts;
     }
     
-    @Override
+    /**
+     * Get current game state for display
+     * @return Map of game state
+     * @Override
+     */
     public Map<String, Object> getGameState() {
         Map<String, Object> state = new HashMap<>();
         state.put("puzzleType", puzzleType);
@@ -83,12 +100,20 @@ public class WordPuzzleGame implements PuzzleGame {
         return state;
     }
     
-    @Override
+    /**
+     * Get game type (CIPHER, ANAGRAM, RIDDLE)
+     * @return String game type
+     * @Override
+     */
     public String getGameType() {
         return puzzleType;
     }
     
-    @Override
+    /**
+     * Get result summary
+     * @return Map of result data
+     * @Override
+     */
     public Map<String, Object> getResult() {
         Map<String, Object> result = new HashMap<>();
         result.put("won", won);
@@ -101,7 +126,10 @@ public class WordPuzzleGame implements PuzzleGame {
         return result;
     }
     
-    @Override
+    /**
+     * Reset game to initial state
+     * @Override
+     */
     public void reset() {
         attemptsUsed = 0;
         guesses.clear();
@@ -110,7 +138,11 @@ public class WordPuzzleGame implements PuzzleGame {
         startTime = System.currentTimeMillis();
     }
     
-    @Override
+    /**
+     * Save current game state for persistence
+     * @return Map of saved state
+     * @Override
+     */
     public Map<String, Object> saveState() {
         Map<String, Object> state = new HashMap<>();
         state.put("puzzleType", puzzleType);
@@ -127,7 +159,11 @@ public class WordPuzzleGame implements PuzzleGame {
         return state;
     }
     
-    @Override
+    /**
+     * Restore game state from saved data
+     * @param savedState Map of saved state
+     * @Override
+     */
     public void restoreState(Map<String, Object> savedState) {
         this.puzzleType = (String) savedState.get("puzzleType");
         this.puzzleId = (String) savedState.get("puzzleId");

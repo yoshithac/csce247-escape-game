@@ -22,8 +22,12 @@ public class MatchingGame implements PuzzleGame {
     private int cols;
     private boolean showingPair;
 
-    @Override
-    @SuppressWarnings("unchecked")
+    /**
+     * Initialize matching game with puzzle data
+     * @param puzzleData Map of puzzle data
+     * @Override
+     *@SuppressWarnings("unchecked")
+     */
     public void initialize(Map<String, Object> puzzleData) {
         // Get dimensions from JSON like maze does
         this.rows = ((Number) puzzleData.get("height")).intValue();
@@ -57,7 +61,12 @@ public class MatchingGame implements PuzzleGame {
         }
     }
 
-    @Override
+    /**
+     * Process user input to flip cards
+     * @param input User input string (e.g., "0 1" for row 0, col 1)
+     * @return true if input was valid and processed
+     * @Override
+     */
     public boolean processInput(String input) {
         String[] parts = input.trim().split("\\s+");
         if (parts.length != 2) {
@@ -221,8 +230,12 @@ public class MatchingGame implements PuzzleGame {
 
     
     
-    @Override
-    @SuppressWarnings("unchecked")
+    /**
+     * Restore game state from saved data
+     * @param savedState Map of saved state data
+     * @Override
+     * @SuppressWarnings("unchecked")
+     */
     public void restoreState(Map<String, Object> savedState) {
         this.rows = ((Number) savedState.get("rows")).intValue();
         this.cols = ((Number) savedState.get("cols")).intValue();

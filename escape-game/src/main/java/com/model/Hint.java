@@ -11,6 +11,12 @@ public class Hint implements Comparable<Hint> {
     
     public Hint() {}
     
+    /**
+     * Constructor with all fields
+     * @param hintText
+     * @param puzzleId
+     * @param hintPriority
+     */
     public Hint(String hintText, String puzzleId, int hintPriority) {
         this.hintText = hintText;
         this.puzzleId = puzzleId;
@@ -22,32 +28,61 @@ public class Hint implements Comparable<Hint> {
         return hintText; 
     }
     
+    /**
+     * Set hint text
+     * @param hintText
+     */
     public void setHintText(String hintText) { 
         this.hintText = hintText; 
     }
     
+    /**
+     * Get puzzle ID
+     * @return puzzleId
+     */
     public String getPuzzleId() { 
         return puzzleId; 
     }
     
+    /**
+     * Set puzzle ID
+     * @param puzzleId
+     */
     public void setPuzzleId(String puzzleId) { 
         this.puzzleId = puzzleId; 
     }
     
+    /**
+     * Get hint priority
+     * @return
+     */
     public int getHintPriority() { 
         return hintPriority; 
     }
     
+    /**
+     * Set hint priority
+     * @param hintPriority
+     */
     public void setHintPriority(int hintPriority) { 
         this.hintPriority = hintPriority; 
     }
     
-    @Override
+    /**
+     * Compare hints by priority
+     * @param other Other hint
+     * @return comparison result
+     * @Override
+     */
     public int compareTo(Hint other) {
         return Integer.compare(this.hintPriority, other.hintPriority);
     }
     
-    @Override
+    /**
+     * String representation
+     * @return String representation
+     * @Override    
+     */
     public String toString() {
         return String.format("[Priority %d] %s", hintPriority, hintText);
     }

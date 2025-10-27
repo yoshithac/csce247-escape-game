@@ -2210,11 +2210,14 @@
   ],
   "userProgress": [
     {
-      "userId": "nitin",
+      "userId": "remyr",
       "completedPuzzles": [
-        "ridd_e1",
-        "match_e1",
+        "ridd_e2",
+        "maze_e3",
         "ridd_e3",
+        "maze_e1",
+        "anag_e3",
+        "ridd_e1",
         "match_e2",
         "cipher_e1",
         "maze_e2",
@@ -2412,46 +2415,73 @@
       "earnedAt": "2025-10-26T14:46:39.876733"
     },
     {
-      "certificateId": "CERT_nitin_ridd_e1_1761512771004",
-      "userId": "nitin",
-      "puzzleId": "ridd_e1",
-      "description": "Completed \u0027The Endless Room\u0027 puzzle",
+      "certificateId": "CERT_remyr_ridd_e2_1761530393677",
+      "userId": "remyr",
+      "puzzleId": "ridd_e2",
+      "description": "Completed \u0027Word Riddle\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 225,
-      "earnedAt": "2025-10-26T17:06:11.00701"
+      "scoreAchieved": 247,
+      "earnedAt": "2025-10-26T21:59:53.681376"
     },
     {
-      "certificateId": "CERT_nitin_match_e1_1761512883168",
-      "userId": "nitin",
-      "puzzleId": "match_e1",
-      "description": "Completed \u0027Alphabet Pairing\u0027 puzzle",
+      "certificateId": "CERT_remyr_maze_e3_1761530408181",
+      "userId": "remyr",
+      "puzzleId": "maze_e3",
+      "description": "Completed \u0027Labyrinth X\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 145,
-      "earnedAt": "2025-10-26T17:08:03.1684503"
+      "scoreAchieved": 232,
+      "earnedAt": "2025-10-26T22:00:08.181745"
     },
     {
-      "certificateId": "CERT_nitin_ridd_e3_1761513242841",
-      "userId": "nitin",
+      "certificateId": "CERT_remyr_ridd_e3_1761530508537",
+      "userId": "remyr",
       "puzzleId": "ridd_e3",
       "description": "Completed \u0027Invisible Home\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 178,
-      "earnedAt": "2025-10-26T17:14:02.845944"
+      "scoreAchieved": 248,
+      "earnedAt": "2025-10-26T22:01:48.541529"
     },
     {
-      "certificateId": "CERT_nitin_match_e2_1761513412957",
-      "userId": "nitin",
+      "certificateId": "CERT_remyr_maze_e1_1761530522896",
+      "userId": "remyr",
+      "puzzleId": "maze_e1",
+      "description": "Completed \u0027Maze Inferno\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 233,
+      "earnedAt": "2025-10-26T22:02:02.89671"
+    },
+    {
+      "certificateId": "CERT_remyr_anag_e3_1761530552146",
+      "userId": "remyr",
+      "puzzleId": "anag_e3",
+      "description": "Completed \u0027World City\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 229,
+      "earnedAt": "2025-10-26T22:02:32.147656"
+    },
+    {
+      "certificateId": "CERT_remyr_ridd_e1_1761530995877",
+      "userId": "remyr",
+      "puzzleId": "ridd_e1",
+      "description": "Completed \u0027The Endless Room\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 244,
+      "earnedAt": "2025-10-26T22:09:55.880514"
+    },
+    {
+      "certificateId": "CERT_remyr_match_e2_1761531109314",
+      "userId": "remyr",
       "puzzleId": "match_e2",
       "description": "Completed \u0027Vehicles Match\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 143,
-      "earnedAt": "2025-10-26T17:16:52.9570532"
+      "scoreAchieved": 139,
+      "earnedAt": "2025-10-26T22:11:49.314653"
     },
     {
-      "certificateId": "CERT_nitin_anag_e1_1761513474323",
-      "userId": "nitin",
-      "puzzleId": "anag_e1",
-      "description": "Completed \u0027Astronomy Anagram\u0027 puzzle",
+      "certificateId": "CERT_remyr_cipher_e1_1761531127374",
+      "userId": "remyr",
+      "puzzleId": "cipher_e1",
+      "description": "Completed \u0027Science Cipher\u0027 puzzle",
       "difficulty": "EASY",
       "scoreAchieved": 239,
       "earnedAt": "2025-10-26T22:12:07.37431"

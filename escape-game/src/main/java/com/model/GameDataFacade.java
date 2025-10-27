@@ -63,6 +63,11 @@ public class GameDataFacade {
             .findFirst();
     }
     
+    /**
+     * Add new user if userId and email are unique
+     * @param user User to add
+     * @return true if added successfully
+     */
     public boolean addUser(User user) {
         if (userIdExists(user.getUserId()) || emailExists(user.getEmail())) {
             return false;
@@ -77,6 +82,11 @@ public class GameDataFacade {
         return true;
     }
     
+    /**
+     * Update existing user details
+     * @param user User with updated details
+     * @return true if update successful
+     */
     public boolean updateUser(User user) {
         Optional<User> existingUser = getUser(user.getUserId());
         if (!existingUser.isPresent()) {
@@ -89,32 +99,62 @@ public class GameDataFacade {
         return true;
     }
     
+    /**
+     * Check if userId exists   
+     * @param userId
+     * @return true if userId exists
+     */
     public boolean userIdExists(String userId) {
         return users.stream().anyMatch(u -> u.getUserId().equals(userId));
     }
     
+    /**
+     * Check if email exists
+     * @param email
+     * @return true if email exists
+     */
     public boolean emailExists(String email) {
         return users.stream().anyMatch(u -> u.getEmail().equals(email));
     }
     
     // ===== PUZZLE OPERATIONS =====
     
+    /**
+     * Get all puzzles
+     * @return List of all puzzles
+     */
     public List<Puzzle> getAllPuzzles() {
         return new ArrayList<>(gameData.getPuzzles());
     }
     
+    /**
+     * Get puzzle by ID
+     * @param puzzleId
+     * @return Optional Puzzle
+     */
     public Optional<Puzzle> getPuzzle(String puzzleId) {
         return gameData.getPuzzles().stream()
             .filter(p -> p.getPuzzleId().equals(puzzleId))
             .findFirst();
     }
     
+    /**
+     * Get puzzles by type
+     * @param puzzleType
+     * @return List of puzzles of given type
+     */
     public List<Puzzle> getPuzzlesByType(String puzzleType) {
         return gameData.getPuzzles().stream()
             .filter(p -> p.getPuzzleType().equalsIgnoreCase(puzzleType))
             .collect(Collectors.toList());
     }
     
+    /**
+     * Get puzzles by type and difficulty
+     * @param puzzleType
+     * @param difficulty
+     * @return List of puzzles matching criteria
+     */
     public List<Puzzle> getPuzzlesByDifficulty(String puzzleType, String difficulty) {
         return gameData.getPuzzles().stream()
             .filter(p -> p.getPuzzleType().equalsIgnoreCase(puzzleType))
@@ -122,6 +162,10 @@ public class GameDataFacade {
             .collect(Collectors.toList());
     }
     
+    /**
+     * Get available puzzle types
+     * @return Set of unique puzzle types
+     */
     public Set<String> getAvailablePuzzleTypes() {
         return gameData.getPuzzles().stream()
             .map(Puzzle::getPuzzleType)
@@ -130,6 +174,11 @@ public class GameDataFacade {
     
     // ===== HINT OPERATIONS =====
     
+    /**
+     * Get hints for a specific puzzle
+     * @param puzzleId
+     * @return List of hints for the puzzle
+     */
     public List<Hint> getHintsForPuzzle(String puzzleId) {
         return gameData.getHints().stream()
             .filter(h -> h.getPuzzleId().equals(puzzleId))
@@ -139,6 +188,11 @@ public class GameDataFacade {
     
     // ===== USER PROGRESS OPERATIONS =====
     
+    /**
+     * Get user's progress data
+     * @param userId User ID
+     * @return UserProgress object (never null)
+     */
     public UserProgress getUserProgress(String userId) {
         Optional<UserProgress> progress = gameData.getUserProgress().stream()
             .filter(up -> up.getUserId().equals(userId))
@@ -155,6 +209,10 @@ public class GameDataFacade {
         }
     }
     
+    /**
+     * Save user's progress data
+     * @param progress UserProgress to save
+     */
     public void saveUserProgress(UserProgress progress) {
         gameData.getUserProgress().removeIf(up -> up.getUserId().equals(progress.getUserId()));
         gameData.getUserProgress().add(progress);
@@ -165,11 +223,23 @@ public class GameDataFacade {
         saveAllData();
     }
     
+    /**
+     * Check if user has completed a specific puzzle
+     * @param userId User ID
+     * @param puzzleId Puzzle ID
+     * @return true if puzzle is completed
+     */
     public boolean isPuzzleCompleted(String userId, String puzzleId) {
         UserProgress progress = getUserProgress(userId);
         return progress.isPuzzleCompleted(puzzleId);
     }
     
+    /**
+     * Mark puzzle as completed for user
+     * @param userId User ID
+     * @param puzzleId Puzzle ID
+     * @param score Score achieved
+     */
     public void completePuzzle(String userId, String puzzleId, int score) {
         UserProgress progress = getUserProgress(userId);
         progress.addCompletedPuzzle(puzzleId, score);
@@ -179,11 +249,20 @@ public class GameDataFacade {
 
     // ===== CERTIFICATE OPERATIONS =====
     
+    /**
+     * Add a new certificate
+     * @param certificate Certificate to add
+     */
     public void addCertificate(Certificate certificate) {
         gameData.getCertificates().add(certificate);
         saveAllData();
     }
     
+    /**
+     * Get certificates earned by user
+     * @param userId User ID
+     * @return List of certificates
+     */
     public List<Certificate> getUserCertificates(String userId) {
         return gameData.getCertificates().stream()
             .filter(c -> c.getUserId().equals(userId))
@@ -191,6 +270,11 @@ public class GameDataFacade {
             .collect(Collectors.toList());
     }
     
+    /**
+     * Get certificate statistics for user
+     * @param userId User ID
+     * @return Map of difficulty to count
+     */
     public Map<String, Integer> getCertificateStats(String userId) {
         Map<String, Integer> stats = new HashMap<>();
         stats.put("EASY", 0);
@@ -207,6 +291,12 @@ public class GameDataFacade {
         return stats;
     }
     
+    /**
+     * Check if user has a certificate for a specific puzzle
+     * @param userId User ID
+     * @param puzzleId Puzzle ID
+     * @return true if certificate exists
+     */
     public boolean hasCertificate(String userId, String puzzleId) {
         return gameData.getCertificates().stream()
             .anyMatch(c -> c.getUserId().equals(userId) && c.getPuzzleId().equals(puzzleId));
@@ -214,6 +304,10 @@ public class GameDataFacade {
     
     // ===== LEADERBOARD OPERATIONS =====
     
+    /**
+     * Update leaderboard entry for user
+     * @param progress UserProgress
+     */
     private void updateLeaderboard(UserProgress progress) {
         String userId = progress.getUserId();
         Optional<User> userOpt = getUser(userId);
@@ -241,12 +335,22 @@ public class GameDataFacade {
             Integer.compare(e2.getTotalScore(), e1.getTotalScore()));
     }
     
+    /**
+     * Get top N leaderboard entries
+     * @param limit Number of entries to return
+     * @return List of leaderboard entries
+     */
     public List<LeaderboardEntry> getLeaderboard(int limit) {
         return gameData.getLeaderboard().stream()
             .limit(limit)
             .collect(Collectors.toList());
     }
     
+    /**
+     * Get user's rank on leaderboard
+     * @param userId User ID
+     * @return Rank (1-based), or -1 if not found
+     */
     public int getUserRank(String userId) {
         List<LeaderboardEntry> leaderboard = gameData.getLeaderboard();
         for (int i = 0; i < leaderboard.size(); i++) {
