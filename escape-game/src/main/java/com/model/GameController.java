@@ -24,6 +24,12 @@ public class GameController {
     private final GameView view;
     private String sessionDifficulty = null; // Difficulty for session
 
+    /**
+     * Constructs a GameController wired to the provided view and authentication service.
+     * 
+     * @param view the {@link GameView} implementation for UI interaction
+     * @param authService the {@link AuthenticationService} used for current user info
+     */
 
     public GameController(GameView view, AuthenticationService authService) {
         this.view = view;
@@ -259,6 +265,14 @@ public class GameController {
         playGame(puzzle, savedState);
     }
 
+    /**
+     * Core loop that runs a single puzzle. Handles intialiazation or state
+     * restoration, input processing, saving/quitting, and awarding certificates when completed.
+
+     * @param puzzle the {@link Puzzle} to be played
+     * @param savedState optional previously saved game state, or {@code null}
+     */
+
     private void playGame(Puzzle puzzle, Map<String, Object> savedState) {
         String userId = authService.getCurrentUser().getUserId();
         PuzzleGame game = GameFactory.createGame(puzzle.getPuzzleType());
@@ -332,6 +346,13 @@ public class GameController {
         waitForUser();
     }
 
+    /**
+     * Saves the current game state for the given puzzle and pauses the timer.
+     * 
+     * @param puzzle the puzzle being played
+     * @param game the {@link PuzzleGame} instance containing the current state
+     */
+
     private void saveGame(Puzzle puzzle, PuzzleGame game) {
         String userId = authService.getCurrentUser().getUserId();
         UserProgress progress = progressService.getUserProgress(userId);
@@ -343,6 +364,13 @@ public class GameController {
         view.showMessage("\nGame saved! You can resume later.");
         waitForUser();
     }
+    /**
+     * Calculates a score based on results metrics. Combines a base score with
+     * bonuses for speed and few moves
+     * 
+     * @param result the result map returned by a game containing {@code time} and {@code moves}
+     * @return the computed integer score
+     */
 
     private int calculateScore(Map<String, Object> result) {
         long timeMs = (long) result.get("time");
@@ -408,7 +436,13 @@ public class GameController {
         }
         waitForUser();
     }
-
+    /**
+     * Parses the user's menu choice into an integer
+     * 
+     * @param choice the string input from the user
+     * @return the parsed integer choice, or -1 if parsing fails
+     */
+    
     private int parseChoice(String choice) {
         try {
             return Integer.parseInt(choice.trim());
