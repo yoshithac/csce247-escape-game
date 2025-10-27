@@ -23,8 +23,8 @@ public class GameController {
     private final GameDataFacade dataFacade;
     private final GameView view;
     private String sessionDifficulty = null; // Difficulty for session
-    private int startTime;
-    private int timer;
+    private int startTime = 0;
+    private int timer = 0;
 
 
     public GameController(GameView view, AuthenticationService authService) {
@@ -83,6 +83,8 @@ public class GameController {
 
             // Handle menu selection
             if (choiceNum == START_NEW) {
+                resetTimer();  
+            startTimer();
                 startNewPuzzle();
             } else if (choiceNum == RESUME && hasSavedGame) {
                 resumeSavedGame();
@@ -140,8 +142,6 @@ public class GameController {
         waitForUser();
         view.clear();
         //Game intro ends here
-        resetTimer();  
-        startTimer();
         // Step 1: Get all puzzle types
         Set<String> allTypes = dataFacade.getAvailablePuzzleTypes();
         
