@@ -1,6 +1,10 @@
 package com.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Matching card game implementation
@@ -17,7 +21,7 @@ public class MatchingGame implements PuzzleGame {
     private int rows;
     private int cols;
     private boolean showingPair;
-
+    
     @Override
     @SuppressWarnings("unchecked")
     public void initialize(Map<String, Object> puzzleData) {
@@ -103,8 +107,10 @@ public class MatchingGame implements PuzzleGame {
     }
 
     /**
-     * Check if we're currently showing a pair of cards
+     * Returns whether a pair of cards is currently visible to the player.
+     * @return {@code true} if a pair is being shown, otherwise {@code false}
      */
+    
     public boolean isShowingPair() {
         return showingPair;
     }
