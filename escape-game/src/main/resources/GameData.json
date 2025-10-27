@@ -1502,7 +1502,8 @@
           "col": 7.0
         }
       }
-    },{
+    },
+    {
       "puzzleId": "cipher_e1",
       "puzzleType": "CIPHER",
       "difficulty": "EASY",
@@ -2070,7 +2071,8 @@
       "hintText": "Small but can cross the globe.",
       "puzzleId": "ridd_m3",
       "hintPriority": 3
-    },{
+    },
+    {
       "hintText": "Atomic number is 8.",
       "puzzleId": "cipher_e1",
       "hintPriority": 1
@@ -2206,7 +2208,40 @@
       "hintPriority": 3
     }
   ],
-  "userProgress": [],
+  "userProgress": [
+    {
+      "userId": "nitin",
+      "completedPuzzles": [
+        "ridd_e1",
+        "match_e1",
+        "ridd_e3",
+        "match_e2",
+        "anag_e1",
+        "cipher_e2",
+        "maze_e3",
+        "maze_e1",
+        "maze_e2",
+        "anag_e2",
+        "anag_e3",
+        "ridd_e2"
+      ],
+      "puzzleScores": {
+        "match_e1": 145,
+        "ridd_e1": 225,
+        "ridd_e3": 178,
+        "match_e2": 143,
+        "anag_e1": 241,
+        "cipher_e2": 226,
+        "maze_e3": 190,
+        "maze_e1": 227,
+        "maze_e2": 229,
+        "anag_e2": 244,
+        "anag_e3": 242,
+        "ridd_e2": 248
+      },
+      "totalScore": 2538
+    }
+  ],
   "certificates": [
     {
       "certificateId": "CERT_U1002_ridd_m2_1761446264892",
@@ -2378,6 +2413,114 @@
       "difficulty": "HARD",
       "scoreAchieved": 190,
       "earnedAt": "2025-10-26T14:46:39.876733"
+    },
+    {
+      "certificateId": "CERT_nitin_ridd_e1_1761512771004",
+      "userId": "nitin",
+      "puzzleId": "ridd_e1",
+      "description": "Completed \u0027The Endless Room\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 225,
+      "earnedAt": "2025-10-26T17:06:11.00701"
+    },
+    {
+      "certificateId": "CERT_nitin_match_e1_1761512883168",
+      "userId": "nitin",
+      "puzzleId": "match_e1",
+      "description": "Completed \u0027Alphabet Pairing\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 145,
+      "earnedAt": "2025-10-26T17:08:03.1684503"
+    },
+    {
+      "certificateId": "CERT_nitin_ridd_e3_1761513242841",
+      "userId": "nitin",
+      "puzzleId": "ridd_e3",
+      "description": "Completed \u0027Invisible Home\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 178,
+      "earnedAt": "2025-10-26T17:14:02.845944"
+    },
+    {
+      "certificateId": "CERT_nitin_match_e2_1761513412957",
+      "userId": "nitin",
+      "puzzleId": "match_e2",
+      "description": "Completed \u0027Vehicles Match\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 143,
+      "earnedAt": "2025-10-26T17:16:52.9570532"
+    },
+    {
+      "certificateId": "CERT_nitin_anag_e1_1761513474323",
+      "userId": "nitin",
+      "puzzleId": "anag_e1",
+      "description": "Completed \u0027Astronomy Anagram\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 241,
+      "earnedAt": "2025-10-26T17:17:54.3239213"
+    },
+    {
+      "certificateId": "CERT_nitin_cipher_e2_1761513525087",
+      "userId": "nitin",
+      "puzzleId": "cipher_e2",
+      "description": "Completed \u0027Galaxy Cipher\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 226,
+      "earnedAt": "2025-10-26T17:18:45.0870497"
+    },
+    {
+      "certificateId": "CERT_nitin_maze_e3_1761513652954",
+      "userId": "nitin",
+      "puzzleId": "maze_e3",
+      "description": "Completed \u0027Labyrinth X\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 190,
+      "earnedAt": "2025-10-26T17:20:52.9542368"
+    },
+    {
+      "certificateId": "CERT_nitin_maze_e1_1761515197763",
+      "userId": "nitin",
+      "puzzleId": "maze_e1",
+      "description": "Completed \u0027Maze Inferno\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 227,
+      "earnedAt": "2025-10-26T17:46:37.7668085"
+    },
+    {
+      "certificateId": "CERT_nitin_maze_e2_1761529909901",
+      "userId": "nitin",
+      "puzzleId": "maze_e2",
+      "description": "Completed \u0027Maze Twister\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 229,
+      "earnedAt": "2025-10-26T21:51:49.9044581"
+    },
+    {
+      "certificateId": "CERT_nitin_anag_e2_1761530149242",
+      "userId": "nitin",
+      "puzzleId": "anag_e2",
+      "description": "Completed \u0027Mythology Mix\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 244,
+      "earnedAt": "2025-10-26T21:55:49.2427345"
+    },
+    {
+      "certificateId": "CERT_nitin_anag_e3_1761530220967",
+      "userId": "nitin",
+      "puzzleId": "anag_e3",
+      "description": "Completed \u0027World City\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 242,
+      "earnedAt": "2025-10-26T21:57:00.9670049"
+    },
+    {
+      "certificateId": "CERT_nitin_ridd_e2_1761530369939",
+      "userId": "nitin",
+      "puzzleId": "ridd_e2",
+      "description": "Completed \u0027Word Riddle\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 248,
+      "earnedAt": "2025-10-26T21:59:29.939978"
     }
   ],
   "leaderboard": [
@@ -2387,6 +2530,13 @@
       "totalScore": 3324,
       "puzzlesCompleted": 15,
       "lastUpdated": "2025-10-26T14:46:39.8825124"
+    },
+    {
+      "userId": "nitin",
+      "userName": "Nitin Raju",
+      "totalScore": 2538,
+      "puzzlesCompleted": 12,
+      "lastUpdated": "2025-10-26T21:59:29.941482"
     },
     {
       "userId": "U1002",
