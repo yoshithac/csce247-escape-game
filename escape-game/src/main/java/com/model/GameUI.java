@@ -9,6 +9,13 @@ import com.speech.Speak;
  * Initializes MVC components and starts the application
  */
 public class GameUI {
+
+    /**
+     * Application entry point Initializes Scanner, the Console view, services,
+     * and controllers.
+     * 
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         // Initialize Scanner for console input
         Scanner scanner = new Scanner(System.in);

@@ -1502,8 +1502,7 @@
           "col": 7.0
         }
       }
-    },
-    {
+    },{
       "puzzleId": "cipher_e1",
       "puzzleType": "CIPHER",
       "difficulty": "EASY",
@@ -2071,8 +2070,7 @@
       "hintText": "Small but can cross the globe.",
       "puzzleId": "ridd_m3",
       "hintPriority": 3
-    },
-    {
+    },{
       "hintText": "Atomic number is 8.",
       "puzzleId": "cipher_e1",
       "hintPriority": 1
@@ -2208,38 +2206,7 @@
       "hintPriority": 3
     }
   ],
-  "userProgress": [
-    {
-      "userId": "yoshi",
-      "completedPuzzles": [
-        "ridd_e1",
-        "match_e1",
-        "anag_e3",
-        "maze_e1"
-      ],
-      "puzzleScores": {
-        "anag_e3": 244,
-        "match_e1": 217,
-        "ridd_e1": 226,
-        "maze_e1": 223
-      },
-      "totalScore": 910,
-      "currentPuzzleId": "ridd_e2",
-      "gameState": {
-        "maxAttempts": 2,
-        "revealedHints": [],
-        "attemptsUsed": 0,
-        "answer": "M",
-        "won": false,
-        "puzzleType": "RIDDLE",
-        "startTime": 1761515098242,
-        "guesses": [],
-        "puzzleId": "ridd_e2",
-        "category": "Letters",
-        "prompt": "What comes once in a minute, twice in a moment, but never in a thousand years?"
-      }
-    }
-  ],
+  "userProgress": [],
   "certificates": [
     {
       "certificateId": "CERT_U1002_ridd_m2_1761446264892",
@@ -2411,51 +2378,15 @@
       "difficulty": "HARD",
       "scoreAchieved": 190,
       "earnedAt": "2025-10-26T14:46:39.876733"
-    },
-    {
-      "certificateId": "CERT_yoshi_ridd_e1_1761512660477",
-      "userId": "yoshi",
-      "puzzleId": "ridd_e1",
-      "description": "Completed \u0027The Endless Room\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 226,
-      "earnedAt": "2025-10-26T17:04:20.4838963"
-    },
-    {
-      "certificateId": "CERT_yoshi_match_e1_1761512698571",
-      "userId": "yoshi",
-      "puzzleId": "match_e1",
-      "description": "Completed \u0027Alphabet Pairing\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 217,
-      "earnedAt": "2025-10-26T17:04:58.57173"
-    },
-    {
-      "certificateId": "CERT_yoshi_anag_e3_1761512715697",
-      "userId": "yoshi",
-      "puzzleId": "anag_e3",
-      "description": "Completed \u0027World City\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 244,
-      "earnedAt": "2025-10-26T17:05:15.6978354"
-    },
-    {
-      "certificateId": "CERT_yoshi_maze_e1_1761512739352",
-      "userId": "yoshi",
-      "puzzleId": "maze_e1",
-      "description": "Completed \u0027Maze Inferno\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 223,
-      "earnedAt": "2025-10-26T17:05:39.3520906"
     }
   ],
   "leaderboard": [
     {
       "userId": "yoshi",
       "userName": "yoshi chil",
-      "totalScore": 910,
-      "puzzlesCompleted": 4,
-      "lastUpdated": "2025-10-26T17:45:05.4434934"
+      "totalScore": 3324,
+      "puzzlesCompleted": 15,
+      "lastUpdated": "2025-10-26T14:46:39.8825124"
     },
     {
       "userId": "U1002",

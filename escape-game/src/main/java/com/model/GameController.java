@@ -23,6 +23,15 @@ public class GameController {
     private final GameDataFacade dataFacade;
     private final GameView view;
     private String sessionDifficulty = null; // Difficulty for session
+    private int startTime;
+    private int timer;
+
+    /**
+     * Constructs a GameController wired to the provided view and authentication service.
+     * 
+     * @param view the {@link GameView} implementation for UI interaction
+     * @param authService the {@link AuthenticationService} used for current user info
+     */
 
     public GameController(GameView view, AuthenticationService authService) {
         this.view = view;
@@ -43,6 +52,7 @@ public class GameController {
             view.clear();
             String userId = authService.getCurrentUser().getUserId();
             String userName = authService.getCurrentUser().getFullName();
+            
 
             view.showMessage("\n" + "=".repeat(50));
             view.showMessage("     Welcome, " + userName + "!");
@@ -52,7 +62,6 @@ public class GameController {
             // Check for saved game
             UserProgress progress = progressService.getUserProgress(userId);
             boolean hasSavedGame = progress.hasGameInProgress();
-                       
             
 
          // Build menu dynamically
@@ -80,6 +89,7 @@ public class GameController {
 
             // Handle menu selection
             if (choiceNum == START_NEW) {
+                progress.clearGameState();
                 startNewPuzzle();
             } else if (choiceNum == RESUME && hasSavedGame) {
                 resumeSavedGame();
@@ -120,7 +130,7 @@ public class GameController {
         if (sessionDifficulty == null) {
             sessionDifficulty = selectDifficulty();
         }
-        
+
         String userId = authService.getCurrentUser().getUserId();
         String difficulty = sessionDifficulty;
         //Game intro starts here
@@ -137,6 +147,8 @@ public class GameController {
         waitForUser();
         view.clear();
         //Game intro ends here
+        resetTimer();  
+        startTimer();
         // Step 1: Get all puzzle types
         Set<String> allTypes = dataFacade.getAvailablePuzzleTypes();
         
@@ -200,6 +212,7 @@ public class GameController {
             // Check if user wants to exit
             if (choiceNum == menuOptions.size()) {
                 view.showMessage("Exiting game session...");
+                pauseTimer();
                 waitForUser();
                 return;
             }
@@ -222,6 +235,7 @@ public class GameController {
         // End of final key message 
         // All puzzles completed!
         view.clear();
+        pauseTimer();
         view.showMessage("=".repeat(50));
         view.showMessage(" CONGRATULATIONS!");
         view.showMessage("You completed all puzzles in this session!");
@@ -233,6 +247,7 @@ public class GameController {
     private void resumeSavedGame() {
         String userId = authService.getCurrentUser().getUserId();
         UserProgress progress = progressService.getUserProgress(userId);
+        startTimer();
 
         if (!progress.hasGameInProgress()) {
             view.showMessage("\nNo saved game found!");
@@ -254,6 +269,14 @@ public class GameController {
         waitForUser();
         playGame(puzzle, savedState);
     }
+
+    /**
+     * Core loop that runs a single puzzle. Handles intialiazation or state
+     * restoration, input processing, saving/quitting, and awarding certificates when completed.
+
+     * @param puzzle the {@link Puzzle} to be played
+     * @param savedState optional previously saved game state, or {@code null}
+     */
 
     private void playGame(Puzzle puzzle, Map<String, Object> savedState) {
         String userId = authService.getCurrentUser().getUserId();
@@ -284,6 +307,7 @@ public class GameController {
                 UserProgress progress = progressService.getUserProgress(userId);
                 progress.clearGameState();
                 dataFacade.saveUserProgress(progress);
+                resetTimer();
                 waitForUser();
                 return;
             }
@@ -319,6 +343,7 @@ public class GameController {
             int score = calculateScore(result);
             progressService.completePuzzle(userId, puzzle.getPuzzleId(), score);
             certificateService.awardCertificate(userId, puzzle, score);
+            pauseTimer();
             view.showMessage("* Certificate earned!");
         }
         UserProgress progress = progressService.getUserProgress(userId);
@@ -326,6 +351,13 @@ public class GameController {
         dataFacade.saveUserProgress(progress);
         waitForUser();
     }
+
+    /**
+     * Saves the current game state for the given puzzle and pauses the timer.
+     * 
+     * @param puzzle the puzzle being played
+     * @param game the {@link PuzzleGame} instance containing the current state
+     */
 
     private void saveGame(Puzzle puzzle, PuzzleGame game) {
         String userId = authService.getCurrentUser().getUserId();
@@ -337,6 +369,13 @@ public class GameController {
         view.showMessage("\nGame saved! You can resume later.");
         waitForUser();
     }
+    /**
+     * Calculates a score based on results metrics. Combines a base score with
+     * bonuses for speed and few moves
+     * 
+     * @param result the result map returned by a game containing {@code time} and {@code moves}
+     * @return the computed integer score
+     */
 
     private int calculateScore(Map<String, Object> result) {
         long timeMs = (long) result.get("time");
@@ -358,6 +397,7 @@ public class GameController {
         view.showMessage("Puzzles Completed: " + stats.get("completed") + "/" + stats.get("totalPuzzles"));
         view.showMessage("Completion: " + stats.get("completionPercentage") + "%");
         view.showMessage("Remaining: " + stats.get("remaining"));
+        view.showMessage("Time Elapsed: " + getTimer()/60 + " minutes, " + getTimer()%60 + " seconds");
         waitForUser();
     }
 
@@ -401,7 +441,13 @@ public class GameController {
         }
         waitForUser();
     }
-
+    /**
+     * Parses the user's menu choice into an integer
+     * 
+     * @param choice the string input from the user
+     * @return the parsed integer choice, or -1 if parsing fails
+     */
+    
     private int parseChoice(String choice) {
         try {
             return Integer.parseInt(choice.trim());
@@ -412,6 +458,54 @@ public class GameController {
 
     private void waitForUser() {
         view.getUserInput("\nPress Enter to continue...");
+    }
+
+    /**
+     * starts game timer
+     */
+    public void startTimer() {
+     if (this.startTime == 0) {
+            this.startTime = (int)(System.currentTimeMillis()/1000);
+        }
+    }   
+
+    /**
+     * pauses game timer
+     */
+    public void pauseTimer() {
+        if (this.startTime != 0) {
+            int now = (int)(System.currentTimeMillis()/1000);
+            this.timer += (now - this.startTime);
+            this.startTime = 0;
+        }
+    }
+
+    /**
+     * gets timer
+     * @return int timer
+     */
+    public int getTimer() {
+        if (this.startTime != 0) {
+        return this.timer + (int)(System.currentTimeMillis()/1000) - this.startTime;
+        } else {
+            return this.timer;
+        }  
+    }
+
+    /**
+     * sets start time to time parameter
+     * @param int time
+     */
+    public void setStartTime(int time) {
+        startTime = time;
+    }
+
+    /**
+     * resets timer
+     */
+    public void resetTimer() {
+        this.timer = 0;
+        this.startTime = 0;
     }
 }
 
