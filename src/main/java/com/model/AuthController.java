@@ -21,7 +21,7 @@ public class AuthController {
         while (true) {
             view.clear();
             view.showMessage("\n" + "=".repeat(50));
-            view.showMessage("     WELCOME WHISPERS OF HOLLOW MANOR");
+            view.showMessage("     WELCOME TO WHISPERS OF HOLLOW MANOR");
             view.showMessage("=".repeat(50));
             
             String choice = view.showMenu(new String[]{
