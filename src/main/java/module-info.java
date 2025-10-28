@@ -4,6 +4,7 @@ module com.escapegame {
     requires com.google.gson;
     requires java.base;
     requires freetts;
+    requires junit;
 
     requires java.desktop;
 
