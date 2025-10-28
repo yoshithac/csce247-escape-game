@@ -2243,7 +2243,15 @@
         "maze_h3",
         "anag_h1",
         "anag_h3",
-        "maze_h1"
+        "maze_h1",
+        "anag_h2",
+        "ridd_h2",
+        "cipher_h1",
+        "maze_h2",
+        "match_h1",
+        "match_h2",
+        "ridd_h1",
+        "cipher_h2"
       ],
       "puzzleScores": {
         "ridd_e2": 247,
@@ -2271,9 +2279,17 @@
         "maze_h3": 232,
         "anag_h1": 247,
         "anag_h3": 248,
-        "maze_h1": 231
+        "maze_h1": 231,
+        "anag_h2": 244,
+        "ridd_h2": 247,
+        "cipher_h1": 247,
+        "maze_h2": 231,
+        "match_h1": 136,
+        "match_h2": 139,
+        "ridd_h1": 241,
+        "cipher_h2": 248
       },
-      "totalScore": 5697
+      "totalScore": 7430
     }
   ],
   "certificates": [
@@ -2681,15 +2697,87 @@
       "difficulty": "HARD",
       "scoreAchieved": 231,
       "earnedAt": "2025-10-28T13:41:11.596195"
+    },
+    {
+      "certificateId": "CERT_remyr_anag_h2_1761675417472",
+      "userId": "remyr",
+      "puzzleId": "anag_h2",
+      "description": "Completed \u0027Mythology Mix\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 244,
+      "earnedAt": "2025-10-28T14:16:57.477957"
+    },
+    {
+      "certificateId": "CERT_remyr_ridd_h2_1761675427721",
+      "userId": "remyr",
+      "puzzleId": "ridd_h2",
+      "description": "Completed \u0027Word Riddle\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 247,
+      "earnedAt": "2025-10-28T14:17:07.721217"
+    },
+    {
+      "certificateId": "CERT_remyr_cipher_h1_1761675438212",
+      "userId": "remyr",
+      "puzzleId": "cipher_h1",
+      "description": "Completed \u0027Science Cipher\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 247,
+      "earnedAt": "2025-10-28T14:17:18.213087"
+    },
+    {
+      "certificateId": "CERT_remyr_maze_h2_1761675468449",
+      "userId": "remyr",
+      "puzzleId": "maze_h2",
+      "description": "Completed \u0027Maze Twister\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 231,
+      "earnedAt": "2025-10-28T14:17:48.449699"
+    },
+    {
+      "certificateId": "CERT_remyr_match_h1_1761675626338",
+      "userId": "remyr",
+      "puzzleId": "match_h1",
+      "description": "Completed \u0027Flags Frenzy\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 136,
+      "earnedAt": "2025-10-28T14:20:26.341164"
+    },
+    {
+      "certificateId": "CERT_remyr_match_h2_1761675825445",
+      "userId": "remyr",
+      "puzzleId": "match_h2",
+      "description": "Completed \u0027Alphabet Pairs\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 139,
+      "earnedAt": "2025-10-28T14:23:45.448893"
+    },
+    {
+      "certificateId": "CERT_remyr_ridd_h1_1761675840694",
+      "userId": "remyr",
+      "puzzleId": "ridd_h1",
+      "description": "Completed \u0027The Endless Room\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 241,
+      "earnedAt": "2025-10-28T14:24:00.694382"
+    },
+    {
+      "certificateId": "CERT_remyr_cipher_h2_1761675848462",
+      "userId": "remyr",
+      "puzzleId": "cipher_h2",
+      "description": "Completed \u0027Galaxy Cipher\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 248,
+      "earnedAt": "2025-10-28T14:24:08.462591"
     }
   ],
   "leaderboard": [
     {
       "userId": "remyr",
       "userName": "remy r",
-      "totalScore": 5697,
-      "puzzlesCompleted": 26,
-      "lastUpdated": "2025-10-28T13:41:11.600079"
+      "totalScore": 7430,
+      "puzzlesCompleted": 34,
+      "lastUpdated": "2025-10-28T14:24:08.475236"
     },
     {
       "userId": "yoshi",

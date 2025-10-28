@@ -234,7 +234,7 @@ public class GameController {
                 waitForUser();
                 return;
             }
-            
+
             // Play selected puzzle
             String selectedType = typesList.get(choiceNum - 1);
             Puzzle selectedPuzzle = sessionPuzzles.get(selectedType);
@@ -250,6 +250,7 @@ public class GameController {
         String msg = "You found all the keys needed to escape the manor .. Press ENTER to craft the final key and escape!";
         System.out.println(msg);
         Speak.speak(msg);
+        waitForUser();
         // End of final key message 
         // All puzzles completed!
         view.clear();
