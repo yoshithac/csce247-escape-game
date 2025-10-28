@@ -2210,6 +2210,12 @@
   ],
   "userProgress": [
     {
+      "userId": "U1001",
+      "completedPuzzles": [],
+      "puzzleScores": {},
+      "totalScore": 0
+    },
+    {
       "userId": "remyr",
       "completedPuzzles": [
         "ridd_e2",
@@ -2223,7 +2229,21 @@
         "maze_e2",
         "anag_e2",
         "cipher_e3",
-        "anag_e1"
+        "anag_e1",
+        "match_e1",
+        "cipher_e2",
+        "match_e3",
+        "anag_m2",
+        "ridd_m2",
+        "match_m2",
+        "cipher_m1",
+        "ridd_h3",
+        "match_h3",
+        "cipher_h3",
+        "maze_h3",
+        "anag_h1",
+        "anag_h3",
+        "maze_h1"
       ],
       "puzzleScores": {
         "ridd_e2": 247,
@@ -2237,9 +2257,23 @@
         "maze_e2": 220,
         "anag_e2": 186,
         "cipher_e3": 248,
-        "anag_e1": 150
+        "anag_e1": 150,
+        "match_e1": 188,
+        "cipher_e2": 239,
+        "match_e3": 203,
+        "anag_m2": 248,
+        "ridd_m2": 237,
+        "match_m2": 141,
+        "cipher_m1": 248,
+        "ridd_h3": 237,
+        "match_h3": 135,
+        "cipher_h3": 248,
+        "maze_h3": 232,
+        "anag_h1": 247,
+        "anag_h3": 248,
+        "maze_h1": 231
       },
-      "totalScore": 2615
+      "totalScore": 5697
     }
   ],
   "certificates": [
@@ -2521,22 +2555,148 @@
       "difficulty": "EASY",
       "scoreAchieved": 150,
       "earnedAt": "2025-10-26T22:22:13.570893"
+    },
+    {
+      "certificateId": "CERT_remyr_match_e1_1761544775704",
+      "userId": "remyr",
+      "puzzleId": "match_e1",
+      "description": "Completed \u0027Alphabet Pairing\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 188,
+      "earnedAt": "2025-10-27T01:59:35.707111"
+    },
+    {
+      "certificateId": "CERT_remyr_cipher_e2_1761544809931",
+      "userId": "remyr",
+      "puzzleId": "cipher_e2",
+      "description": "Completed \u0027Galaxy Cipher\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 239,
+      "earnedAt": "2025-10-27T02:00:09.931468"
+    },
+    {
+      "certificateId": "CERT_remyr_match_e3_1761672237668",
+      "userId": "remyr",
+      "puzzleId": "match_e3",
+      "description": "Completed \u0027Flags Deluxe\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 203,
+      "earnedAt": "2025-10-28T13:23:57.673747"
+    },
+    {
+      "certificateId": "CERT_remyr_anag_m2_1761672612381",
+      "userId": "remyr",
+      "puzzleId": "anag_m2",
+      "description": "Completed \u0027Season Anagram\u0027 puzzle",
+      "difficulty": "MEDIUM",
+      "scoreAchieved": 248,
+      "earnedAt": "2025-10-28T13:30:12.384845"
+    },
+    {
+      "certificateId": "CERT_remyr_ridd_m2_1761672632007",
+      "userId": "remyr",
+      "puzzleId": "ridd_m2",
+      "description": "Completed \u0027Number Riddle\u0027 puzzle",
+      "difficulty": "MEDIUM",
+      "scoreAchieved": 237,
+      "earnedAt": "2025-10-28T13:30:32.008066"
+    },
+    {
+      "certificateId": "CERT_remyr_match_m2_1761672734399",
+      "userId": "remyr",
+      "puzzleId": "match_m2",
+      "description": "Completed \u0027Vehicles Match\u0027 puzzle",
+      "difficulty": "MEDIUM",
+      "scoreAchieved": 141,
+      "earnedAt": "2025-10-28T13:32:14.399533"
+    },
+    {
+      "certificateId": "CERT_remyr_cipher_m1_1761672742815",
+      "userId": "remyr",
+      "puzzleId": "cipher_m1",
+      "description": "Completed \u0027Planet Cipher\u0027 puzzle",
+      "difficulty": "MEDIUM",
+      "scoreAchieved": 248,
+      "earnedAt": "2025-10-28T13:32:22.817969"
+    },
+    {
+      "certificateId": "CERT_remyr_ridd_h3_1761673048676",
+      "userId": "remyr",
+      "puzzleId": "ridd_h3",
+      "description": "Completed \u0027Invisible Home\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 237,
+      "earnedAt": "2025-10-28T13:37:28.681169"
+    },
+    {
+      "certificateId": "CERT_remyr_match_h3_1761673162639",
+      "userId": "remyr",
+      "puzzleId": "match_h3",
+      "description": "Completed \u0027Number Match\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 135,
+      "earnedAt": "2025-10-28T13:39:22.639299"
+    },
+    {
+      "certificateId": "CERT_remyr_cipher_h3_1761673170629",
+      "userId": "remyr",
+      "puzzleId": "cipher_h3",
+      "description": "Completed \u0027Composer Cipher\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 248,
+      "earnedAt": "2025-10-28T13:39:30.63014"
+    },
+    {
+      "certificateId": "CERT_remyr_maze_h3_1761673183024",
+      "userId": "remyr",
+      "puzzleId": "maze_h3",
+      "description": "Completed \u0027Labyrinth X\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 232,
+      "earnedAt": "2025-10-28T13:39:43.025068"
+    },
+    {
+      "certificateId": "CERT_remyr_anag_h1_1761673192492",
+      "userId": "remyr",
+      "puzzleId": "anag_h1",
+      "description": "Completed \u0027Astronomy Anagram\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 247,
+      "earnedAt": "2025-10-28T13:39:52.493529"
+    },
+    {
+      "certificateId": "CERT_remyr_anag_h3_1761673258127",
+      "userId": "remyr",
+      "puzzleId": "anag_h3",
+      "description": "Completed \u0027World City\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 248,
+      "earnedAt": "2025-10-28T13:40:58.127382"
+    },
+    {
+      "certificateId": "CERT_remyr_maze_h1_1761673271596",
+      "userId": "remyr",
+      "puzzleId": "maze_h1",
+      "description": "Completed \u0027Maze Inferno\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 231,
+      "earnedAt": "2025-10-28T13:41:11.596195"
     }
   ],
   "leaderboard": [
+    {
+      "userId": "remyr",
+      "userName": "remy r",
+      "totalScore": 5697,
+      "puzzlesCompleted": 26,
+      "lastUpdated": "2025-10-28T13:41:11.600079"
+    },
     {
       "userId": "yoshi",
       "userName": "yoshi chil",
       "totalScore": 3324,
       "puzzlesCompleted": 15,
       "lastUpdated": "2025-10-26T14:46:39.8825124"
-    },
-    {
-      "userId": "remyr",
-      "userName": "remy r",
-      "totalScore": 2615,
-      "puzzlesCompleted": 12,
-      "lastUpdated": "2025-10-26T22:22:13.580159"
     },
     {
       "userId": "U1002",

@@ -178,6 +178,7 @@ public class GameController {
         
         if (sessionPuzzles.isEmpty()) {
             view.showMessage("No uncompleted puzzles available for this difficulty!");
+            resetTimer();
             waitForUser();
             return;
         }
@@ -221,6 +222,15 @@ public class GameController {
             if (choiceNum == menuOptions.size()) {
                 view.showMessage("Exiting game session...");
                 pauseTimer();
+                waitForUser();
+                return;
+            }
+
+            //exit after time is up (10 mins)
+            if (getTimer() >= 600) {
+                view.showMessage("Time's up! You couldn't escape the manor in time...");
+                Speak.speak("Time's up! You couldn't escape the manor in time...");
+                resetTimer();
                 waitForUser();
                 return;
             }
