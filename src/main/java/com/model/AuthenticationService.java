@@ -50,7 +50,6 @@ public class AuthenticationService {
         if (userId == null || userId.length() != 5) return false;
         if (password == null || password.length() < 4) return false;
         if (dataFacade.userIdExists(userId)) return false;
-        //if (dataFacade.emailExists(email)) return false;
         
         // Create and add new user
         User newUser = new User(userId, password, firstName, lastName, email);

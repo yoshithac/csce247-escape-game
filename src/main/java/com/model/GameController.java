@@ -46,10 +46,6 @@ public class GameController {
      */
     public void start() {
         while (authService.isLoggedIn()) {
-            // Prompt for difficulty if not set, or allow changing it explicitly
-      //      if (sessionDifficulty == null) {
-       //         sessionDifficulty = selectDifficulty();
-       //     }
 
             view.clear();
             String userId = authService.getCurrentUser().getUserId();

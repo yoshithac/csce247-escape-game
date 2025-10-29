@@ -16,7 +16,15 @@ public class Certificate {
     public Certificate() {
         this.earnedAt = LocalDateTime.now();
     }
-
+    /**
+     * 
+     * @param certificateId
+     * @param userId
+     * @param puzzleId
+     * @param description
+     * @param difficulty
+     * @param scoreAchieved
+     */
     public Certificate(String certificateId, String userId, String puzzleId,
                       String description, String difficulty, int scoreAchieved) {
         this();
