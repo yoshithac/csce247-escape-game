@@ -2290,6 +2290,12 @@
         "cipher_h2": 248
       },
       "totalScore": 7430
+    },
+    {
+      "userId": "yoshi",
+      "completedPuzzles": [],
+      "puzzleScores": {},
+      "totalScore": 0
     }
   ],
   "certificates": [

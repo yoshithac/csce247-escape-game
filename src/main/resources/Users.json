@@ -20,16 +20,6 @@
     "lastLoginAt": "2025-10-26T00:09:06.2159961"
   },
   {
-    "userId": "yoshi",
-    "password": "1234",
-    "firstName": "yoshi",
-    "lastName": "chil",
-    "email": "yoshi@gmail.com",
-    "role": "USER",
-    "createdAt": "2025-10-25T15:44:44.4791578",
-    "lastLoginAt": "2025-10-26T14:44:45.797754"
-  },
-  {
     "userId": "U1001",
     "password": "p123",
     "firstName": "John",
@@ -48,5 +38,15 @@
     "role": "USER",
     "createdAt": "2025-10-26T21:50:00.869575",
     "lastLoginAt": "2025-10-28T14:21:18.092272"
+  },
+  {
+    "userId": "yoshi",
+    "password": "1234",
+    "firstName": "yoshi",
+    "lastName": "chil",
+    "email": "yoshi@gmail.com",
+    "role": "USER",
+    "createdAt": "2025-10-25T15:44:44.4791578",
+    "lastLoginAt": "2025-11-01T14:38:31.3991167"
   }
 ]
