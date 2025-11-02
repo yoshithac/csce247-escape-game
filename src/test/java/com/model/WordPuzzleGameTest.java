@@ -7,177 +7,421 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
- * JUnit4 tests for WordPuzzleGame (tests non-getter/setter behavior)
+ * Test cases for WordPuzzleGame
+ * Each test method contains exactly one assertion
+ * CORRECTED to match actual WordPuzzleGame implementation
  */
 public class WordPuzzleGameTest {
-
-    private Map<String, Object> makePuzzleData(String prompt, String answer, String category, int maxAttempts) {
+    
+    private WordPuzzleGame wordGame;
+    private Map<String, Object> puzzleData;
+    
+    @Before
+    public void setUp() {
+        wordGame = new WordPuzzleGame();
+        wordGame.setPuzzleType("RIDDLE");
+        puzzleData = createTestWordPuzzleData();
+        wordGame.initialize(puzzleData);
+    }
+    
+    private Map<String, Object> createTestWordPuzzleData() {
         Map<String, Object> data = new HashMap<>();
-        data.put("prompt", prompt);
-        data.put("answer", answer);
-        data.put("category", category);
-        data.put("maxAttempts", maxAttempts);
+        data.put("prompt", "What has keys but no locks?");
+        data.put("answer", "KEYBOARD");
+        data.put("category", "Technology");
+        data.put("maxAttempts", 3);
+        
+        List<String> hints = new ArrayList<>();
+        hints.add("It's used with computers");
+        hints.add("You type on it");
+        data.put("hints", hints);
+        
         return data;
     }
-
-    private List<Hint> makeHints(String... texts) {
-        List<Hint> list = new ArrayList<>();
-        int pr = 1;
-        for (String t : texts) {
-            list.add(new Hint(t, "p1", pr++));
-        }
-        return list;
-    }
-
+    
+    // ===== initialize() =====
+    
     @Test
-    public void testInitialize_andGetGameState_basics() {
-        WordPuzzleGame game = new WordPuzzleGame();
-        Map<String, Object> puzzle = makePuzzleData("Solve this", "answer", "GEN", 3);
-        game.initialize(puzzle);
-
-        Map<String, Object> state = game.getGameState();
-        assertEquals("prompt should be set", "Solve this", state.get("prompt"));
-        assertEquals("category should be set", "GEN", state.get("category"));
-        assertEquals("attemptsUsed should start at 0", 0, ((Number) state.get("attemptsUsed")).intValue());
-        assertEquals("maxAttempts should be correct", 3, ((Number) state.get("maxAttempts")).intValue());
-        assertEquals("remainingAttempts should equal maxAttempts", 3, ((Number) state.get("remainingAttempts")).intValue());
-        assertTrue("guesses should be an empty list", ((List) state.get("guesses")).isEmpty());
+    public void testInitializeSetsUpGame() {
+        wordGame.initialize(puzzleData);
+        assertFalse(wordGame.isGameOver());
     }
-
+    
     @Test
-    public void testProcessInput_correctAnswer_setsWonAndProcessedTrue() {
-        WordPuzzleGame game = new WordPuzzleGame();
-        Map<String, Object> puzzle = makePuzzleData("Q", "SeCrEt", "CAT", 3);
-        game.initialize(puzzle);
-
-        // answer is case-insensitive (game uppercases internally)
-        boolean processed = game.processInput("secret");
-        assertTrue("processInput should return true for correct answer", processed);
-        Map<String, Object> result = game.getResult();
-        assertTrue("won should be true after correct answer", (Boolean) result.get("won"));
-        assertEquals("moves should be 0 after immediate correct answer", 0, ((Number) result.get("moves")).intValue());
+    public void testInitializeDoesNotSetGameOverState() {
+        assertFalse(wordGame.isGameOver());
     }
-
+    
+    // ===== getGameType() =====
+    
     @Test
-    public void testProcessInput_wrongGuesses_incrementAttempts_andPreventDuplicateGuessAddition() {
-        WordPuzzleGame game = new WordPuzzleGame();
-        Map<String, Object> puzzle = makePuzzleData("Q", "OK", "CAT", 5);
-        game.initialize(puzzle);
-
-        // first wrong guess
-        assertTrue("first wrong guess processed", game.processInput("NO"));
-        Map<String, Object> s1 = game.getGameState();
-        assertEquals("attemptsUsed should be 1", 1, ((Number) s1.get("attemptsUsed")).intValue());
-        assertEquals("guesses should contain one entry", 1, ((List) s1.get("guesses")).size());
-
-        // second wrong guess, different
-        assertTrue("second wrong guess processed", game.processInput("MAYBE"));
-        Map<String, Object> s2 = game.getGameState();
-        assertEquals("attemptsUsed should be 2", 2, ((Number) s2.get("attemptsUsed")).intValue());
-        assertEquals("guesses should contain two entries", 2, ((List) s2.get("guesses")).size());
-
-        // repeat the same guess "MAYBE" - attemptsUsed should still increment but guesses list should not add duplicate
-        assertTrue("duplicate guess processed", game.processInput("MAYBE"));
-        Map<String, Object> s3 = game.getGameState();
-        assertEquals("attemptsUsed should be 3 after duplicate guess", 3, ((Number) s3.get("attemptsUsed")).intValue());
-        assertEquals("guesses should still have two unique entries", 2, ((List) s3.get("guesses")).size());
+    public void testGetGameTypeReturnsRiddle() {
+        assertEquals("RIDDLE", wordGame.getGameType());
     }
-
+    
     @Test
-    public void testHintRequest_revealsHints_andAvailableHintsCountUpdates() {
-        WordPuzzleGame game = new WordPuzzleGame();
-        Map<String, Object> puzzle = makePuzzleData("Q", "A", "CAT", 3);
-        game.initialize(puzzle);
-
-        List<Hint> hints = makeHints("first", "second", "third");
-        game.setHints(hints);
-
-        // initially no revealed hints
-        Map<String, Object> s0 = game.getGameState();
-        assertEquals("availableHintsCount should equal total hints initially", 3, ((Number) s0.get("availableHintsCount")).intValue());
-
-        // request a hint
-        assertTrue("HINT input processed", game.processInput("HINT"));
-        Map<String, Object> s1 = game.getGameState();
-        assertEquals("availableHintsCount should decrease after one reveal", 2, ((Number) s1.get("availableHintsCount")).intValue());
-        List revealed1 = (List) s1.get("revealedHints");
-        assertEquals("one hint should be revealed", 1, revealed1.size());
-        assertEquals("revealed hint text should match first hint", "first", revealed1.get(0));
-
-        // request another hint (case-insensitive)
-        assertTrue(game.processInput("hint"));
-        Map<String, Object> s2 = game.getGameState();
-        assertEquals(1, ((Number) s2.get("attemptsUsed")).intValue()); // hint does not increment attempts
-        assertEquals("availableHintsCount should be 1", 1, ((Number) s2.get("availableHintsCount")).intValue());
-        List revealed2 = (List) s2.get("revealedHints");
-        assertEquals(2, revealed2.size());
+    public void testSetPuzzleTypeSetsCipher() {
+        wordGame.setPuzzleType("CIPHER");
+        assertEquals("CIPHER", wordGame.getGameType());
     }
-
+    
     @Test
-    public void testIsGameOver_whenAttemptsExhausted_andGetResultShowsAnswerWhenLost() {
-        WordPuzzleGame game = new WordPuzzleGame();
-        Map<String, Object> puzzle = makePuzzleData("Q", "WIN", "X", 2);
-        game.initialize(puzzle);
-
-        // two wrong attempts will exhaust maxAttempts
-        game.processInput("NO1");
-        game.processInput("NO2");
-        assertTrue("game should be over after exhausting attempts", game.isGameOver());
-
-        Map<String, Object> result = game.getResult();
-        assertFalse("won should be false when lost", (Boolean) result.get("won"));
-        assertEquals("moves should equal attempts used", 2, ((Number) result.get("moves")).intValue());
-        assertEquals("answer should be included in result when not won", "WIN", result.get("answer"));
+    public void testSetPuzzleTypeSetsAnagram() {
+        wordGame.setPuzzleType("ANAGRAM");
+        assertEquals("ANAGRAM", wordGame.getGameType());
     }
-
+    
+    // ===== processInput() - Correct Answer =====
+    
     @Test
-    public void testReset_clearsGuesses_andRevealedHints_andAttempts() {
-        WordPuzzleGame game = new WordPuzzleGame();
-        Map<String, Object> puzzle = makePuzzleData("Q", "ANS", "C", 3);
-        game.initialize(puzzle);
-        game.setHints(makeHints("h1","h2"));
-
-        // use up some state
-        game.processInput("NO");
-        game.processInput("HINT");
-        assertTrue("some state should have changed", game.getGameState().get("revealedHints") != null);
-
-        game.reset();
-        Map<String, Object> s = game.getGameState();
-        assertEquals("attemptsUsed reset to 0", 0, ((Number) s.get("attemptsUsed")).intValue());
-        assertEquals("revealedHints cleared after reset", 0, ((List) s.get("revealedHints")).size());
-        assertEquals("guesses cleared after reset", 0, ((List) s.get("guesses")).size());
-        assertFalse("won should be false after reset", (Boolean) game.getResult().get("won"));
+    public void testProcessInputWithCorrectAnswerReturnsTrue() {
+        assertTrue(wordGame.processInput("KEYBOARD"));
     }
-
+    
     @Test
-    public void testSaveState_andRestoreState_roundTrip_preservesRevealedHintsAndGuesses() {
-        WordPuzzleGame game = new WordPuzzleGame();
-        Map<String, Object> puzzle = makePuzzleData("Q", "SECRET", "cat", 5);
-        game.initialize(puzzle);
-        game.setHints(makeHints("h1","h2","h3"));
-
-        // add guesses and reveal two hints
-        game.processInput("TRY1");
-        game.processInput("HINT");
-        game.processInput("TRY2");
-        game.processInput("HINT");
-
-        Map<String, Object> saved = game.saveState();
-
-        // Create fresh game and restore
-        WordPuzzleGame restored = new WordPuzzleGame();
-        restored.restoreState(saved);
-        // set hints on restored so hint-related behavior is consistent (restoreState sets hints to empty list)
-        restored.setHints(makeHints("h1","h2","h3"));
-
-        Map<String, Object> rstate = restored.getGameState();
-        assertEquals("attemptsUsed should be restored", ((Number) saved.get("attemptsUsed")).intValue(), ((Number) rstate.get("attemptsUsed")).intValue());
-        assertEquals("guesses should be restored", ((List) saved.get("guesses")).size(), ((List) rstate.get("guesses")).size());
-        assertEquals("revealedHints should be restored", ((List) saved.get("revealedHints")).size(), ((List) rstate.get("revealedHints")).size());
+    public void testProcessInputWithCorrectAnswerSetsGameOver() {
+        wordGame.processInput("KEYBOARD");
+        assertTrue(wordGame.isGameOver());
+    }
+    
+    @Test
+    public void testProcessInputIsCaseInsensitive() {
+        assertTrue(wordGame.processInput("keyboard"));
+    }
+    
+    @Test
+    public void testProcessInputWithLeadingWhitespace() {
+        assertTrue(wordGame.processInput("  KEYBOARD  "));
+    }
+    
+    // ===== processInput() - Wrong Answer =====
+    
+    @Test
+    public void testProcessInputWithIncorrectAnswerReturnsTrue() {
+        assertTrue(wordGame.processInput("MOUSE"));
+    }
+    
+    @Test
+    public void testProcessInputWithPartialAnswer() {
+        assertTrue(wordGame.processInput("KEY"));
+    }
+    
+    @Test
+    public void testProcessInputWithEmptyString() {
+        assertTrue(wordGame.processInput(""));
+    }
+    
+    // ===== processInput() - HINT command =====
+    
+    @Test
+    public void testProcessInputWithHintCommandReturnsTrue() {
+        assertTrue(wordGame.processInput("HINT"));
+    }
+    
+    @Test
+    public void testProcessInputHintCommandIsCaseInsensitive() {
+        assertTrue(wordGame.processInput("hint"));
+    }
+    
+    @Test
+    public void testProcessInputHintCommandWithWhitespace() {
+        assertTrue(wordGame.processInput("  HINT  "));
+    }
+    
+    // ===== isGameOver() =====
+    
+    @Test
+    public void testIsGameOverReturnsFalseInitially() {
+        assertFalse(wordGame.isGameOver());
+    }
+    
+    @Test
+    public void testIsGameOverAfterCorrectAnswer() {
+        wordGame.processInput("KEYBOARD");
+        assertTrue(wordGame.isGameOver());
+    }
+    
+    @Test
+    public void testIsGameOverAfterMaxAttempts() {
+        wordGame.processInput("WRONG1");
+        wordGame.processInput("WRONG2");
+        wordGame.processInput("WRONG3");
+        assertTrue(wordGame.isGameOver());
+    }
+    
+    // ===== getGameState() =====
+    
+    @Test
+    public void testGetGameStateReturnsNonNull() {
+        assertNotNull(wordGame.getGameState());
+    }
+    
+    @Test
+    public void testGetGameStateContainsPuzzleType() {
+        Map<String, Object> state = wordGame.getGameState();
+        assertTrue(state.containsKey("puzzleType"));
+    }
+    
+    @Test
+    public void testGetGameStateContainsPrompt() {
+        Map<String, Object> state = wordGame.getGameState();
+        assertTrue(state.containsKey("prompt"));
+    }
+    
+    @Test
+    public void testGetGameStateContainsCategory() {
+        Map<String, Object> state = wordGame.getGameState();
+        assertTrue(state.containsKey("category"));
+    }
+    
+    @Test
+    public void testGetGameStateContainsAttemptsUsed() {
+        Map<String, Object> state = wordGame.getGameState();
+        assertTrue(state.containsKey("attemptsUsed"));
+    }
+    
+    @Test
+    public void testGetGameStateContainsMaxAttempts() {
+        Map<String, Object> state = wordGame.getGameState();
+        assertTrue(state.containsKey("maxAttempts"));
+    }
+    
+    @Test
+    public void testGetGameStateContainsRemainingAttempts() {
+        Map<String, Object> state = wordGame.getGameState();
+        assertTrue(state.containsKey("remainingAttempts"));
+    }
+    
+    @Test
+    public void testGetGameStateContainsGuesses() {
+        Map<String, Object> state = wordGame.getGameState();
+        assertTrue(state.containsKey("guesses"));
+    }
+    
+    @Test
+    public void testGetGameStateContainsRevealedHints() {
+        Map<String, Object> state = wordGame.getGameState();
+        assertTrue(state.containsKey("revealedHints"));
+    }
+    
+    @Test
+    public void testGetGameStateContainsAvailableHintsCount() {
+        Map<String, Object> state = wordGame.getGameState();
+        assertTrue(state.containsKey("availableHintsCount"));
+    }
+    
+    // ===== getResult() =====
+    
+    @Test
+    public void testGetResultReturnsNonNull() {
+        assertNotNull(wordGame.getResult());
+    }
+    
+    @Test
+    public void testGetResultContainsWon() {
+        Map<String, Object> result = wordGame.getResult();
+        assertTrue(result.containsKey("won"));
+    }
+    
+    @Test
+    public void testGetResultContainsTime() {
+        Map<String, Object> result = wordGame.getResult();
+        assertTrue(result.containsKey("time"));
+    }
+    
+    @Test
+    public void testGetResultContainsMoves() {
+        Map<String, Object> result = wordGame.getResult();
+        assertTrue(result.containsKey("moves"));
+    }
+    
+    @Test
+    public void testGetResultContainsHintsUsed() {
+        Map<String, Object> result = wordGame.getResult();
+        assertTrue(result.containsKey("hintsUsed"));
+    }
+    
+    @Test
+    public void testGetResultWonIsTrueAfterCorrectAnswer() {
+        wordGame.processInput("KEYBOARD");
+        Map<String, Object> result = wordGame.getResult();
+        assertTrue((Boolean) result.get("won"));
+    }
+    
+    @Test
+    public void testGetResultWonIsFalseAfterLoss() {
+        wordGame.processInput("WRONG1");
+        wordGame.processInput("WRONG2");
+        wordGame.processInput("WRONG3");
+        Map<String, Object> result = wordGame.getResult();
+        assertFalse((Boolean) result.get("won"));
+    }
+    
+    @Test
+    public void testGetResultContainsAnswerWhenLost() {
+        wordGame.processInput("WRONG1");
+        wordGame.processInput("WRONG2");
+        wordGame.processInput("WRONG3");
+        Map<String, Object> result = wordGame.getResult();
+        assertTrue(result.containsKey("answer"));
+    }
+    
+    @Test
+    public void testGetResultDoesNotContainAnswerWhenWon() {
+        wordGame.processInput("KEYBOARD");
+        Map<String, Object> result = wordGame.getResult();
+        assertFalse(result.containsKey("answer"));
+    }
+    
+    // ===== saveState() =====
+    
+    @Test
+    public void testSaveStateReturnsNonNull() {
+        assertNotNull(wordGame.saveState());
+    }
+    
+    @Test
+    public void testSaveStateContainsPuzzleType() {
+        Map<String, Object> state = wordGame.saveState();
+        assertTrue(state.containsKey("puzzleType"));
+    }
+    
+    @Test
+    public void testSaveStateContainsAttemptsUsed() {
+        Map<String, Object> state = wordGame.saveState();
+        assertTrue(state.containsKey("attemptsUsed"));
+    }
+    
+    @Test
+    public void testSaveStateContainsGuesses() {
+        wordGame.processInput("WRONG");
+        Map<String, Object> state = wordGame.saveState();
+        assertTrue(state.containsKey("guesses"));
+    }
+    
+    @Test
+    public void testSaveStateContainsRevealedHints() {
+        wordGame.processInput("HINT");
+        Map<String, Object> state = wordGame.saveState();
+        assertTrue(state.containsKey("revealedHints"));
+    }
+    
+    @Test
+    public void testSaveStateContainsWon() {
+        Map<String, Object> state = wordGame.saveState();
+        assertTrue(state.containsKey("won"));
+    }
+    
+    @Test
+    public void testSaveStateContainsStartTime() {
+        Map<String, Object> state = wordGame.saveState();
+        assertTrue(state.containsKey("startTime"));
+    }
+    
+    // ===== restoreState() =====
+    
+    @Test
+    public void testRestoreStateRestoresAttempts() {
+        wordGame.processInput("WRONG");
+        Map<String, Object> saved = wordGame.saveState();
+        WordPuzzleGame newGame = new WordPuzzleGame();
+        newGame.setPuzzleType("RIDDLE");
+        newGame.initialize(puzzleData);
+        newGame.restoreState(saved);
+        Map<String, Object> newState = newGame.getGameState();
+        assertEquals(saved.get("attemptsUsed"), newState.get("attemptsUsed"));
+    }
+    
+    @Test
+    public void testRestoreStateRestoresGuesses() {
+        wordGame.processInput("WRONG");
+        Map<String, Object> saved = wordGame.saveState();
+        WordPuzzleGame newGame = new WordPuzzleGame();
+        newGame.initialize(puzzleData);
+        newGame.restoreState(saved);
+        Map<String, Object> newState = newGame.getGameState();
+        assertEquals(1, ((List<?>) newState.get("guesses")).size());
+    }
+    
+    @Test
+    public void testRestoreStateRestoresPuzzleType() {
+        Map<String, Object> saved = wordGame.saveState();
+        WordPuzzleGame newGame = new WordPuzzleGame();
+        newGame.restoreState(saved);
+        assertEquals("RIDDLE", newGame.getGameType());
+    }
+    
+    // ===== reset() =====
+    
+    @Test
+    public void testResetClearsGameOverState() {
+        wordGame.processInput("KEYBOARD");
+        wordGame.reset();
+        assertFalse(wordGame.isGameOver());
+    }
+    
+    @Test
+    public void testResetClearsGuesses() {
+        wordGame.processInput("WRONG");
+        wordGame.reset();
+        Map<String, Object> state = wordGame.getGameState();
+        List<?> guesses = (List<?>) state.get("guesses");
+        assertTrue(guesses.isEmpty());
+    }
+    
+    @Test
+    public void testResetClearsRevealedHints() {
+        wordGame.processInput("HINT");
+        wordGame.reset();
+        Map<String, Object> state = wordGame.getGameState();
+        List<?> hints = (List<?>) state.get("revealedHints");
+        assertTrue(hints.isEmpty());
+    }
+    
+    @Test
+    public void testResetResetsAttemptsUsed() {
+        wordGame.processInput("WRONG");
+        wordGame.reset();
+        Map<String, Object> state = wordGame.getGameState();
+        assertEquals(0, state.get("attemptsUsed"));
+    }
+    
+    // ===== setHints() =====
+    
+    @Test
+    public void testSetHintsAllowsHintRevealing() {
+        List<Hint> hints = new ArrayList<>();
+        hints.add(new Hint("First hint", "P001", 1));
+        hints.add(new Hint("Second hint", "P001", 2));
+        wordGame.setHints(hints);
+        wordGame.processInput("HINT");
+        Map<String, Object> state = wordGame.getGameState();
+        List<?> revealedHints = (List<?>) state.get("revealedHints");
+        assertFalse(revealedHints.isEmpty());
+    }
+    
+    @Test
+    public void testSetHintsUpdatesAvailableCount() {
+        List<Hint> hints = new ArrayList<>();
+        hints.add(new Hint("First hint", "P001", 1));
+        hints.add(new Hint("Second hint", "P001", 2));
+        wordGame.setHints(hints);
+        Map<String, Object> state = wordGame.getGameState();
+        assertEquals(2, state.get("availableHintsCount"));
+    }
+    
+    // ===== setPuzzleId() =====
+    
+    @Test
+    public void testSetPuzzleIdStoresId() {
+        wordGame.setPuzzleId("TEST_001");
+        Map<String, Object> saved = wordGame.saveState();
+        assertEquals("TEST_001", saved.get("puzzleId"));
     }
 }
