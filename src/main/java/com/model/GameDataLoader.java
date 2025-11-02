@@ -26,10 +26,24 @@ public class GameDataLoader {
         .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
         .setPrettyPrinting()
         .create();
-    
+    private final String userFilePath;
+    private final String gameDataFilePath;
+
     protected static final String USER_FILE_NAME = "src/main/resources/users.json";
     protected static final String GAMEDATA_FILE_NAME = "src/main/resources/gamedata.json";
     
+    // Production constructor - uses default paths
+    public GameDataLoader() {
+        this(USER_FILE_NAME, GAMEDATA_FILE_NAME);
+    }
+    
+    // Test constructor - allows custom paths
+    public GameDataLoader(String userFilePath, String gameDataFilePath) {
+        this.userFilePath = userFilePath;
+        this.gameDataFilePath = gameDataFilePath;
+    }
+
+
     /**
      * Loads the list of user data from users.json
      * @return List of User objects (never null)
@@ -38,7 +52,7 @@ public class GameDataLoader {
         List<User> users = null;
         try {
             users = gson.fromJson(
-                new FileReader(USER_FILE_NAME),
+                new FileReader(userFilePath),
                 new TypeToken<List<User>>() {}.getType()
             );
             
@@ -47,7 +61,7 @@ public class GameDataLoader {
                 users = new ArrayList<>();
             }
         } catch (Exception ex) {
-            System.out.println("Could not find or read: " + USER_FILE_NAME);
+            System.out.println("Could not find or read: " + userFilePath);
             ex.printStackTrace();
             users = new ArrayList<>();
         }
@@ -62,7 +76,7 @@ public class GameDataLoader {
         GameData gameData = null;
         try {
             gameData = gson.fromJson(
-                new FileReader(GAMEDATA_FILE_NAME),
+                new FileReader(gameDataFilePath),
                 GameData.class
             );
             
@@ -71,7 +85,7 @@ public class GameDataLoader {
                 gameData = new GameData();
             }
         } catch (Exception ex) {
-            System.out.println("Could not find or read: " + GAMEDATA_FILE_NAME);
+            System.out.println("Could not find or read: " + gameDataFilePath);
             ex.printStackTrace();
             gameData = new GameData();
         }

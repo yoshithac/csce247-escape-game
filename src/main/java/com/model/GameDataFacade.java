@@ -28,7 +28,27 @@ public class GameDataFacade {
         this.writer = new GameDataWriter();
         loadAllData();
     }
-    
+
+    // Test constructor - allows dependency injection
+    protected GameDataFacade(GameDataLoader loader, GameDataWriter writer) {
+        this.loader = loader;
+        this.writer = writer;
+        loadAllData();
+    }
+
+    // Test method to inject custom instance
+    protected static void setTestInstance(GameDataFacade testInstance) {
+        instance = testInstance;
+    }
+
+    /**
+    * Reset singleton instance - USE ONLY FOR TESTING
+    * This allows tests to start with a fresh instance
+    */
+    protected static void resetInstance() {
+        instance = null;
+    }
+
     /**
      * Get singleton instance
      */
@@ -359,5 +379,9 @@ public class GameDataFacade {
             }
         }
         return -1;
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }

@@ -60,6 +60,7 @@ public class MazeGame implements PuzzleGame {
      * @Override
      */
     public boolean processInput(String input) {
+        if (input == null) return false;
         input = input.toUpperCase().trim();
         
         int newRow = player.row;

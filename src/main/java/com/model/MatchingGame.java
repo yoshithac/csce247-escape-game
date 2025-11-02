@@ -68,6 +68,7 @@ public class MatchingGame implements PuzzleGame {
      * @Override
      */
     public boolean processInput(String input) {
+        if (input == null) return false;
         String[] parts = input.trim().split("\\s+");
         if (parts.length != 2) {
             return false;

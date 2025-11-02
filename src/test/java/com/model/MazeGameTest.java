@@ -1,187 +1,720 @@
 package com.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests for MazeGame (tests non-getter/setter behavior)
+ * Test cases for MazeGame using JUnit 4.13
+ * Tests maze navigation, movement, wall collision, state management, and save/restore
  */
 public class MazeGameTest {
-
+    
+    private MazeGame game;
+    private Map<String, Object> puzzleData;
+    
+    @Before
+    public void setUp() {
+        game = new MazeGame();
+        puzzleData = createTestMazeData();
+    }
+    
+    @After
+    public void tearDown() {
+        game = null;
+        puzzleData = null;
+    }
+    
     /**
-     * Helper to build puzzleData for a simple maze:
-     * 0 = path, 1 = wall
-     *
-     * Example 3x3 grid used:
-     * 0 0 0
-     * 1 1 0
-     * 0 0 0
-     *
-     * start at (0,0), end at (2,2)
+     * Helper method to create test maze data
+     * Creates a 6x6 maze with walls around borders and internal walls:
+     * █ █ █ █ █ █
+     * █ S 0 0 0 █
+     * █ 0 █ █ 0 █
+     * █ 0 0 █ 0 █
+     * █ █ 0 0 E █
+     * █ █ █ █ █ █
+     * Where S=start(1,1), E=end(4,4), 0=path, 1=wall, █=wall
      */
-    private Map<String, Object> makePuzzleData() {
+    private Map<String, Object> createTestMazeData() {
         Map<String, Object> data = new HashMap<>();
-        int width = 3;
-        int height = 3;
-        data.put("width", width);
-        data.put("height", height);
-
-        // grid as List<List<Number>>
-        List<List<Number>> gridList = new ArrayList<>();
-        gridList.add(Arrays.asList(0, 0, 0));
-        gridList.add(Arrays.asList(1, 1, 0));
-        gridList.add(Arrays.asList(0, 0, 0));
-        data.put("grid", gridList);
-
+        data.put("width", 6);
+        data.put("height", 6);
+        
+        // Create grid: 0=path, 1=wall
+        List<List<Integer>> grid = new ArrayList<>();
+        
+        // Row 0: Top wall
+        List<Integer> row0 = new ArrayList<>();
+        row0.add(1); row0.add(1); row0.add(1); row0.add(1); row0.add(1); row0.add(1);
+        
+        // Row 1: █ S 0 0 0 █
+        List<Integer> row1 = new ArrayList<>();
+        row1.add(1); row1.add(0); row1.add(0); row1.add(0); row1.add(0); row1.add(1);
+        
+        // Row 2: █ 0 █ █ 0 █
+        List<Integer> row2 = new ArrayList<>();
+        row2.add(1); row2.add(0); row2.add(1); row2.add(1); row2.add(0); row2.add(1);
+        
+        // Row 3: █ 0 0 █ 0 █
+        List<Integer> row3 = new ArrayList<>();
+        row3.add(1); row3.add(0); row3.add(0); row3.add(1); row3.add(0); row3.add(1);
+        
+        // Row 4: █ █ 0 0 E █
+        List<Integer> row4 = new ArrayList<>();
+        row4.add(1); row4.add(1); row4.add(0); row4.add(0); row4.add(0); row4.add(1);
+        
+        // Row 5: Bottom wall
+        List<Integer> row5 = new ArrayList<>();
+        row5.add(1); row5.add(1); row5.add(1); row5.add(1); row5.add(1); row5.add(1);
+        
+        grid.add(row0);
+        grid.add(row1);
+        grid.add(row2);
+        grid.add(row3);
+        grid.add(row4);
+        grid.add(row5);
+        data.put("grid", grid);
+        
+        // Start position (1,1) - inside the walls
         Map<String, Object> start = new HashMap<>();
-        start.put("row", 0);
-        start.put("col", 0);
+        start.put("row", 1);
+        start.put("col", 1);
         data.put("start", start);
-
+        
+        // End position (4,4) - inside the walls
         Map<String, Object> end = new HashMap<>();
-        end.put("row", 2);
-        end.put("col", 2);
+        end.put("row", 4);
+        end.put("col", 4);
         data.put("end", end);
-
+        
         return data;
     }
-
+    
+    // ===== INITIALIZATION TESTS =====
+    
     @Test
-    public void testInitialize_andGetGameType_andGetGameState() {
-        MazeGame game = new MazeGame();
-        Map<String, Object> puzzle = makePuzzleData();
-        game.initialize(puzzle);
-
-        assertEquals("Game type should be MAZE", "MAZE", game.getGameType());
-
+    public void testInitializeCreatesMaze() {
+        game.initialize(puzzleData);
+        
         Map<String, Object> state = game.getGameState();
-        assertNotNull("State should not be null", state);
-        assertTrue("State should contain maze", state.get("maze") instanceof Maze);
-        assertTrue("State should contain player", state.get("player") instanceof Player);
-        assertEquals("Initial moveCount should be 0", 0, ((Number) state.get("moveCount")).intValue());
+        
+        assertNotNull(state.get("maze"));
     }
-
+    
     @Test
-    public void testProcessInput_invalidCommand_andBounds_andWalls() {
-        MazeGame game = new MazeGame();
-        game.initialize(makePuzzleData());
-
-        // invalid command
-        assertFalse("Invalid command should return false", game.processInput("X"));
-
-        // moving up from start (0,0) is out of bounds
-        assertFalse("Move out of bounds should return false", game.processInput("W"));
-
-        // moving left from start is out of bounds
-        assertFalse("Move out of bounds should return false", game.processInput("A"));
-
-        // moving right from (0,0) should be allowed (to 0,1)
-        assertTrue("Move right should be allowed", game.processInput("D"));
-
-        // moving down from (0,1) goes to (1,1) which is a wall (1) -> should be false
-        assertFalse("Move down into wall should be false", game.processInput("S"));
-    }
-
-    @Test
-    public void testValidMoves_incrementMoveCount_andUpdatePlayer() {
-        MazeGame game = new MazeGame();
-        game.initialize(makePuzzleData());
-
-        // Starting at (0,0)
-        assertTrue("Right to (0,1) allowed", game.processInput("D"));
-        assertTrue("Right to (0,2) allowed", game.processInput("D"));
-        // from (0,2), down to (1,2) is allowed (it's 0)
-        assertTrue("Down to (1,2) allowed", game.processInput("S"));
-        // from (1,2), down to (2,2) is allowed -> reaching end
-        assertTrue("Down to (2,2) allowed", game.processInput("S"));
-
-        // After 4 valid moves, moveCount should be 4
+    public void testInitializeCreatesPlayer() {
+        game.initialize(puzzleData);
+        
         Map<String, Object> state = game.getGameState();
-        assertEquals("moveCount should be 4 after moves", 4, ((Number) state.get("moveCount")).intValue());
-
-        // Player position should be at end (2,2)
-        Player p = (Player) state.get("player");
-        assertEquals(2, p.row);
-        assertEquals(2, p.col);
-
-        // Game should be over
-        assertTrue("Game should be over after reaching end", game.isGameOver());
+        
+        assertNotNull(state.get("player"));
     }
-
+    
     @Test
-    public void testGetResult_containsWonMovesAndTime() throws InterruptedException {
-        MazeGame game = new MazeGame();
-        game.initialize(makePuzzleData());
-
-        // perform one move
-        assertTrue(game.processInput("D"));
-        Map<String, Object> result = game.getResult();
-        assertNotNull("result should not be null", result);
-        assertFalse("won should be false initially", (Boolean) result.get("won"));
-        assertEquals("moves in result should match moveCount", 1, ((Number) result.get("moves")).intValue());
-        assertTrue("time should be non-negative", ((Number) result.get("time")).longValue() >= 0L);
+    public void testInitializeSetsGameType() {
+        game.initialize(puzzleData);
+        
+        assertEquals("MAZE", game.getGameType());
     }
-
+    
     @Test
-    public void testReset_returnsPlayerToStart_andResetsMoveCount() {
-        MazeGame game = new MazeGame();
-        game.initialize(makePuzzleData());
-
-        // make some moves to change state
-        assertTrue(game.processInput("D"));
-        assertTrue(game.processInput("D"));
-        assertTrue(game.processInput("S"));
-        assertTrue(game.processInput("S"));
+    public void testInitializeSetsZeroMoveCount() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> state = game.getGameState();
+        
+        assertEquals(0, state.get("moveCount"));
+    }
+    
+    @Test
+    public void testInitializePlacesPlayerAtStart() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> state = game.getGameState();
+        Player player = (Player) state.get("player");
+        
+        assertEquals(1, player.row);
+        assertEquals(1, player.col);
+    }
+    
+    @Test
+    public void testInitializeNotGameOver() {
+        game.initialize(puzzleData);
+        
+        assertFalse(game.isGameOver());
+    }
+    
+    // ===== MOVEMENT TESTS =====
+    
+    @Test
+    public void testProcessInputWithValidMoveDown() {
+        game.initialize(puzzleData);
+        
+        boolean result = game.processInput("S");
+        
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testProcessInputWithValidMoveRight() {
+        game.initialize(puzzleData);
+        
+        boolean result = game.processInput("D");
+        
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testProcessInputMovesPlayerDown() {
+        game.initialize(puzzleData);
+        game.processInput("S");
+        
+        Map<String, Object> state = game.getGameState();
+        Player player = (Player) state.get("player");
+        
+        assertEquals(2, player.row);
+        assertEquals(1, player.col);
+    }
+    
+    @Test
+    public void testProcessInputMovesPlayerRight() {
+        game.initialize(puzzleData);
+        game.processInput("D");
+        
+        Map<String, Object> state = game.getGameState();
+        Player player = (Player) state.get("player");
+        
+        assertEquals(1, player.row);
+        assertEquals(2, player.col);
+    }
+    
+    @Test
+    public void testProcessInputWithLowercaseCommand() {
+        game.initialize(puzzleData);
+        
+        boolean result = game.processInput("d");
+        
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testProcessInputIncrementsMoveCount() {
+        game.initialize(puzzleData);
+        game.processInput("D");
+        
+        Map<String, Object> state = game.getGameState();
+        
+        assertEquals(1, state.get("moveCount"));
+    }
+    
+    @Test
+    public void testProcessInputWithMultipleMoves() {
+        game.initialize(puzzleData);
+        game.processInput("D");
+        game.processInput("D");
+        
+        Map<String, Object> state = game.getGameState();
+        Player player = (Player) state.get("player");
+        
+        assertEquals(1, player.row);
+        assertEquals(3, player.col);
+    }
+    
+    // ===== INVALID MOVEMENT TESTS =====
+    
+    @Test
+    public void testProcessInputWithNullReturnsFalse() {
+        game.initialize(puzzleData);
+        
+        boolean result = game.processInput(null);
+        
+        assertFalse(result);
+    }
+    
+    @Test
+    public void testProcessInputWithInvalidCommandReturnsFalse() {
+        game.initialize(puzzleData);
+        
+        boolean result = game.processInput("X");
+        
+        assertFalse(result);
+    }
+    
+    @Test
+    public void testProcessInputOutOfBoundsUpReturnsFalse() {
+        game.initialize(puzzleData);
+        
+        boolean result = game.processInput("W"); // Try to move up into wall
+        
+        assertFalse(result);
+    }
+    
+    @Test
+    public void testProcessInputOutOfBoundsLeftReturnsFalse() {
+        game.initialize(puzzleData);
+        
+        boolean result = game.processInput("A"); // Try to move left into wall
+        
+        assertFalse(result);
+    }
+    
+    @Test
+    public void testProcessInputDoesNotChangeMoveCountOnInvalidMove() {
+        game.initialize(puzzleData);
+        game.processInput("W"); // Invalid move
+        
+        Map<String, Object> state = game.getGameState();
+        
+        assertEquals(0, state.get("moveCount"));
+    }
+    
+    @Test
+    public void testProcessInputDoesNotMovePlayerOnInvalidMove() {
+        game.initialize(puzzleData);
+        game.processInput("W"); // Invalid move
+        
+        Map<String, Object> state = game.getGameState();
+        Player player = (Player) state.get("player");
+        
+        assertEquals(1, player.row);
+        assertEquals(1, player.col);
+    }
+    
+    // ===== WALL COLLISION TESTS =====
+    
+    @Test
+    public void testProcessInputIntoWallReturnsFalse() {
+        game.initialize(puzzleData);
+        game.processInput("S"); // Move to (2,1)
+        
+        boolean result = game.processInput("D"); // Try to move right into wall at (2,2)
+        
+        assertFalse(result);
+    }
+    
+    @Test
+    public void testProcessInputIntoWallDoesNotMovePlayer() {
+        game.initialize(puzzleData);
+        game.processInput("S"); // Move to (2,1)
+        game.processInput("D"); // Try to move into wall
+        
+        Map<String, Object> state = game.getGameState();
+        Player player = (Player) state.get("player");
+        
+        assertEquals(2, player.row);
+        assertEquals(1, player.col); // Should still be at (2,1)
+    }
+    
+    @Test
+    public void testProcessInputIntoWallDoesNotIncrementMoveCount() {
+        game.initialize(puzzleData);
+        game.processInput("S"); // Move 1: (1,1) -> (2,1)
+        game.processInput("D"); // Invalid: try to move into wall
+        
+        Map<String, Object> state = game.getGameState();
+        
+        assertEquals(1, state.get("moveCount")); // Should still be 1, not 2
+    }
+    
+    @Test
+    public void testMultipleWallCollisionsDoNotAffectState() {
+        game.initialize(puzzleData);
+        game.processInput("S"); // Move to (2,1)
+        
+        game.processInput("D"); // Try wall at (2,2)
+        game.processInput("D"); // Try wall again
+        game.processInput("D"); // Try wall again
+        
+        Map<String, Object> state = game.getGameState();
+        Player player = (Player) state.get("player");
+        
+        assertEquals(2, player.row);
+        assertEquals(1, player.col);
+        assertEquals(1, state.get("moveCount")); // Only 1 successful move
+    }
+    
+    @Test
+    public void testCanNavigateAroundWalls() {
+        game.initialize(puzzleData);
+        
+        // Navigate around walls: (1,1) -> (1,2) -> (1,3)
+        game.processInput("D"); // (1,2)
+        game.processInput("D"); // (1,3)
+        
+        Map<String, Object> state = game.getGameState();
+        Player player = (Player) state.get("player");
+        
+        assertEquals(1, player.row);
+        assertEquals(3, player.col);
+        assertEquals(2, state.get("moveCount"));
+    }
+    
+    // ===== GAME OVER TESTS =====
+    
+    @Test
+    public void testIsGameOverReturnsFalseInitially() {
+        game.initialize(puzzleData);
+        
+        assertFalse(game.isGameOver());
+    }
+    
+    @Test
+    public void testIsGameOverReturnsTrueWhenAtEnd() {
+        game.initialize(puzzleData);
+        
+        // Navigate to end position (4,4) avoiding walls
+        // Path: (1,1) -> (1,2) -> (1,3) -> (1,4) -> (2,4) -> (3,4) -> (4,4)
+        game.processInput("D"); // (1,2)
+        game.processInput("D"); // (1,3)
+        game.processInput("D"); // (1,4)
+        game.processInput("S"); // (2,4)
+        game.processInput("S"); // (3,4)
+        game.processInput("S"); // (4,4) - End position
+        
         assertTrue(game.isGameOver());
-
-        // reset
-        game.reset();
-        assertFalse("After reset game should not be over", game.isGameOver());
-
-        Map<String, Object> state = game.getGameState();
-        Player p = (Player) state.get("player");
-        assertEquals("Player row should be reset to start row", 0, p.row);
-        assertEquals("Player col should be reset to start col", 0, p.col);
-        assertEquals("moveCount should be reset to 0", 0, ((Number) state.get("moveCount")).intValue());
     }
-
+    
     @Test
-    public void testSaveState_andRestoreState_roundTrip() {
-        MazeGame game = new MazeGame();
-        game.initialize(makePuzzleData());
-
-        // move to (0,2) then to (1,2)
-        assertTrue(game.processInput("D"));
-        assertTrue(game.processInput("D"));
-        assertTrue(game.processInput("S"));
-
-        Map<String, Object> saved = game.saveState();
-
-        // Create a new game and restore from saved
-        MazeGame restored = new MazeGame();
-        restored.restoreState(saved);
-
-        Map<String, Object> restoredState = restored.getGameState();
-        Maze restoredMaze = (Maze) restoredState.get("maze");
-        Player restoredPlayer = (Player) restoredState.get("player");
-        int restoredMoves = ((Number) restoredState.get("moveCount")).intValue();
-
-        // Maze dimensions should match
-        assertEquals("Restored maze width should match", 3, restoredMaze.getWidth());
-        assertEquals("Restored maze height should match", 3, restoredMaze.getHeight());
-
-        // Player position and moveCount should match saved values
-        assertEquals("Restored player row should match saved", ((Number) ((Map) saved.get("player")).get("row")).intValue(), restoredPlayer.row);
-        assertEquals("Restored player col should match saved", ((Number) ((Map) saved.get("player")).get("col")).intValue(), restoredPlayer.col);
-        assertEquals("Restored moveCount should match saved", ((Number) saved.get("moveCount")).intValue(), restoredMoves);
+    public void testIsGameOverReturnsFalseNearEnd() {
+        game.initialize(puzzleData);
+        
+        // Navigate close to end but not at it
+        game.processInput("D");
+        game.processInput("D");
+        game.processInput("D");
+        game.processInput("S");
+        game.processInput("S");
+        
+        assertFalse(game.isGameOver());
+    }
+    
+    // ===== GET GAME STATE TESTS =====
+    
+    @Test
+    public void testGetGameStateReturnsNonNull() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> state = game.getGameState();
+        
+        assertNotNull(state);
+    }
+    
+    @Test
+    public void testGetGameStateContainsMaze() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> state = game.getGameState();
+        
+        assertTrue(state.containsKey("maze"));
+    }
+    
+    @Test
+    public void testGetGameStateContainsPlayer() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> state = game.getGameState();
+        
+        assertTrue(state.containsKey("player"));
+    }
+    
+    @Test
+    public void testGetGameStateContainsMoveCount() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> state = game.getGameState();
+        
+        assertTrue(state.containsKey("moveCount"));
+    }
+    
+    // ===== GET RESULT TESTS =====
+    
+    @Test
+    public void testGetResultReturnsNonNull() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> result = game.getResult();
+        
+        assertNotNull(result);
+    }
+    
+    @Test
+    public void testGetResultContainsWonStatus() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> result = game.getResult();
+        
+        assertTrue(result.containsKey("won"));
+    }
+    
+    @Test
+    public void testGetResultContainsTime() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> result = game.getResult();
+        
+        assertTrue(result.containsKey("time"));
+    }
+    
+    @Test
+    public void testGetResultContainsMoves() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> result = game.getResult();
+        
+        assertTrue(result.containsKey("moves"));
+    }
+    
+    @Test
+    public void testGetResultShowsNotWonInitially() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> result = game.getResult();
+        
+        assertFalse((Boolean) result.get("won"));
+    }
+    
+    @Test
+    public void testGetResultShowsWonAfterReachingEnd() {
+        game.initialize(puzzleData);
+        
+        // Navigate to end
+        game.processInput("D");
+        game.processInput("D");
+        game.processInput("D");
+        game.processInput("S");
+        game.processInput("S");
+        game.processInput("S");
+        
+        Map<String, Object> result = game.getResult();
+        
+        assertTrue((Boolean) result.get("won"));
+    }
+    
+    @Test
+    public void testGetResultShowsCorrectMoveCount() {
+        game.initialize(puzzleData);
+        game.processInput("D");
+        game.processInput("D");
+        
+        Map<String, Object> result = game.getResult();
+        
+        assertEquals(2, result.get("moves"));
+    }
+    
+    // ===== RESET TESTS =====
+    
+    @Test
+    public void testResetClearsMoveCount() {
+        game.initialize(puzzleData);
+        game.processInput("D");
+        game.processInput("D");
+        
+        game.reset();
+        Map<String, Object> state = game.getGameState();
+        
+        assertEquals(0, state.get("moveCount"));
+    }
+    
+    @Test
+    public void testResetMovesPlayerToStart() {
+        game.initialize(puzzleData);
+        game.processInput("D");
+        game.processInput("S");
+        
+        game.reset();
+        Map<String, Object> state = game.getGameState();
+        Player player = (Player) state.get("player");
+        
+        assertEquals(1, player.row);
+        assertEquals(1, player.col);
+    }
+    
+    @Test
+    public void testResetSetsNotGameOver() {
+        game.initialize(puzzleData);
+        
+        // Navigate to end
+        game.processInput("D");
+        game.processInput("D");
+        game.processInput("D");
+        game.processInput("S");
+        game.processInput("S");
+        game.processInput("S");
+        
+        game.reset();
+        
+        assertFalse(game.isGameOver());
+    }
+    
+    // ===== SAVE STATE TESTS =====
+    
+    @Test
+    public void testSaveStateReturnsNonNull() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> savedState = game.saveState();
+        
+        assertNotNull(savedState);
+    }
+    
+    @Test
+    public void testSaveStateContainsMaze() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> savedState = game.saveState();
+        
+        assertTrue(savedState.containsKey("maze"));
+    }
+    
+    @Test
+    public void testSaveStateContainsPlayer() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> savedState = game.saveState();
+        
+        assertTrue(savedState.containsKey("player"));
+    }
+    
+    @Test
+    public void testSaveStateContainsMoveCount() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> savedState = game.saveState();
+        
+        assertTrue(savedState.containsKey("moveCount"));
+    }
+    
+    @Test
+    public void testSaveStateContainsStartTime() {
+        game.initialize(puzzleData);
+        
+        Map<String, Object> savedState = game.saveState();
+        
+        assertTrue(savedState.containsKey("startTime"));
+    }
+    
+    @Test
+    public void testSaveStatePreservesMoveCount() {
+        game.initialize(puzzleData);
+        game.processInput("D");
+        game.processInput("D");
+        
+        Map<String, Object> savedState = game.saveState();
+        
+        assertEquals(2, ((Number) savedState.get("moveCount")).intValue());
+    }
+    
+    @Test
+    public void testSaveStatePreservesPlayerPosition() {
+        game.initialize(puzzleData);
+        game.processInput("S"); // (1,1) -> (2,1) - valid move down
+        game.processInput("D"); // (2,1) -> (2,2) is WALL, stays at (2,1)
+        
+        Map<String, Object> savedState = game.saveState();
+        @SuppressWarnings("unchecked")
+        Map<String, Object> playerData = (Map<String, Object>) savedState.get("player");
+        
+        assertEquals(2, ((Number) playerData.get("row")).intValue()); // At row 2
+        assertEquals(1, ((Number) playerData.get("col")).intValue()); // At col 1
+    }
+    
+    // ===== RESTORE STATE TESTS =====
+    
+    @Test
+    public void testRestoreStateRestoresMoveCount() {
+        game.initialize(puzzleData);
+        game.processInput("D");
+        game.processInput("D");
+        
+        Map<String, Object> savedState = game.saveState();
+        
+        MazeGame newGame = new MazeGame();
+        newGame.restoreState(savedState);
+        
+        Map<String, Object> state = newGame.getGameState();
+        assertEquals(2, state.get("moveCount"));
+    }
+    
+    @Test
+    public void testRestoreStateRestoresPlayerPosition() {
+        game.initialize(puzzleData);
+        game.processInput("S"); // (1,1) -> (2,1) - valid move down
+        game.processInput("D"); // (2,1) -> (2,2) is WALL, stays at (2,1)
+        
+        Map<String, Object> savedState = game.saveState();
+        
+        MazeGame newGame = new MazeGame();
+        newGame.restoreState(savedState);
+        
+        Map<String, Object> state = newGame.getGameState();
+        Player player = (Player) state.get("player");
+        
+        assertEquals(2, player.row); // At row 2
+        assertEquals(1, player.col); // At col 1
+    }
+    
+    @Test
+    public void testRestoreStatePreservesGameType() {
+        game.initialize(puzzleData);
+        Map<String, Object> savedState = game.saveState();
+        
+        MazeGame newGame = new MazeGame();
+        newGame.restoreState(savedState);
+        
+        assertEquals("MAZE", newGame.getGameType());
+    }
+    
+    @Test
+    public void testRestoreStateAllowsContinuingGame() {
+        game.initialize(puzzleData);
+        game.processInput("D");
+        
+        Map<String, Object> savedState = game.saveState();
+        
+        MazeGame newGame = new MazeGame();
+        newGame.restoreState(savedState);
+        
+        // Should be able to continue moving
+        boolean result = newGame.processInput("D");
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testRestoreStatePreservesGameOverStatus() {
+        game.initialize(puzzleData);
+        
+        // Navigate to end
+        game.processInput("D");
+        game.processInput("D");
+        game.processInput("D");
+        game.processInput("S");
+        game.processInput("S");
+        game.processInput("S");
+        
+        Map<String, Object> savedState = game.saveState();
+        
+        MazeGame newGame = new MazeGame();
+        newGame.restoreState(savedState);
+        
+        assertTrue(newGame.isGameOver());
+    }
+    
+    // ===== GET GAME TYPE TEST =====
+    
+    @Test
+    public void testGetGameTypeReturnsMaze() {
+        game.initialize(puzzleData);
+        
+        assertEquals("MAZE", game.getGameType());
     }
 }
