@@ -12,6 +12,7 @@ Coverage-Report.pdf : comprehensive report showing how much of com.model is cove
 Yoshi: AuthenticationServiceTest, CertificateServiceTest, GameDataFacadeTest, GameProgressServiceTest, LeaderboardServiceTest, MatchingGameTest, MazeGameTest
 
 Bugs: #233-#241 (working on resolving)
+
 Test Creation: #232, #224, #222, #221, #217, #213, #206
 
 Remy: 
