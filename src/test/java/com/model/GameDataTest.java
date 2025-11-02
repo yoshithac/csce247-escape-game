@@ -12,11 +12,18 @@ import org.junit.Test;
 /**
  * Test cases for GameData entity
  * Each test method contains exactly one assertion
+ *
+ * Verifies that the {@link GameData} class properly initializes and manages
+ * collections of puzzles, hints, user progress, certificates, and leaderboard entries.
+ * Tests cover both default and parameterized constructors, as well as all setter methods.
  */
 public class GameDataTest {
     
     private GameData gameData;
     
+    /**
+     * Sets up a new GameData instance before each test.
+     */
     @Before
     public void setUp() {
         gameData = new GameData();

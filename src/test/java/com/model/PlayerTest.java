@@ -7,11 +7,18 @@ import org.junit.Test;
 /**
  * Test cases for Player entity
  * Each test method contains exactly one assertion
+ *
+ * Ensures that the {@link Player} class correctly initializes
+ * and updates its row and column position fields.
  */
 public class PlayerTest {
     
     private Player player;
     
+    /**
+     * Initializes a Player instance with test coordinates
+     * before each test runs.
+     */
     @Before
     public void setUp() {
         player = new Player(2, 3);

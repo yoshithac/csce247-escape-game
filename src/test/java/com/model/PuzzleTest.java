@@ -11,12 +11,18 @@ import org.junit.Test;
 /**
  * Test cases for Puzzle entity
  * Each test method contains exactly one assertion
+ * Verifies that the Puzzle POJO correctly stores and exposes
+ * its identifying fields, metadata, and associated data map.</p>
  */
 public class PuzzleTest {
     
     private Puzzle puzzle;
     private Map<String, Object> testData;
     
+    /**
+     * Prepare a sample Puzzle instance used by the tests.
+     * Initializes a small test data map and constructs a Puzzle.
+     */
     @Before
     public void setUp() {
         testData = new HashMap<>();

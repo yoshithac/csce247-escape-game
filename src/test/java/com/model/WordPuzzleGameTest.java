@@ -13,15 +13,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test cases for WordPuzzleGame
- * Each test method contains exactly one assertion
- * CORRECTED to match actual WordPuzzleGame implementation
+ * JUnit test class for {@link WordPuzzleGame}.
+ * Verifies initialization, gameplay logic, hint handling,
+ * state management, and result tracking for word puzzles.
  */
 public class WordPuzzleGameTest {
     
     private WordPuzzleGame wordGame;
     private Map<String, Object> puzzleData;
     
+    /**
+     * Prepares a new {@code WordPuzzleGame} and test data
+     * before each test is executed.
+     */
     @Before
     public void setUp() {
         wordGame = new WordPuzzleGame();
@@ -30,6 +34,10 @@ public class WordPuzzleGameTest {
         wordGame.initialize(puzzleData);
     }
     
+    /**
+     * Builds test puzzle data for the sample riddle.
+     * @return a map containing prompt, answer, hints, etc.
+     */
     private Map<String, Object> createTestWordPuzzleData() {
         Map<String, Object> data = new HashMap<>();
         data.put("prompt", "What has keys but no locks?");
