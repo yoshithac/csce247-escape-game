@@ -18,7 +18,11 @@ Test Creation: #232, #224, #222, #221, #217, #213, #206
 Remy: 
 
 
-Aashrith: 
+Aashrith: GameData, GameFactory, Player, Puzzle, PuzzleGame, User, WordPuzzleGame
+
+Bugs: 
+
+Test Creation: #212, #216, #225, #227, #228, #229, #231
 
 
 Nitin: MazeTest, HintTest, LeaderboardEntryTest, UserProgressTest, PositionTest,
