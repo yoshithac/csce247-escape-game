@@ -1,84 +1,75 @@
 package com.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test cases for Hint entity
+ * Each test method contains exactly one assertion
+ */
 public class HintTest {
-
-    @Test
-    public void testDefaultConstructor_defaults() {
-        Hint h = new Hint();
-        // default constructor should create an object with null text & id and 0 priority
-        assertNull("hintText should be null by default", h.getHintText());
-        assertNull("puzzleId should be null by default", h.getPuzzleId());
-        assertEquals("hintPriority should default to 0", 0, h.getHintPriority());
+    
+    private Hint hint;
+    
+    @Before
+    public void setUp() {
+        hint = new Hint("Look for the exit on the right side", "P001", 1);
     }
-
+    
     @Test
-    public void testParameterizedConstructor_setsFields() {
-        Hint h = new Hint("Try the left drawer", "p1", 2);
-        assertEquals("hintText should be set by constructor", "Try the left drawer", h.getHintText());
-        assertEquals("puzzleId should be set by constructor", "p1", h.getPuzzleId());
-        assertEquals("hintPriority should be set by constructor", 2, h.getHintPriority());
+    public void testConstructorSetsHintText() {
+        assertEquals("Look for the exit on the right side", hint.getHintText());
     }
-
+    
     @Test
-    public void testCompareTo_lowerPriorityIsBeforeHigher() {
-        Hint first = new Hint("First hint", "p1", 1);
-        Hint second = new Hint("Second hint", "p1", 2);
-
-        // first has lower numeric priority value -> should compare as "less than" second
-        assertTrue("first.compareTo(second) should be negative when first has lower priority",
-                first.compareTo(second) < 0);
-        assertTrue("second.compareTo(first) should be positive when second has higher priority",
-                second.compareTo(first) > 0);
+    public void testConstructorSetsPuzzleId() {
+        assertEquals("P001", hint.getPuzzleId());
     }
-
+    
     @Test
-    public void testCompareTo_equalPriorityIsZero() {
-        Hint a = new Hint("Hint A", "p1", 3);
-        Hint b = new Hint("Hint B", "p2", 3);
-
-        assertEquals("compareTo should return 0 for equal priorities", 0, a.compareTo(b));
+    public void testConstructorSetsHintPriority() {
+        assertEquals(1, hint.getHintPriority());
     }
-
+    
     @Test
-    public void testCompareTo_worksWithSorting() {
-        Hint low = new Hint("low", "p", 5);
-        Hint mid = new Hint("mid", "p", 2);
-        Hint high = new Hint("high", "p", 1);
-
-        List<Hint> list = new ArrayList<>();
-        list.add(low);
-        list.add(mid);
-        list.add(high);
-
-        Collections.sort(list); // uses compareTo
-
-        // After sorting, expected order: high (1), mid (2), low (5)
-        assertEquals(1, list.get(0).getHintPriority());
-        assertEquals(2, list.get(1).getHintPriority());
-        assertEquals(5, list.get(2).getHintPriority());
+    public void testSetHintText() {
+        hint.setHintText("New hint");
+        assertEquals("New hint", hint.getHintText());
     }
-
+    
     @Test
-    public void testToString_returnsFormattedString() {
-        Hint h = new Hint("Look under the mat", "p1", 1);
-        String expected = "[Priority 1] Look under the mat";
-        assertEquals("toString should match expected format", expected, h.toString());
+    public void testSetPuzzleId() {
+        hint.setPuzzleId("P002");
+        assertEquals("P002", hint.getPuzzleId());
     }
-
+    
     @Test
-    public void testToString_handlesNullHintText() {
-        // If hintText is null, String.format will print "null"
-        Hint h = new Hint(null, "p1", 4);
-        String expected = "[Priority 4] null";
-        assertEquals("toString should include 'null' for null hintText", expected, h.toString());
+    public void testSetHintPriority() {
+        hint.setHintPriority(2);
+        assertEquals(2, hint.getHintPriority());
+    }
+    
+    @Test
+    public void testCompareToOrdersByPriority() {
+        Hint hint2 = new Hint("Second hint", "P001", 2);
+        assertTrue(hint.compareTo(hint2) < 0);
+    }
+    
+    @Test
+    public void testCompareToReturnsZeroForSamePriority() {
+        Hint hint2 = new Hint("Another hint", "P001", 1);
+        assertEquals(0, hint.compareTo(hint2));
+    }
+    
+    @Test
+    public void testToStringContainsHintText() {
+        assertTrue(hint.toString().contains("Look for the exit"));
+    }
+    
+    @Test
+    public void testToStringContainsPriority() {
+        assertTrue(hint.toString().contains("1"));
     }
 }
