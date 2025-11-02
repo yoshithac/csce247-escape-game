@@ -7,8 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test cases for Position entity
- * Each test method contains exactly one assertion
+ * Test cases for the Position class.
+ * Each test method contains exactly one assertion.
+ * Verifies correct field initialization, setters, equality, and hash code behavior.
  */
 public class PositionTest {
     
@@ -79,6 +80,7 @@ public class PositionTest {
         Position other = new Position(3, 5);
         assertEquals(position.hashCode(), other.hashCode());
     }
+
     /* 
     @Test
     public void testToStringContainsRow() {
@@ -88,5 +90,6 @@ public class PositionTest {
     @Test
     public void testToStringContainsCol() {
         assertTrue(position.toString().contains("5"));
-    } */
+    } 
+    */
 }
