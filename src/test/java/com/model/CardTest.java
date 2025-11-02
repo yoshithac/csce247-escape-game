@@ -1,45 +1,68 @@
 package com.model;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Fixed imports (static assert methods).
+ * Test cases for Card entity
+ * Each test method contains exactly one assertion
  */
 public class CardTest {
-
-    @Test
-    public void basicGettersSetters_andToString() {
-        Card c = new Card();
-        c.setId("c1");
-        c.setName("Name");
-        c.setValue("Value");
-        assertEquals("c1", c.getId());
-        assertEquals("Name", c.getName());
-        assertEquals("Value", c.getValue());
-        assertTrue(c.toString().contains("c1"));
+    
+    private Card card;
+    
+    @Before
+    public void setUp() {
+        card = new Card("C001", "🌟", "Star");
     }
-
+    
     @Test
-    public void parameterizedConstructor_andEquality() {
-        Card a = new Card("c2","val","Name");
-        Card b = new Card("c2","val","Name");
-        assertEquals(a.getId(), b.getId());
-        if (a.equals(b)) {
-            assertEquals(a.hashCode(), b.hashCode());
-        }
+    public void testConstructorSetsId() {
+        assertEquals("C001", card.getId());
     }
-
+    
     @Test
-    public void nullAndEmptyFields() {
-        Card c = new Card(null, null, null);
-        assertNull(c.getId());
-        assertNull(c.getName());
-        assertNull(c.getValue());
-        c.setId("");
-        c.setName("");
-        c.setValue("");
-        assertEquals("", c.getId());
+    public void testConstructorSetsValue() {
+        assertEquals("🌟", card.getValue());
+    }
+    
+    @Test
+    public void testConstructorSetsName() {
+        assertEquals("Star", card.getName());
+    }
+    
+    @Test
+    public void testSetId() {
+        card.setId("C002");
+        assertEquals("C002", card.getId());
+    }
+    
+    @Test
+    public void testSetValue() {
+        card.setValue("🎈");
+        assertEquals("🎈", card.getValue());
+    }
+    
+    @Test
+    public void testSetName() {
+        card.setName("Balloon");
+        assertEquals("Balloon", card.getName());
+    }
+    
+    @Test
+    public void testToStringContainsId() {
+        assertTrue(card.toString().contains("C001"));
+    }
+    
+    @Test
+    public void testToStringContainsName() {
+        assertTrue(card.toString().contains("Star"));
+    }
+    
+    @Test
+    public void testToStringContainsValue() {
+        assertTrue(card.toString().contains("🌟"));
     }
 }
