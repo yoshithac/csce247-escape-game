@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * JUnit4 tests for MatchingGame (tests all non-getter/setter behavior)
+ * Tests for MatchingGame (tests all non-getter/setter behavior)
  */
 public class MatchingGameTest {
 

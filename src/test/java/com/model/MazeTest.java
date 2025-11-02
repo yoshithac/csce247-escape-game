@@ -6,7 +6,7 @@ import static org.junit.Assert.assertSame;
 import org.junit.Test;
 
 /**
- * JUnit4 tests for Maze class.
+ * Tests for Maze class.
  * Tests all non-getter/setter methods (constructors).
  */
 public class MazeTest {
