@@ -2290,6 +2290,18 @@
         "cipher_h2": 248
       },
       "totalScore": 7430
+    },
+    {
+      "userId": "u0001",
+      "completedPuzzles": [],
+      "puzzleScores": {},
+      "totalScore": 0
+    },
+    {
+      "userId": "u1000",
+      "completedPuzzles": [],
+      "puzzleScores": {},
+      "totalScore": 0
     }
   ],
   "certificates": [
@@ -2769,6 +2781,24 @@
       "difficulty": "HARD",
       "scoreAchieved": 248,
       "earnedAt": "2025-10-28T14:24:08.462591"
+    },
+    {
+      "certificateId": "CERT_u1_pz1_1762104361334",
+      "userId": "u1",
+      "puzzleId": "pz1",
+      "description": "Completed \u0027desc\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 80,
+      "earnedAt": "2025-11-02T12:26:01.343459"
+    },
+    {
+      "certificateId": "CERT_u1_pz1_1762104361356",
+      "userId": "u1",
+      "puzzleId": "pz1",
+      "description": "Completed \u0027desc\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 90,
+      "earnedAt": "2025-11-02T12:26:01.356131"
     }
   ],
   "leaderboard": [
