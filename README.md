@@ -6,4 +6,5 @@ Backend Implementation and Scenario Demonstration: https://drive.google.com/file
 
 
 Test-Plan.pdf : details all test cases and is located in docs folder
+
 Coverage-Report.pdf : comprehensive report showing how much of com.model is covered in tests (excludes consoleview, gameview, gameUI, getter/setters) located in docs folder
