@@ -9,8 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test cases for LeaderboardEntry entity
- * Each test method contains exactly one assertion
+ * Test cases for the LeaderboardEntry class.
+ * Each test method contains exactly one assertion.
+ * Verifies correct initialization, field access, and basic toString behavior.
  */
 public class LeaderboardEntryTest {
     

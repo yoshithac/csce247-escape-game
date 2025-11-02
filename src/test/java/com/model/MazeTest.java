@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test cases for Maze entity
+ * Test cases for Maze class
  * Each test method contains exactly one assertion
  * CORRECTED - Maze is a simple data entity with only getters/setters
  */
