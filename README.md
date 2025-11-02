@@ -10,7 +10,8 @@ Test-Plan.pdf : details all test cases and is located in docs folder
 Coverage-Report.pdf : comprehensive report showing how much of com.model is covered in tests (excludes consoleview, gameview, gameUI, getter/setters) located in docs folder
 
 Yoshi: AuthenticationServiceTest, CertificateServiceTest, GameDataFacadeTest, GameProgressServiceTest, LeaderboardServiceTest, MatchingGameTest, MazeGameTest
-
+Bugs: #233-#241 (working on resolving)
+Test Creation: #232, #224, #222, #221, #217, #213, #206
 
 Remy: 
 
