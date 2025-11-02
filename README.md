@@ -5,3 +5,5 @@ This escape room project is a game, "The Haunting of Hallow Manor", where users 
 Backend Implementation and Scenario Demonstration: https://drive.google.com/file/d/16OxFOW4oXl6AZ4f1UpfZ-p5SAlRrMJzy/view?usp=sharing
 
 Test-Plan.pdf : details all test cases and is located in docs folder
+
+Coverage-Report.pdf : comprehensive report showing how much of com.model is covered in tests (excludes consoleview, gameview, gameUI, getter/setters) 
