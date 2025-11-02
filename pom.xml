@@ -6,10 +6,11 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
     <dependencies>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -75,7 +76,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>17</release>
                 </configuration>
             </plugin>
             <plugin>
@@ -93,6 +94,44 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.11</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <excludes>
+                    <!-- Your UI classes -->
+                    <exclude>**/ConsoleView.class</exclude>
+                    <exclude>**/GameView.class</exclude>
+                    <exclude>**/User.class</exclude>
+                    <exclude>**/GameUI.class</exclude>
+                    <exclude>**/AuthController.class</exclude>
+                    <exclude>**/GameController.class</exclude>
+                    <exclude>**/GameDataLoader$LocalDateTimeAdapter.class</exclude>
+                    <exclude>**/GameDataWriter$LocalDateTimeAdapter.class</exclude>
+                    
+                    <!-- Java system classes -->
+                    <exclude>sun/**</exclude>
+                    <exclude>jdk/**</exclude>
+                    <exclude>java/**</exclude>
+                    <exclude>javax/**</exclude>
+                </excludes>
+            </configuration>
+        </plugin>
         </plugins>
     </build>
 </project>

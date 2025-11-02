@@ -478,7 +478,7 @@
       "title": "Science Cipher",
       "description": "Decrypt the element.",
       "data": {
-        "prompt": "GEOYNX",
+        "prompt": "HOFRGHQ",
         "answer": "OXYGEN",
         "category": "Science",
         "maxAttempts": 3.0
@@ -491,7 +491,7 @@
       "title": "Galaxy Cipher",
       "description": "Find the name of a planet.",
       "data": {
-        "prompt": "SRMA",
+        "prompt": "WBP",
         "answer": "MARS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -504,7 +504,7 @@
       "title": "Composer Cipher",
       "description": "A famous classical composer.",
       "data": {
-        "prompt": "CBAH",
+        "prompt": "FDVKZHZ",
         "answer": "BACH",
         "category": "Music",
         "maxAttempts": 5.0
@@ -517,7 +517,7 @@
       "title": "Astronomy Anagram",
       "description": "Unscramble the planet.",
       "data": {
-        "prompt": "SNURAU",
+        "prompt": "SNURA",
         "answer": "URANUS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -530,7 +530,7 @@
       "title": "Mythology Mix",
       "description": "Unscramble a Greek god.",
       "data": {
-        "prompt": "IPOSDENO",
+        "prompt": "IPOSDEN",
         "answer": "POSEIDON",
         "category": "Mythology",
         "maxAttempts": 4.0
@@ -958,7 +958,7 @@
       "title": "Planet Cipher",
       "description": "Decrypt the planet name.",
       "data": {
-        "prompt": "RATEH",
+        "prompt": "SDUWP",
         "answer": "EARTH",
         "category": "Space",
         "maxAttempts": 4.0
@@ -971,7 +971,7 @@
       "title": "River Cipher",
       "description": "Which river is hidden?",
       "data": {
-        "prompt": "ILNE",
+        "prompt": "YLJS",
         "answer": "NILE",
         "category": "Geography",
         "maxAttempts": 4.0
@@ -984,7 +984,7 @@
       "title": "Colorful Cipher",
       "description": "A color encrypted.",
       "data": {
-        "prompt": "ETWIH",
+        "prompt": "UOHWW",
         "answer": "WHITE",
         "category": "Color",
         "maxAttempts": 4.0
@@ -997,7 +997,7 @@
       "title": "Animal Anagram",
       "description": "Rearrange to get an animal.",
       "data": {
-        "prompt": "XFO",
+        "prompt": "LFOX",
         "answer": "FOX",
         "category": "Animal",
         "maxAttempts": 4.0
@@ -1010,7 +1010,7 @@
       "title": "Season Anagram",
       "description": "A time of year.",
       "data": {
-        "prompt": "WNIRET",
+        "prompt": "WNITER",
         "answer": "WINTER",
         "category": "Season",
         "maxAttempts": 4.0
@@ -1023,7 +1023,7 @@
       "title": "Capital Anagram",
       "description": "Capital city name.",
       "data": {
-        "prompt": "RASPI",
+        "prompt": "RAPIS",
         "answer": "PARIS",
         "category": "Cities",
         "maxAttempts": 4.0
@@ -1502,15 +1502,14 @@
           "col": 7.0
         }
       }
-    },
-    {
+    },{
       "puzzleId": "cipher_e1",
       "puzzleType": "CIPHER",
       "difficulty": "EASY",
       "title": "Science Cipher",
       "description": "Decrypt the element.",
       "data": {
-        "prompt": "XOGYNE",
+        "prompt": "HOFRGHQ",
         "answer": "OXYGEN",
         "category": "Science",
         "maxAttempts": 3.0
@@ -1523,7 +1522,7 @@
       "title": "Galaxy Cipher",
       "description": "Find the name of a planet.",
       "data": {
-        "prompt": "SRAM",
+        "prompt": "NBST",
         "answer": "MARS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -1536,7 +1535,7 @@
       "title": "Composer Cipher",
       "description": "A famous classical composer.",
       "data": {
-        "prompt": "CHAB",
+        "prompt": "FDVKZHZ",
         "answer": "BACH",
         "category": "Music",
         "maxAttempts": 5.0
@@ -1549,7 +1548,7 @@
       "title": "Astronomy Anagram",
       "description": "Unscramble the planet.",
       "data": {
-        "prompt": "SNURAU",
+        "prompt": "SNURA",
         "answer": "URANUS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -1562,7 +1561,7 @@
       "title": "Mythology Mix",
       "description": "Unscramble a Greek god.",
       "data": {
-        "prompt": "IPOSDENO",
+        "prompt": "IPOSDEN",
         "answer": "POSEIDON",
         "category": "Mythology",
         "maxAttempts": 4.0
@@ -2071,8 +2070,7 @@
       "hintText": "Small but can cross the globe.",
       "puzzleId": "ridd_m3",
       "hintPriority": 3
-    },
-    {
+    },{
       "hintText": "Atomic number is 8.",
       "puzzleId": "cipher_e1",
       "hintPriority": 1
@@ -2208,96 +2206,7 @@
       "hintPriority": 3
     }
   ],
-  "userProgress": [
-    {
-      "userId": "U1001",
-      "completedPuzzles": [],
-      "puzzleScores": {},
-      "totalScore": 0
-    },
-    {
-      "userId": "remyr",
-      "completedPuzzles": [
-        "ridd_e2",
-        "maze_e3",
-        "ridd_e3",
-        "maze_e1",
-        "anag_e3",
-        "ridd_e1",
-        "match_e2",
-        "cipher_e1",
-        "maze_e2",
-        "anag_e2",
-        "cipher_e3",
-        "anag_e1",
-        "match_e1",
-        "cipher_e2",
-        "match_e3",
-        "anag_m2",
-        "ridd_m2",
-        "match_m2",
-        "cipher_m1",
-        "ridd_h3",
-        "match_h3",
-        "cipher_h3",
-        "maze_h3",
-        "anag_h1",
-        "anag_h3",
-        "maze_h1",
-        "anag_h2",
-        "ridd_h2",
-        "cipher_h1",
-        "maze_h2",
-        "match_h1",
-        "match_h2",
-        "ridd_h1",
-        "cipher_h2"
-      ],
-      "puzzleScores": {
-        "ridd_e2": 247,
-        "maze_e3": 232,
-        "ridd_e3": 248,
-        "maze_e1": 233,
-        "anag_e3": 229,
-        "ridd_e1": 244,
-        "match_e2": 139,
-        "cipher_e1": 239,
-        "maze_e2": 220,
-        "anag_e2": 186,
-        "cipher_e3": 248,
-        "anag_e1": 150,
-        "match_e1": 188,
-        "cipher_e2": 239,
-        "match_e3": 203,
-        "anag_m2": 248,
-        "ridd_m2": 237,
-        "match_m2": 141,
-        "cipher_m1": 248,
-        "ridd_h3": 237,
-        "match_h3": 135,
-        "cipher_h3": 248,
-        "maze_h3": 232,
-        "anag_h1": 247,
-        "anag_h3": 248,
-        "maze_h1": 231,
-        "anag_h2": 244,
-        "ridd_h2": 247,
-        "cipher_h1": 247,
-        "maze_h2": 231,
-        "match_h1": 136,
-        "match_h2": 139,
-        "ridd_h1": 241,
-        "cipher_h2": 248
-      },
-      "totalScore": 7430
-    },
-    {
-      "userId": "yoshi",
-      "completedPuzzles": [],
-      "puzzleScores": {},
-      "totalScore": 0
-    }
-  ],
+  "userProgress": [],
   "certificates": [
     {
       "certificateId": "CERT_U1002_ridd_m2_1761446264892",
@@ -2469,322 +2378,9 @@
       "difficulty": "HARD",
       "scoreAchieved": 190,
       "earnedAt": "2025-10-26T14:46:39.876733"
-    },
-    {
-      "certificateId": "CERT_remyr_ridd_e2_1761530393677",
-      "userId": "remyr",
-      "puzzleId": "ridd_e2",
-      "description": "Completed \u0027Word Riddle\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 247,
-      "earnedAt": "2025-10-26T21:59:53.681376"
-    },
-    {
-      "certificateId": "CERT_remyr_maze_e3_1761530408181",
-      "userId": "remyr",
-      "puzzleId": "maze_e3",
-      "description": "Completed \u0027Labyrinth X\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 232,
-      "earnedAt": "2025-10-26T22:00:08.181745"
-    },
-    {
-      "certificateId": "CERT_remyr_ridd_e3_1761530508537",
-      "userId": "remyr",
-      "puzzleId": "ridd_e3",
-      "description": "Completed \u0027Invisible Home\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 248,
-      "earnedAt": "2025-10-26T22:01:48.541529"
-    },
-    {
-      "certificateId": "CERT_remyr_maze_e1_1761530522896",
-      "userId": "remyr",
-      "puzzleId": "maze_e1",
-      "description": "Completed \u0027Maze Inferno\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 233,
-      "earnedAt": "2025-10-26T22:02:02.89671"
-    },
-    {
-      "certificateId": "CERT_remyr_anag_e3_1761530552146",
-      "userId": "remyr",
-      "puzzleId": "anag_e3",
-      "description": "Completed \u0027World City\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 229,
-      "earnedAt": "2025-10-26T22:02:32.147656"
-    },
-    {
-      "certificateId": "CERT_remyr_ridd_e1_1761530995877",
-      "userId": "remyr",
-      "puzzleId": "ridd_e1",
-      "description": "Completed \u0027The Endless Room\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 244,
-      "earnedAt": "2025-10-26T22:09:55.880514"
-    },
-    {
-      "certificateId": "CERT_remyr_match_e2_1761531109314",
-      "userId": "remyr",
-      "puzzleId": "match_e2",
-      "description": "Completed \u0027Vehicles Match\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 139,
-      "earnedAt": "2025-10-26T22:11:49.314653"
-    },
-    {
-      "certificateId": "CERT_remyr_cipher_e1_1761531127374",
-      "userId": "remyr",
-      "puzzleId": "cipher_e1",
-      "description": "Completed \u0027Science Cipher\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 239,
-      "earnedAt": "2025-10-26T22:12:07.37431"
-    },
-    {
-      "certificateId": "CERT_remyr_maze_e2_1761531214684",
-      "userId": "remyr",
-      "puzzleId": "maze_e2",
-      "description": "Completed \u0027Maze Twister\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 220,
-      "earnedAt": "2025-10-26T22:13:34.68662"
-    },
-    {
-      "certificateId": "CERT_remyr_anag_e2_1761531289045",
-      "userId": "remyr",
-      "puzzleId": "anag_e2",
-      "description": "Completed \u0027Mythology Mix\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 186,
-      "earnedAt": "2025-10-26T22:14:49.046223"
-    },
-    {
-      "certificateId": "CERT_remyr_cipher_e3_1761531518774",
-      "userId": "remyr",
-      "puzzleId": "cipher_e3",
-      "description": "Completed \u0027Composer Cipher\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 248,
-      "earnedAt": "2025-10-26T22:18:38.77747"
-    },
-    {
-      "certificateId": "CERT_remyr_anag_e1_1761531733570",
-      "userId": "remyr",
-      "puzzleId": "anag_e1",
-      "description": "Completed \u0027Astronomy Anagram\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 150,
-      "earnedAt": "2025-10-26T22:22:13.570893"
-    },
-    {
-      "certificateId": "CERT_remyr_match_e1_1761544775704",
-      "userId": "remyr",
-      "puzzleId": "match_e1",
-      "description": "Completed \u0027Alphabet Pairing\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 188,
-      "earnedAt": "2025-10-27T01:59:35.707111"
-    },
-    {
-      "certificateId": "CERT_remyr_cipher_e2_1761544809931",
-      "userId": "remyr",
-      "puzzleId": "cipher_e2",
-      "description": "Completed \u0027Galaxy Cipher\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 239,
-      "earnedAt": "2025-10-27T02:00:09.931468"
-    },
-    {
-      "certificateId": "CERT_remyr_match_e3_1761672237668",
-      "userId": "remyr",
-      "puzzleId": "match_e3",
-      "description": "Completed \u0027Flags Deluxe\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 203,
-      "earnedAt": "2025-10-28T13:23:57.673747"
-    },
-    {
-      "certificateId": "CERT_remyr_anag_m2_1761672612381",
-      "userId": "remyr",
-      "puzzleId": "anag_m2",
-      "description": "Completed \u0027Season Anagram\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 248,
-      "earnedAt": "2025-10-28T13:30:12.384845"
-    },
-    {
-      "certificateId": "CERT_remyr_ridd_m2_1761672632007",
-      "userId": "remyr",
-      "puzzleId": "ridd_m2",
-      "description": "Completed \u0027Number Riddle\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 237,
-      "earnedAt": "2025-10-28T13:30:32.008066"
-    },
-    {
-      "certificateId": "CERT_remyr_match_m2_1761672734399",
-      "userId": "remyr",
-      "puzzleId": "match_m2",
-      "description": "Completed \u0027Vehicles Match\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 141,
-      "earnedAt": "2025-10-28T13:32:14.399533"
-    },
-    {
-      "certificateId": "CERT_remyr_cipher_m1_1761672742815",
-      "userId": "remyr",
-      "puzzleId": "cipher_m1",
-      "description": "Completed \u0027Planet Cipher\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 248,
-      "earnedAt": "2025-10-28T13:32:22.817969"
-    },
-    {
-      "certificateId": "CERT_remyr_ridd_h3_1761673048676",
-      "userId": "remyr",
-      "puzzleId": "ridd_h3",
-      "description": "Completed \u0027Invisible Home\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 237,
-      "earnedAt": "2025-10-28T13:37:28.681169"
-    },
-    {
-      "certificateId": "CERT_remyr_match_h3_1761673162639",
-      "userId": "remyr",
-      "puzzleId": "match_h3",
-      "description": "Completed \u0027Number Match\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 135,
-      "earnedAt": "2025-10-28T13:39:22.639299"
-    },
-    {
-      "certificateId": "CERT_remyr_cipher_h3_1761673170629",
-      "userId": "remyr",
-      "puzzleId": "cipher_h3",
-      "description": "Completed \u0027Composer Cipher\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 248,
-      "earnedAt": "2025-10-28T13:39:30.63014"
-    },
-    {
-      "certificateId": "CERT_remyr_maze_h3_1761673183024",
-      "userId": "remyr",
-      "puzzleId": "maze_h3",
-      "description": "Completed \u0027Labyrinth X\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 232,
-      "earnedAt": "2025-10-28T13:39:43.025068"
-    },
-    {
-      "certificateId": "CERT_remyr_anag_h1_1761673192492",
-      "userId": "remyr",
-      "puzzleId": "anag_h1",
-      "description": "Completed \u0027Astronomy Anagram\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 247,
-      "earnedAt": "2025-10-28T13:39:52.493529"
-    },
-    {
-      "certificateId": "CERT_remyr_anag_h3_1761673258127",
-      "userId": "remyr",
-      "puzzleId": "anag_h3",
-      "description": "Completed \u0027World City\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 248,
-      "earnedAt": "2025-10-28T13:40:58.127382"
-    },
-    {
-      "certificateId": "CERT_remyr_maze_h1_1761673271596",
-      "userId": "remyr",
-      "puzzleId": "maze_h1",
-      "description": "Completed \u0027Maze Inferno\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 231,
-      "earnedAt": "2025-10-28T13:41:11.596195"
-    },
-    {
-      "certificateId": "CERT_remyr_anag_h2_1761675417472",
-      "userId": "remyr",
-      "puzzleId": "anag_h2",
-      "description": "Completed \u0027Mythology Mix\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 244,
-      "earnedAt": "2025-10-28T14:16:57.477957"
-    },
-    {
-      "certificateId": "CERT_remyr_ridd_h2_1761675427721",
-      "userId": "remyr",
-      "puzzleId": "ridd_h2",
-      "description": "Completed \u0027Word Riddle\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 247,
-      "earnedAt": "2025-10-28T14:17:07.721217"
-    },
-    {
-      "certificateId": "CERT_remyr_cipher_h1_1761675438212",
-      "userId": "remyr",
-      "puzzleId": "cipher_h1",
-      "description": "Completed \u0027Science Cipher\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 247,
-      "earnedAt": "2025-10-28T14:17:18.213087"
-    },
-    {
-      "certificateId": "CERT_remyr_maze_h2_1761675468449",
-      "userId": "remyr",
-      "puzzleId": "maze_h2",
-      "description": "Completed \u0027Maze Twister\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 231,
-      "earnedAt": "2025-10-28T14:17:48.449699"
-    },
-    {
-      "certificateId": "CERT_remyr_match_h1_1761675626338",
-      "userId": "remyr",
-      "puzzleId": "match_h1",
-      "description": "Completed \u0027Flags Frenzy\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 136,
-      "earnedAt": "2025-10-28T14:20:26.341164"
-    },
-    {
-      "certificateId": "CERT_remyr_match_h2_1761675825445",
-      "userId": "remyr",
-      "puzzleId": "match_h2",
-      "description": "Completed \u0027Alphabet Pairs\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 139,
-      "earnedAt": "2025-10-28T14:23:45.448893"
-    },
-    {
-      "certificateId": "CERT_remyr_ridd_h1_1761675840694",
-      "userId": "remyr",
-      "puzzleId": "ridd_h1",
-      "description": "Completed \u0027The Endless Room\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 241,
-      "earnedAt": "2025-10-28T14:24:00.694382"
-    },
-    {
-      "certificateId": "CERT_remyr_cipher_h2_1761675848462",
-      "userId": "remyr",
-      "puzzleId": "cipher_h2",
-      "description": "Completed \u0027Galaxy Cipher\u0027 puzzle",
-      "difficulty": "HARD",
-      "scoreAchieved": 248,
-      "earnedAt": "2025-10-28T14:24:08.462591"
     }
   ],
   "leaderboard": [
-    {
-      "userId": "remyr",
-      "userName": "remy r",
-      "totalScore": 7430,
-      "puzzlesCompleted": 34,
-      "lastUpdated": "2025-10-28T14:24:08.475236"
-    },
     {
       "userId": "yoshi",
       "userName": "yoshi chil",
