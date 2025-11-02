@@ -2799,6 +2799,24 @@
       "difficulty": "EASY",
       "scoreAchieved": 90,
       "earnedAt": "2025-11-02T12:26:01.356131"
+    },
+    {
+      "certificateId": "CERT_u1_pz1_1762110803904",
+      "userId": "u1",
+      "puzzleId": "pz1",
+      "description": "Completed \u0027desc\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 80,
+      "earnedAt": "2025-11-02T14:13:23.9093514"
+    },
+    {
+      "certificateId": "CERT_u1_pz1_1762110803928",
+      "userId": "u1",
+      "puzzleId": "pz1",
+      "description": "Completed \u0027desc\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 90,
+      "earnedAt": "2025-11-02T14:13:23.9293513"
     }
   ],
   "leaderboard": [
