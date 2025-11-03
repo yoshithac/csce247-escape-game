@@ -15,12 +15,17 @@ Bugs: #233-#241 (working on resolving)
 
 Test Creation: #232, #224, #222, #221, #217, #213, #206
 
-Remy: 
+
+Remy: GameDataLoaderTest, GameDataWriterTest, AuthControllerTest, CardTest, CertificateTest, ConsoleViewTest, GameControllerTest
+
+Bugs: #243 (resolved), #244 (working on resolving)
+
+Test Creation: #205, #207, #208, #209, #210, #211, #214, #215
 
 
 Aashrith: GameDataTest, GameFactoryTest, PlayerTest, PuzzleTest, PuzzleGameTest, UserTest, WordPuzzleGameTest
 
-Bugs: 
+Bugs:
 
 Test Creation: #212, #216, #225, #227, #228, #229, #231
 
