@@ -4,6 +4,10 @@ This escape room project is a game, "The Haunting of Hallow Manor", where users 
 
 Backend Implementation and Scenario Demonstration: https://drive.google.com/file/d/16OxFOW4oXl6AZ4f1UpfZ-p5SAlRrMJzy/view?usp=sharing
 
+High Fidelity Prototype:
+  - Video walkthrough: https://youtu.be/psTQxEjAUnE
+  - Prototype:
+
 
 Test-Plan.pdf : details all test cases and is located in docs folder
 
