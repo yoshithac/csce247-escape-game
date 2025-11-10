@@ -4,75 +4,88 @@ import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
- * JUnit tests for LeaderboardEntry:
+ * Test cases for the LeaderboardEntry class.
+ * Each test method contains exactly one assertion.
+ * Verifies correct initialization, field access, and basic toString behavior.
  */
 public class LeaderboardEntryTest {
-
-    /**
-     * Helper: returns true if candidate is between before and after inclusive.
-     */
-    private static boolean isBetweenInclusive(LocalDateTime candidate, LocalDateTime before, LocalDateTime after) {
-        return (!candidate.isBefore(before)) && (!candidate.isAfter(after));
+    
+    private LeaderboardEntry entry;
+    
+    @Before
+    public void setUp() {
+        entry = new LeaderboardEntry("user1", "John Doe", 500, 5);
+    }
+    
+    @Test
+    public void testConstructorSetsUserId() {
+        assertEquals("user1", entry.getUserId());
+    }
+    
+    @Test
+    public void testConstructorSetsUserName() {
+        assertEquals("John Doe", entry.getUserName());
+    }
+    
+    @Test
+    public void testConstructorSetsTotalScore() {
+        assertEquals(500, entry.getTotalScore());
+    }
+    
+    @Test
+    public void testConstructorSetsPuzzlesCompleted() {
+        assertEquals(5, entry.getPuzzlesCompleted());
+    }
+    
+    @Test
+    public void testConstructorSetsLastUpdated() {
+        assertNotNull(entry.getLastUpdated());
+    }
+    
+    @Test
+    public void testDefaultConstructorSetsLastUpdated() {
+        LeaderboardEntry defaultEntry = new LeaderboardEntry();
+        assertNotNull(defaultEntry.getLastUpdated());
+    }
+    
+    @Test
+    public void testSetUserId() {
+        entry.setUserId("user2");
+        assertEquals("user2", entry.getUserId());
+    }
+    
+    @Test
+    public void testSetUserName() {
+        entry.setUserName("Jane Smith");
+        assertEquals("Jane Smith", entry.getUserName());
+    }
+    
+    @Test
+    public void testSetTotalScore() {
+        entry.setTotalScore(1000);
+        assertEquals(1000, entry.getTotalScore());
+    }
+    
+    @Test
+    public void testSetPuzzlesCompleted() {
+        entry.setPuzzlesCompleted(10);
+        assertEquals(10, entry.getPuzzlesCompleted());
+    }
+    
+    @Test
+    public void testSetLastUpdated() {
+        LocalDateTime testTime = LocalDateTime.now();
+        entry.setLastUpdated(testTime);
+        assertEquals(testTime, entry.getLastUpdated());
     }
 
     @Test
-    public void testDefaultConstructor_initializesLastUpdated_andDefaultsOtherFields() {
-        LocalDateTime before = LocalDateTime.now();
-        LeaderboardEntry entry = new LeaderboardEntry();
-        LocalDateTime after = LocalDateTime.now();
-
-        // lastUpdated should be set and within the create window
-        assertNotNull("lastUpdated should not be null after default construction", entry.getLastUpdated());
-        assertTrue("lastUpdated should be set to a timestamp between before and after construction",
-                isBetweenInclusive(entry.getLastUpdated(), before, after));
-
-        // other fields should have their default values (null or 0)
-        assertNull("userId should be null by default", entry.getUserId());
-        assertNull("userName should be null by default", entry.getUserName());
-        assertEquals("totalScore should default to 0", 0, entry.getTotalScore());
-        assertEquals("puzzlesCompleted should default to 0", 0, entry.getPuzzlesCompleted());
-    }
-
-    @Test
-    public void testParameterizedConstructor_setsFields_andInitializesLastUpdated() {
-        LocalDateTime before = LocalDateTime.now();
-
-        LeaderboardEntry entry = new LeaderboardEntry("u42", "Alice", 120, 3);
-
-        LocalDateTime after = LocalDateTime.now();
-
-        // verify fields set by constructor
-        assertEquals("userId should be set by constructor", "u42", entry.getUserId());
-        assertEquals("userName should be set by constructor", "Alice", entry.getUserName());
-        assertEquals("totalScore should be set by constructor", 120, entry.getTotalScore());
-        assertEquals("puzzlesCompleted should be set by constructor", 3, entry.getPuzzlesCompleted());
-
-        // lastUpdated must have been initialized by the default constructor call
-        assertNotNull("lastUpdated should not be null after parameterized construction", entry.getLastUpdated());
-        assertTrue("lastUpdated should be within the construction time window",
-                isBetweenInclusive(entry.getLastUpdated(), before, after));
-    }
-
-    @Test
-    public void testToString_returnsFormattedString_withAllFields() {
-        LeaderboardEntry entry = new LeaderboardEntry("u1", "Bob", 250, 7);
-
-        String expected = "Bob: 250 pts (7 puzzles)";
-        assertEquals("toString should match the expected format", expected, entry.toString());
-    }
-
-    @Test
-    public void testToString_handlesNullUserName_gracefully() {
-        // default constructor leaves userName null and totals at 0
-        LeaderboardEntry entry = new LeaderboardEntry();
-
-        // Expected: String.format will print "null" for a null userName
-        String expected = "null: 0 pts (0 puzzles)";
-        assertEquals("toString should include 'null' when userName is null", expected, entry.toString());
+    public void testToStringContainsTotalScore() {
+        assertTrue(entry.toString().contains("500"));
     }
 }

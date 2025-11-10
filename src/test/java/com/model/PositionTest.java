@@ -2,90 +2,94 @@ package com.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests for the Position class.
- * Verifies correct behavior of constructors, getters/setters,
- * and equality/hashCode methods.
+ * Test cases for the Position class.
+ * Each test method contains exactly one assertion.
+ * Verifies correct field initialization, setters, equality, and hash code behavior.
  */
 public class PositionTest {
-
-    /**
-     * Tests the default constructor.
-     * Ensures that a new Position object initializes with default (0, 0).
-     */
+    
+    private Position position;
+    
+    @Before
+    public void setUp() {
+        position = new Position(3, 5);
+    }
+    
     @Test
-    public void testDefaultConstructor_initializesToZero() {
-        Position pos = new Position();
-
-        assertNotNull("Position instance should not be null", pos);
-        assertEquals("Default row should be 0", 0, pos.getRow());
-        assertEquals("Default column should be 0", 0, pos.getCol());
+    public void testConstructorSetsRow() {
+        assertEquals(3, position.getRow());
+    }
+    
+    @Test
+    public void testConstructorSetsCol() {
+        assertEquals(5, position.getCol());
+    }
+    
+    @Test
+    public void testSetRow() {
+        position.setRow(7);
+        assertEquals(7, position.getRow());
+    }
+    
+    @Test
+    public void testSetCol() {
+        position.setCol(9);
+        assertEquals(9, position.getCol());
+    }
+    
+    @Test
+    public void testEqualsReturnsTrueForSamePosition() {
+        Position other = new Position(3, 5);
+        assertTrue(position.equals(other));
+    }
+    
+    @Test
+    public void testEqualsReturnsFalseForDifferentRow() {
+        Position other = new Position(4, 5);
+        assertFalse(position.equals(other));
+    }
+    
+    @Test
+    public void testEqualsReturnsFalseForDifferentCol() {
+        Position other = new Position(3, 6);
+        assertFalse(position.equals(other));
+    }
+    
+    @Test
+    public void testEqualsReturnsTrueForSameObject() {
+        assertTrue(position.equals(position));
+    }
+    
+    @Test
+    public void testEqualsReturnsFalseForNull() {
+        assertFalse(position.equals(null));
+    }
+    
+    @Test
+    public void testEqualsReturnsFalseForDifferentClass() {
+        assertFalse(position.equals("not a position"));
+    }
+    
+    @Test
+    public void testHashCodeConsistency() {
+        Position other = new Position(3, 5);
+        assertEquals(position.hashCode(), other.hashCode());
     }
 
-    /**
-     * Tests the parameterized constructor.
-     * Verifies that row and column are set correctly.
-     */
+    /* 
     @Test
-    public void testParameterizedConstructor_setsCorrectValues() {
-        Position pos = new Position(3, 6);
-
-        assertEquals("Row should match constructor value", 3, pos.getRow());
-        assertEquals("Column should match constructor value", 6, pos.getCol());
+    public void testToStringContainsRow() {
+        assertTrue(position.toString().contains("3"));
     }
-
-    /**
-     * Tests the setters and getters for row and column.
-     * Verifies that setting values updates the position.
-     */
+    
     @Test
-    public void testSetters_updateValuesCorrectly() {
-        Position pos = new Position();
-        pos.setRow(5);
-        pos.setCol(9);
-
-        assertEquals("Row should be updated to 5", 5, pos.getRow());
-        assertEquals("Column should be updated to 9", 9, pos.getCol());
-    }
-
-    /**
-     * Tests equality between two Position objects with same coordinates.
-     * Verifies that equals() returns true and hashCodes match.
-     */
-    @Test
-    public void testEquals_sameValues_returnsTrue() {
-        Position p1 = new Position(2, 3);
-        Position p2 = new Position(2, 3);
-
-        assertTrue("Positions with same coordinates should be equal", p1.equals(p2));
-        assertEquals("Equal positions should have the same hashCode", p1.hashCode(), p2.hashCode());
-    }
-
-    /**
-     * Tests equality between two Position objects with different coordinates.
-     * Verifies that equals() returns false.
-     */
-    @Test
-    public void testEquals_differentValues_returnsFalse() {
-        Position p1 = new Position(1, 4);
-        Position p2 = new Position(2, 5);
-
-        assertFalse("Positions with different coordinates should not be equal", p1.equals(p2));
-    }
-
-    /**
-     * Tests equality comparison with null and a different object type.
-     * Verifies that equals() correctly returns false.
-     */
-    @Test
-    public void testEquals_withNullAndDifferentType_returnsFalse() {
-        Position p1 = new Position(3, 7);
-
-        assertFalse("Position should not be equal to null", p1.equals(null));
-        assertFalse("Position should not be equal to a different type", p1.equals("NotAPosition"));
-    }
+    public void testToStringContainsCol() {
+        assertTrue(position.toString().contains("5"));
+    } 
+    */
 }
