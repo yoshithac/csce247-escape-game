@@ -25,7 +25,7 @@
     <HBox prefWidth="1280" prefHeight="720">
         <!-- LEFT: dark column with centered buttons -->
         <AnchorPane prefWidth="460" styleClass="left-panel">
-            <VBox spacing="36" alignment="CENTER"
+            <VBox spacing="36" alignment="CENTER_LEFT"
                   AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
                   AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="160.0">
 

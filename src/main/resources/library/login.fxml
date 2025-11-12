@@ -22,9 +22,8 @@
                 <!-- Error label that the controller expects -->
                 <Label fx:id="lbl_error" text="" visible="false" wrapText="true" maxWidth="320" style="-fx-text-fill: #ff6666;"/>
 
-                <VBox spacing="10" alignment="CENTER">
+                <VBox spacing="10" alignment="CENTER_LEFT">
                     <Button text="LOGIN" onAction="#onLogin" prefWidth="220" />
-                    <Button text="REGISTER" onAction="#onRegister" prefWidth="220" />
                     <Button text="BACK" onAction="#back" prefWidth="220" />
                 </VBox>
             </VBox>
