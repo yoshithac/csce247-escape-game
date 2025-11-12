@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.escapegame.LoginController">
+    <HBox prefWidth="1280" prefHeight="720">
+
+        <!-- LEFT PANEL -->
+        <!-- LEFT: dark column with large menu buttons -->
+        <AnchorPane prefWidth="460" styleClass="left-panel">
+
+            <!-- VBox anchored both top and bottom (same distances) to center vertically -->
+            <VBox spacing="36" alignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+                AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="160.0">
+
+                <!-- optional title or spacer can go here -->
+                <Region prefHeight="10" />
+
+                <!-- big buttons -->
+                <Button fx:id="loginButton" text="LOGIN" onAction="#onLogin" styleClass="menu-button"
+                        prefWidth="300" maxWidth="300" />
+                <Button fx:id="registerButton" text="REGISTER" onAction="#onRegister" styleClass="menu-button"
+                        prefWidth="300" maxWidth="300" />
+
+            </VBox>
+        </AnchorPane>
+
+        <!-- RIGHT PANEL -->
+        <StackPane HBox.hgrow="ALWAYS" styleClass="right-panel">
+            <ImageView preserveRatio="true" smooth="false" fitWidth="820">
+                <image>
+                    <Image url="@../images/manor.png" />
+                </image>
+            </ImageView>
+        </StackPane>
+
+    </HBox>
+</StackPane>

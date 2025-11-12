@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.escapegame.RegisterController">
+    <HBox prefWidth="1280" prefHeight="720">
+
+        <!-- LEFT PANEL -->
+        <AnchorPane prefWidth="460" styleClass="left-panel">
+            <VBox spacing="18" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="180.0">
+                <Label text="CREATE AN ACCOUNT" styleClass="title-banner"/>
+                <TextField fx:id="txt_userId" promptText="USER ID (5 characters)" styleClass="field"/>
+                <PasswordField fx:id="txt_password" promptText="PASSWORD (min 4 chars)" styleClass="field"/>
+                <TextField fx:id="txt_fullName" promptText="FULL NAME" styleClass="field"/>
+                <Label fx:id="lbl_error" text="" visible="false" styleClass="error-label"/>
+
+                <VBox spacing="12" alignment="CENTER_LEFT">
+                    <Button text="REGISTER" onMouseClicked="#btnRegisterClicked" styleClass="primary-button"/>
+                    <Button text="BACK" onMouseClicked="#back" styleClass="secondary-button"/>
+                </VBox>
+            </VBox>
+        </AnchorPane>
+
+        <!-- RIGHT PANEL -->
+        <StackPane HBox.hgrow="ALWAYS" styleClass="right-panel">
+            <ImageView preserveRatio="true" smooth="false" fitWidth="820">
+                <image>
+                    <Image url="@../images/manor.png" />
+                </image>
+            </ImageView>
+        </StackPane>
+
+    </HBox>
+</StackPane>
