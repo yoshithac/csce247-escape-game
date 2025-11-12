@@ -5,80 +5,121 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.model.AuthenticationService;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
+import com.model.User;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 /**
- * Controller for login.fxml
+ * Login controller — only navigation logic adjusted to use App.setRoot(...) (preferred)
+ * with a safe FXMLLoader fallback.
  */
 public class LoginController implements Initializable {
 
-    @FXML
-    private TextField txt_username;
-
-    @FXML
-    private PasswordField txt_password;
-
-    @FXML
-    private Label lbl_error;
+    @FXML private TextField txt_username;
+    @FXML private PasswordField txt_password;
+    @FXML private Label lbl_error;
 
     private final AuthenticationService authService = new AuthenticationService();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lbl_error.setVisible(false);
-        System.out.println("LoginController initialized");
+        System.out.println("DEBUG: LoginController initialized");
+        if (lbl_error != null) lbl_error.setVisible(false);
     }
 
-    /**
-     * Called by FXML when the login button is pressed (onAction="#onLogin").
-     */
     @FXML
-    private void onLogin(ActionEvent event) throws IOException {
-        performLogin();
+    private void onLogin(ActionEvent event) {
+        try {
+            performLogin();
+        } catch (Throwable t) {
+            t.printStackTrace();
+            showError("Unexpected error during login: " + t.getClass().getSimpleName());
+        }
     }
-    
+
     @FXML
-    private void btnLoginClicked() throws IOException {
-        performLogin();
+    private void btnLoginClicked() {
+        try {
+            performLogin();
+        } catch (Throwable t) {
+            t.printStackTrace();
+            showError("Unexpected error during login: " + t.getClass().getSimpleName());
+        }
     }
 
-    private void performLogin() throws IOException {
-        String username = txt_username.getText();
-        String password = txt_password.getText();
+    private void performLogin() {
+        if (lbl_error != null) lbl_error.setVisible(false);
 
-        lbl_error.setVisible(false);
+        String username = txt_username == null ? null : txt_username.getText();
+        String password = txt_password == null ? null : txt_password.getText();
 
         if (username == null || username.isBlank() || password == null || password.isBlank()) {
-            lbl_error.setText("Please enter username and password");
-            lbl_error.setVisible(true);
+            showError("Please enter username and password");
             return;
         }
 
-        boolean ok = authService.login(username.trim(), password);
-        if (ok) {
-            // navigate to the next scene (adjust as desired)
-            App.setRoot("home");
-        } else {
-            lbl_error.setText("Login failed: invalid credentials");
-            lbl_error.setVisible(true);
+        boolean ok;
+        try {
+            ok = authService.login(username.trim(), password);
+        } catch (Throwable t) {
+            t.printStackTrace();
+            showError("Authentication service error: " + t.getClass().getSimpleName());
+            return;
+        }
+
+        if (!ok) {
+            showError("Login failed: invalid credentials");
+            return;
+        }
+
+        User currentUser = null;
+        try { currentUser = authService.getCurrentUser(); } catch (Throwable ignore) {}
+
+        try {
+            try { App.setCurrentUser(currentUser); } catch (Throwable ignore) {}
+            App.setRoot("mainmenu");
+            return;
+        } catch (IOException | NoSuchMethodError | NoClassDefFoundError e) {
+            System.err.println("App.setRoot failed — falling back to direct FXMLLoader. Cause:");
+            e.printStackTrace();
+        } catch (Throwable t) {
+            System.err.println("Unexpected error calling App.setRoot:");
+            t.printStackTrace();
         }
     }
 
-    /**
-     * Navigate to register screen (onAction="#onRegister" inside login.fxml).
-     */
     @FXML
-    private void onRegister(ActionEvent event) throws IOException {
-        App.setRoot("register");
+    private void onRegister(ActionEvent event) {
+        try {
+            App.setRoot("register");
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Unable to open register screen: " + e.getMessage());
+        }
     }
 
     @FXML
-    private void back(ActionEvent event) throws IOException {
-        App.setRoot("home");
+    private void back(ActionEvent event) {
+        try {
+            App.setRoot("home");
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Unable to go back: " + e.getMessage());
+        }
+    }
+
+    private void showError(String message) {
+        System.err.println("Login error: " + message);
+        if (lbl_error != null) {
+            lbl_error.setText(message);
+            lbl_error.setVisible(true);
+        }
     }
 }

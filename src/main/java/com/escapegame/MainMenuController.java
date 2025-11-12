@@ -8,14 +8,15 @@ import com.model.AuthenticationService;
 import com.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.fxml.FXMLLoader;
 
 /**
- * Controller for mainmenu.fxml. Exposes initData(User, AuthenticationService)
- * to receive runtime data after loading.
+ * Main menu controller — wired to mainmenu.fxml
  */
 public class MainMenuController implements Initializable {
 
@@ -29,55 +30,118 @@ public class MainMenuController implements Initializable {
     @FXML private Button logoutButton;
 
     @FXML private Label lblUser;
+
     private AuthenticationService authService;
     private User currentUser;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (backgroundImage != null && menuRoot != null) {
-            backgroundImage.fitWidthProperty().bind(menuRoot.widthProperty());
-            backgroundImage.fitHeightProperty().bind(menuRoot.heightProperty());
-            backgroundImage.setPreserveRatio(true);
-            backgroundImage.setSmooth(true);
-        }
+        
+        try {
+            if (lblUser != null) lblUser.setText("Welcome");
 
-        lblUser.setText("Welcome");
+            if (backgroundImage != null && menuRoot != null) {
+                try {
+                    backgroundImage.fitWidthProperty().bind(menuRoot.widthProperty());
+                    backgroundImage.fitHeightProperty().bind(menuRoot.heightProperty());
+                    backgroundImage.setPreserveRatio(true);
+                    backgroundImage.setSmooth(true);
+                } catch (Throwable t) {
+                    System.err.println("Warning: background image binding failed: " + t.getMessage());
+                    t.printStackTrace();
+                }
+            }
+
+            if (newGameButton != null) {
+                newGameButton.setOnAction(e -> loadAndSwitch("home"));
+            }
+            if (progressButton != null) {
+                progressButton.setOnAction(e -> loadAndSwitch("progress"));
+            }
+            if (leaderboardButton != null) {
+                leaderboardButton.setOnAction(e -> loadAndSwitch("leaderboard"));
+            }
+            if (certificatesButton != null) {
+                certificatesButton.setOnAction(e -> loadAndSwitch("certificates"));
+            }
+            if (logoutButton != null) {
+                logoutButton.setOnAction(e -> {
+                    if (authService != null) {
+                        try { authService.logout(); } catch (Throwable ignore) {}
+                    }
+                    loadAndSwitch("login");
+                });
+            }
+        } catch (Throwable t) {
+            System.err.println("MainMenuController.initialize() caught: " + t.getClass().getSimpleName() + " - " + t.getMessage());
+            t.printStackTrace();
+        }
     }
 
     /**
-     * Called by the loader after FXMLLoader.load() to pass runtime data.
-     * @param user currently logged-in user
-     * @param auth AuthenticationService instance that performed login
+     * Called by the loader after FXMLLoader.load() to pass runtime data
      */
     public void initData(User user, AuthenticationService auth) {
         this.currentUser = user;
         this.authService = auth;
+        try {
+            if (lblUser != null) {
+                if (user != null) {
+                    String display = (user.getFirstName() != null && !user.getFirstName().isBlank())
+                            ? user.getFirstName() : user.getUserId();
+                    lblUser.setText("Welcome, " + display.toUpperCase());
+                } else {
+                    lblUser.setText("Welcome, guest");
+                }
+            }
+        } catch (Throwable t) {
+            System.err.println("initData encountered an error: " + t.getMessage());
+            t.printStackTrace();
+        }
+    }
 
-        if (user != null) {
-            String display = (user.getFirstName() != null && !user.getFirstName().isBlank())
-                    ? user.getFirstName() : user.getUserId();
-            lblUser.setText("Welcome, " + display.toUpperCase());
-        } else {
-            lblUser.setText("Welcome, guest");
+    /**
+     * Helper to load a target FXML and switch the current Scene root.
+     */
+    private void loadAndSwitch(String baseName) {
+        String[] candidates = new String[] {
+            "/library/" + baseName + ".fxml",
+            "/" + baseName + ".fxml",
+            "/fxml/" + baseName + ".fxml",
+            "/views/" + baseName + ".fxml"
+        };
+
+        FXMLLoader loader = null;
+        java.net.URL found = null;
+        String tried = "";
+        for (String p : candidates) {
+            tried += p + " ";
+            java.net.URL u = getClass().getResource(p);
+            if (u != null) {
+                found = u;
+                loader = new FXMLLoader(found);
+                break;
+            }
         }
 
-        // wire button handlers (keeps controller self-contained)
-        newGameButton.setOnAction(e -> {
-            try { App.setRoot("home"); } catch (IOException ex) { ex.printStackTrace(); }
-        });
-        progressButton.setOnAction(e -> {
-            try { App.setRoot("progress"); } catch (IOException ex) { ex.printStackTrace(); }
-        });
-        leaderboardButton.setOnAction(e -> {
-            try { App.setRoot("leaderboard"); } catch (IOException ex) { ex.printStackTrace(); }
-        });
-        certificatesButton.setOnAction(e -> {
-            try { App.setRoot("certificates"); } catch (IOException ex) { ex.printStackTrace(); }
-        });
-        logoutButton.setOnAction(e -> {
-            // clear auth state in this instance and navigate to login
-            if (authService != null) authService.logout();
-            try { App.setRoot("login"); } catch (IOException ex) { ex.printStackTrace(); }
-        });
+        if (loader == null) {
+            System.err.println("MainMenuController: could not find FXML for '" + baseName + "'. Tried: " + tried);
+            return;
+        }
+
+        try {
+            Parent root = loader.load();
+            // try to switch scene using a known node (menuRoot or any button)
+            if (menuRoot != null && menuRoot.getScene() != null) {
+                menuRoot.getScene().setRoot(root);
+            } else if (newGameButton != null && newGameButton.getScene() != null) {
+                newGameButton.getScene().setRoot(root);
+            } else {
+                System.err.println("MainMenuController: no scene available to switch root to " + baseName);
+            }
+        } catch (Throwable t) {
+            System.err.println("MainMenuController.loadAndSwitch failed for '" + baseName + "': " + t.getClass().getSimpleName() + " - " + t.getMessage());
+            t.printStackTrace();
+        }
     }
 }

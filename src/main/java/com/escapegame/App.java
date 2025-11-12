@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+import com.model.User;
+
 /**
  * JavaFX launcher for Whispers of Hollow Manor.
  * This version automatically looks for a stylesheet in multiple common locations.
@@ -117,4 +119,7 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+    private static User currentUser;
+public static void setCurrentUser(User u) { currentUser = u; }
+public static User getCurrentUser() { return currentUser; }
 }
