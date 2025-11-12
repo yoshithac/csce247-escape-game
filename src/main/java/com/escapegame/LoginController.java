@@ -5,30 +5,54 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.model.AuthenticationService;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import library.App;
-import model.*;
+import javafx.scene.control.PasswordField;
+import javafx.event.ActionEvent;
 
+/**
+ * Controller for login.fxml
+ */
 public class LoginController implements Initializable {
+
     @FXML
     private TextField txt_username;
 
+    // use PasswordField for secure input; if your FXML uses TextField instead, rename here to TextField
     @FXML
-    private TextField txt_password;
+    private PasswordField txt_password;
 
     @FXML
     private Label lbl_error;
 
-    // single instance of your backend service (adjust if you already have DI)
     private final AuthenticationService authService = new AuthenticationService();
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        lbl_error.setVisible(false);
+        System.out.println("LoginController initialized");
+    }
+
+    /**
+     * Called by FXML when the login button is pressed (onAction="#onLogin").
+     */
     @FXML
-    private void btnLoginClicked(MouseEvent event) throws IOException {
+    private void onLogin(ActionEvent event) throws IOException {
+        performLogin();
+    }
+
+    /**
+     * If you previously had a MouseEvent handler (btnLoginClicked), you can still call performLogin() there.
+     * This adapter ensures both onAction="#onLogin" and other wiring work.
+     */
+    @FXML
+    private void btnLoginClicked() throws IOException {
+        performLogin();
+    }
+
+    private void performLogin() throws IOException {
         String username = txt_username.getText();
         String password = txt_password.getText();
 
@@ -40,32 +64,26 @@ public class LoginController implements Initializable {
             return;
         }
 
-        try {
-            boolean ok = authService.login(username.trim(), password);
-            if (ok) {
-                // login succeeded - you said your AuthenticationService sets currentUser and updates last login
-                // navigate to home (same as your existing back() usage)
-                App.setRoot("home");
-            } else {
-                lbl_error.setText("Login failed: invalid credentials");
-                lbl_error.setVisible(true);
-            }
-        } catch (Exception ex) {
-            // show generic error (avoid exposing stack traces to UI)
-            lbl_error.setText("Login failed: " + ex.getMessage());
+        boolean ok = authService.login(username.trim(), password);
+        if (ok) {
+            // navigate to the next scene (adjust as desired)
+            App.setRoot("home");
+        } else {
+            lbl_error.setText("Login failed: invalid credentials");
             lbl_error.setVisible(true);
-            ex.printStackTrace();
         }
     }
 
+    /**
+     * Navigate to register screen (onAction="#onRegister" inside login.fxml).
+     */
     @FXML
-    private void back(MouseEvent event) throws IOException {
-        App.setRoot("home");
+    private void onRegister(ActionEvent event) throws IOException {
+        App.setRoot("register");
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // Initialize UI state if needed
-        lbl_error.setVisible(false);
+    @FXML
+    private void back(ActionEvent event) throws IOException {
+        App.setRoot("home");
     }
 }

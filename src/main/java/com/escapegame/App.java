@@ -7,9 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 /**
- * JavaFX App
+ * JavaFX launcher for Whispers of Hollow Manor.
+ * This version automatically looks for a stylesheet in multiple common locations.
  */
 public class App extends Application {
 
@@ -17,13 +19,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // load initial view (library/home.fxml)
         Parent root = loadFXML("home");
         scene = new Scene(root, 1280, 720);
 
-        // NOTE: your styles.css lives in resources/escapegame/styles.css
-        // we add it from the classpath root as "/escapegame/styles.css"
-        scene.getStylesheets().add(App.class.getResource("/escapegame/styles.css").toExternalForm());
+        // Load stylesheet automatically from possible locations
+        tryLoadStylesheet(scene);
 
         stage.setScene(scene);
         stage.setTitle("Whispers of Hollow Manor");
@@ -32,26 +32,61 @@ public class App extends Application {
     }
 
     /**
-     * Replace the root of the current scene with the requested FXML (from resources/library/).
-     * Example: App.setRoot("login") -> loads /library/login.fxml
+     * Replace scene root with the specified FXML (from /library/{fxml}.fxml).
      */
     public static void setRoot(String fxml) throws IOException {
         if (scene == null) {
-            // defensive fallback: create a scene if start() hasn't initialized it
             Parent root = loadFXML("home");
             scene = new Scene(root, 1280, 720);
-            scene.getStylesheets().add(App.class.getResource("/escapegame/styles.css").toExternalForm());
+            tryLoadStylesheet(scene);
         }
         scene.setRoot(loadFXML(fxml));
     }
 
+    /**
+     * Attempts to load the stylesheet from several common paths.
+     */
+    private static void tryLoadStylesheet(Scene scene) {
+        String[] candidates = {
+            "/escapegame/styles.css",
+            "/com/escapegame/styles.css",
+            "/styles.css"
+        };
+
+        boolean loaded = false;
+        for (String cssPath : candidates) {
+            URL cssUrl = App.class.getResource(cssPath);
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+                System.out.println("Loaded stylesheet: " + cssPath);
+                loaded = true;
+                break;
+            }
+        }
+
+        if (!loaded) {
+            System.err.println("WARNING: stylesheet not found. Tried:");
+            for (String path : candidates) System.err.println("  " + path);
+            System.err.println("Expected file under src/main/resources matching one of those paths.");
+        }
+    }
+
+    /**
+     * Loads an FXML file from /library/{fxml}.fxml.
+     */
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/library/" + fxml + ".fxml"));
-        return fxmlLoader.load();
+        String res = "/library/" + fxml + ".fxml";
+        URL url = App.class.getResource(res);
+        if (url == null) {
+            String msg = "FXML not found: " + res + " (expected in src/main/resources" + res + ")";
+            System.err.println(msg);
+            throw new IOException(msg);
+        }
+        FXMLLoader loader = new FXMLLoader(url);
+        return loader.load();
     }
 
     public static void main(String[] args) {
         launch();
     }
-
 }

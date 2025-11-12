@@ -1,13 +1,13 @@
 package com.escapegame;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import library.App;
+import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 
+/**
+ * Home screen controller — wired to home.fxml
+ */
 public class HomeController {
 
     @FXML private Button loginButton;

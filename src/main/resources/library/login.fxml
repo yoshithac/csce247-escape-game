@@ -1,40 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.escapegame.LoginController">
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.escapegame.LoginController"
+           prefWidth="1280" prefHeight="720" styleClass="login-root">
+
     <HBox prefWidth="1280" prefHeight="720">
-
-        <!-- LEFT PANEL -->
-        <!-- LEFT: dark column with large menu buttons -->
         <AnchorPane prefWidth="460" styleClass="left-panel">
+            <VBox spacing="16" alignment="CENTER"
+                  AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="160.0">
+                <Label text="LOGIN" style="-fx-font-size:20px; -fx-text-fill: white;"/>
 
-            <!-- VBox anchored both top and bottom (same distances) to center vertically -->
-            <VBox spacing="36" alignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-                AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="160.0">
+                <TextField fx:id="txt_username" promptText="Username" prefWidth="320" />
+                <!-- Use PasswordField to match the controller -->
+                <PasswordField fx:id="txt_password" promptText="Password" prefWidth="320" />
 
-                <!-- optional title or spacer can go here -->
-                <Region prefHeight="10" />
+                <!-- Error label that the controller expects -->
+                <Label fx:id="lbl_error" text="" visible="false" wrapText="true" maxWidth="320" style="-fx-text-fill: #ff6666;"/>
 
-                <!-- big buttons -->
-                <Button fx:id="loginButton" text="LOGIN" onAction="#onLogin" styleClass="menu-button"
-                        prefWidth="300" maxWidth="300" />
-                <Button fx:id="registerButton" text="REGISTER" onAction="#onRegister" styleClass="menu-button"
-                        prefWidth="300" maxWidth="300" />
-
+                <VBox spacing="10" alignment="CENTER">
+                    <Button text="LOGIN" onAction="#onLogin" prefWidth="220" />
+                    <Button text="REGISTER" onAction="#onRegister" prefWidth="220" />
+                    <Button text="BACK" onAction="#back" prefWidth="220" />
+                </VBox>
             </VBox>
         </AnchorPane>
 
-        <!-- RIGHT PANEL -->
-        <StackPane HBox.hgrow="ALWAYS" styleClass="right-panel">
-            <ImageView preserveRatio="true" smooth="false" fitWidth="820">
-                <image>
-                    <Image url="@../images/manor.png" />
-                </image>
-            </ImageView>
-        </StackPane>
-
+        <StackPane HBox.hgrow="ALWAYS" styleClass="right-panel"/>
     </HBox>
 </StackPane>

@@ -1,20 +1,27 @@
 package com.escapegame;
 
 import java.io.IOException;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import com.model.AuthenticationService;
-import library.App;
 
+import com.model.AuthenticationService;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+
+/**
+ * Controller for register.fxml
+ */
 public class RegisterController {
 
     @FXML
     private TextField txt_userId;
+
     @FXML
-    private PasswordField txt_password;
+    private TextField txt_password; // use PasswordField in FXML later if desired
+
     @FXML
-    private TextField txt_fullName;
+    private TextField txt_fullName;  // split into first/last below
+
     @FXML
     private Label lbl_error;
 
@@ -28,19 +35,32 @@ public class RegisterController {
 
         lbl_error.setVisible(false);
 
-        if (userId == null || userId.isBlank() || password == null || password.isBlank() || fullName == null || fullName.isBlank()) {
+        if (userId == null || userId.isBlank() ||
+            password == null || password.isBlank() ||
+            fullName == null || fullName.isBlank()) {
             lbl_error.setText("All fields are required.");
             lbl_error.setVisible(true);
             return;
         }
 
-        boolean ok = authService.register(userId.trim(), password.trim(), fullName.trim());
+        // split full name into first/last (best effort)
+        String firstName = fullName.trim();
+        String lastName = "";
+        int spaceIdx = fullName.trim().indexOf(' ');
+        if (spaceIdx > 0) {
+            firstName = fullName.trim().substring(0, spaceIdx).trim();
+            lastName = fullName.trim().substring(spaceIdx + 1).trim();
+        }
+
+        // email not present on form — pass empty string
+        String email = "";
+
+        boolean ok = authService.register(userId.trim(), password, firstName, lastName, email);
 
         if (ok) {
-            // Registration successful - navigate to login
             App.setRoot("login");
         } else {
-            lbl_error.setText("Registration failed. Ensure ID is 5 chars, password >= 4 chars.");
+            lbl_error.setText("Registration failed. Ensure ID is 5 chars and password >= 4 chars.");
             lbl_error.setVisible(true);
         }
     }

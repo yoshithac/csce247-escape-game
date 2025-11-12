@@ -68,7 +68,19 @@
         <artifactId>spring-context</artifactId>
         <version>5.1.9.RELEASE</version>
       </dependency>
+
+        <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>22</version>
+        </dependency>
+        <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>22</version>
+        </dependency>
     </dependencies>
+    
     <build>
         <plugins>
             <plugin>
@@ -132,6 +144,25 @@
                 </excludes>
             </configuration>
         </plugin>
+        <plugin>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.8</version>
+            <configuration>
+                <!-- runtime entry point for mvn javafx:run -->
+                <mainClass>com.escapegame.App</mainClass>
+            </configuration>
+        </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
     </build>
 </project>

@@ -1,3 +1,10 @@
+#home-root {
+  -fx-background-image: url("/images/manor.png");
+  -fx-background-size: cover;           /* cover entire area */
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-color: transparent;    /* let the image show through */
+}
 .label {
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 14px;
@@ -15,11 +22,4 @@
 
 .body {
     background-color: #171a3c;
-}
-
-#home-root {
-    -fx-background-image: url("/images/manor.png");
-    -fx-background-size: cover;
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
 }
