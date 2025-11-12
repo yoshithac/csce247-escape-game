@@ -35,7 +35,8 @@
                 <TextField fx:id="txt_userId" promptText="USERNAME (5 characters)" styleClass="field"/>
                 <PasswordField fx:id="txt_password" promptText="PASSWORD (min 4 chars)" styleClass="field"/>
                 <TextField fx:id="txt_fullName" promptText="EMAIL" styleClass="field"/>
-                <Label fx:id="lbl_error" text="" visible="false" styleClass="error-label"/>
+                <Label fx:id="lbl_error" text="" visible="false" styleClass="error-label"
+                       style="-fx-text-fill: #ff6666; -fx-font-size: 15px;"/>
 
                 <VBox spacing="16" alignment="CENTER">
                     <Button text="REGISTER" onMouseClicked="#btnRegisterClicked" prefWidth="300" styleClass="primary-button"/>

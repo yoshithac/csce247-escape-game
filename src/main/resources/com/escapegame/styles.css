@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Jersey 10";
+    src: url("fonts/Jersey10-Regular.ttf");
+}
+
 #home-root {
   -fx-background-image: url("/images/manor.png");
   -fx-background-size: cover;
@@ -6,22 +11,17 @@
   -fx-background-color: transparent;
 }
 
-@font-face {
-    font-family: "Jersey 10";
-    src: url("fonts/Jersey10-Regular.ttf");
-}
-
 
 .label {
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 32px;
-    -fx-font-family: "Jersey 10";
+    -fx-font-family: "Jersey 10", "Segoe UI";
 }
 
 .button {
     -fx-background-color: #313561;
     -fx-text-fill: #FFFFFF;
-    -fx-font-size: 20px;
+    -fx-font-size: 32px;
     -fx-font-family: "Jersey 10";
     -fx-padding: 10px 20px;
     -fx-border-radius: 5px;
@@ -29,7 +29,7 @@
 }
 
 .button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-color: rgba(37, 38, 76, 0.2);
 }
 
 .body {

@@ -42,11 +42,7 @@ public class LoginController implements Initializable {
     private void onLogin(ActionEvent event) throws IOException {
         performLogin();
     }
-
-    /**
-     * If you previously had a MouseEvent handler (btnLoginClicked), you can still call performLogin() there.
-     * This adapter ensures both onAction="#onLogin" and other wiring work.
-     */
+    
     @FXML
     private void btnLoginClicked() throws IOException {
         performLogin();

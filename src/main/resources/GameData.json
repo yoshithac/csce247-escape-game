@@ -1502,7 +1502,8 @@
           "col": 7.0
         }
       }
-    },{
+    },
+    {
       "puzzleId": "cipher_e1",
       "puzzleType": "CIPHER",
       "difficulty": "EASY",
@@ -2070,7 +2071,8 @@
       "hintText": "Small but can cross the globe.",
       "puzzleId": "ridd_m3",
       "hintPriority": 3
-    },{
+    },
+    {
       "hintText": "Atomic number is 8.",
       "puzzleId": "cipher_e1",
       "hintPriority": 1
@@ -2206,7 +2208,14 @@
       "hintPriority": 3
     }
   ],
-  "userProgress": [],
+  "userProgress": [
+    {
+      "userId": "remyr",
+      "completedPuzzles": [],
+      "puzzleScores": {},
+      "totalScore": 0
+    }
+  ],
   "certificates": [
     {
       "certificateId": "CERT_U1002_ridd_m2_1761446264892",

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 /**
@@ -22,6 +23,21 @@ public class App extends Application {
         Parent root = loadFXML("home");
         scene = new Scene(root, 1440, 900);
 
+            try (InputStream is = getClass().getResourceAsStream("/fonts/Jersey10-Regular.ttf")) {
+        if (is == null) {
+            System.err.println("FONT FILE NOT FOUND AT: /fonts/Jersey10-Regular.ttf");
+        } else {
+            javafx.scene.text.Font loaded = javafx.scene.text.Font.loadFont(is, 12);
+            if (loaded == null) {
+                System.err.println("Font.loadFont(...) returned null (failed to parse font)");
+            } else {
+                System.out.println("FONT LOADED OK -> family='" + loaded.getFamily()
+                    + "' name='" + loaded.getName() + "'");
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
         // Load stylesheet automatically from possible locations
         tryLoadStylesheet(scene);
 
@@ -85,6 +101,18 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(url);
         return loader.load();
     }
+
+    public static FXMLLoader loadFXMLWithLoader(String fxmlName) throws IOException {
+    FXMLLoader loader = new FXMLLoader(App.class.getResource("/" + fxmlName + ".fxml"));
+    return loader;
+}
+
+    public static Parent loadRoot(String fxmlName) throws IOException {
+    FXMLLoader loader = loadFXMLWithLoader(fxmlName);
+    return loader.load();
+}
+
+
 
     public static void main(String[] args) {
         launch();

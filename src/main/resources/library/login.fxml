@@ -36,7 +36,7 @@
                 <PasswordField fx:id="txt_password" promptText="Password" prefWidth="300" />
 
                 <Label fx:id="lbl_error" text="" visible="false" wrapText="true" maxWidth="300"
-                       style="-fx-text-fill: #ff6666;"/>
+                       style="-fx-text-fill: #ff6666; -fx-font-size: 15px;"/>
 
                 <VBox spacing="16" alignment="CENTER">
                     <Button text="LOG IN" onAction="#onLogin" prefWidth="300" />
