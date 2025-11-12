@@ -66,19 +66,19 @@ public class MainMenuController implements Initializable {
         }
 
         // wire button handlers (keeps controller self-contained)
-        btnNewGame.setOnAction(e -> {
+        newGameButton.setOnAction(e -> {
             try { App.setRoot("home"); } catch (IOException ex) { ex.printStackTrace(); }
         });
-        btnViewProgress.setOnAction(e -> {
+        progressButton.setOnAction(e -> {
             try { App.setRoot("progress"); } catch (IOException ex) { ex.printStackTrace(); }
         });
-        btnLeaderboard.setOnAction(e -> {
+        leaderboardButton.setOnAction(e -> {
             try { App.setRoot("leaderboard"); } catch (IOException ex) { ex.printStackTrace(); }
         });
-        btnCertificates.setOnAction(e -> {
+        certificatesButton.setOnAction(e -> {
             try { App.setRoot("certificates"); } catch (IOException ex) { ex.printStackTrace(); }
         });
-        btnLogout.setOnAction(e -> {
+        logoutButton.setOnAction(e -> {
             // clear auth state in this instance and navigate to login
             if (authService != null) authService.logout();
             try { App.setRoot("login"); } catch (IOException ex) { ex.printStackTrace(); }
