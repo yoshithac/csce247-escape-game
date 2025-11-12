@@ -12,8 +12,9 @@
            fx:id="loginRoot"
            prefWidth="1440" prefHeight="900"
            styleClass="login-root">
-
-    <!-- Manor image background (same as home.fxml) -->
+    <stylesheets>
+        <URL value="@/com/escapegame/styles.css" />
+    </stylesheets>
     <ImageView fx:id="backgroundImage" fitWidth="1440" fitHeight="900"
                preserveRatio="true" smooth="false">
         <image>
@@ -21,7 +22,6 @@
         </image>
     </ImageView>
 
-    <!-- Dark overlay for contrast -->
     <Rectangle width="1440" height="900" pickOnBounds="false" mouseTransparent="true"
                style="-fx-fill: rgba(0,0,0,0.0);" />
 

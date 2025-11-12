@@ -5,13 +5,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.shape.*?>
 
+
 <StackPane xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.escapegame.HomeController"
-           fx:id="homeRoot"
+           fx:controller="com.escapegame.LeaderboardController"
+           fx:id="leaderboardRoot"
            prefWidth="1440" prefHeight="900">
 
     <stylesheets>
-      <URL value="@/com/escapegame/styles.css" />
+        <URL value="@/com/escapegame/styles.css" />
     </stylesheets>
     <ImageView fitWidth="1440" fitHeight="900" preserveRatio="true" smooth="false">
         <image>
@@ -28,11 +29,7 @@
             <VBox spacing="16" alignment="BOTTOM_CENTER"
                   AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"
                   AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
-
-                <Button fx:id="loginButton" text="LOG IN" onAction="#onLogin"
-                        styleClass="menu-button" prefWidth="300" maxWidth="300"/>
-                <Button fx:id="registerButton" text="REGISTER" onAction="#onRegister"
-                        styleClass="menu-button" prefWidth="300" maxWidth="300"/>
+            <Label fx:id="leaderboardLabel" text="TOP PLAYERS" style="-fx-font-size: 32; -fx-font-family: 'Jersey 10';"/>
             </VBox>
         </AnchorPane>
     </HBox>

@@ -17,10 +17,10 @@ public class RegisterController {
     private TextField txt_userId;
 
     @FXML
-    private TextField txt_password; // use PasswordField in FXML later if desired
+    private TextField txt_password;
 
     @FXML
-    private TextField txt_fullName;  // split into first/last below
+    private TextField txt_fullName; 
 
     @FXML
     private Label lbl_error;
@@ -31,29 +31,23 @@ public class RegisterController {
     private void btnRegisterClicked(MouseEvent event) throws IOException {
         String userId = txt_userId.getText();
         String password = txt_password.getText();
-        String fullName = txt_fullName.getText();
+        String email = txt_fullName.getText();
 
         lbl_error.setVisible(false);
 
         if (userId == null || userId.isBlank() ||
             password == null || password.isBlank() ||
-            fullName == null || fullName.isBlank()) {
+            email == null || email.isBlank()) {
             lbl_error.setText("All fields are required.");
             lbl_error.setVisible(true);
             return;
         }
 
-        // split full name into first/last (best effort)
-        String firstName = fullName.trim();
+        String firstName = "";
         String lastName = "";
-        int spaceIdx = fullName.trim().indexOf(' ');
-        if (spaceIdx > 0) {
-            firstName = fullName.trim().substring(0, spaceIdx).trim();
-            lastName = fullName.trim().substring(spaceIdx + 1).trim();
-        }
 
         // email not present on form — pass empty string
-        String email = "";
+        String fillEmail = email;
 
         boolean ok = authService.register(userId.trim(), password, firstName, lastName, email);
 

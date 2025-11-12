@@ -15,7 +15,7 @@ import javafx.scene.layout.StackPane;
 
 /**
  * Controller for mainmenu.fxml. Exposes initData(User, AuthenticationService)
- * so it can receive the logged-in user and the service instance from LoginController.
+ * to receive runtime data after loading.
  */
 public class MainMenuController implements Initializable {
 
@@ -29,14 +29,11 @@ public class MainMenuController implements Initializable {
     @FXML private Button logoutButton;
 
     @FXML private Label lblUser;
-
-    // these will be set from the initData(...) call
     private AuthenticationService authService;
     private User currentUser;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // bind background image sizing
         if (backgroundImage != null && menuRoot != null) {
             backgroundImage.fitWidthProperty().bind(menuRoot.widthProperty());
             backgroundImage.fitHeightProperty().bind(menuRoot.heightProperty());
@@ -44,7 +41,6 @@ public class MainMenuController implements Initializable {
             backgroundImage.setSmooth(true);
         }
 
-        // default text until initData is called
         lblUser.setText("Welcome");
     }
 

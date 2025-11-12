@@ -20,7 +20,6 @@ public class LoginController implements Initializable {
     @FXML
     private TextField txt_username;
 
-    // use PasswordField for secure input; if your FXML uses TextField instead, rename here to TextField
     @FXML
     private PasswordField txt_password;
 

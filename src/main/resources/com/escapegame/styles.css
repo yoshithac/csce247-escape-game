@@ -15,7 +15,7 @@
 .label {
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 32px;
-    -fx-font-family: "Jersey 10", "Segoe UI";
+    -fx-font-family: "Jersey 10";
 }
 
 .button {

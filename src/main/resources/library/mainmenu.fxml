@@ -9,8 +9,9 @@
            fx:controller="com.escapegame.MainMenuController"
            fx:id="menuRoot"
            prefWidth="1440" prefHeight="900">
-
-    <!-- Manor image background (same as home) -->
+    <stylesheets>
+        <URL value="@/com/escapegame/styles.css" />
+    </stylesheets>
     <ImageView fx:id="backgroundImage" fitWidth="1440" fitHeight="900"
                preserveRatio="true" smooth="false">
         <image>
@@ -18,11 +19,9 @@
         </image>
     </ImageView>
 
-    <!-- dark overlay -->
     <Rectangle width="1440" height="900" pickOnBounds="false" mouseTransparent="true"
                style="-fx-fill: rgba(0,0,0,0.0);" />
 
-    <!-- main content -->
     <HBox prefWidth="1440" prefHeight="900" spacing="0">
         <!-- LEFT: dark column -->
         <AnchorPane prefWidth="460" styleClass="left-panel">
@@ -43,13 +42,11 @@
                     <Button fx:id="logoutButton" text="LOGOUT" onMouseClicked="" prefWidth="300" styleClass="button"/>
                 </VBox>
 
-                <Label fx:id="lblUser" text="Welcome, PLAYER" style="-fx-text-fill: #cfd6ff; -fx-font-size:14px; -fx-padding:8 0 16 6;"/>
+                <Label fx:id="lblUser" text="Welcome, PLAYER" style="-fx-font-size: 32; -fx-font-family: 'Jersey 10';"/>
             </VBox>
         </AnchorPane>
 
-        <!-- RIGHT: manor illustration area (keeps background showing) -->
         <StackPane HBox.hgrow="ALWAYS" styleClass="right-panel">
-            <!-- Decorative panel if desired; background image shows through -->
         </StackPane>
     </HBox>
 </StackPane>
