@@ -4,18 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.geometry.*?>
-<stylesheets>
-    <URL value="@styles.css" />
-</stylesheets>
 
 <StackPane xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.escapegame.RegisterController"
            fx:id="registerRoot"
            prefWidth="1440" prefHeight="900">
 
-    <stylesheets>
-        <URL value="@/com/escapegame/styles.css" />
-    </stylesheets>
     <ImageView fx:id="backgroundImage" fitWidth="1440" fitHeight="900"
                preserveRatio="true" smooth="false">
         <image>

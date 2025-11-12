@@ -12,9 +12,7 @@
            fx:id="loginRoot"
            prefWidth="1440" prefHeight="900"
            styleClass="login-root">
-    <stylesheets>
-        <URL value="@/com/escapegame/styles.css" />
-    </stylesheets>
+           
     <ImageView fx:id="backgroundImage" fitWidth="1440" fitHeight="900"
                preserveRatio="true" smooth="false">
         <image>
