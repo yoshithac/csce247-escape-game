@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.shape.*?>
+
 <StackPane xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.escapegame.HomeController"
            fx:id="homeRoot"
-           id="home-root"
            prefWidth="1280" prefHeight="720">
 
-    <!-- Optional semi-transparent overlay to increase contrast for buttons -->
+    <!-- Manor image background -->
+    <ImageView fitWidth="1280" fitHeight="720" preserveRatio="true" smooth="false">
+        <image>
+            <Image url="@../images/manor.png" />
+        </image>
+    </ImageView>
+
+    <!-- Optional dark overlay for contrast -->
     <Rectangle width="1280" height="720" pickOnBounds="false" mouseTransparent="true"
-               style="-fx-fill: rgba(0,0,0,0.32);"/>
+               style="-fx-fill: rgba(0,0,0,0.32);" />
 
-    <!-- Main horizontal split: left menu column + right image area (background handled by CSS) -->
+    <!-- Content -->
     <HBox prefWidth="1280" prefHeight="720">
-
         <!-- LEFT: dark column with centered buttons -->
         <AnchorPane prefWidth="460" styleClass="left-panel">
-            <!-- VBox anchored equally top & bottom to center vertically -->
             <VBox spacing="36" alignment="CENTER"
                   AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
                   AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="160.0">
-                <!-- optional title -->
-                <Label text="WHISPERS OF HOLLOW MANOR" styleClass="title-banner"/>
 
-                <!-- big centered menu buttons -->
                 <Button fx:id="loginButton" text="LOGIN" onAction="#onLogin"
                         styleClass="menu-button" prefWidth="300" maxWidth="300"/>
                 <Button fx:id="registerButton" text="REGISTER" onAction="#onRegister"
                         styleClass="menu-button" prefWidth="300" maxWidth="300"/>
             </VBox>
         </AnchorPane>
-
-        <!-- RIGHT: empty StackPane so the HBox preserves the split.
-             The background manor image is supplied by styles.css on the root (#home-root). -->
-        <StackPane HBox.hgrow="ALWAYS" styleClass="right-panel"/>
     </HBox>
 </StackPane>

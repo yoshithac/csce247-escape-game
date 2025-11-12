@@ -1,14 +1,19 @@
 #home-root {
   -fx-background-image: url("/images/manor.png");
-  -fx-background-size: cover;           /* cover entire area */
+  -fx-background-size: cover;
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
-  -fx-background-color: transparent;    /* let the image show through */
+  -fx-background-color: transparent;
 }
+
+#home-root Rectangle {
+  -fx-fill: rgba(0,0,0,0.32);
+}
+
 .label {
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 14px;
-    -fx-font-family: "Arial";
+    -fx-font-family: "Jersey 10";
 }
 
 .button {

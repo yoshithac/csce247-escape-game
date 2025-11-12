@@ -39,6 +39,7 @@ public class HomeController {
             showError("Unable to open register screen:\n" + e.getMessage());
         }
     }
+    
 
     private void showError(String message) {
         Alert a = new Alert(Alert.AlertType.ERROR);
