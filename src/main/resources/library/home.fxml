@@ -8,28 +8,28 @@
 <StackPane xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.escapegame.HomeController"
            fx:id="homeRoot"
-           prefWidth="1280" prefHeight="720">
+           prefWidth="1440" prefHeight="900">
 
     <!-- Manor image background -->
-    <ImageView fitWidth="1280" fitHeight="720" preserveRatio="true" smooth="false">
+    <ImageView fitWidth="1440" fitHeight="900" preserveRatio="true" smooth="false">
         <image>
             <Image url="@../images/manor.png" />
         </image>
     </ImageView>
 
     <!-- Optional dark overlay for contrast -->
-    <Rectangle width="1280" height="720" pickOnBounds="false" mouseTransparent="true"
-               style="-fx-fill: rgba(0,0,0,0.32);" />
+    <Rectangle width="1440" height="900" pickOnBounds="false" mouseTransparent="true"
+               style="-fx-fill: rgba(0,0,0,0.0);" />
 
     <!-- Content -->
-    <HBox prefWidth="1280" prefHeight="720">
+    <HBox prefWidth="1440" prefHeight="900">
         <!-- LEFT: dark column with centered buttons -->
         <AnchorPane prefWidth="460" styleClass="left-panel">
-            <VBox spacing="36" alignment="CENTER_LEFT"
-                  AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="160.0">
+            <VBox spacing="16" alignment="BOTTOM_CENTER"
+                  AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"
+                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
 
-                <Button fx:id="loginButton" text="LOGIN" onAction="#onLogin"
+                <Button fx:id="loginButton" text="LOG IN" onAction="#onLogin"
                         styleClass="menu-button" prefWidth="300" maxWidth="300"/>
                 <Button fx:id="registerButton" text="REGISTER" onAction="#onRegister"
                         styleClass="menu-button" prefWidth="300" maxWidth="300"/>

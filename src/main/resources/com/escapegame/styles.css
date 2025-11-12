@@ -6,19 +6,30 @@
   -fx-background-color: transparent;
 }
 
+@font-face {
+    font-family: "Jersey 10";
+    src: url("fonts/Jersey10-Regular.ttf");
+}
+
+
 .label {
     -fx-text-fill: #FFFFFF;
-    -fx-font-size: 14px;
+    -fx-font-size: 32px;
     -fx-font-family: "Jersey 10";
 }
 
 .button {
     -fx-background-color: #313561;
     -fx-text-fill: #FFFFFF;
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
+    -fx-font-family: "Jersey 10";
     -fx-padding: 10px 20px;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
 }
 
 .body {

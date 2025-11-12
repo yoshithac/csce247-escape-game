@@ -20,7 +20,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = loadFXML("home");
-        scene = new Scene(root, 1280, 720);
+        scene = new Scene(root, 1440, 900);
 
         // Load stylesheet automatically from possible locations
         tryLoadStylesheet(scene);
@@ -37,7 +37,7 @@ public class App extends Application {
     public static void setRoot(String fxml) throws IOException {
         if (scene == null) {
             Parent root = loadFXML("home");
-            scene = new Scene(root, 1280, 720);
+            scene = new Scene(root, 1440, 900);
             tryLoadStylesheet(scene);
         }
         scene.setRoot(loadFXML(fxml));

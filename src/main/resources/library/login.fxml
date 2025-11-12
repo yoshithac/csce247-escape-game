@@ -1,30 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.escapegame.LoginController"
-           prefWidth="1280" prefHeight="720" styleClass="login-root">
+           fx:id="loginRoot"
+           prefWidth="1440" prefHeight="900"
+           styleClass="login-root">
 
-    <HBox prefWidth="1280" prefHeight="720">
+    <!-- Manor image background (same as home.fxml) -->
+    <ImageView fx:id="backgroundImage" fitWidth="1440" fitHeight="900"
+               preserveRatio="true" smooth="false">
+        <image>
+            <Image url="@../images/manor.png" />
+        </image>
+    </ImageView>
+
+    <!-- Dark overlay for contrast -->
+    <Rectangle width="1440" height="900" pickOnBounds="false" mouseTransparent="true"
+               style="-fx-fill: rgba(0,0,0,0.0);" />
+
+    <!-- Content -->
+    <HBox prefWidth="1440" prefHeight="900">
         <AnchorPane prefWidth="460" styleClass="left-panel">
-            <VBox spacing="16" alignment="CENTER"
-                  AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="160.0">
-                <Label text="LOGIN" style="-fx-font-size:20px; -fx-text-fill: white;"/>
+            <VBox spacing="16" alignment="BOTTOM_CENTER"
+                  AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"
+                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
 
-                <TextField fx:id="txt_username" promptText="Username" prefWidth="320" />
-                <!-- Use PasswordField to match the controller -->
-                <PasswordField fx:id="txt_password" promptText="Password" prefWidth="320" />
+                <TextField fx:id="txt_username" promptText="Username" prefWidth="300" />
+                <PasswordField fx:id="txt_password" promptText="Password" prefWidth="300" />
 
-                <!-- Error label that the controller expects -->
-                <Label fx:id="lbl_error" text="" visible="false" wrapText="true" maxWidth="320" style="-fx-text-fill: #ff6666;"/>
+                <Label fx:id="lbl_error" text="" visible="false" wrapText="true" maxWidth="300"
+                       style="-fx-text-fill: #ff6666;"/>
 
-                <VBox spacing="10" alignment="CENTER_LEFT">
-                    <Button text="LOGIN" onAction="#onLogin" prefWidth="220" />
-                    <Button text="BACK" onAction="#back" prefWidth="220" />
+                <VBox spacing="16" alignment="CENTER">
+                    <Button text="LOG IN" onAction="#onLogin" prefWidth="300" />
+                    <Button text="BACK" onAction="#back" prefWidth="300" />
                 </VBox>
             </VBox>
         </AnchorPane>
