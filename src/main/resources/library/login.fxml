@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.escapegame.LoginController"
+           fx:id="loginRoot"
+           prefWidth="1440" prefHeight="900"
+           styleClass="login-root">
+           
+    <ImageView fx:id="backgroundImage" fitWidth="1440" fitHeight="900"
+               preserveRatio="true" smooth="false">
+        <image>
+            <Image url="@../images/manor.png" />
+        </image>
+    </ImageView>
+
+    <Rectangle width="1440" height="900" pickOnBounds="false" mouseTransparent="true"
+               style="-fx-fill: rgba(0,0,0,0.0);" />
+
+    <!-- Content -->
+    <HBox prefWidth="1440" prefHeight="900">
+        <AnchorPane prefWidth="460" styleClass="left-panel">
+            <VBox spacing="16" alignment="BOTTOM_CENTER"
+                  AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"
+                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
+
+                <TextField fx:id="txt_username" promptText="Username" prefWidth="300" />
+                <PasswordField fx:id="txt_password" promptText="Password" prefWidth="300" />
+
+                <Label fx:id="lbl_error" text="" visible="false" wrapText="true" maxWidth="300"
+                       style="-fx-text-fill: #ff6666; -fx-font-size: 15px;"/>
+
+                <VBox spacing="16" alignment="CENTER">
+                    <Button text="LOG IN" onAction="#onLogin" prefWidth="300" />
+                    <Button text="BACK" onAction="#back" prefWidth="300" />
+                </VBox>
+            </VBox>
+        </AnchorPane>
+
+        <StackPane HBox.hgrow="ALWAYS" styleClass="right-panel"/>
+    </HBox>
+</StackPane>
