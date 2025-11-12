@@ -20,40 +20,28 @@
 
     <!-- dark overlay -->
     <Rectangle width="1440" height="900" pickOnBounds="false" mouseTransparent="true"
-               style="-fx-fill: rgba(0,0,0,0.32);" />
+               style="-fx-fill: rgba(0,0,0,0.0);" />
 
     <!-- main content -->
     <HBox prefWidth="1440" prefHeight="900" spacing="0">
         <!-- LEFT: dark column -->
-        <AnchorPane prefWidth="460" style="-fx-background-color: #0f1420;">
-            <!-- Title band (visual) -->
-            <Pane AnchorPane.topAnchor="24.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" prefHeight="92">
-                <Rectangle layoutX="0" layoutY="6" width="420" height="72" arcWidth="8" arcHeight="8"
-                           style="-fx-fill: rgba(5,12,30,0.92); -fx-stroke: rgba(255,255,255,0.03);"/>
-                <Label fx:id="titleLabel" text="WHISPERS OF HOLLOW MANOR"
-                       style="-fx-font-family: 'Jersey 10'; -fx-font-size:36px; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 4,0,0,2);"
-                       layoutX="18" layoutY="18"/>
-            </Pane>
+        <AnchorPane prefWidth="460" styleClass="left-panel">
+        <stylesheets>
+    <URL value="@styles.css"/>
+</stylesheets>
+            <VBox spacing="16" alignment="BOTTOM_CENTER"
+                  AnchorPane.leftAnchor="70.0"
+                  AnchorPane.rightAnchor="36.0"
+                  AnchorPane.topAnchor="180.0"
+                  AnchorPane.bottomAnchor="120.0">
 
-            <!-- Buttons column -->
-            <VBox spacing="18" prefWidth="420"
-                  AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-                  AnchorPane.topAnchor="140.0" AnchorPane.bottomAnchor="140.0"
-                  alignment="TOP_LEFT">
-                <Region prefHeight="10"/>
-
-                <Button fx:id="btnNewGame" text="   +   NEW GAME" mnemonicParsing="false"
-                        styleClass="menu-button" prefWidth="420" prefHeight="64"/>
-                <Button fx:id="btnViewProgress" text="   ⏱   VIEW PROGRESS" mnemonicParsing="false"
-                        styleClass="menu-button" prefWidth="420" prefHeight="64"/>
-                <Button fx:id="btnLeaderboard" text="   👥   LEADERBOARD" mnemonicParsing="false"
-                        styleClass="menu-button" prefWidth="420" prefHeight="64"/>
-                <Button fx:id="btnCertificates" text="   📜   CERTIFICATES" mnemonicParsing="false"
-                        styleClass="menu-button" prefWidth="420" prefHeight="64"/>
-                <Button fx:id="btnLogout" text="   ↪   LOGOUT" mnemonicParsing="false"
-                        styleClass="menu-button" prefWidth="420" prefHeight="64"/>
-
-                <Region VBox.vgrow="ALWAYS" />
+                <VBox spacing="16" alignment="CENTER">
+                    <Button fx:id="newGameButton" text="+ NEW GAME" onMouseClicked="" prefWidth="300" styleClass="button"/>
+                    <Button fx:id="progressButton" text="VIEW PROGRESS" onMouseClicked="" prefWidth="300" styleClass="button"/>
+                    <Button fx:id="leaderboardButton" text="LEADERBOARD" onMouseClicked="" prefWidth="300" styleClass="button"/>
+                    <Button fx:id="certificatesButton" text="CERTIFICATES" onMouseClicked="" prefWidth="300" styleClass="button"/>
+                    <Button fx:id="logoutButton" text="LOGOUT" onMouseClicked="" prefWidth="300" styleClass="button"/>
+                </VBox>
 
                 <Label fx:id="lblUser" text="Welcome, PLAYER" style="-fx-text-fill: #cfd6ff; -fx-font-size:14px; -fx-padding:8 0 16 6;"/>
             </VBox>

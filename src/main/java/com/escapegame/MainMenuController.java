@@ -22,11 +22,11 @@ public class MainMenuController implements Initializable {
     @FXML private StackPane menuRoot;
     @FXML private ImageView backgroundImage;
 
-    @FXML private Button btnNewGame;
-    @FXML private Button btnViewProgress;
-    @FXML private Button btnLeaderboard;
-    @FXML private Button btnCertificates;
-    @FXML private Button btnLogout;
+    @FXML private Button newGameButton;
+    @FXML private Button progressButton;
+    @FXML private Button leaderboardButton;
+    @FXML private Button certificatesButton;
+    @FXML private Button logoutButton;
 
     @FXML private Label lblUser;
 
