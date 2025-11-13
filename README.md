@@ -6,7 +6,7 @@ Backend Implementation and Scenario Demonstration: https://drive.google.com/file
 
 High Fidelity Prototype:
   - Video walkthrough: https://youtu.be/psTQxEjAUnE
-  - Prototype:
+  - Prototype: https://yoshithac.github.io/csce247-escape-game/
 
 
 Test-Plan.pdf : details all test cases and is located in docs folder
@@ -39,5 +39,3 @@ Nitin: MazeTest, HintTest, LeaderboardEntryTest, UserProgressTest, PositionTest,
 Bugs: #232 (fixed)
 
 Test Creation: #219, #220, #222, #223, #226, #230,
-
-https://yoshithac.github.io/csce247-escape-game/
