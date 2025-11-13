@@ -40,3 +40,4 @@ Bugs: #232 (fixed)
 
 Test Creation: #219, #220, #222, #223, #226, #230,
 
+https://yoshithac.github.io/csce247-escape-game/
