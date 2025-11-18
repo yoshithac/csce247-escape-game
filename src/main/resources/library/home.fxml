@@ -21,7 +21,6 @@
                style="-fx-fill: rgba(0,0,0,0.0);" />
 
     <HBox prefWidth="1440" prefHeight="900">
-        <!-- LEFT: dark column with centered buttons -->
         <AnchorPane prefWidth="460" styleClass="left-panel">
             <VBox spacing="16" alignment="BOTTOM_CENTER"
                   AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"

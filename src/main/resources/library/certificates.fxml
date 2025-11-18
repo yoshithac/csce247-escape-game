@@ -26,7 +26,7 @@
                   AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"
                   AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
 
-                <Label fx:id="certificatesLabel" text="YOUR CERTIFICATES" style="-fx-font-size: 32; -fx-font-family: 'Jersey 10';"/>
+                <Label fx:id="certificatesLabel" text="YOUR CERTIFICATES" style="-fx-font-size: 32;"/>
             </VBox>
         </AnchorPane>
     </HBox>

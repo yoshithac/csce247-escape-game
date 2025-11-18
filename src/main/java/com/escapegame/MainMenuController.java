@@ -102,8 +102,7 @@ public class MainMenuController implements Initializable {
         try {
             if (lblUser != null) {
                 if (user != null) {
-                    String display = (user.getUserId() != null && !user.getUserId().isBlank())
-                            ? user.getUserId() : "Guest";
+                    String display = user.getUserId();
                     lblUser.setText("Welcome, " + display.toUpperCase());
                 } else {
                     lblUser.setText("Welcome, Guest");

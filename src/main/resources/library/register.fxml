@@ -20,21 +20,18 @@
     <Rectangle width="1440" height="900" pickOnBounds="false" mouseTransparent="true"
                style="-fx-fill: rgba(0,0,0,0.0);" />
 
-    <!-- Content -->
     <HBox prefWidth="1440" prefHeight="900">
-
-        <!-- LEFT PANEL -->
         <AnchorPane prefWidth="460" styleClass="left-panel">
             <VBox spacing="16" alignment="BOTTOM_CENTER"
                   AnchorPane.leftAnchor="70.0"
                   AnchorPane.rightAnchor="36.0"
                   AnchorPane.topAnchor="180.0"
                   AnchorPane.bottomAnchor="120.0">
-                <TextField fx:id="txt_userId" promptText="USERNAME (5 characters)" styleClass="field"/>
-                <PasswordField fx:id="txt_password" promptText="PASSWORD (min 4 chars)" styleClass="field"/>
-                <TextField fx:id="txt_fullName" promptText="EMAIL" styleClass="field"/>
+                <TextField fx:id="txt_userId" promptText="USERNAME (5 characters)" styleClass="field" style="-fx-font-size: 20px; -fx-font-family: 'Georgia'"/>
+                <PasswordField fx:id="txt_password" promptText="PASSWORD (min 4 chars)" styleClass="field" style="-fx-font-size: 20px; -fx-font-family: 'Georgia'"/>
+                <TextField fx:id="txt_fullName" promptText="EMAIL" styleClass="field" style="-fx-font-size: 20px; -fx-font-family: 'Georgia'"/>
                 <Label fx:id="lbl_error" text="" visible="false" styleClass="error-label"
-                       style="-fx-text-fill: #ff6666; -fx-font-size: 15px;"/>
+                       style="-fx-text-fill: #ff6666; -fx-font-size: 15px; -fx-font-family: 'Georgia'"/>
 
                 <VBox spacing="16" alignment="CENTER">
                     <Button text="REGISTER" onMouseClicked="#btnRegisterClicked" prefWidth="300" styleClass="primary-button"/>
@@ -43,7 +40,6 @@
             </VBox>
         </AnchorPane>
 
-        <!-- RIGHT PANEL (optional decorative placeholder) -->
         <StackPane HBox.hgrow="ALWAYS" styleClass="right-panel"/>
     </HBox>
 </StackPane>
