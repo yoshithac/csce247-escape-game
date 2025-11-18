@@ -36,7 +36,7 @@
                     <Button fx:id="logoutButton" text="LOGOUT" prefWidth="300" styleClass="menu-button"/>
                 </VBox>
 
-                <Label fx:id="lblUser" text="Welcome, PLAYER"/>
+                <Label fx:id="lblUser" text="Welcome,"/>
             </VBox>
         </AnchorPane>
 
