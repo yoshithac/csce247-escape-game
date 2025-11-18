@@ -14,7 +14,6 @@ import com.model.User;
 
 /**
  * JavaFX launcher for Whispers of Hollow Manor.
- * This version automatically looks for a stylesheet in multiple common locations.
  */
 public class App extends Application {
 

@@ -10,4 +10,10 @@ import javafx.scene.control.Alert;
  * Certificates screen controller — wired to certificates.fxml
  */
 public class LeaderboardController {
+    @FXML private Label leaderboardLabel;
+
+    @FXML
+    private void initialize() {
+        System.out.println("LeaderboardController initialized");
+    }
 }

@@ -10,4 +10,10 @@ import javafx.scene.control.Alert;
  * Certificates screen controller — wired to certificates.fxml
  */
 public class CertificatesController {
+    @FXML private Label certificatesLabel;
+
+    @FXML
+    private void initialize() {
+        System.out.println("CertificatesController initialized");
+    }
 }

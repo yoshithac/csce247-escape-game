@@ -10,4 +10,14 @@ import javafx.scene.control.Label;
  * Certificates screen controller — wired to certificates.fxml
  */
 public class DifficultyController {
+    @FXML private Label difficultyLabel;
+
+    @FXML private Button easyButton;
+    @FXML private Button mediumButton;
+    @FXML private Button hardButton;
+
+    @FXML
+    private void initialize() {
+        System.out.println("DifficultyController initialized");
+    }
 }
