@@ -1502,7 +1502,8 @@
           "col": 7.0
         }
       }
-    },{
+    },
+    {
       "puzzleId": "cipher_e1",
       "puzzleType": "CIPHER",
       "difficulty": "EASY",
@@ -2070,7 +2071,8 @@
       "hintText": "Small but can cross the globe.",
       "puzzleId": "ridd_m3",
       "hintPriority": 3
-    },{
+    },
+    {
       "hintText": "Atomic number is 8.",
       "puzzleId": "cipher_e1",
       "hintPriority": 1
@@ -2206,7 +2208,26 @@
       "hintPriority": 3
     }
   ],
-  "userProgress": [],
+  "userProgress": [
+    {
+      "userId": "nitin",
+      "completedPuzzles": [
+        "ridd_e1",
+        "match_e1",
+        "cipher_e3",
+        "maze_e2",
+        "anag_e2"
+      ],
+      "puzzleScores": {
+        "ridd_e1": 241,
+        "match_e1": 195,
+        "cipher_e3": 150,
+        "maze_e2": 228,
+        "anag_e2": 246
+      },
+      "totalScore": 1060
+    }
+  ],
   "certificates": [
     {
       "certificateId": "CERT_U1002_ridd_m2_1761446264892",
@@ -2378,6 +2399,51 @@
       "difficulty": "HARD",
       "scoreAchieved": 190,
       "earnedAt": "2025-10-26T14:46:39.876733"
+    },
+    {
+      "certificateId": "CERT_nitin_ridd_e1_1762729029532",
+      "userId": "nitin",
+      "puzzleId": "ridd_e1",
+      "description": "Completed \u0027The Endless Room\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 241,
+      "earnedAt": "2025-11-09T17:57:09.53669"
+    },
+    {
+      "certificateId": "CERT_nitin_match_e1_1762729095610",
+      "userId": "nitin",
+      "puzzleId": "match_e1",
+      "description": "Completed \u0027Alphabet Pairing\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 195,
+      "earnedAt": "2025-11-09T17:58:15.6103795"
+    },
+    {
+      "certificateId": "CERT_nitin_cipher_e3_1762729242907",
+      "userId": "nitin",
+      "puzzleId": "cipher_e3",
+      "description": "Completed \u0027Composer Cipher\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 150,
+      "earnedAt": "2025-11-09T18:00:42.9076439"
+    },
+    {
+      "certificateId": "CERT_nitin_maze_e2_1762729278001",
+      "userId": "nitin",
+      "puzzleId": "maze_e2",
+      "description": "Completed \u0027Maze Twister\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 228,
+      "earnedAt": "2025-11-09T18:01:18.0018952"
+    },
+    {
+      "certificateId": "CERT_nitin_anag_e2_1762729289247",
+      "userId": "nitin",
+      "puzzleId": "anag_e2",
+      "description": "Completed \u0027Mythology Mix\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 246,
+      "earnedAt": "2025-11-09T18:01:29.2471007"
     }
   ],
   "leaderboard": [
@@ -2387,6 +2453,13 @@
       "totalScore": 3324,
       "puzzlesCompleted": 15,
       "lastUpdated": "2025-10-26T14:46:39.8825124"
+    },
+    {
+      "userId": "nitin",
+      "userName": "nitin raju",
+      "totalScore": 1060,
+      "puzzlesCompleted": 5,
+      "lastUpdated": "2025-11-09T18:01:29.2490993"
     },
     {
       "userId": "U1002",
