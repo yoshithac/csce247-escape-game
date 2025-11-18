@@ -24,9 +24,9 @@
 
     <HBox prefWidth="1440" prefHeight="900">
         <AnchorPane prefWidth="460" styleClass="left-panel">
-            <VBox spacing="16" alignment="BOTTOM_CENTER"
+            <VBox spacing="16" alignment="TOP_CENTER"
                   AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"
-                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
+                  AnchorPane.topAnchor="260.0" AnchorPane.bottomAnchor="120.0">
             <Label fx:id="leaderboardLabel" text="TOP PLAYERS" style="-fx-font-size: 32;"/>
             </VBox>
         </AnchorPane>

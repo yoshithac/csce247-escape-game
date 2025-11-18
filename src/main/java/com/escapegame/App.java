@@ -52,13 +52,29 @@ public class App extends Application {
      * Replace scene root with the specified FXML (from /library/{fxml}.fxml).
      */
     public static void setRoot(String fxml) throws IOException {
-        if (scene == null) {
-            Parent root = loadFXML("home");
-            scene = new Scene(root, 1440, 900);
-            tryLoadStylesheet(scene);
-        }
-        scene.setRoot(loadFXML(fxml));
+    if (scene == null) {
+        Parent root = loadFXML("home");
+        scene = new Scene(root, 1440, 900);
+        tryLoadStylesheet(scene);
     }
+    Parent newRoot = loadFXML(fxml);
+    scene.setRoot(newRoot);
+    String[] candidates = {
+        "/escapegame/styles.css",
+        "/com/escapegame/styles.css",
+        "/styles.css"
+    };
+    for (String cssPath : candidates) {
+        URL cssUrl = App.class.getResource(cssPath);
+        if (cssUrl != null) {
+            String cssToAdd = cssUrl.toExternalForm();
+            if (!scene.getStylesheets().contains(cssToAdd)) {
+                scene.getStylesheets().add(cssToAdd);
+            }
+            break;
+        }
+    }
+}
 
     /**
      * Attempts to load the stylesheet from several common paths.
