@@ -10,9 +10,6 @@
            fx:id="certificatesRoot"
            prefWidth="1440" prefHeight="900">
 
-    <stylesheets>
-        <URL value="@/com/escapegame/styles.css" />
-    </stylesheets>
 
     <ImageView fitWidth="1440" fitHeight="900" preserveRatio="true" smooth="false">
         <image>

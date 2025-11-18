@@ -9,14 +9,11 @@
            fx:controller="com.escapegame.MainMenuController"
            fx:id="menuRoot"
            prefWidth="1440" prefHeight="900">
-    <stylesheets>
-        <String fx:value="@/com/escapegame/styles.css"/>
-    </stylesheets>
 
     <ImageView fx:id="backgroundImage" fitWidth="1440" fitHeight="900"
                preserveRatio="true" smooth="false">
         <image>
-            <Image url="@/images/manor.png"/>
+            <Image url="@../images/manor.png" />
         </image>
     </ImageView>
 
@@ -25,7 +22,6 @@
 
     <HBox prefWidth="1440" prefHeight="900" spacing="0">
         <AnchorPane prefWidth="460" styleClass="left-panel">
-            <!-- no nested <stylesheets> blocks here -->
             <VBox spacing="16" alignment="BOTTOM_CENTER"
                   AnchorPane.leftAnchor="70.0"
                   AnchorPane.rightAnchor="36.0"
@@ -33,17 +29,17 @@
                   AnchorPane.bottomAnchor="120.0">
 
                 <VBox spacing="16" alignment="CENTER">
-                    <Button fx:id="newGameButton" text="+ NEW GAME" prefWidth="300" styleClass="button"/>
-                    <Button fx:id="progressButton" text="VIEW PROGRESS" prefWidth="300" styleClass="button"/>
-                    <Button fx:id="leaderboardButton" text="LEADERBOARD" prefWidth="300" styleClass="button"/>
-                    <Button fx:id="certificatesButton" text="CERTIFICATES" prefWidth="300" styleClass="button"/>
-                    <Button fx:id="logoutButton" text="LOGOUT" prefWidth="300" styleClass="button"/>
+                    <Button fx:id="newGameButton" text="+ NEW GAME" prefWidth="300" styleClass="menu-button"/>
+                    <Button fx:id="progressButton" text="VIEW PROGRESS" prefWidth="300" styleClass="menu-button"/>
+                    <Button fx:id="leaderboardButton" text="LEADERBOARD" prefWidth="300" styleClass="menu-button"/>
+                    <Button fx:id="certificatesButton" text="CERTIFICATES" prefWidth="300" styleClass="menu-button"/>
+                    <Button fx:id="logoutButton" text="LOGOUT" prefWidth="300" styleClass="menu-button"/>
                 </VBox>
 
-                <Label fx:id="lblUser" text="Welcome, PLAYER" style="-fx-font-size: 32; -fx-font-family: 'Jersey 10';"/>
+                <Label fx:id="lblUser" text="Welcome, PLAYER"/>
             </VBox>
         </AnchorPane>
 
-        <StackPane HBox.hgrow="ALWAYS" styleClass="right-panel"/>
+        <StackPane HBox.hgrow="ALWAYS"/>
     </HBox>
 </StackPane>

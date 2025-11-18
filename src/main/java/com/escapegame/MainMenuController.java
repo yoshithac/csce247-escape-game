@@ -53,16 +53,32 @@ public class MainMenuController implements Initializable {
             }
 
             if (newGameButton != null) {
-                newGameButton.setOnAction(e -> loadAndSwitch("home"));
+                try {
+                    App.setRoot("difficulty"); 
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             if (progressButton != null) {
-                progressButton.setOnAction(e -> loadAndSwitch("progress"));
+                try {
+                    App.setRoot("progress");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             if (leaderboardButton != null) {
-                leaderboardButton.setOnAction(e -> loadAndSwitch("leaderboard"));
+                try {
+                    App.setRoot("leaderboard");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             if (certificatesButton != null) {
-                certificatesButton.setOnAction(e -> loadAndSwitch("certificates"));
+                try {
+                    App.setRoot("certificates");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             if (logoutButton != null) {
                 logoutButton.setOnAction(e -> {
@@ -73,7 +89,6 @@ public class MainMenuController implements Initializable {
                 });
             }
         } catch (Throwable t) {
-            System.err.println("MainMenuController.initialize() caught: " + t.getClass().getSimpleName() + " - " + t.getMessage());
             t.printStackTrace();
         }
     }
@@ -87,15 +102,14 @@ public class MainMenuController implements Initializable {
         try {
             if (lblUser != null) {
                 if (user != null) {
-                    String display = (user.getFirstName() != null && !user.getFirstName().isBlank())
-                            ? user.getFirstName() : user.getUserId();
+                    String display = (user.getUserId() != null && !user.getUserId().isBlank())
+                            ? user.getUserId() : "Guest";
                     lblUser.setText("Welcome, " + display.toUpperCase());
                 } else {
-                    lblUser.setText("Welcome, guest");
+                    lblUser.setText("Welcome, Guest");
                 }
             }
         } catch (Throwable t) {
-            System.err.println("initData encountered an error: " + t.getMessage());
             t.printStackTrace();
         }
     }
