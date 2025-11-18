@@ -1,0 +1,356 @@
+Apache Maven 3.9.11 (3e54c93a704957b63ee3494413a2b544fd3d825b)
+Maven home: /usr/local/Cellar/maven/3.9.11/libexec
+Java version: 25, vendor: Homebrew, runtime: /usr/local/Cellar/openjdk/25/libexec/openjdk.jdk/Contents/Home
+Default locale: en_US, platform encoding: UTF-8
+OS name: "mac os x", version: "26.0.1", arch: "x86_64", family: "mac"
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/local/Cellar/maven/3.9.11/libexec/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[DEBUG] Created new class realm maven.api
+[DEBUG] Importing foreign packages into class realm maven.api
+[DEBUG]   Imported: javax.annotation.* < plexus.core
+[DEBUG]   Imported: javax.annotation.security.* < plexus.core
+[DEBUG]   Imported: javax.inject.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.artifact < plexus.core
+[DEBUG]   Imported: org.apache.maven.classrealm < plexus.core
+[DEBUG]   Imported: org.apache.maven.cli < plexus.core
+[DEBUG]   Imported: org.apache.maven.configuration < plexus.core
+[DEBUG]   Imported: org.apache.maven.exception < plexus.core
+[DEBUG]   Imported: org.apache.maven.execution < plexus.core
+[DEBUG]   Imported: org.apache.maven.execution.scope < plexus.core
+[DEBUG]   Imported: org.apache.maven.graph < plexus.core
+[DEBUG]   Imported: org.apache.maven.lifecycle < plexus.core
+[DEBUG]   Imported: org.apache.maven.model < plexus.core
+[DEBUG]   Imported: org.apache.maven.monitor < plexus.core
+[DEBUG]   Imported: org.apache.maven.plugin < plexus.core
+[DEBUG]   Imported: org.apache.maven.profiles < plexus.core
+[DEBUG]   Imported: org.apache.maven.project < plexus.core
+[DEBUG]   Imported: org.apache.maven.reporting < plexus.core
+[DEBUG]   Imported: org.apache.maven.repository < plexus.core
+[DEBUG]   Imported: org.apache.maven.rtinfo < plexus.core
+[DEBUG]   Imported: org.apache.maven.settings < plexus.core
+[DEBUG]   Imported: org.apache.maven.toolchain < plexus.core
+[DEBUG]   Imported: org.apache.maven.usability < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.authentication < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.authorization < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.events < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.observers < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.proxy < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.repository < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.resource < plexus.core
+[DEBUG]   Imported: org.codehaus.classworlds < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.* < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.classworlds < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.component < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.configuration < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.container < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.context < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.lifecycle < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.logging < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.personality < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.Xpp3Dom < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParser < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParserException < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlSerializer < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.* < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.artifact < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.collection < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.deployment < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.graph < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.impl < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.installation < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.internal.impl < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.metadata < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.repository < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.resolution < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.spi < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.transfer < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.util < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.version < plexus.core
+[DEBUG]   Imported: org.fusesource.jansi.* < plexus.core
+[DEBUG]   Imported: org.slf4j.* < plexus.core
+[DEBUG]   Imported: org.slf4j.event.* < plexus.core
+[DEBUG]   Imported: org.slf4j.helpers.* < plexus.core
+[DEBUG]   Imported: org.slf4j.spi.* < plexus.core
+[DEBUG] Populating class realm maven.api
+[DEBUG] Created adapter factory; available factories [file-lock, rwlock-local, semaphore-local, noop]; available name mappers [discriminating, file-gav, file-hgav, file-static, gav, static]
+[INFO] Error stacktraces are turned on.
+[DEBUG] Message scheme: color
+[DEBUG] Message styles: debug info warning error success failure strong mojo project
+[DEBUG] Reading global settings from /usr/local/Cellar/maven/3.9.11/libexec/conf/settings.xml
+[DEBUG] Reading user settings from /Users/remyrogers/.m2/settings.xml
+[DEBUG] Reading global toolchains from /usr/local/Cellar/maven/3.9.11/libexec/conf/toolchains.xml
+[DEBUG] Reading user toolchains from /Users/remyrogers/.m2/toolchains.xml
+[DEBUG] Using local repository at /Users/remyrogers/.m2/repository
+[DEBUG] Using manager EnhancedLocalRepositoryManager with priority 10.0 for /Users/remyrogers/.m2/repository
+[INFO] Scanning for projects...
+[DEBUG] Extension realms for project com.escapegame:escape-game:jar:1.0-SNAPSHOT: (none)
+[DEBUG] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.escapegame:escape-game:jar:1.0-SNAPSHOT
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.openjfx:javafx-controls:jar -> version 13 vs 22 @ line 72, column 21
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.openjfx:javafx-fxml:jar -> version 13 vs 22 @ line 77, column 21
+[WARNING] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.openjfx:javafx-maven-plugin @ line 147, column 17
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[DEBUG] Resolving plugin prefix resources from [org.apache.maven.plugins, org.codehaus.mojo]
+[DEBUG] Creating adapter using nameMapper 'gav' and factory 'rwlock-local'
+[DEBUG] Resolved plugin prefix resources to org.apache.maven.plugins:maven-resources-plugin from POM com.escapegame:escape-game:jar:1.0-SNAPSHOT
+[DEBUG] === REACTOR BUILD PLAN ================================================
+[DEBUG] Project: com.escapegame:escape-game:jar:1.0-SNAPSHOT
+[DEBUG] Tasks:   [resources:resources]
+[DEBUG] Style:   Regular
+[DEBUG] =======================================================================
+[INFO] 
+[INFO] ---------------------< com.escapegame:escape-game >---------------------
+[INFO] Building escape-game 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[DEBUG] Resolving plugin prefix resources from [org.apache.maven.plugins, org.codehaus.mojo]
+[DEBUG] Resolved plugin prefix resources to org.apache.maven.plugins:maven-resources-plugin from POM com.escapegame:escape-game:jar:1.0-SNAPSHOT
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] === PROJECT BUILD PLAN ================================================
+[DEBUG] Project:       com.escapegame:escape-game:1.0-SNAPSHOT
+[DEBUG] Dependencies (collect): []
+[DEBUG] Dependencies (resolve): []
+[DEBUG] Repositories (dependencies): [central (https://repo.maven.apache.org/maven2, default, releases)]
+[DEBUG] Repositories (plugins)     : [central (https://repo.maven.apache.org/maven2, default, releases)]
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-resources-plugin:3.3.1:resources (default-cli)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <addDefaultExcludes default-value="true"/>
+  <buildFilters default-value="${project.build.filters}"/>
+  <encoding default-value="${project.build.sourceEncoding}"/>
+  <escapeWindowsPaths default-value="true"/>
+  <fileNameFiltering default-value="false"/>
+  <includeEmptyDirs default-value="false"/>
+  <outputDirectory default-value="${project.build.outputDirectory}"/>
+  <overwrite default-value="false"/>
+  <project default-value="${project}"/>
+  <resources default-value="${project.resources}"/>
+  <session default-value="${session}"/>
+  <skip default-value="false">${maven.resources.skip}</skip>
+  <supportMultiLineFiltering default-value="false"/>
+  <useBuildFilters default-value="true"/>
+  <useDefaultDelimiters default-value="true"/>
+</configuration>
+[DEBUG] =======================================================================
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-cli) @ escape-game ---
+[DEBUG] Dependency collection stats {ConflictMarker.analyzeTime=263333, ConflictMarker.markTime=43709, ConflictMarker.nodeCount=13, ConflictIdSorter.graphTime=119417, ConflictIdSorter.topsortTime=111458, ConflictIdSorter.conflictIdCount=9, ConflictIdSorter.conflictIdCycleCount=0, ConflictResolver.totalTime=1205666, ConflictResolver.conflictItemCount=13, DfDependencyCollector.collectTime=130419917, DfDependencyCollector.transformTime=2779666}
+[DEBUG] org.apache.maven.plugins:maven-resources-plugin:jar:3.3.1
+[DEBUG]    org.codehaus.plexus:plexus-interpolation:jar:1.26:runtime
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:3.5.1:compile
+[DEBUG]    org.apache.maven.shared:maven-filtering:jar:3.3.1:compile
+[DEBUG]       javax.inject:javax.inject:jar:1:compile
+[DEBUG]       org.slf4j:slf4j-api:jar:1.7.36:compile
+[DEBUG]       org.sonatype.plexus:plexus-build-api:jar:0.0.7:compile
+[DEBUG]    commons-io:commons-io:jar:2.11.0:compile
+[DEBUG]    org.apache.commons:commons-lang3:jar:3.12.0:compile
+[DEBUG] Created new class realm plugin>org.apache.maven.plugins:maven-resources-plugin:3.3.1
+[DEBUG] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-resources-plugin:3.3.1
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.apache.maven.plugins:maven-resources-plugin:3.3.1
+[DEBUG]   Included: org.apache.maven.plugins:maven-resources-plugin:jar:3.3.1
+[DEBUG]   Included: org.codehaus.plexus:plexus-interpolation:jar:1.26
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:3.5.1
+[DEBUG]   Included: org.apache.maven.shared:maven-filtering:jar:3.3.1
+[DEBUG]   Included: org.sonatype.plexus:plexus-build-api:jar:0.0.7
+[DEBUG]   Included: commons-io:commons-io:jar:2.11.0
+[DEBUG]   Included: org.apache.commons:commons-lang3:jar:3.12.0
+[DEBUG] Loading mojo org.apache.maven.plugins:maven-resources-plugin:3.3.1:resources from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-resources-plugin:3.3.1, parent: jdk.internal.loader.ClassLoaders$AppClassLoader@5bc2b487]
+[DEBUG] Configuring mojo execution 'org.apache.maven.plugins:maven-resources-plugin:3.3.1:resources:default-cli' with basic configurator -->
+[DEBUG]   (f) addDefaultExcludes = true
+[DEBUG]   (f) buildFilters = []
+[DEBUG]   (f) encoding = UTF-8
+[DEBUG]   (f) escapeWindowsPaths = true
+[DEBUG]   (f) fileNameFiltering = false
+[DEBUG]   (s) includeEmptyDirs = false
+[DEBUG]   (s) outputDirectory = /Users/remyrogers/csce247-escape-game/target/classes
+[DEBUG]   (s) overwrite = false
+[DEBUG]   (f) project = MavenProject: com.escapegame:escape-game:1.0-SNAPSHOT @ /Users/remyrogers/csce247-escape-game/pom.xml
+[DEBUG]   (s) resources = [Resource {targetPath: null, filtering: false, FileSet {directory: /Users/remyrogers/csce247-escape-game/src/main/resources, PatternSet [includes: {**/*}, excludes: {}]}}]
+[DEBUG]   (f) session = org.apache.maven.execution.MavenSession@451882b2
+[DEBUG]   (f) skip = false
+[DEBUG]   (f) supportMultiLineFiltering = false
+[DEBUG]   (f) useBuildFilters = true
+[DEBUG]   (s) useDefaultDelimiters = true
+[DEBUG] -- end configuration --
+[DEBUG] properties used:
+[DEBUG] apple.awt.application.name: Launcher
+[DEBUG] classworlds.conf: /usr/local/Cellar/maven/3.9.11/libexec/bin/m2.conf
+[DEBUG] env.COLORTERM: truecolor
+[DEBUG] env.COMMAND_MODE: unix2003
+[DEBUG] env.GIT_ASKPASS: /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
+[DEBUG] env.HOME: /Users/remyrogers
+[DEBUG] env.HOMEBREW_CELLAR: /opt/homebrew/Cellar
+[DEBUG] env.HOMEBREW_PREFIX: /opt/homebrew
+[DEBUG] env.HOMEBREW_REPOSITORY: /opt/homebrew
+[DEBUG] env.INFOPATH: /opt/homebrew/share/info:/usr/local/share/info:/opt/homebrew/share/info:/usr/local/share/info:
+[DEBUG] env.JAVA_HOME: /usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home
+[DEBUG] env.LANG: C.UTF-8
+[DEBUG] env.LOGNAME: remyrogers
+[DEBUG] env.LaunchInstanceID: 6F82FAF3-D36A-4E4B-B7CA-04C154A8A2D9
+[DEBUG] env.MAVEN_CMD_LINE_ARGS:  -X resources:resources
+[DEBUG] env.MAVEN_PROJECTBASEDIR: /Users/remyrogers/csce247-escape-game
+[DEBUG] env.MallocNanoZone: 0
+[DEBUG] env.OLDPWD: /Users/remyrogers/csce247-escape-game
+[DEBUG] env.ORIGINAL_XDG_CURRENT_DESKTOP: undefined
+[DEBUG] env.OSLogRateLimit: 64
+[DEBUG] env.PATH: /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/remyrogers/.vscode/extensions/vscjava.vscode-java-debug-0.58.3/bundled/scripts/noConfigScripts:/Users/remyrogers/Library/Application Support/Code/User/globalStorage/github.copilot-chat/debugCommand
+[DEBUG] env.PWD: /Users/remyrogers/csce247-escape-game
+[DEBUG] env.SECURITYSESSIONID: 186b8
+[DEBUG] env.SHELL: /bin/zsh
+[DEBUG] env.SHLVL: 1
+[DEBUG] env.SSH_AUTH_SOCK: /private/tmp/com.apple.launchd.rXEwh6mAbJ/Listeners
+[DEBUG] env.TERM: xterm-256color
+[DEBUG] env.TERM_PROGRAM: vscode
+[DEBUG] env.TERM_PROGRAM_VERSION: 1.105.1
+[DEBUG] env.TMPDIR: /var/folders/7_/b0k9nqhd5t582l5fcg_nnxj00000gn/T/
+[DEBUG] env.USER: remyrogers
+[DEBUG] env.USER_ZDOTDIR: /Users/remyrogers
+[DEBUG] env.VSCODE_GIT_ASKPASS_EXTRA_ARGS: 
+[DEBUG] env.VSCODE_GIT_ASKPASS_MAIN: /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
+[DEBUG] env.VSCODE_GIT_ASKPASS_NODE: /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Plugin).app/Contents/MacOS/Code Helper (Plugin)
+[DEBUG] env.VSCODE_GIT_IPC_HANDLE: /var/folders/7_/b0k9nqhd5t582l5fcg_nnxj00000gn/T/vscode-git-a4f05a7813.sock
+[DEBUG] env.VSCODE_INJECTION: 1
+[DEBUG] env.VSCODE_JAVA_EXEC: /Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home/bin/java
+[DEBUG] env.VSCODE_JDWP_ADAPTER_ENDPOINTS: /Users/remyrogers/.vscode/extensions/vscjava.vscode-java-debug-0.58.3/.noConfigDebugAdapterEndpoints/endpoint-bb38b97333381df6.txt
+[DEBUG] env.VSCODE_LOGIN_INITIALIZED: 1
+[DEBUG] env.VSCODE_PROFILE_INITIALIZED: 1
+[DEBUG] env.VSCODE_PYTHON_AUTOACTIVATE_GUARD: 1
+[DEBUG] env.XPC_FLAGS: 0x0
+[DEBUG] env.XPC_SERVICE_NAME: 0
+[DEBUG] env.ZDOTDIR: /Users/remyrogers
+[DEBUG] env.__CFBundleIdentifier: com.microsoft.VSCode
+[DEBUG] env.__CF_USER_TEXT_ENCODING: 0x1F5:0x0:0x0
+[DEBUG] file.encoding: UTF-8
+[DEBUG] file.separator: /
+[DEBUG] ftp.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
+[DEBUG] http.nonProxyHosts: local|*.local|169.254/16|*.169.254/16
+[DEBUG] java.class.path: /usr/local/Cellar/maven/3.9.11/libexec/boot/plexus-classworlds-2.9.0.jar
+[DEBUG] java.class.version: 69.0
+[DEBUG] java.home: /usr/local/Cellar/openjdk/25/libexec/openjdk.jdk/Contents/Home
+[DEBUG] java.io.tmpdir: /var/folders/7_/b0k9nqhd5t582l5fcg_nnxj00000gn/T/
+[DEBUG] java.library.path: /Users/remyrogers/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+[DEBUG] java.runtime.name: OpenJDK Runtime Environment
+[DEBUG] java.runtime.version: 25
+[DEBUG] java.specification.name: Java Platform API Specification
+[DEBUG] java.specification.vendor: Oracle Corporation
+[DEBUG] java.specification.version: 25
+[DEBUG] java.vendor: Homebrew
+[DEBUG] java.vendor.url: https://github.com/Homebrew/homebrew-core/issues
+[DEBUG] java.vendor.url.bug: https://github.com/Homebrew/homebrew-core/issues
+[DEBUG] java.vendor.version: Homebrew
+[DEBUG] java.version: 25
+[DEBUG] java.version.date: 2025-09-16
+[DEBUG] java.vm.compressedOopsMode: Zero based
+[DEBUG] java.vm.info: mixed mode, sharing
+[DEBUG] java.vm.name: OpenJDK 64-Bit Server VM
+[DEBUG] java.vm.specification.name: Java Virtual Machine Specification
+[DEBUG] java.vm.specification.vendor: Oracle Corporation
+[DEBUG] java.vm.specification.version: 25
+[DEBUG] java.vm.vendor: Homebrew
+[DEBUG] java.vm.version: 25
+[DEBUG] jdk.debug: release
+[DEBUG] library.jansi.path: /usr/local/Cellar/maven/3.9.11/libexec/lib/jansi-native
+[DEBUG] line.separator: 
+
+[DEBUG] maven.build.timestamp: 2025-11-12T01:40:16Z
+[DEBUG] maven.build.version: Apache Maven 3.9.11 (3e54c93a704957b63ee3494413a2b544fd3d825b)
+[DEBUG] maven.compiler.source: 21
+[DEBUG] maven.compiler.target: 21
+[DEBUG] maven.conf: /usr/local/Cellar/maven/3.9.11/libexec/conf
+[DEBUG] maven.home: /usr/local/Cellar/maven/3.9.11/libexec
+[DEBUG] maven.multiModuleProjectDirectory: /Users/remyrogers/csce247-escape-game
+[DEBUG] maven.version: 3.9.11
+[DEBUG] native.encoding: UTF-8
+[DEBUG] os.arch: x86_64
+[DEBUG] os.name: Mac OS X
+[DEBUG] os.version: 26.0.1
+[DEBUG] path.separator: :
+[DEBUG] project.baseUri: file:/Users/remyrogers/csce247-escape-game/
+[DEBUG] project.build.sourceEncoding: UTF-8
+[DEBUG] socksNonProxyHosts: local|*.local|169.254/16|*.169.254/16
+[DEBUG] stderr.encoding: UTF-8
+[DEBUG] stdin.encoding: UTF-8
+[DEBUG] stdout.encoding: UTF-8
+[DEBUG] sun.arch.data.model: 64
+[DEBUG] sun.boot.library.path: /usr/local/Cellar/openjdk/25/libexec/openjdk.jdk/Contents/Home/lib
+[DEBUG] sun.cpu.endian: little
+[DEBUG] sun.io.unicode.encoding: UnicodeBig
+[DEBUG] sun.java.command: org.codehaus.plexus.classworlds.launcher.Launcher -X resources:resources
+[DEBUG] sun.java.launcher: SUN_STANDARD
+[DEBUG] sun.jnu.encoding: UTF-8
+[DEBUG] sun.management.compiler: HotSpot 64-Bit Tiered Compilers
+[DEBUG] user.country: US
+[DEBUG] user.dir: /Users/remyrogers/csce247-escape-game
+[DEBUG] user.home: /Users/remyrogers
+[DEBUG] user.language: en
+[DEBUG] user.name: remyrogers
+[DEBUG] Using 'UTF-8' encoding to copy filtered resources.
+[DEBUG] Using 'UTF-8' encoding to copy filtered properties files.
+[DEBUG] resource with targetPath null
+directory /Users/remyrogers/csce247-escape-game/src/main/resources
+excludes []
+includes [**/*]
+[DEBUG] ignoreDelta true
+[INFO] Copying 9 resources from src/main/resources to target/classes
+[DEBUG] Copying file GameData.json
+[DEBUG] file GameData.json has a filtered file extension
+[DEBUG] Using 'UTF-8' encoding to copy filtered resource 'GameData.json'.
+[DEBUG] copy /Users/remyrogers/csce247-escape-game/src/main/resources/GameData.json to /Users/remyrogers/csce247-escape-game/target/classes/GameData.json
+[DEBUG] Copying file images/manor.png
+[DEBUG] file manor.png has a non filtered file extension
+[DEBUG] Using 'UTF-8' encoding to copy filtered resource 'manor.png'.
+[DEBUG] copy /Users/remyrogers/csce247-escape-game/src/main/resources/images/manor.png to /Users/remyrogers/csce247-escape-game/target/classes/images/manor.png
+[DEBUG] Copying file Users.json
+[DEBUG] file Users.json has a filtered file extension
+[DEBUG] Using 'UTF-8' encoding to copy filtered resource 'Users.json'.
+[DEBUG] copy /Users/remyrogers/csce247-escape-game/src/main/resources/Users.json to /Users/remyrogers/csce247-escape-game/target/classes/Users.json
+[DEBUG] Copying file library/register.fxml
+[DEBUG] file register.fxml has a filtered file extension
+[DEBUG] Using 'UTF-8' encoding to copy filtered resource 'register.fxml'.
+[DEBUG] copy /Users/remyrogers/csce247-escape-game/src/main/resources/library/register.fxml to /Users/remyrogers/csce247-escape-game/target/classes/library/register.fxml
+[DEBUG] Copying file library/login.fxml
+[DEBUG] file login.fxml has a filtered file extension
+[DEBUG] Using 'UTF-8' encoding to copy filtered resource 'login.fxml'.
+[DEBUG] copy /Users/remyrogers/csce247-escape-game/src/main/resources/library/login.fxml to /Users/remyrogers/csce247-escape-game/target/classes/library/login.fxml
+[DEBUG] Copying file library/home.fxml
+[DEBUG] file home.fxml has a filtered file extension
+[DEBUG] Using 'UTF-8' encoding to copy filtered resource 'home.fxml'.
+[DEBUG] copy /Users/remyrogers/csce247-escape-game/src/main/resources/library/home.fxml to /Users/remyrogers/csce247-escape-game/target/classes/library/home.fxml
+[DEBUG] Copying file com/escapegame/styles.css
+[DEBUG] file styles.css has a filtered file extension
+[DEBUG] Using 'UTF-8' encoding to copy filtered resource 'styles.css'.
+[DEBUG] copy /Users/remyrogers/csce247-escape-game/src/main/resources/com/escapegame/styles.css to /Users/remyrogers/csce247-escape-game/target/classes/com/escapegame/styles.css
+[DEBUG] Copying file com/escapegame/primary.fxml
+[DEBUG] file primary.fxml has a filtered file extension
+[DEBUG] Using 'UTF-8' encoding to copy filtered resource 'primary.fxml'.
+[DEBUG] copy /Users/remyrogers/csce247-escape-game/src/main/resources/com/escapegame/primary.fxml to /Users/remyrogers/csce247-escape-game/target/classes/com/escapegame/primary.fxml
+[DEBUG] Copying file com/escapegame/secondary.fxml
+[DEBUG] file secondary.fxml has a filtered file extension
+[DEBUG] Using 'UTF-8' encoding to copy filtered resource 'secondary.fxml'.
+[DEBUG] copy /Users/remyrogers/csce247-escape-game/src/main/resources/com/escapegame/secondary.fxml to /Users/remyrogers/csce247-escape-game/target/classes/com/escapegame/secondary.fxml
+[DEBUG] no user filter components
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.586 s
+[INFO] Finished at: 2025-11-11T20:40:16-05:00
+[INFO] ------------------------------------------------------------------------
+[DEBUG] Shutting down adapter factory; available factories [file-lock, rwlock-local, semaphore-local, noop]; available name mappers [discriminating, file-gav, file-hgav, file-static, gav, static]
+[DEBUG] Shutting down 'file-lock' factory
+[DEBUG] Shutting down 'rwlock-local' factory
+[DEBUG] Shutting down 'semaphore-local' factory
+[DEBUG] Shutting down 'noop' factory

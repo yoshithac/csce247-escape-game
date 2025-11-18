@@ -4,6 +4,10 @@ This escape room project is a game, "The Haunting of Hallow Manor", where users 
 
 Backend Implementation and Scenario Demonstration: https://drive.google.com/file/d/16OxFOW4oXl6AZ4f1UpfZ-p5SAlRrMJzy/view?usp=sharing
 
+High Fidelity Prototype:
+  - Video walkthrough: https://youtu.be/psTQxEjAUnE
+  - Prototype: https://yoshithac.github.io/csce247-escape-game/
+
 
 Test-Plan.pdf : details all test cases and is located in docs folder
 
@@ -15,10 +19,19 @@ Bugs: #233-#241 (working on resolving)
 
 Test Creation: #232, #224, #222, #221, #217, #213, #206
 
-Remy: 
+
+Remy: GameDataLoaderTest, GameDataWriterTest, AuthControllerTest, CardTest, CertificateTest, ConsoleViewTest, GameControllerTest
+
+Bugs: #243 (resolved), #244 (working on resolving)
+
+Test Creation: #205, #207, #208, #209, #210, #211, #214, #215
 
 
-Aashrith: 
+Aashrith: GameDataTest, GameFactoryTest, PlayerTest, PuzzleTest, PuzzleGameTest, UserTest, WordPuzzleGameTest
+
+Bugs:
+
+Test Creation: #212, #216, #225, #227, #228, #229, #231
 
 
 Nitin: MazeTest, HintTest, LeaderboardEntryTest, UserProgressTest, PositionTest,
@@ -26,4 +39,3 @@ Nitin: MazeTest, HintTest, LeaderboardEntryTest, UserProgressTest, PositionTest,
 Bugs: #232 (fixed)
 
 Test Creation: #219, #220, #222, #223, #226, #230,
-

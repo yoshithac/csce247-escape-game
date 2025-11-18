@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "Jersey 10";
+    src: url("fonts/Jersey10-Regular.ttf");
+}
+
+#home-root {
+  -fx-background-image: url("/images/manor.png");
+  -fx-background-size: cover;
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-color: transparent;
+}
+
+
+.label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 32px;
+    -fx-font-family: "Jersey 10";
+}
+
+.button {
+    -fx-background-color: #313561;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 32px;
+    -fx-font-family: "Jersey 10";
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: rgba(37, 38, 76, 0.2);
+}
+
+.body {
+    background-color: #171a3c;
+}
+
+.left-panel {
+}
+
+.mainmenu {
+    -fx-font-family: "Jersey 10";
+}

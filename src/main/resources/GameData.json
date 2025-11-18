@@ -2210,22 +2210,10 @@
   ],
   "userProgress": [
     {
-      "userId": "nitin",
-      "completedPuzzles": [
-        "ridd_e1",
-        "match_e1",
-        "cipher_e3",
-        "maze_e2",
-        "anag_e2"
-      ],
-      "puzzleScores": {
-        "ridd_e1": 241,
-        "match_e1": 195,
-        "cipher_e3": 150,
-        "maze_e2": 228,
-        "anag_e2": 246
-      },
-      "totalScore": 1060
+      "userId": "remyr",
+      "completedPuzzles": [],
+      "puzzleScores": {},
+      "totalScore": 0
     }
   ],
   "certificates": [
