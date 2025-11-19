@@ -26,11 +26,11 @@ public class App extends Application {
 
             try (InputStream is = getClass().getResourceAsStream("/fonts/Jersey10-Regular.ttf")) {
         if (is == null) {
-            System.err.println("FONT FILE NOT FOUND AT: /fonts/Jersey10-Regular.ttf");
+            System.err.println("Font file not found");
         } else {
             javafx.scene.text.Font loaded = javafx.scene.text.Font.loadFont(is, 12);
             if (loaded == null) {
-                System.err.println("Font.loadFont(...) returned null (failed to parse font)");
+                System.err.println("Font returned null");
             } else {
                 System.out.println("FONT LOADED OK -> family='" + loaded.getFamily()
                     + "' name='" + loaded.getName() + "'");
@@ -39,7 +39,7 @@ public class App extends Application {
     } catch (Exception e) {
         e.printStackTrace();
     }
-        // Load stylesheet automatically from possible locations
+        //Load stylesheet from possible locations
         tryLoadStylesheet(scene);
 
         stage.setScene(scene);
@@ -49,7 +49,7 @@ public class App extends Application {
     }
 
     /**
-     * Replace scene root with the specified FXML (from /library/{fxml}.fxml).
+     * Replace scene root with the specified FXML
      */
     public static void setRoot(String fxml) throws IOException {
     if (scene == null) {

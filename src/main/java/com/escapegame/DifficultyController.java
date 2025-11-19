@@ -29,4 +29,34 @@ public class DifficultyController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("DifficultyController initialized");
     }
+
+    @FXML
+    private void onEasy() {
+        System.out.println("Easy button clicked");
+        try {
+            App.setRoot("startgame");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void onMedium() {
+        System.out.println("Medium button clicked");
+        try {
+            App.setRoot("startgame");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void onHard() {
+        System.out.println("Hard button clicked");
+        try {
+            App.setRoot("startgame");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
