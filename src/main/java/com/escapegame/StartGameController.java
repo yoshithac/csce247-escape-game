@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.fxml.FXMLLoader;
 
 /**
- * End screen controller — wired to endscreen.fxml
+ * Start screen controller — wired to startgame.fxml
  */
 public class StartGameController implements Initializable {
 

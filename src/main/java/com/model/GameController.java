@@ -134,8 +134,22 @@ public class GameController {
     private void startNewPuzzle() {
         // Prompt for difficulty if not set
         if (sessionDifficulty == null) {
+        // Use App.getChosenDifficulty() if the UI set it
+        try {
+            String uiChoice = com.escapegame.App.getChosenDifficulty();
+            if (uiChoice != null) {
+                sessionDifficulty = uiChoice;
+                com.escapegame.App.clearChosenDifficulty();
+                System.out.println("GameController: using UI-chosen difficulty -> " + sessionDifficulty);
+            } else {
+                // fallback to CLI selection
+                sessionDifficulty = selectDifficulty();
+            }
+        } catch (NoClassDefFoundError | Exception e) {
+
             sessionDifficulty = selectDifficulty();
         }
+}
         
         String userId = authService.getCurrentUser().getUserId();
         String difficulty = sessionDifficulty;
@@ -361,6 +375,10 @@ public class GameController {
         waitForUser();
     }
 
+    public void setSessionDifficulty(String difficulty) {
+        this.sessionDifficulty = difficulty;
+    }
+    
     /**
      * Save current game state
      * @param puzzle

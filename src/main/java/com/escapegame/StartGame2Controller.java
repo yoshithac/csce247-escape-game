@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.fxml.FXMLLoader;
 
 /**
- * End screen controller — wired to endscreen.fxml
+ * Start 2 screen controller — wired to startgame2.fxml
  */
 public class StartGame2Controller implements Initializable {
 
@@ -28,10 +28,10 @@ public class StartGame2Controller implements Initializable {
     }
 
     @FXML
-    private void onEnd() {
+    private void onNext(){
         System.out.println("Next button clicked");
         try {
-            App.setRoot("mainmenu");
+            App.setRoot("endscreen");
         } catch (IOException e) {
             e.printStackTrace();
         }

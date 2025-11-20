@@ -142,6 +142,32 @@ public class App extends Application {
         launch();
     }
     private static User currentUser;
-public static void setCurrentUser(User u) { currentUser = u; }
-public static User getCurrentUser() { return currentUser; }
+    public static void setCurrentUser(User u) { currentUser = u; }
+    public static User getCurrentUser() { return currentUser; }
+
+        private static String chosenDifficulty = null;
+
+    
+    /**
+     * Set the chosen difficulty
+     * @param difficulty
+     */
+    public static void setChosenDifficulty(String difficulty) {
+        chosenDifficulty = difficulty;
+        System.out.println("App: chosenDifficulty set: " + difficulty);
+    }
+
+    /** 
+     * Get the chosen difficulty
+     */
+    public static String getChosenDifficulty() {
+        return chosenDifficulty;
+    }
+
+    /** 
+     * Clear the chosen difficulty
+     */
+    public static void clearChosenDifficulty() {
+        chosenDifficulty = null;
+    }
 }

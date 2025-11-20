@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.escapegame.DifficultyController"
+           fx:controller="com.escapegame.StartGameController"
            fx:id="difficultyRoot"
            prefWidth="1440" prefHeight="900">
            
