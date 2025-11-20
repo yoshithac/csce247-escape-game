@@ -28,7 +28,7 @@
                   AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="99.0">
 
                 <Button fx:id="nextButton" text=">" onAction="#onNext"
-                        styleClass="menu-button" prefWidth="70" maxWidth="70" prefHeight="50"/>
+                        styleClass="navigate-button" prefWidth="70" maxWidth="70" prefHeight="50"/>
             </VBox>
         </AnchorPane>
     </HBox>

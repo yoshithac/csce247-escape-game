@@ -37,8 +37,8 @@
                        style="-fx-text-fill: #ff6666; -fx-font-size: 15px; -fx-font-family: 'Georgia'"/>
 
                 <VBox spacing="16" alignment="CENTER">
-                    <Button text="LOG IN" onAction="#onLogin" prefWidth="300" />
-                    <Button text="BACK" onAction="#back" prefWidth="300" />
+                    <Button text="LOG IN" onAction="#onLogin" prefWidth="300" styleClass="menu-button"/>
+                    <Button text="BACK" onAction="#back" prefWidth="300" styleClass="menu-button"/>
                 </VBox>
             </VBox>
         </AnchorPane>

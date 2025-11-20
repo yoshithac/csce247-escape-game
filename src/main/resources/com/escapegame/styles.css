@@ -18,7 +18,7 @@
     -fx-font-family: "Jersey 10";
 }
 
-.button {
+.menu-button {
     -fx-background-color: #313561;
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 32px;
@@ -28,8 +28,19 @@
     -fx-background-radius: 5px;
 }
 
-.button:hover {
+.menu-button:hover {
     -fx-background-color: rgba(37, 38, 76, 0.2);
+}
+
+.navigate-button {
+    -fx-background-color: #2b5cab;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20px;
+    -fx-font-family: "Jersey 10";
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 1px;
+    -fx-border-color: #002c77;
+    -fx-background-radius: 5px;
 }
 
 .body {
