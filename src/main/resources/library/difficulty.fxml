@@ -28,12 +28,12 @@
                   AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
 
                 <Button fx:id="easyButton" text="EASY" onAction="#onEasy"
-                        styleClass="menu-button" prefWidth="300" maxWidth="300"/>
+                        styleClass="menu-button" prefWidth="300" maxWidth="300" -fx-font-size="48px"/>
                 <Button fx:id="mediumButton" text="MEDIUM" onAction="#onMedium"
-                        styleClass="menu-button" prefWidth="300" maxWidth="300"/>
+                        styleClass="menu-button" prefWidth="300" maxWidth="300" -fx-font-size="48px"/>
                 <Button fx:id="hardButton" text="HARD" onAction="#onHard"
-                        styleClass="menu-button" prefWidth="300" maxWidth="300" />
-                    <Button text="BACK" onAction="#back" prefWidth="300" />
+                        styleClass="menu-button" prefWidth="300" maxWidth="300" -fx-font-size="48px" />
+                    <Button text="BACK" onAction="#back" prefWidth="200" />
             </VBox>
 
         </AnchorPane>

@@ -34,7 +34,7 @@
                   AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
 
                 <VBox spacing="16" alignment="CENTER">
-                    <Button text="BACK" onAction="#back" prefWidth="300" />
+                    <Button text="BACK" onAction="#back" prefWidth="300" style="-fx-font-size: 48px;"/>
                 </VBox>
             </VBox>
         </AnchorPane>

@@ -26,8 +26,8 @@
                   AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"
                   AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
 
-                <Button fx:id="endButton" text="RETURN TO MAIN MENU" onAction="#onEnd"
-                        styleClass="menu-button" prefWidth="300" maxWidth="300" style="-fx-font-size: 32px; -fx-font-family: 'Georgia'"/>
+                <Button fx:id="endButton" text="RETURN" onAction="#onEnd"
+                        styleClass="menu-button" prefWidth="300" maxWidth="300" style="-fx-font-size: 48px;"/>
             </VBox>
         </AnchorPane>
     </HBox>
