@@ -48,5 +48,15 @@
     "role": "USER",
     "createdAt": "2025-11-11T22:29:37.027541",
     "lastLoginAt": "2025-11-19T20:57:48.761366"
+  },
+  {
+    "userId": "Nitin",
+    "password": "Gideon20!6",
+    "firstName": "",
+    "lastName": "",
+    "email": "nitinrlr@gmail.com",
+    "role": "USER",
+    "createdAt": "2025-11-19T21:04:24.7508118",
+    "lastLoginAt": "2025-11-19T21:04:58.4154687"
   }
 ]

@@ -4,16 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.model.AuthenticationService;
-import com.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.fxml.FXMLLoader;
 
 /**
  * Opened1 screen controller — wired to startgame.fxml
@@ -41,7 +34,7 @@ public class Opened1Controller implements Initializable {
     private void onDoor() {
         System.out.println("Door button clicked");
         try {
-            App.setRoot("opened2");
+            App.setRoot("riddle");
         } catch (IOException e) {
             e.printStackTrace();
         }
