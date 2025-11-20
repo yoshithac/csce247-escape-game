@@ -28,14 +28,14 @@
                   AnchorPane.topAnchor="180.0"
                   AnchorPane.bottomAnchor="120.0">
                 <TextField fx:id="txt_userId" promptText="USERNAME (5 characters)" styleClass="field" style="-fx-font-size: 20px;"/>
-                <PasswordField fx:id="txt_password" promptText="PASSWORD (min 4 chars)" styleClass="field" style="-fx-font-size: 20px;>
+                <PasswordField fx:id="txt_password" promptText="PASSWORD (min 4 chars)" styleClass="field" style="-fx-font-size: 20px;"/>
                 <TextField fx:id="txt_fullName" promptText="EMAIL" styleClass="field" style="-fx-font-size: 20px;"/>
                 <Label fx:id="lbl_error" text="" visible="false" styleClass="error-label"
                        style="-fx-text-fill: #ff6666; -fx-font-size: 15px; -fx-font-family: 'Georgia'"/>
 
                 <VBox spacing="16" alignment="CENTER">
-                    <Button text="REGISTER" onMouseClicked="#btnRegisterClicked" prefWidth="300" styleClass="primary-button"/>
-                    <Button text="BACK" onMouseClicked="#back" prefWidth="300" styleClass="secondary-button"/>
+                    <Button text="REGISTER" onMouseClicked="#btnRegisterClicked" prefWidth="300" styleClass="menu-button"/>
+                    <Button text="BACK" onMouseClicked="#back" prefWidth="300" styleClass="menu-button"/>
                 </VBox>
             </VBox>
         </AnchorPane>

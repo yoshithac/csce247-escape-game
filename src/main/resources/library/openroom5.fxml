@@ -26,7 +26,7 @@
                 onAction="#onEscapeClicked"
                 prefWidth="200"
                 prefHeight="60"
-                styleClass="menu-button" />
+                styleClass="navigate-button" />
         <Label fx:id="statusLabel" text="" alignment="CENTER" />
         <Region prefHeight="20" />
     </VBox>
