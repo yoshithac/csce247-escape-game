@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.escapegame.RiddlePuzzleController"
+           prefWidth="1200" prefHeight="720">
+
+    <!-- Background image: using the local development path you uploaded.
+         (When packaging the app, replace with a resource path inside your jar.) -->
+    <ImageView fx:id="bgImage" fitWidth="1200" fitHeight="720" preserveRatio="true">
+        <image>
+            <!-- local dev path to the screenshot you uploaded -->
+            <Image url="file:/mnt/data/Screenshot 2025-11-19 204918.png" />
+        </image>
+    </ImageView>
+
+    <!-- Main panel holding riddle UI -->
+    <VBox alignment="TOP_CENTER" spacing="12" maxWidth="900" prefWidth="900">
+        <Region prefHeight="60" /> <!-- spacer -->
+
+        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: rgba(0,0,0,0.18); -fx-background-radius: 8; -fx-padding: 26;">
+            <Label text="RIDDLE PUZZLE" style="-fx-font-size:22px; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            <Label fx:id="categoryLabel" text="Category: Health" style="-fx-font-size:14px; -fx-text-fill: #e8f0ff;"/>
+            <Label fx:id="promptLabel" text="Prompt: What can you catch but not throw?" wrapText="true" textAlignment="CENTER" style="-fx-font-size:16px; -fx-text-fill: #f0f8ff; -fx-padding: 6 10 12 10;"/>
+
+            <TextField fx:id="answerField" promptText="Type your answer..." prefWidth="520"/>
+
+            <HBox spacing="8" alignment="CENTER">
+                <Button fx:id="btnSubmit" text="Submit" onAction="#onSubmit" prefWidth="110" />
+                <Button fx:id="btnHint" text="Hint" onAction="#onHint" prefWidth="110" />
+                <Button fx:id="btnSave" text="Save" onAction="#onSave" prefWidth="110" />
+                <Button fx:id="btnQuit" text="Quit" onAction="#onQuit" prefWidth="110" />
+            </HBox>
+
+            <Label fx:id="hintsLabel" text="3 hint(s) available" style="-fx-text-fill: #eaeef6; -fx-font-size:13px;"/>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="Attempts:" style="-fx-text-fill: #eaeef6; -fx-font-size:13px;"/>
+                <HBox fx:id="heartsBox" spacing="6" alignment="CENTER_LEFT"/>
+            </HBox>
+        </VBox>
+
+        <Region prefHeight="24" />
+        <Label fx:id="statusLabel" text="" style="-fx-text-fill: #fff;"/>
+    </VBox>
+</StackPane>
