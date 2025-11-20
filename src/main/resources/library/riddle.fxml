@@ -8,18 +8,14 @@
            fx:controller="com.escapegame.RiddlePuzzleController"
            prefWidth="1200" prefHeight="720">
 
-    <!-- Background image: using the local development path you uploaded.
-         (When packaging the app, replace with a resource path inside your jar.) -->
     <ImageView fx:id="bgImage" fitWidth="1200" fitHeight="720" preserveRatio="true">
         <image>
-            <!-- local dev path to the screenshot you uploaded -->
             <Image url="file:/mnt/data/Screenshot 2025-11-19 204918.png" />
         </image>
     </ImageView>
 
-    <!-- Main panel holding riddle UI -->
     <VBox alignment="TOP_CENTER" spacing="12" maxWidth="900" prefWidth="900">
-        <Region prefHeight="60" /> <!-- spacer -->
+        <Region prefHeight="60" />
 
         <VBox alignment="CENTER" spacing="10" style="-fx-background-color: rgba(0,0,0,0.18); -fx-background-radius: 8; -fx-padding: 26;">
             <Label text="RIDDLE PUZZLE" style="-fx-font-size:22px; -fx-text-fill: white; -fx-font-weight: bold;"/>
