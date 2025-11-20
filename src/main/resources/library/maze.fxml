@@ -23,7 +23,16 @@
                 <Label text="MAZE PUZZLE"
                        style="-fx-font-family: 'Jersey 10'; -fx-font-size: 40px; -fx-text-fill: white; -fx-font-weight: bold;"/>
 
-
+                <VBox alignment="BOTTOM_CENTER" spacing="12">
+                    <Label fx:id="promptLabel"
+                       text="Use 'W', 'A', 'S', 'D' keys to navigate the maze."
+                       wrapText="true" textAlignment="CENTER"
+                       style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #e6f1ff; -fx-padding: 10 0 20 0;"/>
+                    <HBox spacing="10" alignment="BOTTOM_CENTER">
+                        <Label text="Attempts:" style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #b3caff;"/>
+                        <HBox fx:id="heartsBox" spacing="8" alignment="CENTER"/>
+                    </HBox>
+                </VBox>
                 <HBox spacing="16" alignment="BOTTOM_CENTER">
                     <Button fx:id="btnSubmit" text="Submit" onAction="#onSubmit"
                             prefWidth="150" prefHeight="60"
@@ -35,13 +44,6 @@
                             prefWidth="150" prefHeight="60"
                             styleClass="menu-btn"/>
                 </HBox>
-
-                <VBox alignment="BOTTOM_CENTER" spacing="12">
-                    <HBox spacing="10" alignment="BOTTOM_CENTER">
-                        <Label text="Attempts:" style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #b3caff;"/>
-                        <HBox fx:id="heartsBox" spacing="8" alignment="CENTER"/>
-                    </HBox>
-                </VBox>
 
                 <Label fx:id="statusLabel"
                        style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: white; -fx-padding: 16 0 0 0;"/>
