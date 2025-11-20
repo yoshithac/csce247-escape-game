@@ -30,8 +30,8 @@
                   AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"
                   AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
 
-                <TextField fx:id="txt_username" promptText="USERNAME" prefWidth="300" style="-fx-font-size: 20px;" />
-                <PasswordField fx:id="txt_password" promptText="PASSWORD" prefWidth="300" style="-fx-font-size: 20px;" />
+                <TextField fx:id="txt_username" promptText="USERNAME" prefWidth="300" />
+                <PasswordField fx:id="txt_password" promptText="PASSWORD" prefWidth="300" />
 
                 <Label fx:id="lbl_error" text="" visible="false" wrapText="true" maxWidth="300"
                        style="-fx-text-fill: #ff6666; -fx-font-size: 15px; -fx-font-family: 'Georgia'"/>
