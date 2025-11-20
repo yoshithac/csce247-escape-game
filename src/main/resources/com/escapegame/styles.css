@@ -35,3 +35,19 @@
 .body {
     background-color: #171a3c;
 }
+
+.rectangle {
+    -fx-fill: transparent;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 0.5px;
+}
+
+.text-field, .password-field {
+    -fx-font-size: 20px;
+    -fx-font-family: "Jersey 10";
+    -fx-background-color: #313561;
+    -fx-stroke: #FFFFFF;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 1px;
+}

@@ -38,7 +38,14 @@ public class MainMenuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
         try {
-            if (lblUser != null) lblUser.setText("Welcome");
+            if (lblUser != null) {
+            User user = App.getCurrentUser();
+            if (user != null) {
+                lblUser.setText("Welcome, " + user.getUserId().toUpperCase());
+            } else {
+                lblUser.setText("Welcome");
+            }
+        }
 
             if (backgroundImage != null && menuRoot != null) {
                 try {
@@ -135,18 +142,41 @@ public class MainMenuController implements Initializable {
         }
 
         try {
-            Parent root = loader.load();
-            // try to switch scene using a known node (menuRoot or any button)
-            if (menuRoot != null && menuRoot.getScene() != null) {
-                menuRoot.getScene().setRoot(root);
-            } else if (newGameButton != null && newGameButton.getScene() != null) {
-                newGameButton.getScene().setRoot(root);
-            } else {
-                System.err.println("MainMenuController: no scene available to switch root to " + baseName);
+    Parent root = loader.load();
+
+        Object controller = loader.getController();
+        if (controller != null) {
+            try {
+                java.lang.reflect.Method m = controller.getClass().getMethod("initData", com.model.User.class, com.model.AuthenticationService.class);
+                com.model.User appUser = null;
+                com.model.AuthenticationService appAuth = null;
+                try {
+                    java.lang.reflect.Method gu = com.escapegame.App.class.getMethod("getCurrentUser");
+                    appUser = (com.model.User) gu.invoke(null);
+                } catch (NoSuchMethodException ignored) { }
+                try {
+                    java.lang.reflect.Method ga = com.escapegame.App.class.getMethod("getAuthService");
+                    appAuth = (com.model.AuthenticationService) ga.invoke(null);
+                } catch (NoSuchMethodException ignored) { }
+
+                m.invoke(controller, appUser, appAuth);
+            } catch (NoSuchMethodException nsme) {
+            } catch (Throwable invokeEx) {
+                System.err.println("Warning: failed to invoke initData on controller: " + invokeEx);
+                invokeEx.printStackTrace();
             }
-        } catch (Throwable t) {
-            System.err.println("MainMenuController.loadAndSwitch failed for '" + baseName + "': " + t.getClass().getSimpleName() + " - " + t.getMessage());
-            t.printStackTrace();
         }
+
+        if (menuRoot != null && menuRoot.getScene() != null) {
+            menuRoot.getScene().setRoot(root);
+        } else if (newGameButton != null && newGameButton.getScene() != null) {
+            newGameButton.getScene().setRoot(root);
+        } else {
+            System.err.println("MainMenuController: no scene available to switch root to " + baseName);
+        }
+    } catch (Throwable t) {
+        System.err.println("MainMenuController.loadAndSwitch failed for '" + baseName + "': " + t.getClass().getSimpleName() + " - " + t.getMessage());
+        t.printStackTrace();
+    }
     }
 }

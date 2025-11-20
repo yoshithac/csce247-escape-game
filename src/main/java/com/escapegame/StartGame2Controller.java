@@ -31,7 +31,7 @@ public class StartGame2Controller implements Initializable {
     private void onNext(){
         System.out.println("Next button clicked");
         try {
-            App.setRoot("endscreen");
+            App.setRoot("puzzlehome");
         } catch (IOException e) {
             e.printStackTrace();
         }

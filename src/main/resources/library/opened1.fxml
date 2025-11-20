@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.escapegame.Opened1Controller"
+           fx:id="difficultyRoot"
+           prefWidth="1440" prefHeight="900">
+           
+    <ImageView fitWidth="1440" fitHeight="900" preserveRatio="true" smooth="false">
+        <image>
+            <Image url="@../images/opened1.png" />
+        </image>
+    </ImageView>
+
+    <Rectangle width="1440" height="900" pickOnBounds="false" mouseTransparent="true"
+               style="-fx-fill: rgba(0,0,0,0.0);" />
+
+    <HBox prefWidth="1440" prefHeight="900">
+        <AnchorPane prefWidth="1440" styleClass="left-panel">
+            <VBox spacing="16" alignment="BOTTOM_CENTER"
+                  AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="99.0">
+
+                <Button fx:id="quitButton" text="QUIT" onAction="#onQuit"
+                        styleClass="menu-button" prefWidth="70" maxWidth="150" prefHeight="60"/>
+            </VBox>
+            <VBox spacing="16" alignment="BOTTOM_LEFT"
+                  AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="20.0"
+                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="250.0">
+
+                <Rectangle fx:id="doorButton" width="150" height="300" onMouseClicked="#onDoor"
+                           styleClass="rectangle"/>
+            </VBox>
+        </AnchorPane>
+    </HBox>
+</StackPane>
