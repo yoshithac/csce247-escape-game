@@ -29,11 +29,11 @@
                   AnchorPane.bottomAnchor="120.0">
 
                 <VBox spacing="16" alignment="CENTER">
-                    <Button fx:id="newGameButton" text="+ NEW GAME" prefWidth="300" styleClass="menu-button" -fx-font-size="48px"/>
-                    <Button fx:id="progressButton" text="VIEW PROGRESS" prefWidth="300" styleClass="menu-button" -fx-font-size="48px"/>
-                    <Button fx:id="leaderboardButton" text="LEADERBOARD" prefWidth="300" styleClass="menu-button" -fx-font-size="48px"/>
-                    <Button fx:id="certificatesButton" text="CERTIFICATES" prefWidth="300" styleClass="menu-button" -fx-font-size="48px"/>
-                    <Button fx:id="logoutButton" text="LOGOUT" prefWidth="300" styleClass="menu-button" -fx-font-size="48px"/>
+                    <Button fx:id="newGameButton" text="+ NEW GAME" prefWidth="300" styleClass="menu-button" />
+                    <Button fx:id="progressButton" text="VIEW PROGRESS" prefWidth="300" styleClass="menu-button" />
+                    <Button fx:id="leaderboardButton" text="LEADERBOARD" prefWidth="300" styleClass="menu-button" />
+                    <Button fx:id="certificatesButton" text="CERTIFICATES" prefWidth="300" styleClass="menu-button" />
+                    <Button fx:id="logoutButton" text="LOGOUT" prefWidth="300" styleClass="menu-button" />
                 </VBox>
 
                 <Label fx:id="lblUser" text="Welcome,"/>
