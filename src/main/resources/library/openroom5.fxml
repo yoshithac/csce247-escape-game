@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.escapegame.OpenRoom5Controller"
+           fx:id="roomRoot"
+           prefWidth="1440" prefHeight="900">
+
+    <ImageView fx:id="bgImage" fitWidth="1440" fitHeight="900"
+               preserveRatio="true" smooth="true">
+        <image>
+            <Image url="@../images/Screenshot_2025-11-19_202307.png" />
+        </image>
+    </ImageView>
+
+    <Rectangle width="1440" height="900" pickOnBounds="false" mouseTransparent="true"
+               style="-fx-fill: rgba(0,0,0,0.0);" />
+  
+    <VBox alignment="BOTTOM_CENTER" spacing="12" prefWidth="1440" prefHeight="900">
+        <Region prefHeight="600" />
+        <Button fx:id="btnEscape"
+                text="ESCAPE"
+                onAction="#onEscapeClicked"
+                prefWidth="200"
+                prefHeight="60"
+                styleClass="menu-button" />
+        <Label fx:id="statusLabel" text="" alignment="CENTER" />
+        <Region prefHeight="20" />
+    </VBox>
+</StackPane>
