@@ -10,16 +10,6 @@
     "lastLoginAt": "2025-10-25T01:30:00"
   },
   {
-    "userId": "U1001",
-    "password": "p123",
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john.doe@example.com",
-    "role": "USER",
-    "createdAt": "2025-10-24T14:30:00",
-    "lastLoginAt": "2025-10-25T18:24:38.6331254"
-  },
-  {
     "userId": "U1002",
     "password": "P456",
     "firstName": "Jane",
@@ -50,6 +40,16 @@
     "lastLoginAt": "2025-11-19T22:20:47.204873"
   },
   {
+    "userId": "U1001",
+    "password": "p123",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "role": "USER",
+    "createdAt": "2025-10-24T14:30:00",
+    "lastLoginAt": "2025-11-20T13:13:53.108298"
+  },
+  {
     "userId": "remyr",
     "password": "remyr",
     "firstName": "remyr",
@@ -57,6 +57,6 @@
     "email": "",
     "role": "USER",
     "createdAt": "2025-11-11T22:29:37.027541",
-    "lastLoginAt": "2025-11-20T12:51:19.077146"
+    "lastLoginAt": "2025-11-20T13:35:30.823263"
   }
 ]
