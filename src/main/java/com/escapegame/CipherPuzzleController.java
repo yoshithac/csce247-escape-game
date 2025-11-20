@@ -107,7 +107,7 @@ public class CipherPuzzleController implements Initializable {
 
     @FXML
     private void onSubmit() {
-        if (solved) {
+        /*if (solved) {
             statusLabel.setText("You already solved the cipher puzzle.");
             return;
         }
@@ -151,7 +151,12 @@ public class CipherPuzzleController implements Initializable {
             } else {
                 statusLabel.setText("Incorrect. Attempts left: " + attemptsLeft);
             }
-        }
+        }*/
+       try {
+                App.setRoot("opened3");
+            } catch (IOException e) {
+                  e.printStackTrace();
+            }
     }
 
     @FXML
@@ -182,7 +187,7 @@ public class CipherPuzzleController implements Initializable {
     @FXML
     private void onQuit() {
         try {
-            App.setRoot("opened3");
+            App.setRoot("opened2");
         } catch (IOException e) {
             e.printStackTrace();
         }

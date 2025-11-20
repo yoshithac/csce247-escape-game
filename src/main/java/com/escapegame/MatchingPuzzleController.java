@@ -24,22 +24,14 @@ public class MatchingPuzzleController implements Initializable {
     @FXML private StackPane rootPane;
     @FXML private ImageView backgroundImage;
     @FXML private TextField answerField;
-    @FXML private Button btnSubmit, btnHint, btnSave, btnQuit;
-    @FXML private Label statusLabel, hintsLabel, categoryLabel, promptLabel;
+    @FXML private Button btnSubmit, btnSave, btnQuit;
+    @FXML private Label statusLabel, categoryLabel, promptLabel;
     @FXML private HBox heartsBox;
 
     // Game state
     private int attemptsLeft = 3;
-    private int hintsLeft = 3;
-    private int nextHintIndex = 0;
     private boolean solved = false;
 
-    String [] HINTS = {
-        //get from json
-    };
-    String [] ACCEPTED_ANSWERS = {
-        //get from json
-    };
 
     private final File SAVE_FILE = new File(System.getProperty("user.home"), ".escapegame_matching.properties");
 
@@ -48,7 +40,7 @@ public class MatchingPuzzleController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("RiddlePuzzleController.initialize() start");
+        System.out.println("MatchingPuzzleController.initialize() start");
 
         boolean loaded = false;
 
@@ -84,7 +76,6 @@ public class MatchingPuzzleController implements Initializable {
         backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
         backgroundImage.setPreserveRatio(false);
 
-        hintsLabel.setText(hintsLeft + " hint(s) available");
         refreshHearts();
         loadSave();
 
@@ -107,34 +98,22 @@ public class MatchingPuzzleController implements Initializable {
 
     @FXML
     private void onSubmit() {
-        if (solved) {
+        /*if (solved) {
             statusLabel.setText("You already solved the matching puzzle.");
             return;
         }
 
-        String answer = (answerField.getText() == null) ? "" : answerField.getText().trim().toLowerCase();
-        if (answer.isEmpty()) {
-            statusLabel.setText("Please type an answer before submitting.");
-            return;
-        }
 
         boolean correct = false;
-        for (String a : ACCEPTED_ANSWERS) {
-            if (a.equals(answer)) {
-                correct = true;
-                break;
-            }
-        }
 
         if (correct) {
             solved = true;
             statusLabel.setText("Correct! You solved the puzzle.");
             btnSubmit.setDisable(true);
-            btnHint.setDisable(true);
             answerField.setDisable(true);
             //new Alert(Alert.AlertType.INFORMATION, "Congratulations — you solved the matching puzzle!").showAndWait();
             try {
-                App.setRoot("opened3");
+                App.setRoot("opened2");
             } catch (IOException e) {
                   e.printStackTrace();
             }
@@ -151,27 +130,12 @@ public class MatchingPuzzleController implements Initializable {
             } else {
                 statusLabel.setText("Incorrect. Attempts left: " + attemptsLeft);
             }
-        }
-    }
-
-    @FXML
-    private void onHint() {
-        if (solved) {
-            statusLabel.setText("You already solved the puzzle.");
-            return;
-        }
-        if (hintsLeft <= 0) {
-            statusLabel.setText("No hints remaining.");
-            return;
-        }
-
-        String hint = HINTS[Math.min(nextHintIndex, HINTS.length - 1)];
-        nextHintIndex++;
-        hintsLeft--;
-        hintsLabel.setText(hintsLeft + " hint(s) available");
-
-        new Alert(Alert.AlertType.INFORMATION, hint).showAndWait();
-        saveProgress();
+        }*/
+       try {
+                App.setRoot("opened2");
+            } catch (IOException e) {
+                  e.printStackTrace();
+            }
     }
 
     @FXML
@@ -182,7 +146,7 @@ public class MatchingPuzzleController implements Initializable {
     @FXML
     private void onQuit() {
         try {
-            App.setRoot("opened2");
+            App.setRoot("opened1");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -192,9 +156,7 @@ public class MatchingPuzzleController implements Initializable {
         try {
             Properties p = new Properties();
             p.setProperty("attemptsLeft", String.valueOf(attemptsLeft));
-            p.setProperty("hintsLeft", String.valueOf(hintsLeft));
             p.setProperty("solved", String.valueOf(solved));
-            p.setProperty("nextHintIndex", String.valueOf(nextHintIndex));
             try (OutputStream os = new FileOutputStream(SAVE_FILE)) {
                 p.store(os, "Matching puzzle save");
             }
@@ -211,16 +173,12 @@ public class MatchingPuzzleController implements Initializable {
             Properties p = new Properties();
             p.load(new java.io.FileInputStream(SAVE_FILE));
             attemptsLeft = Integer.parseInt(p.getProperty("attemptsLeft", "3"));
-            hintsLeft = Integer.parseInt(p.getProperty("hintsLeft", "3"));
             solved = Boolean.parseBoolean(p.getProperty("solved", "false"));
-            nextHintIndex = Integer.parseInt(p.getProperty("nextHintIndex", "0"));
-            hintsLabel.setText(hintsLeft + " hint(s) available");
             refreshHearts();
 
             if (solved) {
                 btnSubmit.setDisable(true);
                 answerField.setDisable(true);
-                btnHint.setDisable(true);
                 statusLabel.setText("Already solved.");
             }
         } catch (Exception e) {

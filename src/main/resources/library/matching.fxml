@@ -22,22 +22,10 @@
                   style="-fx-padding: 20 36 20 36;">
                 <Label text="MATCHING PUZZLE"
                        style="-fx-font-family: 'Jersey 10'; -fx-font-size: 40px; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                <Label fx:id="categoryLabel" text="Category: Health"
-                       style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #d3e6ff;"/>
-                <Label fx:id="promptLabel"
-                       text="Prompt"
-                       wrapText="true" textAlignment="CENTER"
-                       style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #e6f1ff; -fx-padding: 10 0 20 0;"/>
 
-                <TextField fx:id="answerField" promptText="Type your answer..."
-                           prefWidth="850" prefHeight="60"
-                           style="-fx-background-color: rgba(255,255,255,0.08); -fx-text-fill: white; -fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-prompt-text-fill: #9fb0c8; -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 2; -fx-background-radius: 8;"/>
 
-                <HBox spacing="16" alignment="CENTER">
+                <HBox spacing="16" alignment="BOTTOM_CENTER">
                     <Button fx:id="btnSubmit" text="Submit" onAction="#onSubmit"
-                            prefWidth="150" prefHeight="60"
-                            styleClass="menu-btn"/>
-                    <Button fx:id="btnHint" text="Hint" onAction="#onHint"
                             prefWidth="150" prefHeight="60"
                             styleClass="menu-btn"/>
                     <Button fx:id="btnSave" text="Save" onAction="#onSave"
@@ -48,10 +36,8 @@
                             styleClass="menu-btn"/>
                 </HBox>
 
-                <VBox alignment="CENTER" spacing="12">
-                    <Label fx:id="hintsLabel" text="3 hint(s) available"
-                           style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #b3caff;"/>
-                    <HBox spacing="10" alignment="CENTER">
+                <VBox alignment="BOTTOM_CENTER" spacing="12">
+                    <HBox spacing="10" alignment="BOTTOM_CENTER">
                         <Label text="Attempts:" style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #b3caff;"/>
                         <HBox fx:id="heartsBox" spacing="8" alignment="CENTER"/>
                     </HBox>
