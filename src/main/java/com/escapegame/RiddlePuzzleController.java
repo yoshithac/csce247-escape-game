@@ -135,6 +135,11 @@ public class RiddlePuzzleController implements Initializable {
             btnHint.setDisable(true);
             answerField.setDisable(true);
             new Alert(Alert.AlertType.INFORMATION, "Congratulations — you solved the riddle!").showAndWait();
+            try {
+                App.setRoot("opened2");
+            } catch (IOException e) {
+                  e.printStackTrace();
+            }
             saveProgress();
         } else {
             attemptsLeft--;

@@ -23,15 +23,15 @@
                 <Label text="RIDDLE PUZZLE"
                        style="-fx-font-family: 'Jersey 10'; -fx-font-size: 40px; -fx-text-fill: white; -fx-font-weight: bold;"/>
                 <Label fx:id="categoryLabel" text="Category: Health"
-                       style="-fx-font-family: 'Jersey 10'; -fx-font-size: 22px; -fx-text-fill: #d3e6ff;"/>
+                       style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #d3e6ff;"/>
                 <Label fx:id="promptLabel"
                        text="Prompt: What can you catch but not throw?"
                        wrapText="true" textAlignment="CENTER"
-                       style="-fx-font-family: 'Jersey 10'; -fx-font-size: 22px; -fx-text-fill: #e6f1ff; -fx-padding: 10 0 20 0;"/>
+                       style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #e6f1ff; -fx-padding: 10 0 20 0;"/>
 
                 <TextField fx:id="answerField" promptText="Type your answer..."
                            prefWidth="850" prefHeight="60"
-                           style="-fx-background-color: rgba(255,255,255,0.08); -fx-text-fill: white; -fx-font-family: 'Jersey 10'; -fx-font-size: 22px; -fx-prompt-text-fill: #9fb0c8; -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 2; -fx-background-radius: 8;"/>
+                           style="-fx-background-color: rgba(255,255,255,0.08); -fx-text-fill: white; -fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-prompt-text-fill: #9fb0c8; -fx-border-color: rgba(255,255,255,0.1); -fx-border-width: 2; -fx-background-radius: 8;"/>
 
                 <HBox spacing="16" alignment="CENTER">
                     <Button fx:id="btnSubmit" text="Submit" onAction="#onSubmit"
@@ -50,15 +50,15 @@
 
                 <VBox alignment="CENTER" spacing="12">
                     <Label fx:id="hintsLabel" text="3 hint(s) available"
-                           style="-fx-font-family: 'Jersey 10'; -fx-font-size: 18px; -fx-text-fill: #b3caff;"/>
+                           style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #b3caff;"/>
                     <HBox spacing="10" alignment="CENTER">
-                        <Label text="Attempts:" style="-fx-font-family: 'Jersey 10'; -fx-font-size: 18px; -fx-text-fill: #b3caff;"/>
+                        <Label text="Attempts:" style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #b3caff;"/>
                         <HBox fx:id="heartsBox" spacing="8" alignment="CENTER"/>
                     </HBox>
                 </VBox>
 
                 <Label fx:id="statusLabel"
-                       style="-fx-font-family: 'Jersey 10'; -fx-font-size: 24px; -fx-text-fill: white; -fx-padding: 16 0 0 0;"/>
+                       style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: white; -fx-padding: 16 0 0 0;"/>
             </VBox>
         </center>
     </BorderPane>

@@ -64,8 +64,8 @@
 }
 
 .menu-btn {
-    -fx-font-family: "Press Start 2P";
-    -fx-font-size: 12px;
+    -fx-font-family: "Jersey 10";
+    -fx-font-size: 32px;
     -fx-text-fill: white;
     -fx-background-color: linear-gradient(#1e6bd8, #0f4fb2);
     -fx-background-radius: 4;
