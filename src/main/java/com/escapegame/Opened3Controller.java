@@ -41,7 +41,7 @@ public class Opened3Controller implements Initializable {
     private void onDoor() {
         System.out.println("Door button clicked");
         try {
-            App.setRoot("opened4");
+            App.setRoot("maze");
         } catch (IOException e) {
             e.printStackTrace();
         }
