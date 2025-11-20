@@ -30,6 +30,14 @@
 
                 <Label fx:id="certificatesLabel" text="YOUR CERTIFICATES" style="-fx-font-size: 32;"/>
             </VBox>
+            <VBox spacing="16" alignment="BOTTOM_CENTER"
+                  AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"
+                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
+
+                <VBox spacing="16" alignment="CENTER">
+                    <Button text="BACK" onAction="#back" prefWidth="300" />
+                </VBox>
+            </VBox>
         </AnchorPane>
     </HBox>
 </StackPane>

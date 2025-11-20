@@ -18,7 +18,7 @@ import javafx.fxml.FXMLLoader;
 /**
  * End screen controller — wired to endscreen.fxml
  */
-public class EndScreenController implements Initializable {
+public class StartGame2Controller implements Initializable {
 
     @FXML private Button nextButton;
 

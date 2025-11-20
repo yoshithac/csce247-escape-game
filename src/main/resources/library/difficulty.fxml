@@ -33,7 +33,9 @@
                         styleClass="menu-button" prefWidth="300" maxWidth="300"/>
                 <Button fx:id="hardButton" text="HARD" onAction="#onHard"
                         styleClass="menu-button" prefWidth="300" maxWidth="300" />
+                    <Button text="BACK" onAction="#back" prefWidth="300" />
             </VBox>
+
         </AnchorPane>
     </HBox>
 </StackPane>

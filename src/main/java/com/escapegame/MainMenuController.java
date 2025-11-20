@@ -53,32 +53,24 @@ public class MainMenuController implements Initializable {
             }
 
             if (newGameButton != null) {
-                try {
-                    App.setRoot("difficulty"); 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                newGameButton.setOnAction(e -> {
+                    loadAndSwitch("difficulty");
+                });
             }
             if (progressButton != null) {
-                try {
-                    App.setRoot("progress");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                progressButton.setOnAction(e -> {
+                    loadAndSwitch("progress");
+                });
             }
             if (leaderboardButton != null) {
-                try {
-                    App.setRoot("leaderboard");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                leaderboardButton.setOnAction(e -> {
+                    loadAndSwitch("leaderboard");
+                });
             }
             if (certificatesButton != null) {
-                try {
-                    App.setRoot("certificates");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                certificatesButton.setOnAction(e -> {
+                    loadAndSwitch("certificates");
+                });
             }
             if (logoutButton != null) {
                 logoutButton.setOnAction(e -> {

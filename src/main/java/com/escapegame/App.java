@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +22,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        Font.loadFont(App.class.getResourceAsStream("/com/escapegame/fonts/Jersey10-Regular.ttf"), 12);
         Parent root = loadFXML("home");
         scene = new Scene(root, 1440, 900);
 
@@ -58,7 +60,12 @@ public class App extends Application {
         tryLoadStylesheet(scene);
     }
     Parent newRoot = loadFXML(fxml);
-    scene.setRoot(newRoot);
+    try {
+        scene.setRoot(newRoot);
+    } catch (Exception e) {
+        System.err.println("Failed to set root to " + fxml + ": " + e);
+        throw e;
+    }
     String[] candidates = {
         "/escapegame/styles.css",
         "/com/escapegame/styles.css",

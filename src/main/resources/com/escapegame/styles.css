@@ -1,7 +1,7 @@
-@font-face {
+/*@font-face {
     font-family: "Jersey 10";
     src: url("fonts/Jersey10-Regular.ttf");
-}
+}*/
 
 #home-root {
   -fx-background-image: url("/images/manor.png");
