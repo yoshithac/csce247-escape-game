@@ -40,16 +40,6 @@
     "lastLoginAt": "2025-10-26T14:44:45.797754"
   },
   {
-    "userId": "Nitin",
-    "password": "Gideon20!6",
-    "firstName": "",
-    "lastName": "",
-    "email": "nitinrlr@gmail.com",
-    "role": "USER",
-    "createdAt": "2025-11-19T21:04:24.7508118",
-    "lastLoginAt": "2025-11-19T22:20:47.204873"
-  },
-  {
     "userId": "remyr",
     "password": "remyr",
     "firstName": "remyr",
@@ -58,5 +48,15 @@
     "role": "USER",
     "createdAt": "2025-11-11T22:29:37.027541",
     "lastLoginAt": "2025-11-20T12:51:19.077146"
+  },
+  {
+    "userId": "Nitin",
+    "password": "Gideon20!6",
+    "firstName": "",
+    "lastName": "",
+    "email": "nitinrlr@gmail.com",
+    "role": "USER",
+    "createdAt": "2025-11-19T21:04:24.7508118",
+    "lastLoginAt": "2025-11-21T14:32:01.6749845"
   }
 ]

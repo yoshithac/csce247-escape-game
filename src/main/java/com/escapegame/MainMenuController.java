@@ -1,19 +1,20 @@
 package com.escapegame;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.model.AuthenticationService;
 import com.model.User;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.fxml.FXMLLoader;
 
 /**
  * Main menu controller — wired to mainmenu.fxml
@@ -83,6 +84,20 @@ public class MainMenuController implements Initializable {
                 logoutButton.setOnAction(e -> {
                     if (authService != null) {
                         try { authService.logout(); } catch (Throwable ignore) {}
+                    }
+                    // delete current user's riddle save on logout
+                    try {
+                        com.model.User appUser = App.getCurrentUser();
+                        if (appUser != null && appUser.getUserId() != null && !appUser.getUserId().isEmpty()) {
+                            String fn = ".escapegame_riddle_" + appUser.getUserId() + ".properties";
+                            File f = new File(System.getProperty("user.home"), fn);
+                            if (f.exists()) {
+                                boolean deleted = f.delete();
+                                System.out.println("Deleted riddle save for user " + appUser.getUserId() + "? " + deleted);
+                            }
+                        }
+                    } catch (Throwable t) {
+                        System.err.println("Failed to delete riddle save on logout: " + t.getMessage());
                     }
                     loadAndSwitch("login");
                 });
