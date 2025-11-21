@@ -41,7 +41,7 @@ public class Opened2Controller implements Initializable {
     private void onDoor() {
         System.out.println("Door button clicked");
         try {
-            App.setRoot("opened3");
+            App.setRoot("cipher");
         } catch (IOException e) {
             e.printStackTrace();
         }

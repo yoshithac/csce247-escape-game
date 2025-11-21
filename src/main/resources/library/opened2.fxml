@@ -30,6 +30,12 @@
                 <Button fx:id="quitButton" text="QUIT" onAction="#onQuit"
                         styleClass="navigate-button" prefWidth="70" maxWidth="150" prefHeight="60" style="-fx-font-size: 48px;"/>
             </VBox>
+            <VBox spacing="16" alignment="TOP_RIGHT"
+                  AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="20.0"
+                  AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="99.0">
+
+                <Label fx:id="timer" text="00:00" style="-fx-font-family: 'Jersey 10'; -fx-font-size: 48px; -fx-text-fill: white; -fx-font-weight: bold;"/> 
+            </VBox>
             <VBox spacing="16" alignment="BOTTOM_LEFT"
                   AnchorPane.leftAnchor="650.0" AnchorPane.rightAnchor="20.0"
                   AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="250.0">
@@ -37,6 +43,7 @@
                 <Rectangle fx:id="doorButton" width="150" height="270" onMouseClicked="#onDoor"
                            styleClass="rectangle"/>
             </VBox>
+            
         </AnchorPane>
     </HBox>
 </StackPane>
