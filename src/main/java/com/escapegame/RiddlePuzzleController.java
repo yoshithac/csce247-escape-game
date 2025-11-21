@@ -199,7 +199,7 @@ public class RiddlePuzzleController implements Initializable {
     @FXML
     private void onQuit() {
         try {
-            App.setRoot("opened1");
+            App.setRoot("puzzlehome");
         } catch (IOException e) {
             e.printStackTrace();
         }
