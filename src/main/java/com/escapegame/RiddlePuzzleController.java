@@ -22,10 +22,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
-/**
- * Riddle puzzle controller with per-user save files (Option C).
- * Save file name: .escapegame_riddle_<userId>.properties in user.home
- */
 public class RiddlePuzzleController implements Initializable {
 
     @FXML private StackPane rootPane;
@@ -50,9 +46,7 @@ public class RiddlePuzzleController implements Initializable {
 
     private final String[] ACCEPTED_ANSWERS = { "cold", "a cold", "catch a cold" };
 
-    // Resource and dev fallback
     private static final String RESOURCE_PATH = "/images/background.png";
-    // keep your dev fallback if you still use it while developing
     private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-19 204918.png";
 
     @Override
@@ -87,7 +81,6 @@ public class RiddlePuzzleController implements Initializable {
             statusLabel.setText("Background image not found (resource nor dev path).");
         }
 
-        // Bind background to full root size (no white edges)
         if (rootPane != null && backgroundImage != null) {
             backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
             backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
@@ -96,21 +89,20 @@ public class RiddlePuzzleController implements Initializable {
 
         hintsLabel.setText(hintsLeft + " hint(s) available");
         refreshHearts();
-        loadSave(); // loads per-user save if present
+        loadSave(); 
 
         System.out.println("RiddlePuzzleController.initialize() done");
     }
-
-    // Helper: returns the per-user save file
+    
     private File getSaveFileForCurrentUser() {
         String userId = "guest";
         try {
-            User u = App.getCurrentUser(); // App.getCurrentUser() used elsewhere in your project
+            User u = App.getCurrentUser();
             if (u != null && u.getUserId() != null && !u.getUserId().isEmpty()) {
                 userId = u.getUserId();
             }
         } catch (Throwable t) {
-            // ignore and use "guest"
+            
         }
         String fileName = ".escapegame_riddle_" + userId + ".properties";
         return new File(System.getProperty("user.home"), fileName);
@@ -158,7 +150,7 @@ public class RiddlePuzzleController implements Initializable {
             if (answerField != null) answerField.setDisable(true);
             new Alert(Alert.AlertType.INFORMATION, "Congratulations — you solved the riddle!").showAndWait();
             saveProgress();
-            // optional: navigate to another screen (your existing code used opened2)
+
             try {
                 App.setRoot("opened1");
             } catch (IOException e) {
@@ -213,7 +205,6 @@ public class RiddlePuzzleController implements Initializable {
         }
     }
 
-    // Save to per-user file
     private boolean saveProgress() {
         try {
             Properties p = new Properties();
@@ -232,7 +223,6 @@ public class RiddlePuzzleController implements Initializable {
         }
     }
 
-    // Load from per-user file
     private void loadSave() {
         try {
             File f = getSaveFileForCurrentUser();

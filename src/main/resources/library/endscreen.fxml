@@ -10,7 +10,6 @@
            fx:id="endRoot"
            prefWidth="1440" prefHeight="900">
 
-
     <ImageView fitWidth="1440" fitHeight="900" preserveRatio="true" smooth="false">
         <image>
             <Image url="@../images/endscreen.png" />
@@ -20,15 +19,16 @@
     <Rectangle width="1440" height="900" pickOnBounds="false" mouseTransparent="true"
                style="-fx-fill: rgba(0,0,0,0.0);" />
 
-    <HBox prefWidth="1440" prefHeight="900">
-        <AnchorPane prefWidth="1440">
-            <VBox spacing="16" alignment="BOTTOM_CENTER"
-                  AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="20.0"
-                  AnchorPane.topAnchor="160.0" AnchorPane.bottomAnchor="120.0">
+    <VBox alignment="CENTER" spacing="20" prefWidth="1440" prefHeight="900" translateY="270">
+        <Button fx:id="endButton"
+                text="RETURN TO MAIN MENU"
+                onAction="#onEnd"
+                wrapText="true"
+                prefWidth="250"
+                maxWidth="250"
+                style="-fx-font-size: 36px;"
+                styleClass="navigate-button"
+                textAlignment="CENTER"/>
+    </VBox>
 
-                <Button fx:id="endButton" text="RETURN TO MAIN MENU" onAction="#onEnd" wrapText="true"
-                 prefWidth="300" maxWidth="300" style="-fx-font-size: 48px;" styleClass="navigate-button" textAlignment="CENTER"/>
-            </VBox>
-        </AnchorPane>
-    </HBox>
 </StackPane>
