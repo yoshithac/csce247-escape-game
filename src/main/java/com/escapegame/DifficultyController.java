@@ -1,10 +1,5 @@
 package com.escapegame;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.application.Platform;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,19 +7,34 @@ import java.util.Scanner;
 
 import com.model.AuthenticationService;
 import com.model.ConsoleView;
-import com.model.GameController;  // this is the model GameController in com.model
+import com.model.GameController;
 import com.model.User;
+
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;  // this is the model GameController in com.model
+import javafx.scene.control.Button;
 
 /**
  * DifficultyController — wires difficulty buttons to start the model game.
+ * This controller manages the difficulty selection menu in the Escape Game.
+ * Each button sets a difficulty level and navigates to the appropriate view.
+ * It can also initialize and start the underlying model logic in a separate thread.
  */
 public class DifficultyController implements Initializable {
 
     @FXML private Button easyButton;
+
     @FXML private Button mediumButton;
+
     @FXML private Button hardButton;
+
     @FXML private Button backButton;
 
+    /**
+     * Initializes all difficulty and navigation buttons.
+     * Each button sets the selected difficulty and changes the scene.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (easyButton != null) {
@@ -65,55 +75,61 @@ public class DifficultyController implements Initializable {
         }
     }
 
+    /** Handles Easy difficulty selection and scene change. */
     @FXML
-        private void onEasy() {
-            try {
-                App.setRoot("startgame");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Easy clicked");
-            App.setChosenDifficulty("EASY");
-            //startModelGameInBackground();
+    private void onEasy() {
+        try {
+            App.setRoot("startgame");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        System.out.println("Easy clicked");
+        App.setChosenDifficulty("EASY");
+        //startModelGameInBackground();
+    }
 
-        @FXML
-        private void onMedium() {
-            try {
-                App.setRoot("startgame");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Medium clicked");
-            App.setChosenDifficulty("MEDIUM");
-            //startModelGameInBackground();
+    /** Handles Medium difficulty selection and scene change. */
+    @FXML
+    private void onMedium() {
+        try {
+            App.setRoot("startgame");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        System.out.println("Medium clicked");
+        App.setChosenDifficulty("MEDIUM");
+        //startModelGameInBackground();
+    }
 
-        @FXML
-        private void onHard() {
-            try {
-                App.setRoot("startgame");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Hard clicked");
-            App.setChosenDifficulty("HARD");
-            //startModelGameInBackground();
+    /** Handles Hard difficulty selection and scene change. */
+    @FXML
+    private void onHard() {
+        try {
+            App.setRoot("startgame");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        System.out.println("Hard clicked");
+        App.setChosenDifficulty("HARD");
+        //startModelGameInBackground();
+    }
 
-        @FXML
-        private void back() {
-            System.out.println("Back clicked");
-            try {
-                App.setRoot("mainmenu");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    /** Returns to the main menu screen. */
+    @FXML
+    private void back() {
+        System.out.println("Back clicked");
+        try {
+            App.setRoot("mainmenu");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
+    }
 
     /**
-     * This constructs model objects from com.model package (AuthenticationService, ConsoleView, GameController).
+     * Starts the model-layer game in a background thread.
+     * This method builds and links model components such as
+     * {@link AuthenticationService}, {@link ConsoleView}, and {@link GameController}.
+     * It passes the currently logged-in user and selected difficulty to the model.
      */
     private void startModelGameInBackground() {
         new Thread(() -> {
@@ -124,12 +140,10 @@ public class DifficultyController implements Initializable {
                     User fxUser = App.getCurrentUser();
                     if (fxUser != null) {
                         try {
-                            // try a setter method first
                             java.lang.reflect.Method m = AuthenticationService.class.getMethod("setCurrentUser", User.class);
                             m.invoke(authService, fxUser);
                             System.out.println("Set model authService currentUser via setCurrentUser.");
                         } catch (NoSuchMethodException nsme) {
-                            // fallback to reflective field set if no setter exists
                             try {
                                 java.lang.reflect.Field f = AuthenticationService.class.getDeclaredField("currentUser");
                                 f.setAccessible(true);
@@ -151,13 +165,11 @@ public class DifficultyController implements Initializable {
 
                 GameController modelController = new GameController(view, authService);
 
-
                 String chosen2 = com.escapegame.App.getChosenDifficulty();
                 if (chosen2 != null) {
                     try {
-                        modelController.setSessionDifficulty(chosen2); // requires public setter in GameController
+                        modelController.setSessionDifficulty(chosen2);
                         System.out.println("DifficultyController: injected sessionDifficulty='" + chosen2 + "' into modelController");
-                        // consume App chosen difficulty so it's not reused accidentally
                         com.escapegame.App.clearChosenDifficulty();
                     } catch (Throwable t) {
                         System.err.println("DifficultyController: failed to call setSessionDifficulty on modelController: " + t);
@@ -175,7 +187,7 @@ public class DifficultyController implements Initializable {
                         App.clearChosenDifficulty();
                     }
                 } catch (NoSuchMethodException nsme) {
-                    
+
                 } catch (Throwable t) {
                     System.err.println("Warning invoking setSessionDifficulty on model: " + t);
                 }
@@ -201,6 +213,5 @@ public class DifficultyController implements Initializable {
                 });
             }
         }, "Model-Game-Thread").start();
-
     }
 }
