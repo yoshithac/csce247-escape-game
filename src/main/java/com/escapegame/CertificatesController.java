@@ -5,28 +5,33 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import com.model.AuthenticationService;
-import com.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.fxml.FXMLLoader;
 
 /**
  * Certificates screen controller — wired to certificates.fxml
  */
 public class CertificatesController implements Initializable {
+    /** Label displaying certificates info or title */
     @FXML private Label certificatesLabel;
 
+    /**
+     * Called automatically when the FXML is loaded.
+     * Used to initialize UI components or data.
+     * @param location location of the FXML file
+     * @param resources resource bundle for localization
+     */
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("CertificatesController initialized");
     }
 
+    /**
+     * Handles the "Back" button action.
+     * Returns the user to the main menu screen.
+     * @param event button click event
+     */
     @FXML
     private void back(ActionEvent event) {
         try {
