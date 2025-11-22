@@ -13,12 +13,12 @@ import javafx.scene.control.Label;
  * Certificates screen controller — wired to certificates.fxml
  */
 public class CertificatesController implements Initializable {
-    /** Label displaying certificates info or title */
+    /** Label displaying certificates info or title. */
     @FXML private Label certificatesLabel;
 
     /**
-     * Called automatically when the FXML is loaded.
-     * Used to initialize UI components or data.
+     * Called when the FXML is loaded.
+     * Used to set up or initialize UI components.
      * @param location location of the FXML file
      * @param resources resource bundle for localization
      */
@@ -28,9 +28,9 @@ public class CertificatesController implements Initializable {
     }
 
     /**
-     * Handles the "Back" button action.
-     * Returns the user to the main menu screen.
-     * @param event button click event
+     * Handles the "Back" button click.
+     * Switches the scene back to the main menu.
+     * @param event the action event triggered by the button
      */
     @FXML
     private void back(ActionEvent event) {
