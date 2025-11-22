@@ -21,7 +21,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-
+/**
+ * Controller for the riddle puzzle screen.
+ * Manages UI bindings, background image loading, riddle state (attempts,
+ * hints, solved flag), persistence to a per user properties file, and simple
+ * navigation back to the puzzle home or to the next screen upon success.
+ */
 public class RiddlePuzzleController implements Initializable {
 
     @FXML private StackPane rootPane;
@@ -48,7 +53,10 @@ public class RiddlePuzzleController implements Initializable {
 
     private static final String RESOURCE_PATH = "/images/background.png";
     private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-19 204918.png";
-
+     /**
+     * Initializes the puzzle UI, attempts to load a background image, binds
+     * sizing, initializes hint/attempt displays and loads any saved progress.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("RiddlePuzzleController.initialize() start");
@@ -93,7 +101,10 @@ public class RiddlePuzzleController implements Initializable {
 
         System.out.println("RiddlePuzzleController.initialize() done");
     }
-    
+     /**
+     * Returns the per-user save file for the riddle puzzle.
+     * Uses App.getCurrentUser() when available; falls back to "guest".
+     */ 
     private File getSaveFileForCurrentUser() {
         String userId = "guest";
         try {
@@ -107,7 +118,10 @@ public class RiddlePuzzleController implements Initializable {
         String fileName = ".escapegame_riddle_" + userId + ".properties";
         return new File(System.getProperty("user.home"), fileName);
     }
-
+     /**
+     * Refreshes the heart icons that represent remaining attempts.
+     * Disables input when no attempts remain.
+     */
     private void refreshHearts() {
         heartsBox.getChildren().clear();
         for (int i = 0; i < attemptsLeft; i++) {
@@ -120,7 +134,10 @@ public class RiddlePuzzleController implements Initializable {
             if (answerField != null) answerField.setDisable(true);
         }
     }
-
+    /**
+     * Handles answer submission: validates, checks against accepted answers,
+     * updates state, shows alerts, saves progress and navigates when solved.
+     */
     @FXML
     private void onSubmit() {
         if (solved) {
@@ -170,7 +187,9 @@ public class RiddlePuzzleController implements Initializable {
             }
         }
     }
-
+    /**
+     * Shows the next hint if available and saves progress.
+     */
     @FXML
     private void onHint() {
         if (solved) {
@@ -204,7 +223,10 @@ public class RiddlePuzzleController implements Initializable {
             e.printStackTrace();
         }
     }
-
+     /**
+     * Persists the riddle puzzle state to a per user properties file.
+     * @return true if save succeeded, false on error
+     */
     private boolean saveProgress() {
         try {
             Properties p = new Properties();
@@ -222,7 +244,10 @@ public class RiddlePuzzleController implements Initializable {
             return false;
         }
     }
-
+     /**
+     * Loads saved progress from the per-user properties file if present.
+     * Updates UI state to reflect loaded values.
+     */
     private void loadSave() {
         try {
             File f = getSaveFileForCurrentUser();
