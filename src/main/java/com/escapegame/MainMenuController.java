@@ -18,6 +18,10 @@ import javafx.scene.layout.StackPane;
 
 /**
  * Main menu controller — wired to mainmenu.fxml
+ * Handles navigation from the main menu, displays the current user, and
+ * provides a helper to load other FXML views while attempting to pass runtime
+ * data to their controllers via an {@code initData(User, AuthenticationService)}
+ * method when present.
  */
 public class MainMenuController implements Initializable {
 
@@ -34,7 +38,14 @@ public class MainMenuController implements Initializable {
 
     private AuthenticationService authService;
     private User currentUser;
-
+    /**
+     * Initialize UI bindings and button handlers.
+     * Sets up background image scaling, populates the welcome label if a
+     * current user is present, and wires navigation actions for menu buttons.
+     * Also attempts to clear per-user saved state on logout.
+     * @param location  not used
+     * @param resources not used
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
@@ -108,7 +119,9 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Called by the loader after FXMLLoader.load() to pass runtime data
+     * Called by the loader after FXMLLoader.load() to pass runtime data.
+     * @param user the current application user (may be null)
+     * @param auth the authentication service instance (may be null)
      */
     public void initData(User user, AuthenticationService auth) {
         this.currentUser = user;
@@ -129,6 +142,11 @@ public class MainMenuController implements Initializable {
 
     /**
      * Helper to load a target FXML and switch the current Scene root.
+     * Searches a list of candidate paths for the FXML resource, loads it,
+     * attempts to invoke {@code initData(User, AuthenticationService)} on the
+     * loaded controller if present, and then replaces the current scene root.
+     * Errors are logged but do not throw.
+     * @param baseName base name of the FXML (e.g. "login", "difficulty")
      */
     private void loadAndSwitch(String baseName) {
         String[] candidates = new String[] {
