@@ -1,6 +1,7 @@
 package com.escapegame;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,13 +20,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Cipher puzzle controller — easy Caesar cipher: DNWG -> BLUE (shift -2)
+ */
 public class CipherPuzzleController implements Initializable {
 
     @FXML private StackPane rootPane;
     @FXML private ImageView backgroundImage;
     @FXML private TextField answerField;
     @FXML private Button btnSubmit, btnHint, btnSave, btnQuit;
-    @FXML private Label statusLabel, hintsLabel, categoryLabel, promptLabel;
+    @FXML private Label statusLabel, hintsLabel, categoryLabel, promptLabel, cipherLabel;
     @FXML private HBox heartsBox;
 
     // Game state
@@ -34,57 +38,70 @@ public class CipherPuzzleController implements Initializable {
     private int nextHintIndex = 0;
     private boolean solved = false;
 
-    String [] HINTS = {
-        //get from json
+    // Filled puzzle data (easy Caesar cipher)
+    private final String[] HINTS = {
+        "It's a Caesar-style cipher (letters shifted).",
+        "Shift each letter back by 2 (D->B, N->L, W->U, G->E).",
+        "The result is a 4-letter color that starts with B."
     };
-    String [] ACCEPTED_ANSWERS = {
-        //get from json
+
+    // Accepted answers (lowercase normalized)
+    private final String[] ACCEPTED_ANSWERS = {
+        "blue",
+        "a blue",
+        "the color blue",
+        "the colour blue" // small tolerance
     };
 
     private final File SAVE_FILE = new File(System.getProperty("user.home"), ".escapegame_cipher.properties");
 
+    // resource and dev fallback paths
     private static final String RESOURCE_PATH = "/images/background.png";
-    private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-19 204918.png";
+    private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-19 221015.png";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("CipherPuzzleController.initialize() start");
 
         boolean loaded = false;
-
         try {
             URL res = getClass().getResource(RESOURCE_PATH);
             if (res != null) {
                 Image img = new Image(res.toExternalForm());
                 backgroundImage.setImage(img);
                 loaded = true;
-                System.out.println("Loaded background from resource path.");
+                System.out.println("Loaded cipher background from resource.");
             }
         } catch (Exception ex) {
             System.err.println("Error loading resource image: " + ex.getMessage());
         }
 
-        // Fallback to local file for development
         if (!loaded) {
             try {
                 Image img = new Image(DEV_FALLBACK);
                 backgroundImage.setImage(img);
-                System.out.println("Loaded background from dev fallback.");
                 loaded = true;
+                System.out.println("Loaded cipher background from dev fallback.");
             } catch (Exception ex) {
                 System.err.println("Error loading dev fallback image: " + ex.getMessage());
             }
         }
 
         if (!loaded) {
-            statusLabel.setText("Background image not found (resource nor dev path).");
+            if (statusLabel != null) statusLabel.setText("Background image not found (resource nor dev path).");
         }
 
-        backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
-        backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
-        backgroundImage.setPreserveRatio(false);
+        if (backgroundImage != null && rootPane != null) {
+            backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
+            backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
+            backgroundImage.setPreserveRatio(false);
+        }
 
-        hintsLabel.setText(hintsLeft + " hint(s) available");
+        // initialize UI text for the puzzle
+        if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
+        if (cipherLabel != null) cipherLabel.setText("Cipher: DNWG"); // the cipher to decode
+        if (categoryLabel != null) categoryLabel.setText("Category: Color");
+        if (promptLabel != null) promptLabel.setText("Prompt: Decode DNWG (Caesar shift -2)");
         refreshHearts();
         loadSave();
 
@@ -93,6 +110,7 @@ public class CipherPuzzleController implements Initializable {
 
     // Draw hearts based on remaining attempts
     private void refreshHearts() {
+        if (heartsBox == null) return;
         heartsBox.getChildren().clear();
         for (int i = 0; i < attemptsLeft; i++) {
             Label heart = new Label("\u2764");
@@ -100,88 +118,75 @@ public class CipherPuzzleController implements Initializable {
             heartsBox.getChildren().add(heart);
         }
         if (attemptsLeft <= 0) {
-            btnSubmit.setDisable(true);
-            answerField.setDisable(true);
+            if (btnSubmit != null) btnSubmit.setDisable(true);
+            if (answerField != null) answerField.setDisable(true);
         }
     }
 
     @FXML
     private void onSubmit() {
-        /*if (solved) {
-            statusLabel.setText("You already solved the cipher puzzle.");
+        if (solved) {
+            if (statusLabel != null) statusLabel.setText("You already solved the cipher.");
             return;
         }
 
-        String answer = (answerField.getText() == null) ? "" : answerField.getText().trim().toLowerCase();
+        String answer = (answerField == null || answerField.getText() == null) ? "" : answerField.getText().trim().toLowerCase();
         if (answer.isEmpty()) {
-            statusLabel.setText("Please type an answer before submitting.");
+            if (statusLabel != null) statusLabel.setText("Please enter an answer.");
             return;
         }
 
-        boolean correct = false;
+        boolean ok = false;
         for (String a : ACCEPTED_ANSWERS) {
-            if (a.equals(answer)) {
-                correct = true;
-                break;
-            }
+            if (a.equals(answer)) { ok = true; break; }
         }
 
-        if (correct) {
+        if (ok) {
             solved = true;
-            statusLabel.setText("Correct! You solved the puzzle.");
-            btnSubmit.setDisable(true);
-            btnHint.setDisable(true);
-            answerField.setDisable(true);
-            //new Alert(Alert.AlertType.INFORMATION, "Congratulations — you solved the  puzzle!").showAndWait();
-            try {
-                App.setRoot("opened3");
-            } catch (IOException e) {
-                  e.printStackTrace();
-            }
+            if (statusLabel != null) statusLabel.setText("Correct! You decoded it.");
+            if (btnSubmit != null) btnSubmit.setDisable(true);
+            if (btnHint != null) btnHint.setDisable(true);
+            if (answerField != null) answerField.setDisable(true);
+            new Alert(Alert.AlertType.INFORMATION, "Nice! The cipher DNWG decodes to BLUE.").showAndWait();
             saveProgress();
+            try { App.setRoot("opened3"); } catch (IOException e) { e.printStackTrace(); }
         } else {
             attemptsLeft--;
             refreshHearts();
             if (attemptsLeft <= 0) {
-                statusLabel.setText("No attempts left. The correct answer was: ");
-                btnSubmit.setDisable(true);
-                answerField.setDisable(true);
+                if (statusLabel != null) statusLabel.setText("No attempts left. The correct answer was: \"blue\".");
+                if (btnSubmit != null) btnSubmit.setDisable(true);
+                if (answerField != null) answerField.setDisable(true);
                 new Alert(Alert.AlertType.WARNING, "Out of attempts!").showAndWait();
                 saveProgress();
             } else {
-                statusLabel.setText("Incorrect. Attempts left: " + attemptsLeft);
+                if (statusLabel != null) statusLabel.setText("Incorrect. Attempts left: " + attemptsLeft);
             }
-        }*/
-       try {
-                App.setRoot("opened3");
-            } catch (IOException e) {
-                  e.printStackTrace();
-            }
+        }
     }
 
     @FXML
     private void onHint() {
         if (solved) {
-            statusLabel.setText("You already solved the puzzle.");
+            if (statusLabel != null) statusLabel.setText("You already solved the puzzle.");
             return;
         }
         if (hintsLeft <= 0) {
-            statusLabel.setText("No hints remaining.");
+            if (statusLabel != null) statusLabel.setText("No hints remaining.");
             return;
         }
 
         String hint = HINTS[Math.min(nextHintIndex, HINTS.length - 1)];
         nextHintIndex++;
         hintsLeft--;
-        hintsLabel.setText(hintsLeft + " hint(s) available");
-
+        if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
         new Alert(Alert.AlertType.INFORMATION, hint).showAndWait();
         saveProgress();
     }
 
     @FXML
     private void onSave() {
-        statusLabel.setText(saveProgress() ? "Progress saved." : "Save failed.");
+        if (statusLabel != null) statusLabel.setText(saveProgress() ? "Progress saved." : "Save failed.");
     }
 
     @FXML
@@ -201,7 +206,7 @@ public class CipherPuzzleController implements Initializable {
             p.setProperty("solved", String.valueOf(solved));
             p.setProperty("nextHintIndex", String.valueOf(nextHintIndex));
             try (OutputStream os = new FileOutputStream(SAVE_FILE)) {
-                p.store(os, "Matching puzzle save");
+                p.store(os, "Cipher puzzle save");
             }
             return true;
         } catch (Exception e) {
@@ -214,19 +219,21 @@ public class CipherPuzzleController implements Initializable {
         try {
             if (!SAVE_FILE.exists()) return;
             Properties p = new Properties();
-            p.load(new java.io.FileInputStream(SAVE_FILE));
+            try (FileInputStream fis = new FileInputStream(SAVE_FILE)) {
+                p.load(fis);
+            }
             attemptsLeft = Integer.parseInt(p.getProperty("attemptsLeft", "3"));
             hintsLeft = Integer.parseInt(p.getProperty("hintsLeft", "3"));
             solved = Boolean.parseBoolean(p.getProperty("solved", "false"));
             nextHintIndex = Integer.parseInt(p.getProperty("nextHintIndex", "0"));
-            hintsLabel.setText(hintsLeft + " hint(s) available");
+            if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
             refreshHearts();
 
             if (solved) {
-                btnSubmit.setDisable(true);
-                answerField.setDisable(true);
-                btnHint.setDisable(true);
-                statusLabel.setText("Already solved.");
+                if (btnSubmit != null) btnSubmit.setDisable(true);
+                if (answerField != null) answerField.setDisable(true);
+                if (btnHint != null) btnHint.setDisable(true);
+                if (statusLabel != null) statusLabel.setText("Already solved.");
             }
         } catch (Exception e) {
             System.err.println("Load save failed: " + e.getMessage());
