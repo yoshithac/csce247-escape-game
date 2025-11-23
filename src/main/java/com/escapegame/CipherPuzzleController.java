@@ -21,11 +21,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
 /**
- * Cipher puzzle controller — easy Caesar cipher: DNWG -> BLUE (shift -2)
- * Manages UI bindings, puzzle state (attempts, hints, solved flag), simple
- * persistence to a properties file, and navigation after solving or quitting.
- * Designed to be minimal and defensive: all UI references are checked for null
- * before use.
+ * CipherPuzzleController — easy Caesar cipher: DNWG -> BLUE (shift -2)
+ * Save/load is per-user: ~/.escapegame_cipher_<userid>.properties
  */
 public class CipherPuzzleController implements Initializable {
 
@@ -36,36 +33,24 @@ public class CipherPuzzleController implements Initializable {
     @FXML private Label statusLabel, hintsLabel, categoryLabel, promptLabel, cipherLabel;
     @FXML private HBox heartsBox;
 
-    // Game state
+    // gameplay state
     private int attemptsLeft = 3;
     private int hintsLeft = 3;
     private int nextHintIndex = 0;
     private boolean solved = false;
 
-    // Filled puzzle data (easy Caesar cipher)
     private final String[] HINTS = {
-        "It's a Caesar-style cipher (letters shifted).",
+        "Think Caesar cipher (each letter shifted).",
         "Shift each letter back by 2 (D->B, N->L, W->U, G->E).",
         "The result is a 4-letter color that starts with B."
     };
 
-    // Accepted answers (lowercase normalized)
-    private final String[] ACCEPTED_ANSWERS = {
-        "blue",
-        "a blue",
-        "the color blue",
-        "the colour blue" // small tolerance
-    };
+    private final String[] ACCEPTED_ANSWERS = { "blue", "a blue", "the color blue", "the colour blue" };
 
-    private final File SAVE_FILE = new File(System.getProperty("user.home"), ".escapegame_cipher.properties");
-
-    // resource and dev fallback paths
+    // resource + dev fallback (dev path from your workspace)
     private static final String RESOURCE_PATH = "/images/background.png";
     private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-19 221015.png";
-     /**
-     * Initializes UI state: loads background image (resource then dev fallback),
-     * binds sizing, initializes labels, draws hearts and loads saved progress.
-     */
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("CipherPuzzleController.initialize() start");
@@ -104,21 +89,58 @@ public class CipherPuzzleController implements Initializable {
             backgroundImage.setPreserveRatio(false);
         }
 
-        // initialize UI text for the puzzle
+        // initialize UI content (reset UI state on each initialize)
+        attemptsLeft = 3;
+        hintsLeft = 3;
+        nextHintIndex = 0;
+        solved = false;
+
         if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
-        if (cipherLabel != null) cipherLabel.setText("Cipher: DNWG"); // the cipher to decode
+        if (cipherLabel != null) cipherLabel.setText("Cipher: DNWG");
         if (categoryLabel != null) categoryLabel.setText("Category: Color");
-        if (promptLabel != null) promptLabel.setText("Prompt: Decode DNWG (Caesar shift -2)");
+        if (promptLabel != null) promptLabel.setText("Decode the cipher text and enter the color.");
         refreshHearts();
+
+        // load per-user save (if any)
         loadSave();
 
         System.out.println("CipherPuzzleController.initialize() done");
     }
 
-    /**
-     * Refreshes the heart icons representing remaining attempts and disables
-     * input if no attempts remain.
-     */
+    // compute save file path depending on current user (if available)
+    private File getSaveFile() {
+        String userHome = System.getProperty("user.home");
+        String filename = ".escapegame_cipher.properties";
+
+        try {
+            // try to call App.getCurrentUser() reflectively (keeps compatibility if App changes)
+            java.lang.reflect.Method gu = com.escapegame.App.class.getMethod("getCurrentUser");
+            Object user = gu.invoke(null);
+            if (user != null) {
+                try {
+                    java.lang.reflect.Method getId = user.getClass().getMethod("getUserId");
+                    Object idObj = getId.invoke(user);
+                    if (idObj != null) {
+                        String uid = idObj.toString().trim();
+                        if (!uid.isEmpty()) {
+                            // safe filename: lowercase and remove spaces
+                            String clean = uid.replaceAll("\\s+", "_").toLowerCase();
+                            filename = ".escapegame_cipher_" + clean + ".properties";
+                        }
+                    }
+                } catch (NoSuchMethodException nsme) {
+                    // user object doesn't expose getUserId; ignore and use default filename
+                }
+            }
+        } catch (NoSuchMethodException nsme) {
+            // App.getCurrentUser not available; keep default filename
+        } catch (Throwable t) {
+            System.err.println("getSaveFile(): reflection error: " + t);
+        }
+
+        return new File(userHome, filename);
+    }
+
     private void refreshHearts() {
         if (heartsBox == null) return;
         heartsBox.getChildren().clear();
@@ -132,10 +154,7 @@ public class CipherPuzzleController implements Initializable {
             if (answerField != null) answerField.setDisable(true);
         }
     }
-     /**
-     * Handles submission of an answer: validates, compares to accepted answers,
-     * updates state, shows alerts, saves progress and navigates on success.
-     */
+
     @FXML
     private void onSubmit() {
         if (solved) {
@@ -177,20 +196,17 @@ public class CipherPuzzleController implements Initializable {
             }
         }
     }
-     /**
-     * Shows the next hint if available, updates hint counters and saves progress.
-     */
+
     @FXML
     private void onHint() {
         if (solved) {
-            if (statusLabel != null) statusLabel.setText("You already solved the puzzle.");
+            if (statusLabel != null) statusLabel.setText("You already solved the cipher.");
             return;
         }
         if (hintsLeft <= 0) {
             if (statusLabel != null) statusLabel.setText("No hints remaining.");
             return;
         }
-
         String hint = HINTS[Math.min(nextHintIndex, HINTS.length - 1)];
         nextHintIndex++;
         hintsLeft--;
@@ -206,16 +222,9 @@ public class CipherPuzzleController implements Initializable {
 
     @FXML
     private void onQuit() {
-        try {
-            App.setRoot("opened2");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        try { App.setRoot("opened2"); } catch (IOException e) { e.printStackTrace(); }
     }
-    /**
-     * Persists the puzzle state to a properties file in the user's home dir.
-     * @return true if saving succeeded, false otherwise
-     */
+
     private boolean saveProgress() {
         try {
             Properties p = new Properties();
@@ -223,7 +232,8 @@ public class CipherPuzzleController implements Initializable {
             p.setProperty("hintsLeft", String.valueOf(hintsLeft));
             p.setProperty("solved", String.valueOf(solved));
             p.setProperty("nextHintIndex", String.valueOf(nextHintIndex));
-            try (OutputStream os = new FileOutputStream(SAVE_FILE)) {
+            File f = getSaveFile();
+            try (OutputStream os = new FileOutputStream(f)) {
                 p.store(os, "Cipher puzzle save");
             }
             return true;
@@ -232,14 +242,13 @@ public class CipherPuzzleController implements Initializable {
             return false;
         }
     }
-     /**
-     * Loads saved puzzle state from the properties file if present and updates UI.
-     */
+
     private void loadSave() {
         try {
-            if (!SAVE_FILE.exists()) return;
+            File f = getSaveFile();
+            if (!f.exists()) return;
             Properties p = new Properties();
-            try (FileInputStream fis = new FileInputStream(SAVE_FILE)) {
+            try (FileInputStream fis = new FileInputStream(f)) {
                 p.load(fis);
             }
             attemptsLeft = Integer.parseInt(p.getProperty("attemptsLeft", "3"));
