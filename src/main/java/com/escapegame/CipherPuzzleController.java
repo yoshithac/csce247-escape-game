@@ -50,7 +50,7 @@ public class CipherPuzzleController implements Initializable {
     // Filled puzzle data (easy Caesar cipher)
     private final String[] HINTS = {
         "It's a Caesar-style cipher (letters shifted).",
-        "Shift each letter back by 2 (D->B, N->L, W->U, G->E).",
+        "Shift each letter back by 2 in the alphabet.",
         "The result is a 4-letter color that starts with B."
     };
 
