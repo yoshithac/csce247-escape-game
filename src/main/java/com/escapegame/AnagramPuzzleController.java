@@ -22,6 +22,9 @@ import javafx.scene.layout.StackPane;
 
 /**
  * Anagram puzzle controller — scrambled LPAEP -> APPLE (category Fruit)
+ * Manages the anagram puzzle UI: background loading, attempts/hints state,
+ * simple persistence to a properties file, and navigation on solve/quit.
+ * UI references are checked for null to be defensive when used from FXML.
  */
 public class AnagramPuzzleController implements Initializable {
 
@@ -55,7 +58,12 @@ public class AnagramPuzzleController implements Initializable {
 
     private static final String RESOURCE_PATH = "/images/background.png";
     private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-22 202825.png";
-
+     /**
+     * Initialize the puzzle screen: load background image (resource then fallback),
+     * set initial UI labels, draw hearts and restore saved progress.
+     * @param location  not used
+     * @param resources not used
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("AnagramPuzzleController.initialize() start");
@@ -102,7 +110,9 @@ public class AnagramPuzzleController implements Initializable {
 
         System.out.println("AnagramPuzzleController.initialize() done");
     }
-
+    /**
+     * Draw hearts representing remaining attempts and disable inputs when none remain.
+     */
     private void refreshHearts() {
         if (heartsBox == null) return;
         heartsBox.getChildren().clear();
@@ -116,7 +126,10 @@ public class AnagramPuzzleController implements Initializable {
             if (answerField != null) answerField.setDisable(true);
         }
     }
-
+    /**
+     * Called when the user submits an answer. Validates input, checks accepted
+     * answers, updates state, shows alerts, saves progress and navigates on success.
+     */
     @FXML
     private void onSubmit() {
         if (solved) {
@@ -158,7 +171,9 @@ public class AnagramPuzzleController implements Initializable {
             }
         }
     }
-
+    /**
+     * Shows the next hint (if available), updates hint counters and saves progress.
+     */
     @FXML
     private void onHint() {
         if (solved) {
@@ -177,12 +192,12 @@ public class AnagramPuzzleController implements Initializable {
         new Alert(Alert.AlertType.INFORMATION, hint).showAndWait();
         saveProgress();
     }
-
+    /** Saves progress to the user's properties file and updates the status label. */
     @FXML
     private void onSave() {
         if (statusLabel != null) statusLabel.setText(saveProgress() ? "Progress saved." : "Save failed.");
     }
-
+    /** Quit action: navigate back to the previous/opened4 screen. */
     @FXML
     private void onQuit() {
         try { App.setRoot("opened4");
@@ -190,7 +205,10 @@ public class AnagramPuzzleController implements Initializable {
             e.printStackTrace(); 
         }
     }
-
+    /**
+     * Persist puzzle state to a properties file under the user's home directory.
+     * @return true if save succeeded, false otherwise
+     */
     private boolean saveProgress() {
         try {
             Properties p = new Properties();
@@ -207,7 +225,9 @@ public class AnagramPuzzleController implements Initializable {
             return false;
         }
     }
-
+    /**
+     * Load saved puzzle state from properties file if present and update UI.
+     */
     private void loadSave() {
         try {
             if (!SAVE_FILE.exists()) return;
