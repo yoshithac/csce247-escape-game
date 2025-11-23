@@ -22,6 +22,10 @@ import javafx.scene.layout.StackPane;
 
 /**
  * Cipher puzzle controller — easy Caesar cipher: DNWG -> BLUE (shift -2)
+ * Manages UI bindings, puzzle state (attempts, hints, solved flag), simple
+ * persistence to a properties file, and navigation after solving or quitting.
+ * Designed to be minimal and defensive: all UI references are checked for null
+ * before use.
  */
 public class CipherPuzzleController implements Initializable {
 
@@ -58,7 +62,10 @@ public class CipherPuzzleController implements Initializable {
     // resource and dev fallback paths
     private static final String RESOURCE_PATH = "/images/background.png";
     private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-19 221015.png";
-
+     /**
+     * Initializes UI state: loads background image (resource then dev fallback),
+     * binds sizing, initializes labels, draws hearts and loads saved progress.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("CipherPuzzleController.initialize() start");
@@ -108,7 +115,10 @@ public class CipherPuzzleController implements Initializable {
         System.out.println("CipherPuzzleController.initialize() done");
     }
 
-    // Draw hearts based on remaining attempts
+    /**
+     * Refreshes the heart icons representing remaining attempts and disables
+     * input if no attempts remain.
+     */
     private void refreshHearts() {
         if (heartsBox == null) return;
         heartsBox.getChildren().clear();
@@ -122,7 +132,10 @@ public class CipherPuzzleController implements Initializable {
             if (answerField != null) answerField.setDisable(true);
         }
     }
-
+     /**
+     * Handles submission of an answer: validates, compares to accepted answers,
+     * updates state, shows alerts, saves progress and navigates on success.
+     */
     @FXML
     private void onSubmit() {
         if (solved) {
@@ -164,7 +177,9 @@ public class CipherPuzzleController implements Initializable {
             }
         }
     }
-
+     /**
+     * Shows the next hint if available, updates hint counters and saves progress.
+     */
     @FXML
     private void onHint() {
         if (solved) {
@@ -197,7 +212,10 @@ public class CipherPuzzleController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Persists the puzzle state to a properties file in the user's home dir.
+     * @return true if saving succeeded, false otherwise
+     */
     private boolean saveProgress() {
         try {
             Properties p = new Properties();
@@ -214,7 +232,9 @@ public class CipherPuzzleController implements Initializable {
             return false;
         }
     }
-
+     /**
+     * Loads saved puzzle state from the properties file if present and updates UI.
+     */
     private void loadSave() {
         try {
             if (!SAVE_FILE.exists()) return;
