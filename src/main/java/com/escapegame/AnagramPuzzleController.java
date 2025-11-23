@@ -96,7 +96,7 @@ public class AnagramPuzzleController implements Initializable {
         if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
         if (scrambledLabel != null) scrambledLabel.setText("Scrambled: LPAEP");
         if (categoryLabel != null) categoryLabel.setText("Category: Fruit");
-        if (promptLabel != null) promptLabel.setText("Prompt: Unscramble the letters to find the fruit.");
+        if (promptLabel != null) promptLabel.setText("Prompt: Unscramble the letters to find the word");
         refreshHearts();
         loadSave();
 
@@ -185,7 +185,10 @@ public class AnagramPuzzleController implements Initializable {
 
     @FXML
     private void onQuit() {
-        try { App.setRoot("opened4"); } catch (IOException e) { e.printStackTrace(); }
+        try { App.setRoot("opened4");
+        } catch (IOException e) { 
+            e.printStackTrace(); 
+        }
     }
 
     private boolean saveProgress() {

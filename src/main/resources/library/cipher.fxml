@@ -22,10 +22,10 @@
                   style="-fx-padding: 20 36 20 36;">
                 <Label text="CIPHER PUZZLE"
                        style="-fx-font-family: 'Jersey 10'; -fx-font-size: 40px; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                <Label fx:id="categoryLabel" text="Category: "
+                <Label fx:id="categoryLabel" text="Category: Color"
                        style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #d3e6ff;"/>
                 <Label fx:id="promptLabel"
-                       text="Prompt: "
+                       text="Prompt: Decode the cipher text: DNWG (shift: 2)"
                        wrapText="true" textAlignment="CENTER"
                        style="-fx-font-family: 'Jersey 10'; -fx-font-size: 32px; -fx-text-fill: #e6f1ff; -fx-padding: 10 0 20 0;"/>
 
