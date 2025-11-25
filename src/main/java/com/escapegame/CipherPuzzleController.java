@@ -200,7 +200,10 @@ public class CipherPuzzleController implements Initializable {
         String filename = ".escapegame_cipher_" + clean + "_" + chosenDifficulty.toLowerCase() + ".properties";
         return new File(System.getProperty("user.home"), filename);
     }
-
+     /**
+     * Refreshes the heart icons representing remaining attempts in the UI.
+     * Disables input controls when no attempts remain.
+     */
     private void refreshHearts() {
         if (heartsBox == null) return;
         heartsBox.getChildren().clear();
@@ -214,7 +217,10 @@ public class CipherPuzzleController implements Initializable {
             if (answerField != null) answerField.setDisable(true);
         }
     }
-
+     /**
+     * Handles submission of the user’s answer, validates correctness, updates game state,
+     * and provides feedback via alerts and status labels.
+     */
     @FXML
     private void onSubmit() {
         if (solved) {
@@ -257,7 +263,9 @@ public class CipherPuzzleController implements Initializable {
             }
         }
     }
-
+    /**
+     * Handles hint button logic — shows the next hint and decreases the available hint count.
+     */
     @FXML
     private void onHint() {
         if (solved) {
@@ -276,12 +284,16 @@ public class CipherPuzzleController implements Initializable {
         new Alert(Alert.AlertType.INFORMATION, hint).showAndWait();
         saveProgress();
     }
-
+     /**
+     * Saves the current progress manually when the player clicks the save button.
+     */
     @FXML
     private void onSave() {
         if (statusLabel != null) statusLabel.setText(saveProgress() ? "Progress saved." : "Save failed.");
     }
-
+    /**
+     * Quits the current puzzle and returns to the previous scene.
+     */
     @FXML
     private void onQuit() {
         try {
@@ -290,7 +302,10 @@ public class CipherPuzzleController implements Initializable {
             e.printStackTrace();
         }
     }
-
+      /**
+     * Saves puzzle state (attempts, hints, solved flag, etc.) to a per user properties file.
+     * @return true if save succeeded, false otherwise
+     */
     private boolean saveProgress() {
         try {
             Properties p = new Properties();
@@ -309,7 +324,10 @@ public class CipherPuzzleController implements Initializable {
             return false;
         }
     }
-
+     /**
+     * Loads previously saved puzzle state from the user's save file, restoring progress.
+     * If no save file exists, the method returns silently.
+     */
     private void loadSave() {
         try {
             File f = getSaveFileForCurrentUser();
