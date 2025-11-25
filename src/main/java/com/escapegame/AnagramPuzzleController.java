@@ -101,7 +101,68 @@ public class AnagramPuzzleController implements Initializable {
             refreshHearts();
         }
 
-        System.out.println("AnagramPuzzleController.initialize() done");
+        System.out.println("AnagramPuzzleController.initialize() done (difficulty=" + chosenDifficulty + ")");
+    }
+
+    private void configureForDifficulty(String difficulty) {
+        switch (String.valueOf(difficulty).toUpperCase()) {
+            case "EASY":
+                SCRAMBLED = "LPAEP";
+                PROMPT = "Unscramble the letters to find the word: LPAEP";
+                HINTS = new String[] {
+                    "It's a common fruit.",
+                    "Kids are often told 'an ___ a day keeps the doctor away.'",
+                    "It has five letters and starts with A."
+                };
+                ACCEPTED_ANSWERS = new String[] {
+                    "apple", "an apple", "the fruit apple", "apple fruit"
+                };
+                attemptsLeft = 3;
+                hintsLeft = 3;
+                break;
+            case "MEDIUM":
+                SCRAMBLED = "GANOER";
+                PROMPT = "Unscramble the letters to find the word: GANOER";
+                HINTS = new String[] {
+                    "It's a citrus fruit.",
+                    "It has six letters and is often orange in color.",
+                    "One-word answer; you might peel it and drink its juice."
+                };
+                ACCEPTED_ANSWERS = new String[] {
+                    "orange", "an orange", "the fruit orange", "orange fruit"
+                };
+                attemptsLeft = 3;
+                hintsLeft = 2;
+                break;
+            case "HARD":
+                SCRAMBLED = "TSIRUC";
+                PROMPT = "Unscramble the letters to find the word: TSIRUC";
+                HINTS = new String[] {
+                    "Another word related to citrus fruits (category hint).",
+                    "Six letters; the word also describes a family of fruits.",
+                    "Think of the family that includes lemons and limes."
+                };
+                ACCEPTED_ANSWERS = new String[] {
+                    "citrus", "a citrus", "the citrus"
+                };
+                attemptsLeft = 2;
+                hintsLeft = 1;
+                break;
+            default:
+                SCRAMBLED = "GANOER";
+                PROMPT = "Unscramble the letters to find the word: GANOER";
+                HINTS = new String[] {
+                    "It's a citrus fruit.",
+                    "It has six letters and is often orange in color."
+                };
+                ACCEPTED_ANSWERS = new String[] { "orange", "an orange" };
+                attemptsLeft = 3;
+                hintsLeft = 2;
+                break;
+        }
+        if (scrambledLabel != null) scrambledLabel.setText("Scrambled: " + SCRAMBLED);
+        if (promptLabel != null) promptLabel.setText("Prompt: " + PROMPT);
+        if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
     }
 
     private File getSaveFileForCurrentUser() {
@@ -150,10 +211,7 @@ public class AnagramPuzzleController implements Initializable {
             if (answerField != null) answerField.setDisable(true);
         }
     }
-    /**
-     * Handle submit action: normalize input, compare against accepted answers,
-     * update state, persist progress, and navigate on success.
-     */
+
     @FXML
     private void onSubmit() {
         if (solved) {
@@ -196,9 +254,7 @@ public class AnagramPuzzleController implements Initializable {
             }
         }
     }
-    /**
-     * Show the next hint (if available), decrement counters and persist state.
-     */
+
     @FXML
     private void onHint() {
         if (solved) {
@@ -246,13 +302,7 @@ public class AnagramPuzzleController implements Initializable {
             return false;
         }
     }
-     /**
-     * Load saved puzzle state from the per user properties file if present.
-     * Reads attempts, hints, solved flag and next hint index using safe
-     * parsing. Updates UI labels and hearts, and logs debug information about
-     * the loaded values and the file path. If the save indicates the puzzle
-     * was solved, disable relevant inputs and update status text.
-     */
+
     private void loadSave() {
         try {
             File f = getSaveFileForCurrentUser();
@@ -284,12 +334,7 @@ public class AnagramPuzzleController implements Initializable {
             System.err.println("Load save failed: " + e.getMessage());
         }
     }
-     /**
-     * Safely parse an integer string from save data, returning a fallback on error.
-     * @param s the string to parse
-     * @param fallback the fallback value to use if parsing fails
-     * @return the parsed integer, or fallback if invalid
-     */
+
     private int getSafeInt(String s, int fallback) {
         if (s == null) return fallback;
         try { return Integer.parseInt(s.trim()); }
@@ -298,14 +343,7 @@ public class AnagramPuzzleController implements Initializable {
             return fallback;
         }
     }
-      /**
-     * Normalize and simplify user input for robust matching.
-     * This method performs Unicode normalization, lowercasing, removes
-     * punctuation, collapses whitespace, and strips leading articles
-     * ("a", "an", "the"). It returns an empty string for null input.
-     * @param raw raw user input
-     * @return normalized string
-     */ 
+
     private static String normalize(String raw) {
         if (raw == null) return "";
         String n = Normalizer.normalize(raw, Normalizer.Form.NFKC)
@@ -318,10 +356,7 @@ public class AnagramPuzzleController implements Initializable {
         else if (n.startsWith("the ")) n = n.substring(4).trim();
         return n;
     }
-     /**
-     * Delete the per-user save file (used for debugging / testing).
-     * @return true if deletion succeeded or file did not exist
-     */
+
     private boolean clearSaveForCurrentUser() {
         File f = getSaveFileForCurrentUser();
         if (f.exists()) {
