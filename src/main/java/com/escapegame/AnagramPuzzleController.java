@@ -24,15 +24,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
-/**
- * Anagram puzzle controller — scrambled LPAEP -> APPLE (category Fruit)
- * Improvements:
- *  - per-user save file (.escapegame_anagram_<userid>.properties)
- *  - debug prints showing the save path and loaded state
- *  - safe parsing of integer properties
- *  - normalization of user input for robust matching
- *  - clearSaveForCurrentUser() helper for testing
- */
 public class AnagramPuzzleController implements Initializable {
 
     @FXML private StackPane rootPane;
@@ -42,56 +33,43 @@ public class AnagramPuzzleController implements Initializable {
     @FXML private Label statusLabel, hintsLabel, categoryLabel, promptLabel, scrambledLabel;
     @FXML private HBox heartsBox;
 
-    // Game state
     private int attemptsLeft = 3;
     private int hintsLeft = 3;
     private int nextHintIndex = 0;
     private boolean solved = false;
 
-    private final String[] HINTS = {
-        "It's a common fruit.",
-        "Kids are often told 'an ___ a day keeps the doctor away.'",
-        "It has five letters and starts with A."
-    };
-
-    private final String[] ACCEPTED_ANSWERS = {
-        "apple",
-        "an apple",
-        "the fruit apple",
-        "apple fruit"
-    };
+    private String[] HINTS = new String[0];
+    private String[] ACCEPTED_ANSWERS = new String[0];
+    private String PROMPT = "Unscramble the letters to find the word";
+    private String SCRAMBLED = "LPAEP";
 
     private static final String RESOURCE_PATH = "/images/background.png";
     private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-22 202825.png";
+
+    private String chosenDifficulty = "MEDIUM";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("AnagramPuzzleController.initialize() start");
 
-        boolean loaded = false;
+        try {
+            String d = com.escapegame.App.getChosenDifficulty();
+            if (d != null && !d.isEmpty()) chosenDifficulty = d.toUpperCase();
+        } catch (Throwable t) {
+            System.err.println("Warning reading chosen difficulty: " + t);
+        }
+
+        configureForDifficulty(chosenDifficulty);
+
         try {
             URL res = getClass().getResource(RESOURCE_PATH);
             if (res != null) {
                 Image img = new Image(res.toExternalForm());
                 if (backgroundImage != null) backgroundImage.setImage(img);
-                loaded = true;
+                System.out.println("Loaded background from resource.");
             }
         } catch (Exception ex) {
             System.err.println("Error loading resource image: " + ex.getMessage());
-        }
-
-        if (!loaded) {
-            try {
-                Image img = new Image(DEV_FALLBACK);
-                if (backgroundImage != null) backgroundImage.setImage(img);
-                loaded = true;
-            } catch (Exception ex) {
-                System.err.println("Error loading dev fallback image: " + ex.getMessage());
-            }
-        }
-
-        if (!loaded) {
-            if (statusLabel != null) statusLabel.setText("Background image not found (resource nor dev path).");
         }
 
         if (backgroundImage != null && rootPane != null) {
@@ -100,26 +78,21 @@ public class AnagramPuzzleController implements Initializable {
             backgroundImage.setPreserveRatio(false);
         }
 
-        // initialize UI labels for puzzle
         if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
-        if (scrambledLabel != null) scrambledLabel.setText("Scrambled: LPAEP");
+        if (scrambledLabel != null) scrambledLabel.setText("Scrambled: " + SCRAMBLED);
         if (categoryLabel != null) categoryLabel.setText("Category: Fruit");
-        if (promptLabel != null) promptLabel.setText("Prompt: Unscramble the letters to find the word: LPAEP");
+        if (promptLabel != null) promptLabel.setText("Prompt: " + PROMPT);
         refreshHearts();
 
-        // debug: show exactly which save file will be used
         System.out.println("DEBUG: Anagram save path -> " + getSaveFileForCurrentUser().getAbsolutePath());
 
         loadSave();
 
-        // If save marked solved=true, automatically clear it (one-time reset) and re-enable UI
         if (solved) {
             System.out.println("DEBUG: Saved state indicates solved=true — clearing save to reset puzzle.");
             clearSaveForCurrentUser();
             solved = false;
-            attemptsLeft = 3;
-            hintsLeft = 3;
-            nextHintIndex = 0;
+            configureForDifficulty(chosenDifficulty);
             if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
             if (statusLabel != null) statusLabel.setText("");
             if (btnSubmit != null) btnSubmit.setDisable(false);
@@ -128,7 +101,68 @@ public class AnagramPuzzleController implements Initializable {
             refreshHearts();
         }
 
-        System.out.println("AnagramPuzzleController.initialize() done");
+        System.out.println("AnagramPuzzleController.initialize() done (difficulty=" + chosenDifficulty + ")");
+    }
+
+    private void configureForDifficulty(String difficulty) {
+        switch (String.valueOf(difficulty).toUpperCase()) {
+            case "EASY":
+                SCRAMBLED = "LPAEP";
+                PROMPT = "Unscramble the letters to find the word: LPAEP";
+                HINTS = new String[] {
+                    "It's a common fruit.",
+                    "Kids are often told 'an ___ a day keeps the doctor away.'",
+                    "It has five letters and starts with A."
+                };
+                ACCEPTED_ANSWERS = new String[] {
+                    "apple", "an apple", "the fruit apple", "apple fruit"
+                };
+                attemptsLeft = 3;
+                hintsLeft = 3;
+                break;
+            case "MEDIUM":
+                SCRAMBLED = "GANOER";
+                PROMPT = "Unscramble the letters to find the word: GANOER";
+                HINTS = new String[] {
+                    "It's a citrus fruit.",
+                    "It has six letters and is often orange in color.",
+                    "One-word answer; you might peel it and drink its juice."
+                };
+                ACCEPTED_ANSWERS = new String[] {
+                    "orange", "an orange", "the fruit orange", "orange fruit"
+                };
+                attemptsLeft = 3;
+                hintsLeft = 2;
+                break;
+            case "HARD":
+                SCRAMBLED = "TSIRUC";
+                PROMPT = "Unscramble the letters to find the word: TSIRUC";
+                HINTS = new String[] {
+                    "Another word related to citrus fruits (category hint).",
+                    "Six letters; the word also describes a family of fruits.",
+                    "Think of the family that includes lemons and limes."
+                };
+                ACCEPTED_ANSWERS = new String[] {
+                    "citrus", "a citrus", "the citrus"
+                };
+                attemptsLeft = 2;
+                hintsLeft = 1;
+                break;
+            default:
+                SCRAMBLED = "GANOER";
+                PROMPT = "Unscramble the letters to find the word: GANOER";
+                HINTS = new String[] {
+                    "It's a citrus fruit.",
+                    "It has six letters and is often orange in color."
+                };
+                ACCEPTED_ANSWERS = new String[] { "orange", "an orange" };
+                attemptsLeft = 3;
+                hintsLeft = 2;
+                break;
+        }
+        if (scrambledLabel != null) scrambledLabel.setText("Scrambled: " + SCRAMBLED);
+        if (promptLabel != null) promptLabel.setText("Prompt: " + PROMPT);
+        if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
     }
 
     private File getSaveFileForCurrentUser() {
@@ -138,7 +172,6 @@ public class AnagramPuzzleController implements Initializable {
             try {
                 u = App.getCurrentUser();
             } catch (Throwable t) {
-                // fallback to reflection if needed
                 try {
                     java.lang.reflect.Method gu = App.class.getMethod("getCurrentUser");
                     Object userObj = gu.invoke(null);
@@ -159,11 +192,9 @@ public class AnagramPuzzleController implements Initializable {
             if (u != null && u.getUserId() != null && !u.getUserId().trim().isEmpty()) {
                 userId = u.getUserId().trim();
             }
-        } catch (Throwable t) {
-            // ignore, use guest
-        }
+        } catch (Throwable t) { }
         String clean = userId.replaceAll("\\s+", "_").toLowerCase(Locale.ROOT);
-        String filename = ".escapegame_anagram_" + clean + ".properties";
+        String filename = ".escapegame_anagram_" + clean + "_" + chosenDifficulty.toLowerCase() + ".properties";
         return new File(System.getProperty("user.home"), filename);
     }
 
@@ -202,18 +233,18 @@ public class AnagramPuzzleController implements Initializable {
 
         if (ok) {
             solved = true;
-            if (statusLabel != null) statusLabel.setText("Correct! It's APPLE.");
+            if (statusLabel != null) statusLabel.setText("Correct! You unscrambled it.");
             if (btnSubmit != null) btnSubmit.setDisable(true);
             if (btnHint != null) btnHint.setDisable(true);
             if (answerField != null) answerField.setDisable(true);
-            new Alert(Alert.AlertType.INFORMATION, "Nice — LPAEP unscrambles to APPLE.").showAndWait();
+            new Alert(Alert.AlertType.INFORMATION, "Nice — " + SCRAMBLED + " unscrambles to " + normalize(ACCEPTED_ANSWERS[0]).toUpperCase() + ".").showAndWait();
             saveProgress();
             try { App.setRoot("opened5"); } catch (IOException e) { e.printStackTrace(); }
         } else {
             attemptsLeft = Math.max(0, attemptsLeft - 1);
             refreshHearts();
             if (attemptsLeft <= 0) {
-                if (statusLabel != null) statusLabel.setText("No attempts left. The correct answer was: \"apple\".");
+                if (statusLabel != null) statusLabel.setText("No attempts left. The correct answer was: \"" + (ACCEPTED_ANSWERS.length>0?normalize(ACCEPTED_ANSWERS[0]):"(answer)") + "\".");
                 if (btnSubmit != null) btnSubmit.setDisable(true);
                 if (answerField != null) answerField.setDisable(true);
                 new Alert(Alert.AlertType.WARNING, "Out of attempts!").showAndWait();
@@ -262,7 +293,7 @@ public class AnagramPuzzleController implements Initializable {
             p.setProperty("nextHintIndex", String.valueOf(nextHintIndex));
             File out = getSaveFileForCurrentUser();
             try (OutputStream os = new FileOutputStream(out)) {
-                p.store(os, "Anagram puzzle save");
+                p.store(os, "Anagram puzzle save (" + chosenDifficulty + ")");
             }
             System.out.println("DEBUG saved -> " + out.getAbsolutePath());
             return true;
@@ -306,9 +337,8 @@ public class AnagramPuzzleController implements Initializable {
 
     private int getSafeInt(String s, int fallback) {
         if (s == null) return fallback;
-        try {
-            return Integer.parseInt(s.trim());
-        } catch (NumberFormatException ex) {
+        try { return Integer.parseInt(s.trim()); }
+        catch (NumberFormatException ex) {
             System.err.println("Invalid integer in save file: \"" + s + "\"; using fallback " + fallback);
             return fallback;
         }

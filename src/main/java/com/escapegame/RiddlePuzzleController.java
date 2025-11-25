@@ -21,12 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-/**
- * Controller for the riddle puzzle screen.
- * Manages UI bindings, background image loading, riddle state (attempts,
- * hints, solved flag), persistence to a per user properties file, and simple
- * navigation back to the puzzle home or to the next screen upon success.
- */
+
 public class RiddlePuzzleController implements Initializable {
 
     @FXML private StackPane rootPane;
@@ -36,57 +31,41 @@ public class RiddlePuzzleController implements Initializable {
     @FXML private Label statusLabel, hintsLabel, categoryLabel, promptLabel;
     @FXML private HBox heartsBox;
 
-    // Game state
     private int attemptsLeft = 3;
     private int hintsLeft = 3;
     private int nextHintIndex = 0;
     private boolean solved = false;
 
-    // Hints and accepted answers
-    private final String[] HINTS = {
-        "It's something associated with being ill.",
-        "People often get this in winter or when around sick people.",
-        "It's a short, common word — one word answer."
-    };
-
-    private final String[] ACCEPTED_ANSWERS = { "cold", "a cold", "catch a cold" };
+    private String[] HINTS = new String[0];
+    private String[] ACCEPTED_ANSWERS = new String[0];
+    private String PROMPT = "Solve the riddle";
 
     private static final String RESOURCE_PATH = "/images/background.png";
-    private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-19 204918.png";
-     /**
-     * Initializes the puzzle UI, attempts to load a background image, binds
-     * sizing, initializes hint/attempt displays and loads any saved progress.
-     */
+
+    private String chosenDifficulty = "MEDIUM";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("RiddlePuzzleController.initialize() start");
 
-        boolean loaded = false;
+        try {
+            String d = com.escapegame.App.getChosenDifficulty();
+            if (d != null && !d.isEmpty()) chosenDifficulty = d.toUpperCase();
+        } catch (Throwable t) {
+            System.err.println("Warning reading chosen difficulty: " + t);
+        }
+
+        configureForDifficulty(chosenDifficulty);
+
         try {
             URL res = getClass().getResource(RESOURCE_PATH);
             if (res != null) {
                 Image img = new Image(res.toExternalForm());
                 backgroundImage.setImage(img);
-                loaded = true;
                 System.out.println("Loaded background from resource path.");
             }
         } catch (Exception ex) {
             System.err.println("Error loading resource image: " + ex.getMessage());
-        }
-
-        if (!loaded) {
-            try {
-                Image img = new Image(DEV_FALLBACK);
-                backgroundImage.setImage(img);
-                System.out.println("Loaded background from dev fallback.");
-                loaded = true;
-            } catch (Exception ex) {
-                System.err.println("Error loading dev fallback image: " + ex.getMessage());
-            }
-        }
-
-        if (!loaded) {
-            statusLabel.setText("Background image not found (resource nor dev path).");
         }
 
         if (rootPane != null && backgroundImage != null) {
@@ -95,16 +74,75 @@ public class RiddlePuzzleController implements Initializable {
             backgroundImage.setPreserveRatio(false);
         }
 
-        hintsLabel.setText(hintsLeft + " hint(s) available");
+        if (promptLabel != null) promptLabel.setText(PROMPT);
+        if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
         refreshHearts();
-        loadSave(); 
+        loadSave();
 
-        System.out.println("RiddlePuzzleController.initialize() done");
+        if (solved) {
+            System.out.println("DEBUG: Saved state indicates solved=true — clearing save to reset puzzle.");
+            clearSaveForCurrentUser();
+            solved = false;
+            configureForDifficulty(chosenDifficulty);
+            if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
+            if (statusLabel != null) statusLabel.setText("");
+            if (btnSubmit != null) btnSubmit.setDisable(false);
+            if (btnHint != null) btnHint.setDisable(false);
+            if (answerField != null) answerField.setDisable(false);
+            refreshHearts();
+        }
+
+        System.out.println("RiddlePuzzleController.initialize() done (difficulty=" + chosenDifficulty + ")");
     }
-     /**
-     * Returns the per-user save file for the riddle puzzle.
-     * Uses App.getCurrentUser() when available; falls back to "guest".
-     */ 
+
+    private void configureForDifficulty(String difficulty) {
+        switch (String.valueOf(difficulty).toUpperCase()) {
+            case "EASY":
+                PROMPT = "I make you sneeze and sniffle; short, common — what am I?";
+                HINTS = new String[] {
+                    "It's something associated with being ill.",
+                    "People often get this in winter or when around sick people.",
+                    "It's a short, common word — one word answer."
+                };
+                ACCEPTED_ANSWERS = new String[] { "cold", "a cold", "catch a cold" };
+                attemptsLeft = 3;
+                hintsLeft = 3;
+                break;
+            case "MEDIUM":
+                PROMPT = "I speak without a mouth and hear without ears. I have nobody, but I come alive with wind. What am I?";
+                HINTS = new String[] {
+                    "It's a sound that repeats what you say.",
+                    "You often hear it in caves or wide empty spaces.",
+                    "One-word answer; it repeats your voice."
+                };
+                ACCEPTED_ANSWERS = new String[] { "echo", "an echo" };
+                attemptsLeft = 3;
+                hintsLeft = 2;
+                break;
+            case "HARD":
+                PROMPT = "I turn once, what is out will not get in. I turn again, what is in will not get out. What am I?";
+                HINTS = new String[] {
+                    "It's a small household object.",
+                    "You often turn it to secure something.",
+                    "One-word, metal object you might use on a door."
+                };
+                ACCEPTED_ANSWERS = new String[] { "key", "a key" };
+                attemptsLeft = 2;
+                hintsLeft = 1;
+                break;
+            default:
+                PROMPT = "I speak without a mouth and hear without ears. What am I?";
+                HINTS = new String[] {
+                    "It repeats your sound.",
+                    "You might hear it in a canyon."
+                };
+                ACCEPTED_ANSWERS = new String[] { "echo", "an echo" };
+                attemptsLeft = 3;
+                hintsLeft = 2;
+                break;
+        }
+    }
+
     private File getSaveFileForCurrentUser() {
         String userId = "guest";
         try {
@@ -112,19 +150,15 @@ public class RiddlePuzzleController implements Initializable {
             if (u != null && u.getUserId() != null && !u.getUserId().isEmpty()) {
                 userId = u.getUserId();
             }
-        } catch (Throwable t) {
-            
-        }
-        String fileName = ".escapegame_riddle_" + userId + ".properties";
+        } catch (Throwable t) { }
+        String fileName = ".escapegame_riddle_" + userId + "_" + chosenDifficulty.toLowerCase() + ".properties";
         return new File(System.getProperty("user.home"), fileName);
     }
-     /**
-     * Refreshes the heart icons that represent remaining attempts.
-     * Disables input when no attempts remain.
-     */
+
     private void refreshHearts() {
+        if (heartsBox == null) return;
         heartsBox.getChildren().clear();
-        for (int i = 0; i < attemptsLeft; i++) {
+        for (int i = 0; i < Math.max(0, attemptsLeft); i++) {
             Label heart = new Label("\u2764");
             heart.setStyle("-fx-text-fill: #ff4d6d; -fx-font-size: 20px;");
             heartsBox.getChildren().add(heart);
@@ -134,20 +168,17 @@ public class RiddlePuzzleController implements Initializable {
             if (answerField != null) answerField.setDisable(true);
         }
     }
-    /**
-     * Handles answer submission: validates, checks against accepted answers,
-     * updates state, shows alerts, saves progress and navigates when solved.
-     */
+
     @FXML
     private void onSubmit() {
         if (solved) {
-            statusLabel.setText("You already solved the riddle.");
+            if (statusLabel != null) statusLabel.setText("You already solved the riddle.");
             return;
         }
 
-        String answer = (answerField.getText() == null) ? "" : answerField.getText().trim().toLowerCase();
+        String answer = (answerField == null || answerField.getText() == null) ? "" : answerField.getText().trim().toLowerCase();
         if (answer.isEmpty()) {
-            statusLabel.setText("Please type an answer before submitting.");
+            if (statusLabel != null) statusLabel.setText("Please type an answer before submitting.");
             return;
         }
 
@@ -161,13 +192,12 @@ public class RiddlePuzzleController implements Initializable {
 
         if (correct) {
             solved = true;
-            statusLabel.setText("Correct! You solved the riddle.");
+            if (statusLabel != null) statusLabel.setText("Correct! You solved the riddle.");
             if (btnSubmit != null) btnSubmit.setDisable(true);
             if (btnHint != null) btnHint.setDisable(true);
             if (answerField != null) answerField.setDisable(true);
             new Alert(Alert.AlertType.INFORMATION, "Congratulations — you solved the riddle!").showAndWait();
             saveProgress();
-
             try {
                 App.setRoot("opened1");
             } catch (IOException e) {
@@ -177,34 +207,32 @@ public class RiddlePuzzleController implements Initializable {
             attemptsLeft--;
             refreshHearts();
             if (attemptsLeft <= 0) {
-                statusLabel.setText("No attempts left. The correct answer was: \"cold\".");
+                if (statusLabel != null) statusLabel.setText("No attempts left. The correct answer was: \"" + (ACCEPTED_ANSWERS.length>0?ACCEPTED_ANSWERS[0]:"(answer)") + "\".");
                 if (btnSubmit != null) btnSubmit.setDisable(true);
                 if (answerField != null) answerField.setDisable(true);
                 new Alert(Alert.AlertType.WARNING, "Out of attempts!").showAndWait();
                 saveProgress();
             } else {
-                statusLabel.setText("Incorrect. Attempts left: " + attemptsLeft);
+                if (statusLabel != null) statusLabel.setText("Incorrect. Attempts left: " + attemptsLeft);
             }
         }
     }
-    /**
-     * Shows the next hint if available and saves progress.
-     */
+
     @FXML
     private void onHint() {
         if (solved) {
-            statusLabel.setText("You already solved the riddle.");
+            if (statusLabel != null) statusLabel.setText("You already solved the riddle.");
             return;
         }
         if (hintsLeft <= 0) {
-            statusLabel.setText("No hints remaining.");
+            if (statusLabel != null) statusLabel.setText("No hints remaining.");
             return;
         }
 
         String hint = HINTS[Math.min(nextHintIndex, HINTS.length - 1)];
         nextHintIndex++;
         hintsLeft--;
-        hintsLabel.setText(hintsLeft + " hint(s) available");
+        if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
 
         new Alert(Alert.AlertType.INFORMATION, hint).showAndWait();
         saveProgress();
@@ -212,7 +240,7 @@ public class RiddlePuzzleController implements Initializable {
 
     @FXML
     private void onSave() {
-        statusLabel.setText(saveProgress() ? "Progress saved." : "Save failed.");
+        if (statusLabel != null) statusLabel.setText(saveProgress() ? "Progress saved." : "Save failed.");
     }
 
     @FXML
@@ -223,10 +251,7 @@ public class RiddlePuzzleController implements Initializable {
             e.printStackTrace();
         }
     }
-     /**
-     * Persists the riddle puzzle state to a per user properties file.
-     * @return true if save succeeded, false on error
-     */
+
     private boolean saveProgress() {
         try {
             Properties p = new Properties();
@@ -236,7 +261,7 @@ public class RiddlePuzzleController implements Initializable {
             p.setProperty("nextHintIndex", String.valueOf(nextHintIndex));
             File out = getSaveFileForCurrentUser();
             try (OutputStream os = new FileOutputStream(out)) {
-                p.store(os, "Riddle puzzle save for user");
+                p.store(os, "Riddle puzzle save for user (" + chosenDifficulty + ")");
             }
             return true;
         } catch (Exception e) {
@@ -244,10 +269,7 @@ public class RiddlePuzzleController implements Initializable {
             return false;
         }
     }
-     /**
-     * Loads saved progress from the per-user properties file if present.
-     * Updates UI state to reflect loaded values.
-     */
+
     private void loadSave() {
         try {
             File f = getSaveFileForCurrentUser();
@@ -260,17 +282,29 @@ public class RiddlePuzzleController implements Initializable {
             hintsLeft = Integer.parseInt(p.getProperty("hintsLeft", Integer.toString(hintsLeft)));
             solved = Boolean.parseBoolean(p.getProperty("solved", Boolean.toString(solved)));
             nextHintIndex = Integer.parseInt(p.getProperty("nextHintIndex", Integer.toString(nextHintIndex)));
-            hintsLabel.setText(hintsLeft + " hint(s) available");
+            if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
             refreshHearts();
 
             if (solved) {
                 if (btnSubmit != null) btnSubmit.setDisable(true);
                 if (answerField != null) answerField.setDisable(true);
                 if (btnHint != null) btnHint.setDisable(true);
-                statusLabel.setText("Already solved.");
+                if (statusLabel != null) statusLabel.setText("Already solved.");
             }
         } catch (Exception e) {
             System.err.println("Load save failed: " + e.getMessage());
+        }
+    }
+
+    private boolean clearSaveForCurrentUser() {
+        File f = getSaveFileForCurrentUser();
+        if (f.exists()) {
+            boolean deleted = f.delete();
+            System.out.println("DEBUG: clearSaveForCurrentUser() deleted=" + deleted + " -> " + f.getAbsolutePath());
+            return deleted;
+        } else {
+            System.out.println("DEBUG: clearSaveForCurrentUser() not found -> " + f.getAbsolutePath());
+            return true;
         }
     }
 }

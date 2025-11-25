@@ -24,14 +24,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
-/**
- * Cipher puzzle controller — easy Caesar cipher: DNWG -> BLUE (shift -2)
- * Improvements:
- *  - per-user save file (.escapegame_cipher_<userid>.properties)
- *  - debug prints showing the save path and loaded state
- *  - safe parsing of integer properties
- *  - normalization of user input for robust matching
- */
 public class CipherPuzzleController implements Initializable {
 
     @FXML private StackPane rootPane;
@@ -41,108 +33,141 @@ public class CipherPuzzleController implements Initializable {
     @FXML private Label statusLabel, hintsLabel, categoryLabel, promptLabel, cipherLabel;
     @FXML private HBox heartsBox;
 
-    // Game state
     private int attemptsLeft = 3;
     private int hintsLeft = 3;
     private int nextHintIndex = 0;
     private boolean solved = false;
 
-    // Filled puzzle data (easy Caesar cipher)
-    private final String[] HINTS = {
-        "It's a Caesar-style cipher (letters shifted).",
-        "Shift each letter back by 2 in the alphabet.",
-        "The result is a 4-letter color that starts with B."
-    };
+    private String[] HINTS = new String[0];
+    private String[] ACCEPTED_ANSWERS = new String[0];
+    private String PROMPT = "Decode the cipher";
+    private String CIPHER_TEXT = "DNWG";
 
-    // Accepted answers (we normalize input before comparing)
-    private final String[] ACCEPTED_ANSWERS = {
-        "blue",
-        "a blue",
-        "the color blue",
-        "the colour blue"
-    };
-
-    // resource and dev fallback paths
     private static final String RESOURCE_PATH = "/images/background.png";
-    private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-19 221015.png";
+
+    private String chosenDifficulty = "MEDIUM";
 
     @Override
-public void initialize(URL location, ResourceBundle resources) {
-    System.out.println("CipherPuzzleController.initialize() start");
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("CipherPuzzleController.initialize() start");
 
-    boolean loaded = false;
-    try {
-        URL res = getClass().getResource(RESOURCE_PATH);
-        if (res != null) {
-            Image img = new Image(res.toExternalForm());
-            if (backgroundImage != null) backgroundImage.setImage(img);
-            loaded = true;
-            System.out.println("Loaded cipher background from resource.");
-        }
-    } catch (Exception ex) {
-        System.err.println("Error loading resource image: " + ex.getMessage());
-    }
-
-    if (!loaded) {
         try {
-            Image img = new Image(DEV_FALLBACK);
-            if (backgroundImage != null) backgroundImage.setImage(img);
-            loaded = true;
-            System.out.println("Loaded cipher background from dev fallback.");
-        } catch (Exception ex) {
-            System.err.println("Error loading dev fallback image: " + ex.getMessage());
+            String d = com.escapegame.App.getChosenDifficulty();
+            if (d != null && !d.isEmpty()) chosenDifficulty = d.toUpperCase();
+        } catch (Throwable t) {
+            System.err.println("Warning reading chosen difficulty: " + t);
         }
-    }
 
-    if (!loaded) {
-        if (statusLabel != null) statusLabel.setText("Background image not found (resource nor dev path).");
-    }
+        configureForDifficulty(chosenDifficulty);
 
-    if (backgroundImage != null && rootPane != null) {
-        backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
-        backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
-        backgroundImage.setPreserveRatio(false);
-    }
+        try {
+            URL res = getClass().getResource(RESOURCE_PATH);
+            if (res != null) {
+                Image img = new Image(res.toExternalForm());
+                if (backgroundImage != null) backgroundImage.setImage(img);
+                System.out.println("Loaded cipher background from resource.");
+            }
+        } catch (Exception ex) {
+            System.err.println("Error loading resource image: " + ex.getMessage());
+        }
 
-    // initialize UI text for the puzzle
-    if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
-    if (cipherLabel != null) cipherLabel.setText("Cipher: DNWG"); // the cipher to decode
-    if (categoryLabel != null) categoryLabel.setText("Category: Color");
-    if (promptLabel != null) promptLabel.setText("Prompt: Decode DNWG (Caesar shift -2)");
-    refreshHearts();
+        if (backgroundImage != null && rootPane != null) {
+            backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
+            backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
+            backgroundImage.setPreserveRatio(false);
+        }
 
-    // debug: show exactly which save file will be used
-    System.out.println("DEBUG: Cipher save path -> " + getSaveFileForCurrentUser().getAbsolutePath());
-
-    // load saved state from file
-    loadSave();
-
-    // *** AUTOMATIC RESET: if a persisted save marks the puzzle solved, clear it and reset UI ***
-    if (solved) {
-        System.out.println("DEBUG: Saved state indicates solved=true — clearing save to reset puzzle.");
-        // delete the save so next launch is fresh
-        clearSaveForCurrentUser();
-        // reset in-memory state to defaults so UI is interactive
-        solved = false;
-        attemptsLeft = 3;
-        hintsLeft = 3;
-        nextHintIndex = 0;
         if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
-        if (statusLabel != null) statusLabel.setText("");
-        if (btnSubmit != null) btnSubmit.setDisable(false);
-        if (btnHint != null) btnHint.setDisable(false);
-        if (answerField != null) answerField.setDisable(false);
+        if (cipherLabel != null) cipherLabel.setText("Cipher: " + CIPHER_TEXT);
+        if (categoryLabel != null) categoryLabel.setText("Category: Cipher");
+        if (promptLabel != null) promptLabel.setText("Prompt: " + PROMPT);
         refreshHearts();
+
+        System.out.println("DEBUG: Cipher save path -> " + getSaveFileForCurrentUser().getAbsolutePath());
+
+        loadSave();
+
+        if (solved) {
+            System.out.println("DEBUG: Saved state indicates solved=true — clearing save to reset puzzle.");
+            clearSaveForCurrentUser();
+            solved = false;
+            configureForDifficulty(chosenDifficulty);
+            if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
+            if (statusLabel != null) statusLabel.setText("");
+            if (btnSubmit != null) btnSubmit.setDisable(false);
+            if (btnHint != null) btnHint.setDisable(false);
+            if (answerField != null) answerField.setDisable(false);
+            refreshHearts();
+        }
+
+        System.out.println("CipherPuzzleController.initialize() done (difficulty=" + chosenDifficulty + ")");
     }
 
-    System.out.println("CipherPuzzleController.initialize() done");
-}
+    private void configureForDifficulty(String difficulty) {
+        switch (String.valueOf(difficulty).toUpperCase()) {
+            case "EASY":
+                CIPHER_TEXT = "DNWG";
+                PROMPT = "Decode DNWG (Caesar shift -2)";
+                HINTS = new String[] {
+                    "It's a Caesar-style cipher (letters shifted).",
+                    "Shift each letter back by 2 in the alphabet.",
+                    "The result is a 4-letter color that starts with B."
+                };
+                ACCEPTED_ANSWERS = new String[] {
+                    "blue",
+                    "a blue",
+                    "the color blue",
+                    "the colour blue"
+                };
+                attemptsLeft = 3;
+                hintsLeft = 3;
+                break;
+            case "MEDIUM":
+                CIPHER_TEXT = "LIPPS";
+                PROMPT = "Decode LIPPS (Caesar shift -4) — one-word greeting.";
+                HINTS = new String[] {
+                    "It's a Caesar shift; shift letters back by 4.",
+                    "The decoded word is a common 5-letter greeting.",
+                    "One word: you might say this when meeting someone."
+                };
+                ACCEPTED_ANSWERS = new String[] {
+                    "hello", "hi", "a hello", "the word hello"
+                };
+                attemptsLeft = 3;
+                hintsLeft = 2;
+                break;
+            case "HARD":
+                CIPHER_TEXT = "JSHWDUYNTS";
+                PROMPT = "Decode the cipher (hard). Use Caesar shift -5.";
+                HINTS = new String[] {
+                    "Still a Caesar-style cipher; shift letters back by 5.",
+                    "The decoded word is a common color or short noun.",
+                    "Try shifting letters backward by 5 positions in the alphabet."
+                };
+                ACCEPTED_ANSWERS = new String[] {
+                    "encoding", "an encoding", "the encoding"
+                };
+                attemptsLeft = 2;
+                hintsLeft = 1;
+                break;
+            default:
+                CIPHER_TEXT = "DNWG";
+                PROMPT = "Decode DNWG (Caesar shift -2)";
+                HINTS = new String[] {
+                    "It's a Caesar-style cipher (letters shifted).",
+                    "Shift each letter back by 2 in the alphabet.",
+                    "The result is a 4-letter color that starts with B."
+                };
+                ACCEPTED_ANSWERS = new String[] { "blue", "a blue", "the color blue" };
+                attemptsLeft = 3;
+                hintsLeft = 3;
+                break;
+        }
+        if (cipherLabel != null) cipherLabel.setText("Cipher: " + CIPHER_TEXT);
+        if (promptLabel != null) promptLabel.setText("Prompt: " + PROMPT);
+        if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
+    }
 
-
-    /**
-     * Return per-user save file (similar behavior to riddle controller).
-     * Falls back to "guest" when App.getCurrentUser() is unavailable or null.
-     */
     private File getSaveFileForCurrentUser() {
         String userId = "guest";
         try {
@@ -150,23 +175,18 @@ public void initialize(URL location, ResourceBundle resources) {
             try {
                 u = App.getCurrentUser();
             } catch (Throwable t) {
-                // ignore — try reflection (defensive) or remain guest
                 try {
                     java.lang.reflect.Method gu = App.class.getMethod("getCurrentUser");
                     Object userObj = gu.invoke(null);
                     if (userObj instanceof User) {
                         u = (User) userObj;
                     } else if (userObj != null) {
-                        // try to call getUserId via reflection
                         try {
                             java.lang.reflect.Method getId = userObj.getClass().getMethod("getUserId");
                             Object idObj = getId.invoke(userObj);
                             if (idObj != null) {
                                 final String idStr = idObj.toString();
-                                // create a small temporary User-like object to pass the id
-                                u = new User() {
-                                    @Override public String getUserId() { return idStr; }
-                                };
+                                u = new User() { @Override public String getUserId() { return idStr; } };
                             }
                         } catch (Throwable ignored) { }
                     }
@@ -175,11 +195,9 @@ public void initialize(URL location, ResourceBundle resources) {
             if (u != null && u.getUserId() != null && !u.getUserId().trim().isEmpty()) {
                 userId = u.getUserId().trim();
             }
-        } catch (Throwable t) {
-            // ignore; userId stays guest
-        }
+        } catch (Throwable t) { }
         String clean = userId.replaceAll("\\s+", "_").toLowerCase(Locale.ROOT);
-        String filename = ".escapegame_cipher_" + clean + ".properties";
+        String filename = ".escapegame_cipher_" + clean + "_" + chosenDifficulty.toLowerCase() + ".properties";
         return new File(System.getProperty("user.home"), filename);
     }
 
@@ -222,14 +240,14 @@ public void initialize(URL location, ResourceBundle resources) {
             if (btnSubmit != null) btnSubmit.setDisable(true);
             if (btnHint != null) btnHint.setDisable(true);
             if (answerField != null) answerField.setDisable(true);
-            new Alert(Alert.AlertType.INFORMATION, "Nice! The cipher DNWG decodes to BLUE.").showAndWait();
+            new Alert(Alert.AlertType.INFORMATION, "Nice! The cipher decodes to the expected answer.").showAndWait();
             saveProgress();
             try { App.setRoot("opened3"); } catch (IOException e) { e.printStackTrace(); }
         } else {
             attemptsLeft = Math.max(0, attemptsLeft - 1);
             refreshHearts();
             if (attemptsLeft <= 0) {
-                if (statusLabel != null) statusLabel.setText("No attempts left. The correct answer was: \"blue\".");
+                if (statusLabel != null) statusLabel.setText("No attempts left. The correct answer was: \"" + (ACCEPTED_ANSWERS.length>0?ACCEPTED_ANSWERS[0]:"(answer)") + "\".");
                 if (btnSubmit != null) btnSubmit.setDisable(true);
                 if (answerField != null) answerField.setDisable(true);
                 new Alert(Alert.AlertType.WARNING, "Out of attempts!").showAndWait();
@@ -267,7 +285,7 @@ public void initialize(URL location, ResourceBundle resources) {
     @FXML
     private void onQuit() {
         try {
-            App.setRoot("opened2");
+            App.setRoot("opened3");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -282,7 +300,7 @@ public void initialize(URL location, ResourceBundle resources) {
             p.setProperty("nextHintIndex", String.valueOf(nextHintIndex));
             File out = getSaveFileForCurrentUser();
             try (OutputStream os = new FileOutputStream(out)) {
-                p.store(os, "Cipher puzzle save");
+                p.store(os, "Cipher puzzle save (" + chosenDifficulty + ")");
             }
             System.out.println("DEBUG saved -> " + out.getAbsolutePath());
             return true;
@@ -325,18 +343,15 @@ public void initialize(URL location, ResourceBundle resources) {
         }
     }
 
-    // Utility: safe integer parsing with fallback
     private int getSafeInt(String s, int fallback) {
         if (s == null) return fallback;
-        try {
-            return Integer.parseInt(s.trim());
-        } catch (NumberFormatException ex) {
+        try { return Integer.parseInt(s.trim()); }
+        catch (NumberFormatException ex) {
             System.err.println("Invalid integer in save file: \"" + s + "\"; using fallback " + fallback);
             return fallback;
         }
     }
 
-    // Normalize user input for more tolerant matching (lowercase, remove punctuation, collapse spaces, strip leading articles)
     private static String normalize(String raw) {
         if (raw == null) return "";
         String n = Normalizer.normalize(raw, Normalizer.Form.NFKC)
@@ -350,10 +365,6 @@ public void initialize(URL location, ResourceBundle resources) {
         return n;
     }
 
-    /**
-     * Helper used for debugging/testing to delete the current user's save.
-     * Call this from a debug action or unit test if you want to reset progress.
-     */
     private boolean clearSaveForCurrentUser() {
         File f = getSaveFileForCurrentUser();
         if (f.exists()) {
@@ -365,5 +376,4 @@ public void initialize(URL location, ResourceBundle resources) {
             return true;
         }
     }
-
 }
