@@ -78,6 +78,19 @@ public class RiddlePuzzleController implements Initializable {
         if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
         refreshHearts();
         loadSave();
+        
+        if (attemptsLeft <= 0) {
+            System.out.println("DEBUG: Saved state indicates attemptsLeft<=0 — clearing save to reset puzzle.");
+            clearSaveForCurrentUser();
+            solved = false;
+            configureForDifficulty(chosenDifficulty);
+            if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
+            if (statusLabel != null) statusLabel.setText("");
+            if (btnSubmit != null) btnSubmit.setDisable(false);
+            if (btnHint != null) btnHint.setDisable(false);
+            if (answerField != null) answerField.setDisable(false);
+            refreshHearts();
+        }
 
         if (solved) {
             System.out.println("DEBUG: Saved state indicates solved=true — clearing save to reset puzzle.");
