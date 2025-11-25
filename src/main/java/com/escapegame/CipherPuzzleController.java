@@ -25,12 +25,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
 /**
- * Cipher puzzle controller — easy Caesar cipher: DNWG -> BLUE (shift -2)
- * Improvements:
- *  - per-user save file (.escapegame_cipher_<userid>.properties)
- *  - debug prints showing the save path and loaded state
- *  - safe parsing of integer properties
- *  - normalization of user input for robust matching
+ * Controller for the Cipher Puzzle scene — a simple Caesar cipher where "DNWG" decodes to "BLUE" (shift -2).
+ * Includes per-user save files, safe state loading, and normalized input checking.
+ * Also provides debug logging for saves and resource loading.
  */
 public class CipherPuzzleController implements Initializable {
 
@@ -65,9 +62,14 @@ public class CipherPuzzleController implements Initializable {
     // resource and dev fallback paths
     private static final String RESOURCE_PATH = "/images/background.png";
     private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-19 221015.png";
-
+      /**
+     * Initializes the cipher puzzle scene, setting up images, UI text, bindings, and save state handling.
+     * It loads any saved progress, restores the player’s state, and prepares the interface.
+     * @param location  the location used to resolve relative paths for the root object
+     * @param resources the resources used to localize the root object
+     */
     @Override
-public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
     System.out.println("CipherPuzzleController.initialize() start");
 
     boolean loaded = false;
@@ -140,8 +142,9 @@ public void initialize(URL location, ResourceBundle resources) {
 
 
     /**
-     * Return per-user save file (similar behavior to riddle controller).
-     * Falls back to "guest" when App.getCurrentUser() is unavailable or null.
+     * Returns the per user save file for this cipher puzzle, falling back to "guest" if no user is found.
+     * Uses reflection as a backup to obtain the user ID if the App class methods differ.
+     * @return File pointing to the save location for the current user
      */
     private File getSaveFileForCurrentUser() {
         String userId = "guest";
@@ -182,7 +185,10 @@ public void initialize(URL location, ResourceBundle resources) {
         String filename = ".escapegame_cipher_" + clean + ".properties";
         return new File(System.getProperty("user.home"), filename);
     }
-
+     /**
+     * Refreshes the heart icons representing remaining attempts in the UI.
+     * Disables input controls when no attempts remain.
+     */
     private void refreshHearts() {
         if (heartsBox == null) return;
         heartsBox.getChildren().clear();
@@ -196,7 +202,10 @@ public void initialize(URL location, ResourceBundle resources) {
             if (answerField != null) answerField.setDisable(true);
         }
     }
-
+     /**
+     * Handles submission of the user’s answer, validates correctness, updates game state,
+     * and provides feedback via alerts and status labels.
+     */
     @FXML
     private void onSubmit() {
         if (solved) {
@@ -239,7 +248,9 @@ public void initialize(URL location, ResourceBundle resources) {
             }
         }
     }
-
+    /**
+     * Handles hint button logic — shows the next hint and decreases the available hint count.
+     */
     @FXML
     private void onHint() {
         if (solved) {
@@ -258,12 +269,16 @@ public void initialize(URL location, ResourceBundle resources) {
         new Alert(Alert.AlertType.INFORMATION, hint).showAndWait();
         saveProgress();
     }
-
+     /**
+     * Saves the current progress manually when the player clicks the save button.
+     */
     @FXML
     private void onSave() {
         if (statusLabel != null) statusLabel.setText(saveProgress() ? "Progress saved." : "Save failed.");
     }
-
+    /**
+     * Quits the current puzzle and returns to the previous scene.
+     */
     @FXML
     private void onQuit() {
         try {
@@ -272,7 +287,10 @@ public void initialize(URL location, ResourceBundle resources) {
             e.printStackTrace();
         }
     }
-
+      /**
+     * Saves puzzle state (attempts, hints, solved flag, etc.) to a per user properties file.
+     * @return true if save succeeded, false otherwise
+     */
     private boolean saveProgress() {
         try {
             Properties p = new Properties();
@@ -291,7 +309,10 @@ public void initialize(URL location, ResourceBundle resources) {
             return false;
         }
     }
-
+     /**
+     * Loads previously saved puzzle state from the user's save file, restoring progress.
+     * If no save file exists, the method returns silently.
+     */
     private void loadSave() {
         try {
             File f = getSaveFileForCurrentUser();
@@ -325,7 +346,12 @@ public void initialize(URL location, ResourceBundle resources) {
         }
     }
 
-    // Utility: safe integer parsing with fallback
+     /**
+     * Parses a string safely into an integer, falling back to a default value on failure.
+     * @param s the string to parse
+     * @param fallback  the default value to use if parsing fails
+     * @return parsed integer or fallback
+     */
     private int getSafeInt(String s, int fallback) {
         if (s == null) return fallback;
         try {
@@ -336,7 +362,12 @@ public void initialize(URL location, ResourceBundle resources) {
         }
     }
 
-    // Normalize user input for more tolerant matching (lowercase, remove punctuation, collapse spaces, strip leading articles)
+     /**
+     * Normalizes a raw text input by removing punctuation, lowercasing,
+     * and stripping leading articles for consistent answer comparison.
+     * @param raw the original input string
+     * @return normalized string
+     */
     private static String normalize(String raw) {
         if (raw == null) return "";
         String n = Normalizer.normalize(raw, Normalizer.Form.NFKC)
@@ -351,8 +382,9 @@ public void initialize(URL location, ResourceBundle resources) {
     }
 
     /**
-     * Helper used for debugging/testing to delete the current user's save.
-     * Call this from a debug action or unit test if you want to reset progress.
+     * Helper used for debugging/testing to delete the current user's save file.
+     * Typically called to reset progress between sessions or tests.
+     * @return true if file deleted successfully or not found, false otherwise
      */
     private boolean clearSaveForCurrentUser() {
         File f = getSaveFileForCurrentUser();
