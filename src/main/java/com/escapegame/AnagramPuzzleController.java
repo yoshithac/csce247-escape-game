@@ -26,12 +26,10 @@ import javafx.scene.layout.StackPane;
 
 /**
  * Anagram puzzle controller — scrambled LPAEP -> APPLE (category Fruit)
- * Improvements:
- *  - per-user save file (.escapegame_anagram_<userid>.properties)
- *  - debug prints showing the save path and loaded state
- *  - safe parsing of integer properties
- *  - normalization of user input for robust matching
- *  - clearSaveForCurrentUser() helper for testing
+ * Provides a lightweight controller for the anagram puzzle screen. Responsible
+ * for UI initialization, background image loading, managing puzzle state
+ * (attempts, hints, solved), per-user save/load of a properties file, and
+ * simple input normalization for robust answer matching.
  */
 public class AnagramPuzzleController implements Initializable {
 
@@ -63,7 +61,11 @@ public class AnagramPuzzleController implements Initializable {
 
     private static final String RESOURCE_PATH = "/images/background.png";
     private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-22 202825.png";
-
+    /**
+     * Initialize the controller: load background, bind sizing, initialize labels,
+     * show save path for debugging, load saved state and perform a one time reset
+     * if the save indicates the puzzle was already solved.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("AnagramPuzzleController.initialize() start");
@@ -130,7 +132,11 @@ public class AnagramPuzzleController implements Initializable {
 
         System.out.println("AnagramPuzzleController.initialize() done");
     }
-
+     /**
+     * Resolve the per-user save file path. Attempts to obtain the current user
+     * via App.getCurrentUser(), with defensive reflection fallback. The returned
+     * filename is normalized (lowercased, spaces to underscores).
+     */
     private File getSaveFileForCurrentUser() {
         String userId = "guest";
         try {
@@ -180,7 +186,10 @@ public class AnagramPuzzleController implements Initializable {
             if (answerField != null) answerField.setDisable(true);
         }
     }
-
+    /**
+     * Handle submit action: normalize input, compare against accepted answers,
+     * update state, persist progress, and navigate on success.
+     */
     @FXML
     private void onSubmit() {
         if (solved) {
@@ -223,7 +232,9 @@ public class AnagramPuzzleController implements Initializable {
             }
         }
     }
-
+    /**
+     * Show the next hint (if available), decrement counters and persist state.
+     */
     @FXML
     private void onHint() {
         if (solved) {
@@ -271,7 +282,13 @@ public class AnagramPuzzleController implements Initializable {
             return false;
         }
     }
-
+     /**
+     * Load saved puzzle state from the per user properties file if present.
+     * Reads attempts, hints, solved flag and next hint index using safe
+     * parsing. Updates UI labels and hearts, and logs debug information about
+     * the loaded values and the file path. If the save indicates the puzzle
+     * was solved, disable relevant inputs and update status text.
+     */
     private void loadSave() {
         try {
             File f = getSaveFileForCurrentUser();
@@ -303,7 +320,12 @@ public class AnagramPuzzleController implements Initializable {
             System.err.println("Load save failed: " + e.getMessage());
         }
     }
-
+     /**
+     * Safely parse an integer string from save data, returning a fallback on error.
+     * @param s the string to parse
+     * @param fallback the fallback value to use if parsing fails
+     * @return the parsed integer, or fallback if invalid
+     */
     private int getSafeInt(String s, int fallback) {
         if (s == null) return fallback;
         try {
@@ -313,7 +335,14 @@ public class AnagramPuzzleController implements Initializable {
             return fallback;
         }
     }
-
+      /**
+     * Normalize and simplify user input for robust matching.
+     * This method performs Unicode normalization, lowercasing, removes
+     * punctuation, collapses whitespace, and strips leading articles
+     * ("a", "an", "the"). It returns an empty string for null input.
+     * @param raw raw user input
+     * @return normalized string
+     */ 
     private static String normalize(String raw) {
         if (raw == null) return "";
         String n = Normalizer.normalize(raw, Normalizer.Form.NFKC)
@@ -326,7 +355,10 @@ public class AnagramPuzzleController implements Initializable {
         else if (n.startsWith("the ")) n = n.substring(4).trim();
         return n;
     }
-
+     /**
+     * Delete the per-user save file (used for debugging / testing).
+     * @return true if deletion succeeded or file did not exist
+     */
     private boolean clearSaveForCurrentUser() {
         File f = getSaveFileForCurrentUser();
         if (f.exists()) {
