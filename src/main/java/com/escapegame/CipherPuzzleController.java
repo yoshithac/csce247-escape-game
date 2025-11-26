@@ -151,14 +151,14 @@ public class CipherPuzzleController implements Initializable {
                 break;
             case "HARD":
                 CIPHER_TEXT = "JSHWDUYNTS";
-                PROMPT = "Decode the cipher (hard). Use Caesar shift -5.";
+                PROMPT = "Decode the cipher JSHWDUYNTS shift -5.";
                 HINTS = new String[] {
                     "Still a Caesar-style cipher; shift letters back by 5.",
                     "The decoded word is a common color or short noun.",
                     "Try shifting letters backward by 5 positions in the alphabet."
                 };
                 ACCEPTED_ANSWERS = new String[] {
-                    "encoding", "an encoding", "the encoding"
+                    "encryption", "an encryption", "the encryption"
                 };
                 attemptsLeft = 2;
                 hintsLeft = 1;
