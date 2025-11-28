@@ -23,7 +23,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-
+/**
+ * Controller for the Anagram puzzle screen.
+ * Handles UI binding, difficulty configuration, hints/attempts tracking,
+ * saving and loading progress per user, and basic UI actions (submit, hint,
+ * save, quit).
+ */
 public class AnagramPuzzleController implements Initializable {
 
     @FXML private StackPane rootPane;
@@ -47,7 +52,17 @@ public class AnagramPuzzleController implements Initializable {
     private static final String DEV_FALLBACK = "file:/mnt/data/Screenshot 2025-11-22 202825.png";
 
     private String chosenDifficulty = "MEDIUM";
-
+     /**
+     * Initialize controller after FXML is loaded.
+     * Reads chosen difficulty from the application, configures puzzle state,
+     * binds background image sizing, refreshes UI elements, and attempts to
+     * load saved progress for the current user. If saved state indicates the
+     * puzzle is solved or attempts exhausted, the save is cleared and the
+     * puzzle is reset.
+     *
+     * @param location  location used to resolve relative paths 
+     * @param resources resources bundle 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("AnagramPuzzleController.initialize() start");
@@ -116,7 +131,11 @@ public class AnagramPuzzleController implements Initializable {
 
         System.out.println("AnagramPuzzleController.initialize() done (difficulty=" + chosenDifficulty + ")");
     }
-
+    
+    /**
+     * Configure puzzle variables for a given difficulty.
+     * @param difficulty difficulty string (case insensitive)
+     */
     private void configureForDifficulty(String difficulty) {
         switch (String.valueOf(difficulty).toUpperCase()) {
             case "EASY":
@@ -177,7 +196,13 @@ public class AnagramPuzzleController implements Initializable {
         if (promptLabel != null) promptLabel.setText("Prompt: " + PROMPT);
         if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
     }
-
+     /**
+     * Determine the save file for the current user.
+     * Attempts to get a user id from App.getCurrentUser(); falls back to
+     * {@code guest} if unavailable. The filename includes difficulty so each
+     * difficulty has its own save file per user.
+     * @return File object pointing to the user's save file in the user's home directory.
+     */
     private File getSaveFileForCurrentUser() {
         String userId = "guest";
         try {
@@ -210,7 +235,11 @@ public class AnagramPuzzleController implements Initializable {
         String filename = ".escapegame_anagram_" + clean + "_" + chosenDifficulty.toLowerCase() + ".properties";
         return new File(System.getProperty("user.home"), filename);
     }
-
+    /**
+     * Refresh heart icons that show remaining attempts.
+     * Clears the hearts box and adds one heart per remaining attempt. If
+     * attempts are exhausted, disables submit and answer field.
+     */
     private void refreshHearts() {
         if (heartsBox == null) return;
         heartsBox.getChildren().clear();
@@ -224,7 +253,11 @@ public class AnagramPuzzleController implements Initializable {
             if (answerField != null) answerField.setDisable(true);
         }
     }
-
+     /**
+     * Handler for the Submit button.
+     * Normalizes user input, checks against accepted answers, handles
+     * win/lose logic, updates UI, shows alerts, and saves progress.
+     */
     @FXML
     private void onSubmit() {
         if (solved) {
@@ -267,7 +300,12 @@ public class AnagramPuzzleController implements Initializable {
             }
         }
     }
-
+    
+    /**
+     * Handler for the Hint button.
+     * Shows the next hint, if available , decrements hints left, updates UI,
+     * and saves progress.
+     */
     @FXML
     private void onHint() {
         if (solved) {
@@ -286,17 +324,26 @@ public class AnagramPuzzleController implements Initializable {
         new Alert(Alert.AlertType.INFORMATION, hint).showAndWait();
         saveProgress();
     }
-
+    /**
+     * Handler for the Save button.
+     * Attempts to save progress and shows a short status message.
+     */
     @FXML
     private void onSave() {
         if (statusLabel != null) statusLabel.setText(saveProgress() ? "Progress saved." : "Save failed.");
     }
-
+     /**
+     * Handler for the Quit button.
+     * Switches to the previous view using App.setRoot
+     */
     @FXML
     private void onQuit() {
         try { App.setRoot("opened4"); } catch (IOException e) { e.printStackTrace(); }
     }
-
+     /**
+     * Persist current progress to the user's save file.
+     * @return true if save succeeded, false on error
+     */
     private boolean saveProgress() {
         try {
             Properties p = new Properties();
@@ -315,7 +362,11 @@ public class AnagramPuzzleController implements Initializable {
             return false;
         }
     }
-
+      /**
+     * Load saved progress from the user's save file, if present.
+     * Updates attemptsLeft, hintsLeft, solved and nextHintIndex from the
+     * file and refreshes relevant UI elements.
+     */
     private void loadSave() {
         try {
             File f = getSaveFileForCurrentUser();
@@ -347,7 +398,12 @@ public class AnagramPuzzleController implements Initializable {
             System.err.println("Load save failed: " + e.getMessage());
         }
     }
-
+     /**
+     * Parse an integer from a string, returning a fallback on parse failure.
+     * @param s fallback string to parse
+     * @param fallback value to return if parse fails
+     * @return parsed integer or fallback
+     */
     private int getSafeInt(String s, int fallback) {
         if (s == null) return fallback;
         try { return Integer.parseInt(s.trim()); }
@@ -356,7 +412,13 @@ public class AnagramPuzzleController implements Initializable {
             return fallback;
         }
     }
-
+     /**
+     * Normalize a raw input string for comparison.
+     * Performs Unicode normalization, lowercasing, removes punctuation,
+     * trims whitespace, and strips leading articles ("a", "an", "the").
+     * @param raw raw input
+     * @return normalized string
+     */
     private static String normalize(String raw) {
         if (raw == null) return "";
         String n = Normalizer.normalize(raw, Normalizer.Form.NFKC)
@@ -369,7 +431,10 @@ public class AnagramPuzzleController implements Initializable {
         else if (n.startsWith("the ")) n = n.substring(4).trim();
         return n;
     }
-
+     /**
+     * Delete the user's save file for this puzzle/difficulty.
+     * @return true if the file was deleted or didn't exist; false if deletion failed
+     */
     private boolean clearSaveForCurrentUser() {
         File f = getSaveFileForCurrentUser();
         if (f.exists()) {
