@@ -23,7 +23,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-
+/**
+ * Controller for the Cipher puzzle screen.
+ * Manages UI bindings, difficulty-specific puzzle configuration,
+ * tracking of attempts/hints, per-user save/load of progress, and UI actions
+ * (submit, hint, save, quit).
+ */
 public class CipherPuzzleController implements Initializable {
 
     @FXML private StackPane rootPane;
@@ -46,7 +51,16 @@ public class CipherPuzzleController implements Initializable {
     private static final String RESOURCE_PATH = "/images/background.png";
 
     private String chosenDifficulty = "MEDIUM";
-
+     /**
+     * Initialize controller after FXML is loaded.
+     * Reads chosen difficulty from the application, configures puzzle state,
+     * binds background image sizing, refreshes UI elements, and attempts to
+     * load saved progress for the current user. If saved state indicates the
+     * puzzle is solved or attempts exhausted, the save is cleared and the
+     * puzzle is reset.
+     * @param location  location used to resolve relative paths (unused)
+     * @param resources resources bundle (unused)
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("CipherPuzzleController.initialize() start");
@@ -115,7 +129,10 @@ public class CipherPuzzleController implements Initializable {
 
         System.out.println("CipherPuzzleController.initialize() done (difficulty=" + chosenDifficulty + ")");
     }
-
+     /**
+     * Configure puzzle variables for a given difficulty.
+     * @param difficulty difficulty string (case-insensitive)
+     */
     private void configureForDifficulty(String difficulty) {
         switch (String.valueOf(difficulty).toUpperCase()) {
             case "EASY":
@@ -180,7 +197,13 @@ public class CipherPuzzleController implements Initializable {
         if (promptLabel != null) promptLabel.setText("Prompt: " + PROMPT);
         if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
     }
-
+    /**
+     * Determine the save file for the current user.
+     * Attempts to get a user id from App.getCurrentUser(); falls back to
+     * {@code guest} if unavailable. The filename includes difficulty so each
+     * difficulty has its own save file per user.
+     * @return File object pointing to the user's save file in the user's home directory.
+     */
     private File getSaveFileForCurrentUser() {
         String userId = "guest";
         try {
@@ -373,7 +396,12 @@ public class CipherPuzzleController implements Initializable {
             System.err.println("Load save failed: " + e.getMessage());
         }
     }
-
+    /**
+     * Parse an integer from a string, returning a fallback on parse failure.
+     * @param s fallback string to parse
+     * @param fallback value to return if parse fails
+     * @return parsed integer or fallback
+     */
     private int getSafeInt(String s, int fallback) {
         if (s == null) return fallback;
         try { return Integer.parseInt(s.trim()); }
@@ -382,7 +410,13 @@ public class CipherPuzzleController implements Initializable {
             return fallback;
         }
     }
-
+      /**
+     * Normalize a raw input string for comparison.
+     * Performs Unicode normalization, lowercasing, removes punctuation,
+     * trims whitespace, and strips leading articles ("a", "an", "the").
+     * @param raw raw input
+     * @return normalized string
+     */
     private static String normalize(String raw) {
         if (raw == null) return "";
         String n = Normalizer.normalize(raw, Normalizer.Form.NFKC)
@@ -395,7 +429,10 @@ public class CipherPuzzleController implements Initializable {
         else if (n.startsWith("the ")) n = n.substring(4).trim();
         return n;
     }
-
+    /**
+     * Delete the user's save file for this puzzle/difficulty.
+     * @return true if the file was deleted or didn't exist; false if deletion failed
+     */
     private boolean clearSaveForCurrentUser() {
         File f = getSaveFileForCurrentUser();
         if (f.exists()) {
