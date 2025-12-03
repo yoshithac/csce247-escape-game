@@ -3,14 +3,16 @@ package com.escapegame;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
-import java.text.Normalizer;
+import java.util.List;
 import java.util.Locale;
-import java.util.Properties;
+import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.model.GameFactory;
+import com.model.PuzzleGame;
 import com.model.User;
 
 import javafx.fxml.FXML;
@@ -23,12 +25,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-/**
- * Controller for the Cipher puzzle screen.
- * Manages UI bindings, difficulty-specific puzzle configuration,
- * tracking of attempts/hints, per-user save/load of progress, and UI actions
- * (submit, hint, save, quit).
- */
+
 public class CipherPuzzleController implements Initializable {
 
     @FXML private StackPane rootPane;
@@ -38,410 +35,179 @@ public class CipherPuzzleController implements Initializable {
     @FXML private Label statusLabel, hintsLabel, categoryLabel, promptLabel, cipherLabel;
     @FXML private HBox heartsBox;
 
-    private int attemptsLeft = 3;
-    private int hintsLeft = 3;
-    private int nextHintIndex = 0;
-    private boolean solved = false;
+    private PuzzleGame game;
+    private String puzzleType = "CIPHER";
+    private String difficulty = "MEDIUM";
 
-    private String[] HINTS = new String[0];
-    private String[] ACCEPTED_ANSWERS = new String[0];
-    private String PROMPT = "Decode the cipher";
-    private String CIPHER_TEXT = "DNWG";
-
-    private static final String RESOURCE_PATH = "/images/background.png";
-
-    private String chosenDifficulty = "MEDIUM";
-     /**
-     * Initialize controller after FXML is loaded.
-     * Reads chosen difficulty from the application, configures puzzle state,
-     * binds background image sizing, refreshes UI elements, and attempts to
-     * load saved progress for the current user. If saved state indicates the
-     * puzzle is solved or attempts exhausted, the save is cleared and the
-     * puzzle is reset.
-     * @param location  location used to resolve relative paths (unused)
-     * @param resources resources bundle (unused)
-     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("CipherPuzzleController.initialize() start");
-
         try {
-            String d = com.escapegame.App.getChosenDifficulty();
-            if (d != null && !d.isEmpty()) chosenDifficulty = d.toUpperCase();
-        } catch (Throwable t) {
-            System.err.println("Warning reading chosen difficulty: " + t);
-        }
-
-        configureForDifficulty(chosenDifficulty);
-
-        try {
-            URL res = getClass().getResource(RESOURCE_PATH);
-            if (res != null) {
-                Image img = new Image(res.toExternalForm());
-                if (backgroundImage != null) backgroundImage.setImage(img);
-                System.out.println("Loaded cipher background from resource.");
+            URL res = getClass().getResource("/images/background.png");
+            if (res != null && backgroundImage != null) {
+                backgroundImage.setImage(new Image(res.toExternalForm()));
+                backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
+                backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
+                backgroundImage.setPreserveRatio(false);
             }
-        } catch (Exception ex) {
-            System.err.println("Error loading resource image: " + ex.getMessage());
-        }
+        } catch (Throwable t) { }
 
-        if (backgroundImage != null && rootPane != null) {
-            backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
-            backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
-            backgroundImage.setPreserveRatio(false);
-        }
+        try {
+            String chosen = com.escapegame.App.getChosenDifficulty();
+            if (chosen != null) difficulty = chosen.toUpperCase(Locale.ROOT);
+        } catch (Throwable t) { }
 
-        if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
-        if (cipherLabel != null) cipherLabel.setText("Cipher: " + CIPHER_TEXT);
-        if (categoryLabel != null) categoryLabel.setText("Category: Cipher");
-        if (promptLabel != null) promptLabel.setText("Prompt: " + PROMPT);
-        refreshHearts();
-
-        System.out.println("DEBUG: Cipher save path -> " + getSaveFileForCurrentUser().getAbsolutePath());
-
+        game = GameFactory.createGame(puzzleType, difficulty);
         loadSave();
-
-        if (attemptsLeft <= 0) {
-            System.out.println("DEBUG: Saved state indicates attemptsLeft<=0 — clearing save to reset puzzle.");
-            clearSaveForCurrentUser();
-            solved = false;
-            configureForDifficulty(chosenDifficulty);
-            if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
-            if (statusLabel != null) statusLabel.setText("");
-            if (btnSubmit != null) btnSubmit.setDisable(false);
-            if (btnHint != null) btnHint.setDisable(false);
-            if (answerField != null) answerField.setDisable(false);
-            refreshHearts();
-        }
-        
-        if (solved) {
-            System.out.println("DEBUG: Saved state indicates solved=true — clearing save to reset puzzle.");
-            clearSaveForCurrentUser();
-            solved = false;
-            configureForDifficulty(chosenDifficulty);
-            if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
-            if (statusLabel != null) statusLabel.setText("");
-            if (btnSubmit != null) btnSubmit.setDisable(false);
-            if (btnHint != null) btnHint.setDisable(false);
-            if (answerField != null) answerField.setDisable(false);
-            refreshHearts();
-        }
-
-        System.out.println("CipherPuzzleController.initialize() done (difficulty=" + chosenDifficulty + ")");
+        refreshUI();
     }
-     /**
-     * Configure puzzle variables for a given difficulty.
-     * @param difficulty difficulty string (case-insensitive)
-     */
-    private void configureForDifficulty(String difficulty) {
-        switch (String.valueOf(difficulty).toUpperCase()) {
-            case "EASY":
-                CIPHER_TEXT = "DNWG";
-                PROMPT = "Decode DNWG (Caesar shift -2)";
-                HINTS = new String[] {
-                    "It's a Caesar-style cipher (letters shifted).",
-                    "Shift each letter back by 2 in the alphabet.",
-                    "The result is a 4-letter color that starts with B."
-                };
-                ACCEPTED_ANSWERS = new String[] {
-                    "blue",
-                    "a blue",
-                    "the color blue",
-                    "the colour blue"
-                };
-                attemptsLeft = 3;
-                hintsLeft = 3;
-                break;
-            case "MEDIUM":
-                CIPHER_TEXT = "LIPPS";
-                PROMPT = "Decode LIPPS (Caesar shift -4) — one-word greeting.";
-                HINTS = new String[] {
-                    "It's a Caesar shift; shift letters back by 4.",
-                    "The decoded word is a common 5-letter greeting.",
-                    "One word: you might say this when meeting someone."
-                };
-                ACCEPTED_ANSWERS = new String[] {
-                    "hello", "hi", "a hello", "the word hello"
-                };
-                attemptsLeft = 3;
-                hintsLeft = 2;
-                break;
-            case "HARD":
-                CIPHER_TEXT = "JSHWDUYNTS";
-                PROMPT = "Decode the cipher JSHWDUYNTS shift -5.";
-                HINTS = new String[] {
-                    "Still a Caesar-style cipher; shift letters back by 5.",
-                    "The decoded word is a common color or short noun.",
-                    "Try shifting letters backward by 5 positions in the alphabet."
-                };
-                ACCEPTED_ANSWERS = new String[] {
-                    "encryption", "an encryption", "the encryption"
-                };
-                attemptsLeft = 2;
-                hintsLeft = 1;
-                break;
-            default:
-                CIPHER_TEXT = "DNWG";
-                PROMPT = "Decode DNWG (Caesar shift -2)";
-                HINTS = new String[] {
-                    "It's a Caesar-style cipher (letters shifted).",
-                    "Shift each letter back by 2 in the alphabet.",
-                    "The result is a 4-letter color that starts with B."
-                };
-                ACCEPTED_ANSWERS = new String[] { "blue", "a blue", "the color blue" };
-                attemptsLeft = 3;
-                hintsLeft = 3;
-                break;
-        }
-        if (cipherLabel != null) cipherLabel.setText("Cipher: " + CIPHER_TEXT);
-        if (promptLabel != null) promptLabel.setText("Prompt: " + PROMPT);
-        if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
-    }
-    /**
-     * Determine the save file for the current user.
-     * Attempts to get a user id from App.getCurrentUser(); falls back to
-     * {@code guest} if unavailable. The filename includes difficulty so each
-     * difficulty has its own save file per user.
-     * @return File object pointing to the user's save file in the user's home directory.
-     */
+
     private File getSaveFileForCurrentUser() {
         String userId = "guest";
         try {
-            User u = null;
-            try {
-                u = App.getCurrentUser();
-            } catch (Throwable t) {
-                try {
-                    java.lang.reflect.Method gu = App.class.getMethod("getCurrentUser");
-                    Object userObj = gu.invoke(null);
-                    if (userObj instanceof User) {
-                        u = (User) userObj;
-                    } else if (userObj != null) {
-                        try {
-                            java.lang.reflect.Method getId = userObj.getClass().getMethod("getUserId");
-                            Object idObj = getId.invoke(userObj);
-                            if (idObj != null) {
-                                final String idStr = idObj.toString();
-                                u = new User() { @Override public String getUserId() { return idStr; } };
-                            }
-                        } catch (Throwable ignored) { }
-                    }
-                } catch (Throwable ignored) { }
-            }
-            if (u != null && u.getUserId() != null && !u.getUserId().trim().isEmpty()) {
-                userId = u.getUserId().trim();
-            }
+            User u = App.getCurrentUser();
+            if (u != null && u.getUserId() != null && !u.getUserId().isBlank()) userId = u.getUserId().trim();
         } catch (Throwable t) { }
-        String clean = userId.replaceAll("\\s+", "_").toLowerCase(Locale.ROOT);
-        String filename = ".escapegame_cipher_" + clean + "_" + chosenDifficulty.toLowerCase() + ".properties";
-        return new File(System.getProperty("user.home"), filename);
+        String fileName = ".escapegame_cipher_" + userId.replaceAll("\\s+", "_").toLowerCase(Locale.ROOT) + ".ser";
+        return new File(System.getProperty("user.home"), fileName);
     }
-     /**
-     * Refreshes the heart icons representing remaining attempts in the UI.
-     * Disables input controls when no attempts remain.
-     */
+
     private void refreshHearts() {
         if (heartsBox == null) return;
         heartsBox.getChildren().clear();
-        for (int i = 0; i < Math.max(0, attemptsLeft); i++) {
+        Map<String, Object> state = game.getGameState();
+        int remaining = ((Number) state.getOrDefault("remainingAttempts", 0)).intValue();
+        for (int i = 0; i < remaining; i++) {
             Label heart = new Label("\u2764");
             heart.setStyle("-fx-text-fill: #ff4d6d; -fx-font-size: 20px;");
             heartsBox.getChildren().add(heart);
         }
-        if (attemptsLeft <= 0) {
-            if (btnSubmit != null) btnSubmit.setDisable(true);
-            if (answerField != null) answerField.setDisable(true);
-        }
+        boolean noAttempts = remaining <= 0;
+        if (btnSubmit != null) btnSubmit.setDisable(noAttempts);
+        if (answerField != null) answerField.setDisable(noAttempts);
     }
-     /**
-     * Handles submission of the user’s answer, validates correctness, updates game state,
-     * and provides feedback via alerts and status labels.
-     */
+
+    private void refreshUI() {
+        Map<String, Object> state = game.getGameState();
+        String prompt = state.getOrDefault("prompt", "").toString();
+        String category = state.getOrDefault("category", "").toString();
+        int availableHints = ((Number) state.getOrDefault("availableHintsCount", 0)).intValue();
+        String extra = state.getOrDefault("extraText", "").toString();
+
+        if (promptLabel != null) promptLabel.setText(prompt);
+        if (categoryLabel != null) categoryLabel.setText(category);
+        if (hintsLabel != null) hintsLabel.setText(availableHints + " hint(s) available");
+        if (cipherLabel != null) {
+            cipherLabel.setText("Cipher: " + (extra == null ? "" : extra));
+        } else if (promptLabel != null) {
+            promptLabel.setText((extra == null || extra.isBlank()) ? prompt : prompt + " (" + extra + ")");
+        }
+        refreshHearts();
+        if (statusLabel != null) statusLabel.setText("");
+    }
+
     @FXML
     private void onSubmit() {
-        if (solved) {
-            if (statusLabel != null) statusLabel.setText("You already solved the cipher.");
-            return;
-        }
-
-        String raw = (answerField == null || answerField.getText() == null) ? "" : answerField.getText();
-        String answer = normalize(raw);
-        if (answer.isEmpty()) {
+        if (answerField == null) return;
+        String raw = answerField.getText();
+        if (raw == null || raw.trim().isEmpty()) {
             if (statusLabel != null) statusLabel.setText("Please enter an answer.");
             return;
         }
-
-        boolean ok = false;
-        for (String a : ACCEPTED_ANSWERS) {
-            if (normalize(a).equals(answer)) { ok = true; break; }
-        }
-
-        if (ok) {
-            solved = true;
-            if (statusLabel != null) statusLabel.setText("Correct! You decoded it.");
-            if (btnSubmit != null) btnSubmit.setDisable(true);
-            if (btnHint != null) btnHint.setDisable(true);
-            if (answerField != null) answerField.setDisable(true);
-            new Alert(Alert.AlertType.INFORMATION, "Nice! The cipher decodes to the expected answer.").showAndWait();
-            saveProgress();
-            try { App.setRoot("opened3"); } catch (IOException e) { e.printStackTrace(); }
-        } else {
-            attemptsLeft = Math.max(0, attemptsLeft - 1);
-            refreshHearts();
-            if (attemptsLeft <= 0) {
-                if (statusLabel != null) statusLabel.setText("No attempts left. The correct answer was: \"" + (ACCEPTED_ANSWERS.length>0?ACCEPTED_ANSWERS[0]:"(answer)") + "\".");
+        game.processInput(raw.trim());
+        Map<String, Object> state = game.getGameState();
+        if (game.isGameOver()) {
+            Map<String, Object> result = game.getResult();
+            boolean won = Boolean.TRUE.equals(result.get("won"));
+            if (won) {
+                if (statusLabel != null) statusLabel.setText("Correct! You decoded it.");
+                if (btnSubmit != null) btnSubmit.setDisable(true);
+                if (btnHint != null) btnHint.setDisable(true);
+                if (answerField != null) answerField.setDisable(true);
+                new Alert(Alert.AlertType.INFORMATION, "Nice!").showAndWait();
+                saveSave();
+                Map<String, Object> cfg = com.model.WordPuzzleGame.configFor(puzzleType, difficulty);
+                String nextScene = cfg == null ? "" : (String) cfg.getOrDefault("nextScene", "");
+                try {
+                    if (nextScene != null && !nextScene.isBlank()) App.setRoot(nextScene);
+                    else App.setRoot("opened3");
+                } catch (Exception ex) { ex.printStackTrace(); }
+            } else {
+                String ans = result.getOrDefault("answer", "").toString();
+                if (statusLabel != null) statusLabel.setText("No attempts left. The correct answer was: \"" + ans + "\".");
                 if (btnSubmit != null) btnSubmit.setDisable(true);
                 if (answerField != null) answerField.setDisable(true);
                 new Alert(Alert.AlertType.WARNING, "Out of attempts!").showAndWait();
-                saveProgress();
-            } else {
-                if (statusLabel != null) statusLabel.setText("Incorrect. Attempts left: " + attemptsLeft);
+                saveSave();
             }
+        } else {
+            int remaining = ((Number) state.getOrDefault("remainingAttempts", 0)).intValue();
+            if (statusLabel != null) statusLabel.setText("Incorrect. Attempts left: " + remaining);
+            saveSave();
         }
+        refreshUI();
     }
-    /**
-     * Handles hint button logic — shows the next hint and decreases the available hint count.
-     */
+
     @FXML
     private void onHint() {
-        if (solved) {
-            if (statusLabel != null) statusLabel.setText("You already solved the puzzle.");
-            return;
-        }
-        if (hintsLeft <= 0) {
+        game.processInput("HINT");
+        Map<String, Object> state = game.getGameState();
+        @SuppressWarnings("unchecked")
+        List<String> revealed = (List<String>) state.getOrDefault("revealedHints", List.of());
+        if (!revealed.isEmpty()) {
+            String last = revealed.get(revealed.size() - 1);
+            new Alert(Alert.AlertType.INFORMATION, last).showAndWait();
+        } else {
             if (statusLabel != null) statusLabel.setText("No hints remaining.");
-            return;
         }
-
-        String hint = HINTS[Math.min(nextHintIndex, HINTS.length - 1)];
-        nextHintIndex = Math.min(nextHintIndex + 1, HINTS.length);
-        hintsLeft = Math.max(0, hintsLeft - 1);
-        if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
-        new Alert(Alert.AlertType.INFORMATION, hint).showAndWait();
-        saveProgress();
+        if (hintsLabel != null) hintsLabel.setText(((Number) state.getOrDefault("availableHintsCount", 0)).intValue() + " hint(s) available");
+        saveSave();
+        refreshUI();
     }
-     /**
-     * Saves the current progress manually when the player clicks the save button.
-     */
+
     @FXML
     private void onSave() {
-        if (statusLabel != null) statusLabel.setText(saveProgress() ? "Progress saved." : "Save failed.");
+        boolean ok = saveSave();
+        if (statusLabel != null) statusLabel.setText(ok ? "Progress saved." : "Save failed.");
     }
-    /**
-     * Quits the current puzzle and returns to the previous scene.
-     */
+
     @FXML
     private void onQuit() {
         try {
-            App.setRoot("opened3");
-        } catch (IOException e) {
+            saveSave();
+            App.setRoot("puzzlehome");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-      /**
-     * Saves puzzle state (attempts, hints, solved flag, etc.) to a per user properties file.
-     * @return true if save succeeded, false otherwise
-     */
-    private boolean saveProgress() {
+
+    private boolean saveSave() {
         try {
-            Properties p = new Properties();
-            p.setProperty("attemptsLeft", String.valueOf(attemptsLeft));
-            p.setProperty("hintsLeft", String.valueOf(hintsLeft));
-            p.setProperty("solved", String.valueOf(solved));
-            p.setProperty("nextHintIndex", String.valueOf(nextHintIndex));
-            File out = getSaveFileForCurrentUser();
-            try (OutputStream os = new FileOutputStream(out)) {
-                p.store(os, "Cipher puzzle save (" + chosenDifficulty + ")");
+            File f = getSaveFileForCurrentUser();
+            Map<String, Object> state = game.saveState();
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f))) {
+                oos.writeObject(state);
             }
-            System.out.println("DEBUG saved -> " + out.getAbsolutePath());
             return true;
         } catch (Exception e) {
-            System.err.println("Save error: " + e.getMessage());
+            System.err.println("Save error: " + e);
             return false;
         }
     }
-     /**
-     * Loads previously saved puzzle state from the user's save file, restoring progress.
-     * If no save file exists, the method returns silently.
-     */
+
+    @SuppressWarnings("unchecked")
     private void loadSave() {
         try {
             File f = getSaveFileForCurrentUser();
-            if (!f.exists()) {
-                System.out.println("DEBUG: save file not found -> " + f.getAbsolutePath());
-                return;
+            if (!f.exists()) return;
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))) {
+                Object o = ois.readObject();
+                if (o instanceof Map) {
+                    Map<String, Object> saved = (Map<String, Object>) o;
+                    game.restoreState(saved);
+                }
             }
-            Properties p = new Properties();
-            try (FileInputStream fis = new FileInputStream(f)) {
-                p.load(fis);
-            }
-            attemptsLeft = getSafeInt(p.getProperty("attemptsLeft"), attemptsLeft);
-            hintsLeft = getSafeInt(p.getProperty("hintsLeft"), hintsLeft);
-            solved = Boolean.parseBoolean(p.getProperty("solved", String.valueOf(solved)));
-            nextHintIndex = getSafeInt(p.getProperty("nextHintIndex"), nextHintIndex);
-            if (hintsLabel != null) hintsLabel.setText(hintsLeft + " hint(s) available");
-            refreshHearts();
-
-            System.out.println("DEBUG loaded - attemptsLeft=" + attemptsLeft
-                + " hintsLeft=" + hintsLeft + " nextHintIndex=" + nextHintIndex + " solved=" + solved
-                + " (from " + f.getAbsolutePath() + ")");
-
-            if (solved) {
-                if (btnSubmit != null) btnSubmit.setDisable(true);
-                if (answerField != null) answerField.setDisable(true);
-                if (btnHint != null) btnHint.setDisable(true);
-                if (statusLabel != null) statusLabel.setText("Already solved.");
-            }
-        } catch (Exception e) {
-            System.err.println("Load save failed: " + e.getMessage());
-        }
-    }
-    /**
-     * Parse an integer from a string, returning a fallback on parse failure.
-     * @param s fallback string to parse
-     * @param fallback value to return if parse fails
-     * @return parsed integer or fallback
-     */
-    private int getSafeInt(String s, int fallback) {
-        if (s == null) return fallback;
-        try { return Integer.parseInt(s.trim()); }
-        catch (NumberFormatException ex) {
-            System.err.println("Invalid integer in save file: \"" + s + "\"; using fallback " + fallback);
-            return fallback;
-        }
-    }
-      /**
-     * Normalize a raw input string for comparison.
-     * Performs Unicode normalization, lowercasing, removes punctuation,
-     * trims whitespace, and strips leading articles ("a", "an", "the").
-     * @param raw raw input
-     * @return normalized string
-     */
-    private static String normalize(String raw) {
-        if (raw == null) return "";
-        String n = Normalizer.normalize(raw, Normalizer.Form.NFKC)
-                .toLowerCase(Locale.ROOT)
-                .replaceAll("[^\\p{L}\\p{N}\\s]", " ")
-                .trim()
-                .replaceAll("\\s+", " ");
-        if (n.startsWith("a ")) n = n.substring(2).trim();
-        else if (n.startsWith("an ")) n = n.substring(3).trim();
-        else if (n.startsWith("the ")) n = n.substring(4).trim();
-        return n;
-    }
-    /**
-     * Delete the user's save file for this puzzle/difficulty.
-     * @return true if the file was deleted or didn't exist; false if deletion failed
-     */
-    private boolean clearSaveForCurrentUser() {
-        File f = getSaveFileForCurrentUser();
-        if (f.exists()) {
-            boolean deleted = f.delete();
-            System.out.println("DEBUG: clearSaveForCurrentUser() deleted=" + deleted + " -> " + f.getAbsolutePath());
-            return deleted;
-        } else {
-            System.out.println("DEBUG: clearSaveForCurrentUser() not found -> " + f.getAbsolutePath());
-            return true;
+        } catch (Throwable t) {
+            System.err.println("Load save failed: " + t);
         }
     }
 }
