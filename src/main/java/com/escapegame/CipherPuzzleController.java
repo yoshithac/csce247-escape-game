@@ -80,8 +80,6 @@ public class CipherPuzzleController implements Initializable {
             if (chosen != null) difficulty = chosen.toUpperCase(Locale.ROOT);
         } catch (Throwable t) { /* ignore */ }
 
-        game = GameFactory.createGame(puzzleType, difficulty);
-
         // load GameData.json and initialize game state from a chosen puzzle
         try {
             Optional<Map<String, Object>> chosenPuzzle = loadAndSelectCipherPuzzleFromJson(puzzleType, difficulty);

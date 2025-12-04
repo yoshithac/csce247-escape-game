@@ -80,8 +80,6 @@ public class RiddlePuzzleController implements Initializable {
             if (chosen != null) difficulty = chosen.toUpperCase(Locale.ROOT);
         } catch (Throwable t) { /* ignore */ }
 
-        game = GameFactory.createGame(puzzleType, difficulty);
-
         // load JSON puzzle into game state (then loadSave can override)
         try {
             Optional<Map<String, Object>> chosenPuzzle = loadAndSelectRiddlePuzzleFromJson(puzzleType, difficulty);

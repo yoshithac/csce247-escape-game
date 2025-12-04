@@ -56,7 +56,6 @@ public class AnagramPuzzleController implements Initializable {
             if (chosen != null) difficulty = chosen.toUpperCase(Locale.ROOT);
         } catch (Throwable t) { }
 
-        game = GameFactory.createGame(puzzleType, difficulty);
         loadSave();
         refreshUI();
     }
