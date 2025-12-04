@@ -83,9 +83,6 @@ public class AnagramPuzzleController implements Initializable {
             if (chosen != null) difficulty = chosen.toUpperCase(Locale.ROOT);
         } catch (Throwable t) { /* ignore */ }
 
-        // create game object
-        game = GameFactory.createGame(puzzleType, difficulty);
-
         // load GameData.json and inject a selected anagram puzzle into the game state
         try {
             Optional<Map<String, Object>> chosenPuzzle = loadAndSelectAnagramPuzzleFromJson(puzzleType, difficulty);
