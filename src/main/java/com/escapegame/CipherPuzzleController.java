@@ -2,15 +2,24 @@ package com.escapegame;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 import java.util.ResourceBundle;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.model.GameFactory;
 import com.model.PuzzleGame;
 import com.model.User;
@@ -26,6 +35,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
+/**
+ * CipherPuzzleController that reads puzzles from /GameData.json using Gson.
+ * - Normalizes answers to uppercase
+ * - Stores the canonical answer under multiple keys (answer/solution/correctAnswer/expectedAnswer)
+ * - Uppercases user input before calling game.processInput(...)
+ * - Prints debug state/result to the console to diagnose mismatches
+ */
 public class CipherPuzzleController implements Initializable {
 
     @FXML private StackPane rootPane;
@@ -39,6 +55,14 @@ public class CipherPuzzleController implements Initializable {
     private String puzzleType = "CIPHER";
     private String difficulty = "MEDIUM";
 
+    // controller-level fallback for JSON canonical answer
+    private String canonicalAnswerFromJson = "";
+
+    // path on the classpath to your JSON
+    private static final String GAME_DATA_CLASSPATH = "/GameData.json";
+
+    private final Gson gson = new Gson();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -49,16 +73,178 @@ public class CipherPuzzleController implements Initializable {
                 backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
                 backgroundImage.setPreserveRatio(false);
             }
-        } catch (Throwable t) { }
+        } catch (Throwable t) { /* ignore UI load issues */ }
 
         try {
             String chosen = com.escapegame.App.getChosenDifficulty();
             if (chosen != null) difficulty = chosen.toUpperCase(Locale.ROOT);
-        } catch (Throwable t) { }
+        } catch (Throwable t) { /* ignore */ }
 
         game = GameFactory.createGame(puzzleType, difficulty);
+
+        // load GameData.json and initialize game state from a chosen puzzle
+        try {
+            Optional<Map<String, Object>> chosenPuzzle = loadAndSelectCipherPuzzleFromJson(puzzleType, difficulty);
+            if (chosenPuzzle.isPresent()) {
+                Map<String, Object> puzzle = chosenPuzzle.get();
+                @SuppressWarnings("unchecked")
+                Map<String, Object> data = (Map<String, Object>) puzzle.getOrDefault("data", Map.of());
+                Map<String, Object> initialState = buildInitialGameStateFromPuzzleData(data);
+                try {
+                    game.restoreState(initialState);
+                    // debug: show state after restore
+                    System.out.println("DEBUG: after initial restore, gameState = " + safeToString(game.getGameState()));
+                } catch (Throwable t) {
+                    System.err.println("restoreState failed: " + t);
+                }
+            } else {
+                System.err.println("No cipher puzzle found for type=" + puzzleType + " difficulty=" + difficulty);
+            }
+        } catch (Throwable t) {
+            System.err.println("Failed to load GameData.json: " + t);
+        }
+
+        // existing save loading (overrides initial state if a save exists)
         loadSave();
+        // final debug check
+        try { System.out.println("DEBUG: final gameState after loadSave() = " + safeToString(game.getGameState()) + " canonicalAnswerFromJson=" + canonicalAnswerFromJson); } catch (Throwable t) { }
         refreshUI();
+    }
+
+    /**
+     * Reads GameData.json from classpath and selects a CIPHER puzzle matching the difficulty.
+     * Uses Gson for parsing (no Jackson).
+     */
+    @SuppressWarnings("unchecked")
+    private Optional<Map<String, Object>> loadAndSelectCipherPuzzleFromJson(String pType, String diff) {
+        try (InputStream is = getClass().getResourceAsStream(GAME_DATA_CLASSPATH)) {
+            if (is == null) {
+                System.err.println("GameData.json not found on classpath at " + GAME_DATA_CLASSPATH);
+                return Optional.empty();
+            }
+
+            JsonElement rootElem = JsonParser.parseReader(new InputStreamReader(is));
+            if (rootElem == null || !rootElem.isJsonObject()) return Optional.empty();
+            JsonObject root = rootElem.getAsJsonObject();
+
+            JsonElement puzzlesElem = root.get("puzzles");
+            if (puzzlesElem == null || !puzzlesElem.isJsonArray()) return Optional.empty();
+            JsonArray puzzles = puzzlesElem.getAsJsonArray();
+
+            String diffUpper = (diff == null) ? "" : diff.toUpperCase(Locale.ROOT);
+
+            // collect matches
+            List<JsonObject> matches = new java.util.ArrayList<>();
+            for (JsonElement pe : puzzles) {
+                if (!pe.isJsonObject()) continue;
+                JsonObject p = pe.getAsJsonObject();
+                String type = p.has("puzzleType") ? p.get("puzzleType").getAsString() : "";
+                String pdiff = p.has("difficulty") ? p.get("difficulty").getAsString() : "";
+                if (pType.equalsIgnoreCase(type) && diffUpper.equalsIgnoreCase(pdiff.toUpperCase(Locale.ROOT))) {
+                    matches.add(p);
+                }
+            }
+
+            JsonObject chosenJson = null;
+            if (!matches.isEmpty()) {
+                int idx = new Random().nextInt(matches.size());
+                chosenJson = matches.get(idx);
+            } else {
+                // fallback: any same type regardless of difficulty
+                for (JsonElement pe : puzzles) {
+                    if (!pe.isJsonObject()) continue;
+                    JsonObject p = pe.getAsJsonObject();
+                    String type = p.has("puzzleType") ? p.get("puzzleType").getAsString() : "";
+                    if (pType.equalsIgnoreCase(type)) {
+                        chosenJson = p;
+                        break;
+                    }
+                }
+            }
+
+            if (chosenJson == null) return Optional.empty();
+            Map<String, Object> map = gson.fromJson(chosenJson, new TypeToken<Map<String, Object>>() {}.getType());
+            return Optional.of(map);
+        } catch (Throwable t) {
+            System.err.println("Error reading/parsing GameData.json: " + t);
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Build a conservative initial game-state map from the puzzle's data block.
+     * Keys used: prompt, answer, category, remainingAttempts, availableHintsCount, revealedHints, extraText.
+     *
+     * Important: This method now uppercases the canonical answer and writes it into several likely keys
+     * so that different PuzzleGame implementations find the expected key.
+     */
+    private Map<String, Object> buildInitialGameStateFromPuzzleData(Map<String, Object> data) {
+        Map<String, Object> state = new HashMap<>();
+        if (data == null) return state;
+
+        Object prompt = data.get("prompt");
+        if (prompt != null) state.put("prompt", prompt.toString());
+
+        // --- robust extraction of canonical answer ---
+        Object ansObj = data.get("answer");
+        if (ansObj == null) ansObj = data.get("correctAnswer");
+        if (ansObj == null) ansObj = data.get("solution");
+        if (ansObj == null) ansObj = data.get("expectedAnswer");
+        if (ansObj == null) ansObj = data.get("solutions");
+        if (ansObj == null) ansObj = data.get("answers");
+
+        if (ansObj instanceof List) {
+            @SuppressWarnings("unchecked")
+            List<Object> arr = (List<Object>) ansObj;
+            Object picked = null;
+            for (Object o : arr) {
+                if (o != null && !o.toString().isBlank()) { picked = o; break; }
+            }
+            ansObj = picked;
+        }
+
+        if (ansObj != null) {
+            String canonical = ansObj.toString().trim().toUpperCase(Locale.ROOT);
+            canonicalAnswerFromJson = canonical;
+            state.put("answer", canonical);
+            state.put("solution", canonical);
+            state.put("correctAnswer", canonical);
+            state.put("expectedAnswer", canonical);
+        }
+
+        Object cat = data.get("category");
+        if (cat != null) state.put("category", cat.toString());
+        else state.put("category", "");
+
+        int maxAttempts = 3;
+        Object maxAttObj = data.get("maxAttempts");
+        if (maxAttObj instanceof Number) maxAttempts = ((Number) maxAttObj).intValue();
+        else if (maxAttObj != null) {
+            try { maxAttempts = Integer.parseInt(String.valueOf(maxAttObj)); } catch (Exception e) { /* ignore */ }
+        }
+        state.put("remainingAttempts", maxAttempts);
+
+        int hints = 3;
+        Object availHints = data.getOrDefault("availableHintsCount", data.get("hints"));
+        if (availHints instanceof Number) hints = ((Number) availHints).intValue();
+        else if (availHints != null) {
+            try { hints = Integer.parseInt(String.valueOf(availHints)); } catch (Exception e) { /* ignore */ }
+        }
+        state.put("availableHintsCount", hints);
+
+        state.put("revealedHints", List.of());
+
+        Object extra = data.getOrDefault("extra", data.get("note"));
+        if (extra != null) state.put("extraText", extra.toString());
+        else state.put("extraText", "");
+
+        // copy other keys unless they clash with keys we set
+        for (Map.Entry<String, Object> e : data.entrySet()) {
+            String k = e.getKey();
+            if (!state.containsKey(k)) state.put(k, e.getValue());
+        }
+
+        return state;
     }
 
     private File getSaveFileForCurrentUser() {
@@ -113,8 +299,56 @@ public class CipherPuzzleController implements Initializable {
             if (statusLabel != null) statusLabel.setText("Please enter an answer.");
             return;
         }
-        game.processInput(raw.trim());
+
+        // Normalize and uppercase user input to avoid case-sensitive mismatches
+        String normalized = raw.trim().toUpperCase(Locale.ROOT);
+        System.out.println("DEBUG: user submitted (normalized) = '" + normalized + "'");
+
+        // Print state BEFORE processing to ensure answer keys are present
+        try {
+            System.out.println("DEBUG: gameState BEFORE processInput = " + safeToString(game.getGameState()));
+        } catch (Throwable t) { System.out.println("DEBUG: failed to read game state before processInput: " + t); }
+
+        try {
+            game.processInput(normalized);
+        } catch (Throwable t) {
+            System.err.println("DEBUG: processInput threw: " + t);
+        }
+
         Map<String, Object> state = game.getGameState();
+
+        // Print state & result AFTER processing so we can see what the model recorded
+        try {
+            System.out.println("DEBUG: gameState AFTER processInput = " + safeToString(state));
+            System.out.println("DEBUG: gameResult AFTER processInput = " + safeToString(game.getResult()));
+        } catch (Throwable t) { System.out.println("DEBUG: failed to read game result after processInput: " + t); }
+
+        // --- controller-level fallback: if the engine didn't mark a win but our JSON canonical answer matches, accept it ---
+        try {
+            Map<String, Object> result = game.getResult();
+            boolean engineWon = Boolean.TRUE.equals(result.get("won"));
+            if (!engineWon && canonicalAnswerFromJson != null && !canonicalAnswerFromJson.isBlank()) {
+                if (normalized.equals(canonicalAnswerFromJson)) {
+                    System.out.println("DEBUG: controller fallback accepting canonicalAnswerFromJson as correct (\"" + canonicalAnswerFromJson + "\")");
+                    if (statusLabel != null) statusLabel.setText("Correct! You decoded it.");
+                    if (btnSubmit != null) btnSubmit.setDisable(true);
+                    if (btnHint != null) btnHint.setDisable(true);
+                    if (answerField != null) answerField.setDisable(true);
+                    new Alert(Alert.AlertType.INFORMATION, "Nice!").showAndWait();
+                    saveSave();
+                    Map<String, Object> cfg = com.model.WordPuzzleGame.configFor(puzzleType, difficulty);
+                    String nextScene = cfg == null ? "" : (String) cfg.getOrDefault("nextScene", "");
+                    try {
+                        if (nextScene != null && !nextScene.isBlank()) App.setRoot(nextScene);
+                        else App.setRoot("opened3");
+                    } catch (Exception ex) { ex.printStackTrace(); }
+                    return; // stop further processing
+                }
+            }
+        } catch (Throwable t) {
+            System.err.println("DEBUG: controller fallback check threw: " + t);
+        }
+
         if (game.isGameOver()) {
             Map<String, Object> result = game.getResult();
             boolean won = Boolean.TRUE.equals(result.get("won"));
@@ -132,7 +366,12 @@ public class CipherPuzzleController implements Initializable {
                     else App.setRoot("opened3");
                 } catch (Exception ex) { ex.printStackTrace(); }
             } else {
-                String ans = result.getOrDefault("answer", "").toString();
+                // Show correct answer: check result map, then current state for common keys
+                String ans = safeGetString(result, "answer");
+                if (ans.isBlank()) ans = safeGetString(state, "answer");
+                if (ans.isBlank()) ans = safeGetString(state, "solution");
+                if (ans.isBlank()) ans = safeGetString(state, "correctAnswer");
+                if (ans.isBlank()) ans = safeGetString(state, "expectedAnswer");
                 if (statusLabel != null) statusLabel.setText("No attempts left. The correct answer was: \"" + ans + "\".");
                 if (btnSubmit != null) btnSubmit.setDisable(true);
                 if (answerField != null) answerField.setDisable(true);
@@ -174,7 +413,7 @@ public class CipherPuzzleController implements Initializable {
     private void onQuit() {
         try {
             saveSave();
-            App.setRoot("puzzlehome");
+            App.setRoot("opened2");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -184,7 +423,7 @@ public class CipherPuzzleController implements Initializable {
         try {
             File f = getSaveFileForCurrentUser();
             Map<String, Object> state = game.saveState();
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f))) {
+            try (java.io.ObjectOutputStream oos = new java.io.ObjectOutputStream(new java.io.FileOutputStream(f))) {
                 oos.writeObject(state);
             }
             return true;
@@ -199,15 +438,65 @@ public class CipherPuzzleController implements Initializable {
         try {
             File f = getSaveFileForCurrentUser();
             if (!f.exists()) return;
+
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))) {
                 Object o = ois.readObject();
                 if (o instanceof Map) {
                     Map<String, Object> saved = (Map<String, Object>) o;
+
+                    // If we loaded an initial state earlier from JSON, compare prompt values:
+                    Map<String,Object> currentState = game.getGameState();
+                    String initialPrompt = (String) currentState.getOrDefault("prompt", "");
+                    String savedPrompt = (String) saved.getOrDefault("prompt", "");
+
+                    if (savedPrompt == null) savedPrompt = "";
+                    if (!savedPrompt.equals(initialPrompt)) {
+                        // mismatch -> delete the stale save and don't restore
+                        if (!f.delete()) {
+                            System.err.println("Could not delete stale save: " + f.getAbsolutePath());
+                        } else {
+                            System.out.println("Deleted stale save file: " + f.getAbsolutePath());
+                        }
+                        return;
+                    }
+
+                    // Defensive: if the saved file contains empty answer-like keys, prefer the JSON canonical answer
+                    String savedAns = safeGetString(saved, "answer");
+                    if (savedAns.isBlank()) savedAns = safeGetString(saved, "correctAnswer");
+                    if (savedAns.isBlank()) savedAns = safeGetString(saved, "solution");
+                    if (savedAns.isBlank()) savedAns = safeGetString(saved, "expectedAnswer");
+
+                    if (savedAns.isBlank() && !canonicalAnswerFromJson.isBlank()) {
+                        System.out.println("DEBUG: save has no canonical answer — removing answer keys and restoring (keeping JSON answer).");
+                        saved.remove("answer");
+                        saved.remove("solution");
+                        saved.remove("correctAnswer");
+                        saved.remove("expectedAnswer");
+                    }
+
+                    // if matched, restore
                     game.restoreState(saved);
+                    System.out.println("DEBUG: after restore from save, gameState = " + safeToString(game.getGameState()));
                 }
             }
         } catch (Throwable t) {
             System.err.println("Load save failed: " + t);
         }
+    }
+
+    // small helpers to avoid NullPointerException formatting in debug prints
+
+    private static String safeToString(Object o) {
+        try {
+            return String.valueOf(o);
+        } catch (Throwable t) {
+            return "<unprintable>";
+        }
+    }
+
+    private static String safeGetString(Map<String,Object> m, String key) {
+        if (m == null) return "";
+        Object v = m.getOrDefault(key, "");
+        return v == null ? "" : v.toString();
     }
 }
