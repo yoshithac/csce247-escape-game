@@ -371,28 +371,28 @@
         "height": 4.0,
         "cards": [
           {
-            "value": "🇧🇷"
+            "value": "ðŸ‡§ðŸ‡·"
           },
           {
-            "value": "🇬🇷"
+            "value": "ðŸ‡¬ðŸ‡·"
           },
           {
-            "value": "🇳🇱"
+            "value": "ðŸ‡³ðŸ‡±"
           },
           {
-            "value": "🇺🇸"
+            "value": "ðŸ‡ºðŸ‡¸"
           },
           {
-            "value": "🇵🇱"
+            "value": "ðŸ‡µðŸ‡±"
           },
           {
-            "value": "🇯🇵"
+            "value": "ðŸ‡¯ðŸ‡µ"
           },
           {
-            "value": "🇸🇦"
+            "value": "ðŸ‡¸ðŸ‡¦"
           },
           {
-            "value": "🇪🇬"
+            "value": "ðŸ‡ªðŸ‡¬"
           }
         ]
       }
@@ -476,12 +476,12 @@
       "puzzleType": "CIPHER",
       "difficulty": "HARD",
       "title": "Science Cipher",
-      "description": "Decrypt the element.",
+      "description": "Decrypt the element. (Shifted +3)",
       "data": {
-        "prompt": "HOFRGHQ",
+        "prompt": "RABJHQ",
         "answer": "OXYGEN",
         "category": "Science",
-        "maxAttempts": 3.0
+        "maxAttempts": 2.0
       }
     },
     {
@@ -489,12 +489,12 @@
       "puzzleType": "CIPHER",
       "difficulty": "HARD",
       "title": "Galaxy Cipher",
-      "description": "Find the name of a planet.",
+      "description": "Find the name of a planet. (Shifted +3)",
       "data": {
-        "prompt": "WBP",
+        "prompt": "PDUV",
         "answer": "MARS",
         "category": "Space",
-        "maxAttempts": 4.0
+        "maxAttempts": 2.0
       }
     },
     {
@@ -502,12 +502,12 @@
       "puzzleType": "CIPHER",
       "difficulty": "HARD",
       "title": "Composer Cipher",
-      "description": "A famous classical composer.",
+      "description": "A famous classical composer. (Shifted +4)",
       "data": {
-        "prompt": "FDVKZHZ",
+        "prompt": "FEGL",
         "answer": "BACH",
         "category": "Music",
-        "maxAttempts": 5.0
+        "maxAttempts": 2.0
       }
     },
     {
@@ -517,10 +517,10 @@
       "title": "Astronomy Anagram",
       "description": "Unscramble the planet.",
       "data": {
-        "prompt": "SNURA",
-        "answer": "URANUS",
+        "prompt": "UPJRETI",
+        "answer": "JUPITER",
         "category": "Space",
-        "maxAttempts": 4.0
+        "maxAttempts": 2.0
       }
     },
     {
@@ -530,10 +530,10 @@
       "title": "Mythology Mix",
       "description": "Unscramble a Greek god.",
       "data": {
-        "prompt": "IPOSDEN",
+        "prompt": "IPSODOEN",
         "answer": "POSEIDON",
         "category": "Mythology",
-        "maxAttempts": 4.0
+        "maxAttempts": 2.0
       }
     },
     {
@@ -543,10 +543,10 @@
       "title": "World City",
       "description": "Unscramble this world capital.",
       "data": {
-        "prompt": "OKYOT",
-        "answer": "TOKYO",
+        "prompt": "RDMDAI",
+        "answer": "MADRID",
         "category": "Cities",
-        "maxAttempts": 4.0
+        "maxAttempts": 2.0
       }
     },
     {
@@ -554,12 +554,12 @@
       "puzzleType": "RIDDLE",
       "difficulty": "HARD",
       "title": "The Endless Room",
-      "description": "A famous lateral thinking riddle.",
+      "description": "A famous thinking riddle.",
       "data": {
         "prompt": "I have no doors but I can be entered. No rooms but I have space. What am I?",
         "answer": "KEYBOARD",
         "category": "Objects",
-        "maxAttempts": 3.0
+        "maxAttempts": 2.0
       }
     },
     {
@@ -582,10 +582,10 @@
       "title": "Invisible Home",
       "description": "This riddle will keep you guessing.",
       "data": {
-        "prompt": "I am not alive, but I grow; I have no lungs, but I need air; what am I?",
+        "prompt": "I am not alive, but I grow. I have no lungs, but I need air. what am I?",
         "answer": "FIRE",
         "category": "Nature",
-        "maxAttempts": 3.0
+        "maxAttempts": 2.0
       }
     },
     {
@@ -925,28 +925,28 @@
         "height": 4.0,
         "cards": [
           {
-            "value": "🇨🇦"
+            "value": "ðŸ‡¨ðŸ‡¦"
           },
           {
-            "value": "🇲🇽"
+            "value": "ðŸ‡²ðŸ‡½"
           },
           {
-            "value": "🇩🇪"
+            "value": "ðŸ‡©ðŸ‡ª"
           },
           {
-            "value": "🇫🇷"
+            "value": "ðŸ‡«ðŸ‡·"
           },
           {
-            "value": "🇬🇧"
+            "value": "ðŸ‡¬ðŸ‡§"
           },
           {
-            "value": "🇮🇹"
+            "value": "ðŸ‡®ðŸ‡¹"
           },
           {
-            "value": "🇪🇸"
+            "value": "ðŸ‡ªðŸ‡¸"
           },
           {
-            "value": "🇨🇳"
+            "value": "ðŸ‡¨ðŸ‡³"
           }
         ]
       }
@@ -956,12 +956,12 @@
       "puzzleType": "CIPHER",
       "difficulty": "MEDIUM",
       "title": "Planet Cipher",
-      "description": "Decrypt the planet name.",
+      "description": "Decrypt the planet name. (Shifted -2)",
       "data": {
-        "prompt": "SDUWP",
+        "prompt": "CYPRF",
         "answer": "EARTH",
         "category": "Space",
-        "maxAttempts": 4.0
+        "maxAttempts": 3.0
       }
     },
     {
@@ -969,12 +969,12 @@
       "puzzleType": "CIPHER",
       "difficulty": "MEDIUM",
       "title": "River Cipher",
-      "description": "Which river is hidden?",
+      "description": "Which river is hidden? (Shifted +1)",
       "data": {
-        "prompt": "YLJS",
+        "prompt": "OJMF",
         "answer": "NILE",
         "category": "Geography",
-        "maxAttempts": 4.0
+        "maxAttempts": 3.0
       }
     },
     {
@@ -982,12 +982,12 @@
       "puzzleType": "CIPHER",
       "difficulty": "MEDIUM",
       "title": "Colorful Cipher",
-      "description": "A color encrypted.",
+      "description": "A color encrypted. (Shifted +1)",
       "data": {
-        "prompt": "UOHWW",
+        "prompt": "XIJUF",
         "answer": "WHITE",
         "category": "Color",
-        "maxAttempts": 4.0
+        "maxAttempts": 3.0
       }
     },
     {
@@ -997,10 +997,10 @@
       "title": "Animal Anagram",
       "description": "Rearrange to get an animal.",
       "data": {
-        "prompt": "LFOX",
-        "answer": "FOX",
+        "prompt": "QRRLUISE",
+        "answer": "SQUIRREL",
         "category": "Animal",
-        "maxAttempts": 4.0
+        "maxAttempts": 3.0
       }
     },
     {
@@ -1010,10 +1010,10 @@
       "title": "Season Anagram",
       "description": "A time of year.",
       "data": {
-        "prompt": "WNITER",
+        "prompt": "WNRETI",
         "answer": "WINTER",
         "category": "Season",
-        "maxAttempts": 4.0
+        "maxAttempts": 3.0
       }
     },
     {
@@ -1023,10 +1023,10 @@
       "title": "Capital Anagram",
       "description": "Capital city name.",
       "data": {
-        "prompt": "RAPIS",
+        "prompt": "ARPIS",
         "answer": "PARIS",
         "category": "Cities",
-        "maxAttempts": 4.0
+        "maxAttempts": 3.0
       }
     },
     {
@@ -1508,12 +1508,12 @@
       "puzzleType": "CIPHER",
       "difficulty": "EASY",
       "title": "Science Cipher",
-      "description": "Decrypt the element.",
+      "description": "Decrypt the element. (Shifted +1)",
       "data": {
-        "prompt": "HOFRGHQ",
+        "prompt": "PYZHFO",
         "answer": "OXYGEN",
         "category": "Science",
-        "maxAttempts": 3.0
+        "maxAttempts": 4.0
       }
     },
     {
@@ -1521,7 +1521,7 @@
       "puzzleType": "CIPHER",
       "difficulty": "EASY",
       "title": "Galaxy Cipher",
-      "description": "Find the name of a planet.",
+      "description": "Find the name of a planet. (Shifted +1)",
       "data": {
         "prompt": "NBST",
         "answer": "MARS",
@@ -1534,12 +1534,12 @@
       "puzzleType": "CIPHER",
       "difficulty": "EASY",
       "title": "Composer Cipher",
-      "description": "A famous classical composer.",
+      "description": "A famous classical composer. (Shifted +4)",
       "data": {
-        "prompt": "FDVKZHZ",
+        "prompt": "FEGL",
         "answer": "BACH",
         "category": "Music",
-        "maxAttempts": 5.0
+        "maxAttempts": 4.0
       }
     },
     {
@@ -1549,7 +1549,7 @@
       "title": "Astronomy Anagram",
       "description": "Unscramble the planet.",
       "data": {
-        "prompt": "SNURA",
+        "prompt": "SUNUAR",
         "answer": "URANUS",
         "category": "Space",
         "maxAttempts": 4.0
@@ -1562,8 +1562,8 @@
       "title": "Mythology Mix",
       "description": "Unscramble a Greek god.",
       "data": {
-        "prompt": "IPOSDEN",
-        "answer": "POSEIDON",
+        "prompt": "SZEU",
+        "answer": "ZEUS",
         "category": "Mythology",
         "maxAttempts": 4.0
       }
@@ -1585,39 +1585,39 @@
       "puzzleId": "ridd_e1",
       "puzzleType": "RIDDLE",
       "difficulty": "EASY",
-      "title": "The Endless Room",
-      "description": "A famous lateral thinking riddle.",
+      "title": "Tool Riddle",
+      "description": "A riddle about an object.",
       "data": {
-        "prompt": "I have no doors but I can be entered. No rooms but I have space. What am I?",
-        "answer": "KEYBOARD",
+        "prompt": "I shine in the dark but I am not the sun. You carry me in your hand. What am I?",
+        "answer": "FLASHLIGHT",
         "category": "Objects",
-        "maxAttempts": 3.0
+        "maxAttempts": 4.0
       }
     },
     {
       "puzzleId": "ridd_e2",
       "puzzleType": "RIDDLE",
       "difficulty": "EASY",
-      "title": "Word Riddle",
-      "description": "A riddle about letters.",
+      "title": "Winter Riddle",
+      "description": "A simple riddle.",
       "data": {
-        "prompt": "What comes once in a minute, twice in a moment, but never in a thousand years?",
-        "answer": "M",
-        "category": "Letters",
-        "maxAttempts": 2.0
+        "prompt": "I melt when you warm me, but I\u0027m not ice. What am I?",
+        "answer": "SNOW",
+        "category": "Nature",
+        "maxAttempts": 4.0
       }
     },
     {
       "puzzleId": "ridd_e3",
       "puzzleType": "RIDDLE",
       "difficulty": "EASY",
-      "title": "Invisible Home",
-      "description": "This riddle will keep you guessing.",
+      "title": "Animal Riddle",
+      "description": "Guess the animal.",
       "data": {
-        "prompt": "I am not alive, but I grow; I have no lungs, but I need air; what am I?",
-        "answer": "FIRE",
-        "category": "Nature",
-        "maxAttempts": 3.0
+        "prompt": "I have wings but I can\u0027t fly. I swim instead. What am I?",
+        "answer": "PENGUIN",
+        "category": "Animals",
+        "maxAttempts": 4.0
       }
     }
   ],
@@ -2163,32 +2163,32 @@
       "hintPriority": 3
     },
     {
-      "hintText": "It\u0027s on your desk.",
+      "hintText": "It\u0027s battery operated.",
       "puzzleId": "ridd_e1",
       "hintPriority": 1
     },
     {
-      "hintText": "Used for typing.",
+      "hintText": "Used in dark areas.",
       "puzzleId": "ridd_e1",
       "hintPriority": 2
     },
     {
-      "hintText": "Has keys and space.",
+      "hintText": "Utility measured in lumens",
       "puzzleId": "ridd_e1",
       "hintPriority": 3
     },
     {
-      "hintText": "It\u0027s a letter.",
+      "hintText": "Appears in the winter.",
       "puzzleId": "ridd_e2",
       "hintPriority": 1
     },
     {
-      "hintText": "You say it only once per minute.",
+      "hintText": "It is the color white",
       "puzzleId": "ridd_e2",
       "hintPriority": 2
     },
     {
-      "hintText": "Twice in a moment, never in a thousand years.",
+      "hintText": "Frosty the ____man.",
       "puzzleId": "ridd_e2",
       "hintPriority": 3
     },
