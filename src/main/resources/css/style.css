@@ -1,0 +1,609 @@
+/* ===================================
+   HAUNTED MANOR - MAIN APPLICATION STYLESHEET
+   Shared styles for all views (puzzles, progress, etc.)
+   
+   Note: GameContainerStyles.css and GameSessionStyles.css 
+   handle their specific views
+   =================================== */
+
+/* ==================
+   ROOT & GLOBAL STYLES
+   ================== */
+
+.root {
+    -fx-background-color: #181A3C;
+    -fx-font-family: "Jersey 10";
+}
+
+/* Apply Jersey 10 font to all common controls */
+.label, .button, .text-field, .password-field, .text-area,
+.combo-box, .choice-box, .list-view, .table-view, .tree-view,
+.menu, .menu-item, .menu-bar, .context-menu,
+.tab, .tab-pane, .titled-pane, .accordion,
+.tooltip, .hyperlink, .toggle-button, .radio-button, .check-box,
+.scroll-pane, .split-pane, .progress-bar, .progress-indicator,
+.slider, .spinner, .date-picker, .color-picker {
+    -fx-font-family: "Jersey 10";
+}
+
+/* Table specific */
+.table-view .column-header .label,
+.table-view .table-cell {
+    -fx-font-family: "Jersey 10";
+}
+
+/* List specific */
+.list-view .list-cell {
+    -fx-font-family: "Jersey 10";
+}
+
+/* ==================
+   BACKGROUND IMAGES
+   ================== */
+
+.welcome-screen-background {
+    -fx-background-color: #0A0E2A;
+}
+
+.login-background {
+    -fx-background-image: url("../images/backgrounds/house_exterior_front.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.main-menu-background {
+    -fx-background-image: url('../images/backgrounds/hallway_interior.png');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.game-background {
+    -fx-background-image: url('../images/backgrounds/background_frame.png');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.victory-background {
+    -fx-background-image: url('../images/backgrounds/final_escape_door.png');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+/* ==================
+   CONTENT PANELS & OVERLAYS
+   ================== */
+
+.content-panel {
+    -fx-background-color: rgba(24, 26, 60, 0.90);
+    -fx-background-radius: 4px;
+    -fx-padding: 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 20, 0, 0, 10);
+}
+
+.semi-transparent-panel {
+    -fx-background-color: rgba(24, 26, 60, 0.75);
+    -fx-background-radius: 4px;
+    -fx-padding: 20px;
+}
+
+/* ==================
+   TYPOGRAPHY
+   ================== */
+
+.title-label {
+    -fx-text-fill: white;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.subtitle-label {
+    -fx-text-fill: #CCCCCC;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.section-title {
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.stats-label {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.info-label {
+    -fx-text-fill: #aaaaaa;
+    -fx-font-size: 22px;
+    -fx-wrap-text: true;
+}
+
+.field-label {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+/* ==================
+   BUTTONS
+   ================== */
+
+.primary-button {
+    -fx-background-color: #313561;
+    -fx-text-fill: white;
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-min-width: 120px;
+    -fx-pref-width: 150px;
+    -fx-min-height: 40px;
+    -fx-pref-height: 50px;
+}
+
+.primary-button:hover {
+    -fx-background-color: #3D4270;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #252850;
+}
+
+.secondary-button {
+    -fx-background-color: #0E1A45;
+    -fx-text-fill: white;
+    -fx-font-size: 21px;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-min-width: 100px;
+    -fx-min-height: 35px;    
+}
+
+.secondary-button:hover {
+    -fx-background-color: #1A2656;
+}
+
+.menu-button {
+    -fx-background-color: #313561;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 20px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-min-width: 200px;
+    -fx-min-height: 40px;
+}
+
+.menu-button:hover {
+    -fx-background-color: #3D4270;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.logout-button {
+    -fx-background-color: #8B0000;
+    -fx-text-fill: white;
+    -fx-font-size: 21px;
+    -fx-padding: 8px 20px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: #A52A2A;
+}
+
+.hint-button {
+    -fx-background-color: #FFA500;
+    -fx-text-fill: white;
+    -fx-font-size: 21px;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.hint-button:hover {
+    -fx-background-color: #FFB733;
+}
+
+.back-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #AAAAAA;
+    -fx-font-size: 20px;
+    -fx-padding: 5px 10px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.back-button:hover {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(49, 53, 97, 0.4);
+    -fx-background-radius: 4px;
+}
+
+/* ==================
+   TEXT FIELDS & INPUTS
+   ================== */
+
+.text-field {
+    -fx-background-color: #0E1A45;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-padding: 10px;
+    -fx-background-radius: 4px;
+    -fx-border-color: #313561;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-prompt-text-fill: #888888;
+    -fx-pref-height: 35px;
+}
+
+.text-field:focused {
+    -fx-border-color: #FFA500;
+    -fx-border-width: 2px;
+}
+
+.password-field {
+    -fx-background-color: #0E1A45;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-padding: 10px;
+    -fx-background-radius: 4px;
+    -fx-border-color: #313561;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-prompt-text-fill: #888888;
+}
+
+.password-field:focused {
+    -fx-border-color: #FFA500;
+}
+
+/* ==================
+   MATCHING GAME CARDS
+   ================== */
+
+.card-button {
+    -fx-min-width: 90px;
+    -fx-min-height: 90px;
+    -fx-max-width: 90px;
+    -fx-max-height: 90px;
+    -fx-pref-width: 90px;
+    -fx-pref-height: 90px;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-content-display: center;
+    -fx-alignment: center;
+    -fx-padding: 0;
+}
+
+.card-face-down {
+    -fx-background-color: linear-gradient(to bottom, #e8e8e8, #d0d0d0);
+    -fx-text-fill: #888888;
+    -fx-font-size: 36px;
+    -fx-border-color: #aaaaaa;
+    -fx-border-width: 2;
+    -fx-border-radius: 8px;
+}
+
+.card-face-down:hover {
+    -fx-background-color: linear-gradient(to bottom, #87CEEB, #5fa8d3);
+    -fx-border-color: #4a90c2;
+    -fx-text-fill: #ffffff;
+}
+
+.card-face-up {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f5f5f5);
+    -fx-text-fill: #333333;
+    -fx-border-color: #4a90c2;
+    -fx-border-width: 2;
+    -fx-border-radius: 8px;
+}
+
+.card-hidden {
+    -fx-background-color: #313561;
+    -fx-text-fill: white;
+}
+
+.card-hidden:hover {
+    -fx-background-color: #3D4270;
+}
+
+.card-revealed {
+    -fx-background-color: #FFA500;
+    -fx-text-fill: white;
+}
+
+.card-matched {
+    -fx-background-color: linear-gradient(to bottom, #2e8b2e, #228B22);
+    -fx-text-fill: white;
+    -fx-border-color: #1a6b1a;
+    -fx-border-width: 2;
+    -fx-border-radius: 8px;
+}
+
+/* ==================
+   MAZE GAME CELLS
+   ================== */
+
+.maze-grid-container {
+    -fx-border-color: black;
+    -fx-border-width: 6px;
+    -fx-border-style: solid;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.maze-cell {
+    -fx-border-color: #333333;
+    -fx-border-width: 1px;
+}
+
+.maze-wall {
+    -fx-background-color: black;
+}
+
+.maze-path {
+    -fx-background-color: #3a3a4e;
+}
+
+.maze-player {
+    -fx-background-color: #4CAF50;
+}
+
+.maze-exit {
+    -fx-background-color: #FFD700;
+}
+
+/* ==================
+   WORD PUZZLE STYLES
+   ================== */
+
+.prompt-box {
+    -fx-background-color: #313561;
+    -fx-border-color: #FFA500;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 15px;
+}
+
+.section-header {
+    -fx-text-fill: #FFA500;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.prompt-text {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+}
+
+.guesses-section {
+    -fx-background-color: rgba(49, 53, 97, 0.6);
+    -fx-padding: 12px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.guess-item {
+    -fx-text-fill: #ff6b6b;
+    -fx-font-size: 22px;
+    -fx-wrap-text: true;
+}
+
+.hints-section {
+    -fx-background-color: rgba(49, 53, 97, 0.6);
+    -fx-padding: 12px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.hint-item {
+    -fx-text-fill: #FFA500;
+    -fx-font-size: 22px;
+    -fx-wrap-text: true;
+}
+
+.hint-availability {
+    -fx-text-fill: #FFA500;
+    -fx-font-size: 21px;
+    -fx-font-style: italic;
+}
+
+/* ==================
+   LIST VIEWS & TABLE VIEWS
+   ================== */
+
+.list-view {
+    -fx-background-color: rgba(24, 26, 60, 0.8);
+    -fx-border-color: #313561;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-padding: 8px;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #313561;
+    -fx-text-fill: white;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #3D4270;
+    -fx-text-fill: white;
+}
+
+.table-view {
+    -fx-background-color: rgba(24, 26, 60, 0.8);
+    -fx-border-color: #313561;
+    -fx-border-width: 2px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #313561;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-cell {
+    -fx-text-fill: white;
+    -fx-font-size: 21px;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #313561;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: rgba(49, 53, 97, 0.4);
+}
+
+/* ==================
+   PROGRESS BAR
+   ================== */
+
+.progress-bar {
+    -fx-background-color: #0E1A45;
+    -fx-pref-height: 20px;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #0E1A45;
+    -fx-background-radius: 4px;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: #4CAF50;
+    -fx-background-radius: 4px;
+}
+
+/* ==================
+   SEPARATORS
+   ================== */
+
+.separator {
+    -fx-background-color: #313561;
+}
+
+.separator .line {
+    -fx-border-color: #313561;
+    -fx-border-width: 1px;
+}
+
+/* ==================
+   SCROLL PANE
+   ================== */
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ==================
+   MESSAGE & ALERTS
+   ================== */
+
+.message-label {
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-min-height: 20px;
+    -fx-wrap-text: true;
+}
+
+.score-label {
+    -fx-text-fill: #FFD700;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.welcome-label {
+    -fx-text-fill: white;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+/* ==================
+   HEADER & FOOTER
+   ================== */
+
+.header-section {
+    -fx-background-color: #0E1A45;
+    -fx-padding: 15px;
+}
+
+.header-box {
+    -fx-background-color: rgba(14, 26, 69, 0.8);
+    -fx-padding: 15px;
+    -fx-background-radius: 4px;
+}
+
+.button-bar {
+    -fx-background-color: #0E1A45;
+    -fx-padding: 12px;
+    -fx-spacing: 10px;
+}
+
+/* ==================
+   RESPONSIVE SIZING
+   ================== */
+
+.root-pane {
+    -fx-min-width: 700px;
+    -fx-min-height: 600px;
+}
+
+/* ==================
+   END OF STYLESHEET
+   ================== */

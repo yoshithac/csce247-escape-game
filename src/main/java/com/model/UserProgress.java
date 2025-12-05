@@ -7,7 +7,9 @@ import java.util.Map;
 
 /**
  * User progress entity tracking completed puzzles and game state
- * Includes save/resume functionality for partially completed games
+ * 
+ *   CLEAN SOLUTION: Separate fields for paused puzzles and session data
+ * No backward compatibility - requires GameData.json update
  */
 public class UserProgress {
     private String userId;
@@ -15,12 +17,15 @@ public class UserProgress {
     private Map<String, Integer> puzzleScores;
     private int totalScore;
     
-    // For save/resume functionality
-    private String currentPuzzleId;
-    private Map<String, Object> gameState;
+    //   For PAUSED PUZZLE (individual game state)
+    private String currentPuzzleId;           // e.g., "maze_h1", "match_m2"
+    private Map<String, Object> pausedPuzzleState;  // Player position, matched cards, etc.
+    
+    //   For SESSION state (difficulty, remaining puzzles, timer)
+    private Map<String, Object> sessionState;  // Difficulty, timer, completed types
     
     /**
-     * Default constructor - initializes empty progress
+     * Default constructor
      */
     public UserProgress() {
         this.completedPuzzles = new ArrayList<>();
@@ -30,116 +35,97 @@ public class UserProgress {
     
     /**
      * Constructor with userId
-     * @param userId
      */
     public UserProgress(String userId) {
         this();
         this.userId = userId;
     }
     
-    // Getters
-    /**
-     * Get user ID
-     * @return String userId
-     */
+    // ============= GETTERS =============
+    
     public String getUserId() { 
         return userId; 
     }
     
-    /**
-     * Get list of completed puzzle IDs
-     * @return List of puzzle IDs
-     */
     public List<String> getCompletedPuzzles() { 
         return completedPuzzles; 
     }
     
-    /**
-     * Get map of puzzle scores
-     * @return Map of puzzleId to score
-     */
     public Map<String, Integer> getPuzzleScores() { 
         return puzzleScores; 
     }
     
-    /**
-     * Get total score across all completed puzzles
-     * @return int totalScore
-     */
     public int getTotalScore() { 
         return totalScore; 
     }
     
-    /**
-     * Get current puzzle ID for saved game
-     * @return String currentPuzzleId
-     */
     public String getCurrentPuzzleId() { 
         return currentPuzzleId; 
     }
     
-    /**
-     * Get saved game state
-     * @return Map representing game state
-     */
-    public Map<String, Object> getGameState() { 
-        return gameState; 
+    public Map<String, Object> getPausedPuzzleState() {
+        return pausedPuzzleState;
     }
     
-    // Setters
+    public Map<String, Object> getSessionState() {
+        return sessionState;
+    }
+    
     /**
-     * Set user ID
-     * @param userId
+     * Get game state - for compatibility with existing service calls
+     * Returns paused puzzle state if exists, otherwise session state
      */
+    public Map<String, Object> getGameState() {
+        if (pausedPuzzleState != null) {
+            return pausedPuzzleState;
+        }
+        return sessionState;
+    }
+    
+    // ============= SETTERS =============
+    
     public void setUserId(String userId) { 
         this.userId = userId; 
     }
     
-    /**
-     * Set list of completed puzzles
-     * @param completedPuzzles
-     */
     public void setCompletedPuzzles(List<String> completedPuzzles) { 
         this.completedPuzzles = completedPuzzles; 
     }
     
-    /**
-     * Set puzzle scores map
-     * @param puzzleScores
-     */
     public void setPuzzleScores(Map<String, Integer> puzzleScores) { 
         this.puzzleScores = puzzleScores; 
     }
     
-    /**
-     * Set total score
-     * @param totalScore
-     */
     public void setTotalScore(int totalScore) { 
         this.totalScore = totalScore; 
     }
     
-    /**
-     * Set current puzzle ID
-     * @param currentPuzzleId
-     */
     public void setCurrentPuzzleId(String currentPuzzleId) { 
         this.currentPuzzleId = currentPuzzleId; 
     }
     
-    /**
-     * Set saved game state
-     * @param gameState
-     */
-    public void setGameState(Map<String, Object> gameState) { 
-        this.gameState = gameState; 
+    public void setPausedPuzzleState(Map<String, Object> pausedPuzzleState) {
+        this.pausedPuzzleState = pausedPuzzleState;
     }
     
-    // Business methods
+    public void setSessionState(Map<String, Object> sessionState) {
+        this.sessionState = sessionState;
+    }
+    
+    /**
+     *   For backward compatibility with tests and existing code
+     * This setter is kept to avoid breaking existing code
+     */
+    public void setGameState(Map<String, Object> state) {
+        // For compatibility, save to both old and new fields
+        // Tests or old code may call this directly
+        this.pausedPuzzleState = state;
+    }
+    
+    // ============= BUSINESS METHODS =============
+    
     /**
      * Add a completed puzzle with score
-     * @param puzzleId
-     * @param score
      */
     public void addCompletedPuzzle(String puzzleId, int score) {
         if (!completedPuzzles.contains(puzzleId)) {
@@ -151,8 +137,6 @@ public class UserProgress {
     
     /**
      * Check if a puzzle is completed
-     * @param puzzleId
-     * @return true if completed
      */
     public boolean isPuzzleCompleted(String puzzleId) {
         return completedPuzzles.contains(puzzleId);
@@ -160,35 +144,83 @@ public class UserProgress {
     
     /**
      * Get count of completed puzzles
-     * @return int count
      */
     public int getCompletedCount() {
         return completedPuzzles.size();
     }
     
     /**
-     * Save game state for resume functionality
-     * @param puzzleId Current puzzle being played
-     * @param state Game state from PuzzleGame.saveState()
+     *   Save PAUSED PUZZLE state (player position, matched cards, etc.)
+     */
+    public void savePausedPuzzle(String puzzleId, Map<String, Object> state) {
+        this.currentPuzzleId = puzzleId;
+        this.pausedPuzzleState = state;
+        System.out.println("  Saved paused puzzle: " + puzzleId);
+    }
+    
+    /**
+     *   Save SESSION state (difficulty, timer, remaining puzzles)
+     */
+    public void saveSessionState(Map<String, Object> state) {
+        this.sessionState = state;
+        System.out.println("  Saved session state");
+    }
+    
+    /**
+     *   For compatibility with existing service calls
+     * Routes to appropriate method based on puzzleId
      */
     public void saveGameState(String puzzleId, Map<String, Object> state) {
-        this.currentPuzzleId = puzzleId;
-        this.gameState = state;
+        if ("SESSION".equals(puzzleId)) {
+            saveSessionState(state);
+        } else {
+            savePausedPuzzle(puzzleId, state);
+        }
     }
     
     /**
-     * Clear saved game state (after completion or abandon)
+     *   Clear paused puzzle state
+     */
+    public void clearPausedPuzzle() {
+        this.currentPuzzleId = null;
+        this.pausedPuzzleState = null;
+        System.out.println("  Cleared paused puzzle");
+    }
+    
+    /**
+     *   Clear session state
+     */
+    public void clearSessionState() {
+        this.sessionState = null;
+        System.out.println("  Cleared session state");
+    }
+    
+    /**
+     *   Clear ALL game state (puzzle + session)
      */
     public void clearGameState() {
-        this.currentPuzzleId = null;
-        this.gameState = null;
+        clearPausedPuzzle();
+        clearSessionState();
     }
     
     /**
-     * Check if user has a game in progress
-     * @return true if there's a saved game
+     *   Check if user has a paused puzzle
+     */
+    public boolean hasPausedPuzzle() {
+        return currentPuzzleId != null && pausedPuzzleState != null;
+    }
+    
+    /**
+     *   Check if user has a saved session
+     */
+    public boolean hasSavedSession() {
+        return sessionState != null && sessionState.containsKey("sessionDifficulty");
+    }
+    
+    /**
+     * Check if user has any game in progress
      */
     public boolean hasGameInProgress() {
-        return currentPuzzleId != null && gameState != null;
+        return hasPausedPuzzle() || hasSavedSession();
     }
 }

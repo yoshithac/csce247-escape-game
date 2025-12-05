@@ -68,7 +68,9 @@ public class MatchingGame implements PuzzleGame {
      * @Override
      */
     public boolean processInput(String input) {
-        if (input == null) return false;
+
+        if(input == null) return false;
+        
         String[] parts = input.trim().split("\\s+");
         if (parts.length != 2) {
             return false;
@@ -242,16 +244,8 @@ public class MatchingGame implements PuzzleGame {
         this.cols = ((Number) savedState.get("cols")).intValue();
         this.moveCount = ((Number) savedState.get("moveCount")).intValue();
         this.startTime = ((Number) savedState.get("startTime")).longValue();
-        this.firstCard = savedState.get("firstCard") != null ? 
-            new Position(
-                ((Number)((Map<String, Object>)savedState.get("firstCard")).get("row")).intValue(),
-                ((Number)((Map<String, Object>)savedState.get("firstCard")).get("col")).intValue()
-            ) : null;
-        this.secondCard = savedState.get("secondCard") != null ?
-            new Position(
-                ((Number)((Map<String, Object>)savedState.get("secondCard")).get("row")).intValue(),
-                ((Number)((Map<String, Object>)savedState.get("secondCard")).get("col")).intValue()
-            ) : null;
+        this.firstCard = restorePosition(savedState.get("firstCard"));
+        this.secondCard = restorePosition(savedState.get("secondCard"));
         this.showingPair = false;
 
         // Handle board restoration from JSON (ArrayList of ArrayLists)
@@ -271,5 +265,27 @@ public class MatchingGame implements PuzzleGame {
                 this.matched[r][c] = matchedList.get(r).get(c);
             }
         }
+    }
+    
+    /**
+     * Helper method to restore Position from saved state
+     * Handles both in-memory Position objects and JSON-deserialized Maps
+     */
+    @SuppressWarnings("unchecked")
+    private Position restorePosition(Object positionData) {
+        if (positionData == null) {
+            return null;
+        }
+        if (positionData instanceof Position) {
+            return (Position) positionData;
+        }
+        if (positionData instanceof Map) {
+            Map<String, Object> map = (Map<String, Object>) positionData;
+            return new Position(
+                ((Number) map.get("row")).intValue(),
+                ((Number) map.get("col")).intValue()
+            );
+        }
+        return null;
     }
 }

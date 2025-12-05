@@ -20,6 +20,10 @@ public class GameDataFacade {
     
     // In-memory data stores
     private List<User> users;
+    public List<User> getUsers() {
+        return users;
+    }
+
     private GameData gameData;
     
     // Private constructor for singleton
@@ -28,7 +32,7 @@ public class GameDataFacade {
         this.writer = new GameDataWriter();
         loadAllData();
     }
-
+    
     // Test constructor - allows dependency injection
     protected GameDataFacade(GameDataLoader loader, GameDataWriter writer) {
         this.loader = loader;
@@ -42,14 +46,6 @@ public class GameDataFacade {
     }
 
     /**
-    * Reset singleton instance - USE ONLY FOR TESTING
-    * This allows tests to start with a fresh instance
-    */
-    protected static void resetInstance() {
-        instance = null;
-    }
-
-    /**
      * Get singleton instance
      */
     public static GameDataFacade getInstance() {
@@ -57,6 +53,15 @@ public class GameDataFacade {
             instance = new GameDataFacade();
         }
         return instance;
+    }
+
+        /**
+     * Reset singleton instance for testing purpose only
+     */
+    protected static void resetInstance() {
+        
+        instance = null;
+       
     }
     
     /**
@@ -350,9 +355,29 @@ public class GameDataFacade {
         );
         gameData.getLeaderboard().add(entry);
         
-        // Sort leaderboard by score (descending)
-        gameData.getLeaderboard().sort((e1, e2) -> 
-            Integer.compare(e2.getTotalScore(), e1.getTotalScore()));
+        // Sort leaderboard with tiebreakers for stable ordering:
+        // 1. Score (descending) - higher score is better
+        // 2. Puzzles completed (descending) - more puzzles is better
+        // 3. Last updated (ascending) - earlier achievement is better
+        // 4. User name (ascending) - alphabetical for consistency
+        gameData.getLeaderboard().sort((e1, e2) -> {
+            // Primary: Score descending
+            int scoreCompare = Integer.compare(e2.getTotalScore(), e1.getTotalScore());
+            if (scoreCompare != 0) return scoreCompare;
+            
+            // Secondary: Puzzles completed descending
+            int puzzleCompare = Integer.compare(e2.getPuzzlesCompleted(), e1.getPuzzlesCompleted());
+            if (puzzleCompare != 0) return puzzleCompare;
+            
+            // Tertiary: Earlier date is better (ascending)
+            if (e1.getLastUpdated() != null && e2.getLastUpdated() != null) {
+                int dateCompare = e1.getLastUpdated().compareTo(e2.getLastUpdated());
+                if (dateCompare != 0) return dateCompare;
+            }
+            
+            // Final: Alphabetical by name for consistency
+            return e1.getUserName().compareToIgnoreCase(e2.getUserName());
+        });
     }
     
     /**
@@ -365,6 +390,14 @@ public class GameDataFacade {
             .limit(limit)
             .collect(Collectors.toList());
     }
+
+    /**
+ * Get full leaderboard (all entries)
+ * @return All leaderboard entries
+ */
+public List<LeaderboardEntry> getFullLeaderboard() {
+    return new ArrayList<>(gameData.getLeaderboard());
+}
     
     /**
      * Get user's rank on leaderboard
@@ -379,9 +412,5 @@ public class GameDataFacade {
             }
         }
         return -1;
-    }
-
-    public List<User> getUsers() {
-        return users;
     }
 }

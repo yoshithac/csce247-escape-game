@@ -3,14 +3,22 @@ module com.escapegame {
     requires javafx.fxml;
     requires com.google.gson;
     requires java.base;
-    requires freetts;
-    requires junit;
+    requires javafx.graphics;
+    requires javafx.base;
+    requires freetts;  
+    requires junit; 
 
     requires java.desktop;
 
-    opens com.escapegame to javafx.fxml;
+    // Export main packages
     exports com.escapegame;
-
-    opens com.model to com.google.gson;
+    exports com.escapegame.controller;
+    exports com.escapegame.util;
     exports com.model;
+
+    // Open packages for FXML injection and JSON serialization
+    opens com.escapegame to javafx.fxml;
+    opens com.escapegame.controller to javafx.fxml;
+    opens com.escapegame.util to javafx.fxml;
+    opens com.model to com.google.gson, javafx.base;
 }

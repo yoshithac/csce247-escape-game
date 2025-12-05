@@ -27,17 +27,97 @@
     "email": "john.doe@example.com",
     "role": "USER",
     "createdAt": "2025-10-24T14:30:00",
-    "lastLoginAt": "2025-11-20T13:13:53.108298"
+    "lastLoginAt": "2025-10-27T02:11:50.046298"
   },
   {
-    "userId": "Nitin",
-    "password": "Gideon20!6",
-    "firstName": "",
-    "lastName": "",
-    "email": "nitinrlr@gmail.com",
+    "userId": "remyr",
+    "password": "remyr",
+    "firstName": "remy",
+    "lastName": "r",
+    "email": "remyr",
     "role": "USER",
-    "createdAt": "2025-11-19T21:04:24.7508118",
-    "lastLoginAt": "2025-11-25T14:49:11.989097"
+    "createdAt": "2025-10-26T21:50:00.869575",
+    "lastLoginAt": "2025-10-28T13:36:06.326202"
+  },
+  {
+    "userId": "U1009",
+    "password": "P456",
+    "firstName": "Nancy",
+    "lastName": "David",
+    "email": "nancy@mail.com",
+    "role": "USER",
+    "createdAt": "2025-10-31T19:07:46.0021563",
+    "lastLoginAt": "2025-11-24T16:41:05.72545"
+  },
+  {
+    "userId": "U1111",
+    "password": "P1111",
+    "firstName": "Juke",
+    "lastName": "Dan",
+    "email": "Dan@mail.com",
+    "role": "USER",
+    "createdAt": "2025-11-16T20:55:32.9071346",
+    "lastLoginAt": "2025-11-27T19:51:05.2524854"
+  },
+  {
+    "userId": "U3333",
+    "password": "P3333",
+    "firstName": "Kick",
+    "lastName": "Joe",
+    "email": "joe@mail.com",
+    "role": "USER",
+    "createdAt": "2025-11-28T17:39:53.4609586",
+    "lastLoginAt": "2025-11-28T17:43:44.4021368"
+  },
+  {
+    "userId": "U2222",
+    "password": "P2222",
+    "firstName": "Jack",
+    "lastName": "Danial",
+    "email": "jack@mail.com",
+    "role": "USER",
+    "createdAt": "2025-11-27T19:59:46.5512056",
+    "lastLoginAt": "2025-12-02T00:25:45.4743327"
+  },
+  {
+    "userId": "U5555",
+    "password": "P5555",
+    "firstName": "Kelly",
+    "lastName": "Brown",
+    "email": "kelly@mail.com",
+    "role": "USER",
+    "createdAt": "2025-11-28T18:38:32.02658",
+    "lastLoginAt": "2025-12-02T10:14:41.3864532"
+  },
+  {
+    "userId": "U4444",
+    "password": "P4444",
+    "firstName": "Viva",
+    "lastName": "David",
+    "email": "viva@mail.com",
+    "role": "USER",
+    "createdAt": "2025-11-28T18:01:08.6429175",
+    "lastLoginAt": "2025-12-02T17:17:28.1070952"
+  },
+  {
+    "userId": "U7777",
+    "password": "P7777",
+    "firstName": "Dale",
+    "lastName": "Smith",
+    "email": "dale@mail.com",
+    "role": "USER",
+    "createdAt": "2025-12-02T17:24:10.6931629",
+    "lastLoginAt": "2025-12-04T00:40:57.9922741"
+  },
+  {
+    "userId": "U6666",
+    "password": "P6666",
+    "firstName": "Kevin",
+    "lastName": "Smith",
+    "email": "kevin@mail.com",
+    "role": "USER",
+    "createdAt": "2025-12-01T00:56:21.0122306",
+    "lastLoginAt": "2025-12-04T22:45:18.790371"
   },
   {
     "userId": "yoshi",
@@ -47,16 +127,6 @@
     "email": "yoshi@gmail.com",
     "role": "USER",
     "createdAt": "2025-10-25T15:44:44.4791578",
-    "lastLoginAt": "2025-12-03T19:03:36.0128941"
-  },
-  {
-    "userId": "remyr",
-    "password": "remyr",
-    "firstName": "remyr",
-    "lastName": "",
-    "email": "",
-    "role": "USER",
-    "createdAt": "2025-11-11T22:29:37.027541",
-    "lastLoginAt": "2025-12-03T19:04:32.4760406"
+    "lastLoginAt": "2025-12-05T15:42:55.5959532"
   }
 ]

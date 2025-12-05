@@ -2,9 +2,6 @@ package com.escapegame;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-
-import com.model.User;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,202 +11,243 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
- * JavaFX launcher for Whispers of Hollow Manor.
+ * JavaFX App - Main Entry Point
+ * Launches the Whispers of Hollow Manor Escape Game
+ * 
+ * Uses GameContainerView as the main container
+ * CSS Files:
+ *   - style.css - Global styles for puzzle views
+ *   - GameContainerStyles.css - Container/menu specific styles
+ *   - GameSessionStyles.css - Hallway game session styles
+ * Fonts:
+ *   - Jersey10-Regular.ttf - Custom game font
  */
 public class App extends Application {
 
     private static Scene scene;
+    private static Stage primaryStage;
 
-    /**
-     * Starts the JavaFX app.
-     * Loads fonts, the "home" FXML, applies styles, and sets up the main window.
-     * @param stage main application window
-     * @throws Exception if loading fails
-     */
     @Override
-    public void start(Stage stage) throws Exception {
-        Font.loadFont(App.class.getResourceAsStream("/com/escapegame/fonts/Jersey10-Regular.ttf"), 12);
-        Parent root = loadFXML("home");
-        scene = new Scene(root, 1440, 900);
-
-        try (InputStream is = getClass().getResourceAsStream("/fonts/Jersey10-Regular.ttf")) {
-            if (is == null) {
-                System.err.println("Font file not found");
-            } else {
-                javafx.scene.text.Font loaded = javafx.scene.text.Font.loadFont(is, 12);
-                if (loaded == null) {
-                    System.err.println("Font returned null");
-                } else {
-                    System.out.println("FONT LOADED OK -> family='" + loaded.getFamily()
-                            + "' name='" + loaded.getName() + "'");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void start(Stage stage) throws IOException {
+        primaryStage = stage;
+        
+        // Load custom fonts first (before any UI)
+        loadFonts();
+        
+        // Load GameContainerView as the starting view
+        scene = new Scene(loadFXML("GameContainerView"), 1000, 700);
+        
+        // Load all CSS files
+        loadStylesheets();
+        
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Whispers of Hollow Manor");
+        primaryStage.setResizable(true);
+        primaryStage.setMinWidth(900);
+        primaryStage.setMinHeight(700);
+        
+        primaryStage.show();
+        
+        System.out.println("Application started with GameContainerView");
+    }
+    
+    // Store loaded font for use by controllers
+    private static Font jerseyFont = null;
+    
+    /**
+     * Get the Jersey font with specified size
+     * @param size Font size
+     * @return Font with specified size, or system font if not loaded
+     */
+    public static Font getJerseyFont(double size) {
+        if (jerseyFont != null) {
+            return Font.font(jerseyFont.getFamily(), size);
         }
-
-        //Load stylesheet from possible locations
-        tryLoadStylesheet(scene);
-
-        stage.setScene(scene);
-        stage.setTitle("Whispers of Hollow Manor");
-        stage.setResizable(false);
-        stage.show();
+        return Font.font("System", size);
+    }
+    
+    /**
+     * Check if custom font is loaded
+     */
+    public static boolean isCustomFontLoaded() {
+        return jerseyFont != null;
+    }
+    
+    /**
+     * Load custom fonts
+     */
+    private void loadFonts() {
+        String[] fontFiles = {
+            "Jersey10-Regular.ttf"
+        };
+        
+        for (String fontFile : fontFiles) {
+            loadFont(fontFile);
+        }
+        
+        // Debug: Print all available font families
+        System.out.println("Available font families containing 'Jersey': ");
+        Font.getFamilies().stream()
+            .filter(f -> f.toLowerCase().contains("jersey"))
+            .forEach(f -> System.out.println("  - " + f));
+    }
+    
+    /**
+     * Load a font file from multiple possible locations
+     */
+    private void loadFont(String filename) {
+        String[] possiblePaths = {
+            "/fonts/" + filename,
+            "fonts/" + filename,
+            "/" + filename,
+            filename
+        };
+        
+        for (String path : possiblePaths) {
+            try {
+                InputStream fontStream = getClass().getResourceAsStream(path);
+                if (fontStream != null) {
+                    Font font = Font.loadFont(fontStream, 12);
+                    if (font != null) {
+                        // Store the font for later use
+                        jerseyFont = font;
+                        System.out.println("Loaded Font: " + font.getName() + " (family: " + font.getFamily() + ") from " + path);
+                        fontStream.close();
+                        return;
+                    }
+                    fontStream.close();
+                }
+            } catch (Exception e) {
+                // Continue to next path
+            }
+        }
+        
+        System.err.println("Warning: Could not load font file: " + filename);
+    }
+    
+    /**
+     * Load all stylesheets
+     */
+    private void loadStylesheets() {
+        // CSS files to load (in order of priority - later ones override earlier)
+        String[] cssFiles = {
+            "style.css",                    // Global styles (puzzles, tables, etc.)
+            "GameContainerStyles.css",      // Container view styles
+            "GameSessionStyles.css",        // Session view styles
+            "CertificatesStyles.css"        // Certificates view styles
+        };
+        
+        for (String cssFile : cssFiles) {
+            loadCSS(cssFile);
+        }
+    }
+    
+    /**
+     * Attempt to load a CSS file from multiple possible locations
+     */
+    private void loadCSS(String filename) {
+        String[] possiblePaths = {
+            filename,                       // Root of resources
+            "/" + filename,                 // Root with leading slash
+            "css/" + filename,              // css subfolder
+            "/css/" + filename              // css subfolder with leading slash
+        };
+        
+        for (String path : possiblePaths) {
+            try {
+                var resource = getClass().getResource(path);
+                if (resource != null) {
+                    scene.getStylesheets().add(resource.toExternalForm());
+                    System.out.println("✓ Loaded CSS: " + path);
+                    return;
+                }
+            } catch (Exception e) {
+                // Continue to next path
+            }
+        }
+        
+        System.err.println("Warning: Could not load CSS file: " + filename);
     }
 
     /**
-     * Replace scene root with the specified FXML.
-     * @param fxml FXML name (without extension)
-     * @throws IOException if loading fails
+     * Switch to a different view
+     * @param fxml FXML file name (without .fxml extension)
+     * @throws IOException if FXML cannot be loaded
      */
     public static void setRoot(String fxml) throws IOException {
-        if (scene == null) {
-            Parent root = loadFXML("home");
-            scene = new Scene(root, 1440, 900);
-            tryLoadStylesheet(scene);
-        }
-        Parent newRoot = loadFXML(fxml);
-        try {
-            scene.setRoot(newRoot);
-        } catch (Exception e) {
-            System.err.println("Failed to set root to " + fxml + ": " + e);
-            throw e;
-        }
-
-        String[] candidates = {
-                "/escapegame/styles.css",
-                "/com/escapegame/styles.css",
-                "/styles.css"
-        };
-        for (String cssPath : candidates) {
-            URL cssUrl = App.class.getResource(cssPath);
-            if (cssUrl != null) {
-                String cssToAdd = cssUrl.toExternalForm();
-                if (!scene.getStylesheets().contains(cssToAdd)) {
-                    scene.getStylesheets().add(cssToAdd);
-                }
-                break;
-            }
-        }
+        scene.setRoot(loadFXML(fxml));
     }
 
     /**
-     * Tries to load a stylesheet from known paths.
-     * @param scene scene to apply styles to
-     */
-    private static void tryLoadStylesheet(Scene scene) {
-        String[] candidates = {
-                "/escapegame/styles.css",
-                "/com/escapegame/styles.css",
-                "/styles.css"
-        };
-
-        boolean loaded = false;
-        for (String cssPath : candidates) {
-            URL cssUrl = App.class.getResource(cssPath);
-            if (cssUrl != null) {
-                scene.getStylesheets().add(cssUrl.toExternalForm());
-                System.out.println("Loaded stylesheet: " + cssPath);
-                loaded = true;
-                break;
-            }
-        }
-
-        if (!loaded) {
-            System.err.println("WARNING: stylesheet not found. Tried:");
-            for (String path : candidates) System.err.println("  " + path);
-            System.err.println("Expected file under src/main/resources.");
-        }
-    }
-
-    /**
-     * Loads an FXML file from /library/{fxml}.fxml.
-     * @param fxml FXML file name
-     * @return loaded root node
-     * @throws IOException if not found
+     * Load FXML file
+     * @param fxml FXML file name (without .fxml extension)
+     * @return Parent node
+     * @throws IOException if FXML cannot be loaded
      */
     private static Parent loadFXML(String fxml) throws IOException {
-        String res = "/library/" + fxml + ".fxml";
-        URL url = App.class.getResource(res);
-        if (url == null) {
-            String msg = "FXML not found: " + res;
-            System.err.println(msg);
-            throw new IOException(msg);
+        // Try multiple possible locations for FXML files
+        String[] possiblePaths = {
+            fxml + ".fxml",                  // Root of resources (most common)
+            "/" + fxml + ".fxml",            // Root with leading slash
+            "fxml/" + fxml + ".fxml",        // fxml subfolder
+            "/fxml/" + fxml + ".fxml",       // fxml subfolder with leading slash
+            "views/" + fxml + ".fxml",       // views subfolder
+            "/views/" + fxml + ".fxml"       // views subfolder with leading slash
+        };
+        
+        Exception lastException = null;
+        
+        for (String path : possiblePaths) {
+            try {
+                var resource = App.class.getResource(path);
+                if (resource != null) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(resource);
+                    Parent parent = fxmlLoader.load();
+                    System.out.println("✓ Loaded FXML: " + path);
+                    return parent;
+                }
+            } catch (Exception e) {
+                lastException = e;
+                // Log the actual error - this is usually the real problem
+                System.err.println("  Error loading " + path + ": " + e.getMessage());
+                if (e.getCause() != null) {
+                    System.err.println("    Caused by: " + e.getCause().getMessage());
+                }
+            }
         }
-        FXMLLoader loader = new FXMLLoader(url);
-        return loader.load();
+        
+        // If all paths fail, throw error with helpful message and root cause
+        String errorMsg = "Could not find/load FXML file: " + fxml + ".fxml\n" +
+            "Tried paths:\n" +
+            "  - " + fxml + ".fxml\n" +
+            "  - /" + fxml + ".fxml\n" +
+            "  - fxml/" + fxml + ".fxml\n" +
+            "  - /fxml/" + fxml + ".fxml\n\n" +
+            "Make sure FXML files are in: src/main/resources/ or src/main/resources/fxml/";
+        
+        if (lastException != null) {
+            errorMsg += "\n\nActual error: " + lastException.getMessage();
+            if (lastException.getCause() != null) {
+                errorMsg += "\nCaused by: " + lastException.getCause().getMessage();
+            }
+            // Print full stack trace for debugging
+            lastException.printStackTrace();
+        }
+        
+        throw new IOException(errorMsg);
     }
 
     /**
-     * Returns an FXMLLoader for the given FXML file.
-     * @param fxmlName name of FXML file
-     * @return FXMLLoader
-     * @throws IOException if not found
+     * Get the primary stage
      */
-    public static FXMLLoader loadFXMLWithLoader(String fxmlName) throws IOException {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/" + fxmlName + ".fxml"));
-        return loader;
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     /**
-     * Loads and returns the root node for a given FXML.
-     * @param fxmlName name of FXML file
-     * @return root node
-     * @throws IOException if loading fails
-     */
-    public static Parent loadRoot(String fxmlName) throws IOException {
-        FXMLLoader loader = loadFXMLWithLoader(fxmlName);
-        return loader.load();
-    }
-
-    /**
-     * Launches the JavaFX app.
-     * @param args CLI arguments
+     * Main method
      */
     public static void main(String[] args) {
-        launch();
-    }
-
-    private static User currentUser;
-
-    /**
-     * Sets the current user.
-     * @param u user to set
-     */
-    public static void setCurrentUser(User u) {
-        currentUser = u;
-    }
-
-    /**
-     * Gets the current user.
-     * @return current user or null
-     */
-    public static User getCurrentUser() {
-        return currentUser;
-    }
-
-    private static String chosenDifficulty = null;
-
-    /**
-     * Set the chosen difficulty
-     * @param difficulty
-     */
-    public static void setChosenDifficulty(String difficulty) {
-        chosenDifficulty = difficulty;
-        System.out.println("App: chosenDifficulty set: " + difficulty);
-    }
-
-    /**
-     * Get the chosen difficulty
-     */
-    public static String getChosenDifficulty() {
-        return chosenDifficulty;
-    }
-
-    /**
-     * Clear the chosen difficulty
-     */
-    public static void clearChosenDifficulty() {
-        chosenDifficulty = null;
+        launch(args);
     }
 }

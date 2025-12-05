@@ -46,6 +46,10 @@ public class GameController {
      */
     public void start() {
         while (authService.isLoggedIn()) {
+            // Prompt for difficulty if not set, or allow changing it explicitly
+      //      if (sessionDifficulty == null) {
+       //         sessionDifficulty = selectDifficulty();
+       //     }
 
             view.clear();
             String userId = authService.getCurrentUser().getUserId();
@@ -134,22 +138,8 @@ public class GameController {
     private void startNewPuzzle() {
         // Prompt for difficulty if not set
         if (sessionDifficulty == null) {
-        // Use App.getChosenDifficulty() if the UI set it
-        try {
-            String uiChoice = com.escapegame.App.getChosenDifficulty();
-            if (uiChoice != null) {
-                sessionDifficulty = uiChoice;
-                com.escapegame.App.clearChosenDifficulty();
-                System.out.println("GameController: using UI-chosen difficulty -> " + sessionDifficulty);
-            } else {
-                // fallback to CLI selection
-                sessionDifficulty = selectDifficulty();
-            }
-        } catch (NoClassDefFoundError | Exception e) {
-
             sessionDifficulty = selectDifficulty();
         }
-}
         
         String userId = authService.getCurrentUser().getUserId();
         String difficulty = sessionDifficulty;
@@ -244,7 +234,7 @@ public class GameController {
                 waitForUser();
                 return;
             }
-
+            
             // Play selected puzzle
             String selectedType = typesList.get(choiceNum - 1);
             Puzzle selectedPuzzle = sessionPuzzles.get(selectedType);
@@ -260,7 +250,6 @@ public class GameController {
         String msg = "You found all the keys needed to escape the manor .. Press ENTER to craft the final key and escape!";
         System.out.println(msg);
         Speak.speak(msg);
-        waitForUser();
         // End of final key message 
         // All puzzles completed!
         view.clear();
@@ -375,10 +364,6 @@ public class GameController {
         waitForUser();
     }
 
-    public void setSessionDifficulty(String difficulty) {
-        this.sessionDifficulty = difficulty;
-    }
-    
     /**
      * Save current game state
      * @param puzzle

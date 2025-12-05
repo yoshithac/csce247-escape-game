@@ -60,7 +60,9 @@ public class MazeGame implements PuzzleGame {
      * @Override
      */
     public boolean processInput(String input) {
-        if (input == null) return false;
+        
+        if(input == null) return false;
+
         input = input.toUpperCase().trim();
         
         int newRow = player.row;
@@ -178,17 +180,26 @@ public class MazeGame implements PuzzleGame {
     
     /**
      * Restore game state from saved data
+     * Handles JSON deserialization where:
+     * - int[][] becomes List<List<Number>>
+     * - Position becomes Map<String, Object>
      * @param savedState Map<String, Object> saved state
      * @Override
      */
+    @SuppressWarnings("unchecked")
     public void restoreState(Map<String, Object> savedState) {
         // Restore maze
         Map<String, Object> mazeData = (Map<String, Object>) savedState.get("maze");
         int width = ((Number) mazeData.get("width")).intValue();
         int height = ((Number) mazeData.get("height")).intValue();
-        int[][] grid = (int[][]) mazeData.get("grid");
-        Position start = (Position) mazeData.get("start");
-        Position end = (Position) mazeData.get("end");
+        
+        // Handle grid - could be int[][] (in-memory) or List<List<Number>> (from JSON)
+        int[][] grid = convertToIntArray(mazeData.get("grid"), height, width);
+        
+        // Handle positions - could be Position (in-memory) or Map (from JSON)
+        Position start = convertToPosition(mazeData.get("start"));
+        Position end = convertToPosition(mazeData.get("end"));
+        
         this.maze = new Maze(width, height, grid, start, end);
         
         // Restore player
@@ -200,5 +211,42 @@ public class MazeGame implements PuzzleGame {
         // Restore progress
         this.moveCount = ((Number) savedState.get("moveCount")).intValue();
         this.startTime = ((Number) savedState.get("startTime")).longValue();
+    }
+    
+    /**
+     * Convert grid data to int[][] - handles both in-memory and JSON formats
+     */
+    @SuppressWarnings("unchecked")
+    private int[][] convertToIntArray(Object gridData, int height, int width) {
+        if (gridData instanceof int[][]) {
+            return (int[][]) gridData;
+        }
+        
+        // From JSON - List<List<Number>>
+        int[][] grid = new int[height][width];
+        List<List<Number>> gridList = (List<List<Number>>) gridData;
+        for (int r = 0; r < height; r++) {
+            for (int c = 0; c < width; c++) {
+                grid[r][c] = gridList.get(r).get(c).intValue();
+            }
+        }
+        return grid;
+    }
+    
+    /**
+     * Convert position data to Position - handles both in-memory and JSON formats
+     */
+    @SuppressWarnings("unchecked")
+    private Position convertToPosition(Object posData) {
+        if (posData instanceof Position) {
+            return (Position) posData;
+        }
+        
+        // From JSON - Map<String, Object>
+        Map<String, Object> posMap = (Map<String, Object>) posData;
+        return new Position(
+            ((Number) posMap.get("row")).intValue(),
+            ((Number) posMap.get("col")).intValue()
+        );
     }
 }

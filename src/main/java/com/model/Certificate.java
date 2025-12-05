@@ -11,20 +11,14 @@ public class Certificate {
     private String description;
     private String difficulty;
     private int scoreAchieved;
-    private LocalDateTime earnedAt;  // add this field
+    private int completionTimeSeconds;  // Time to complete session in seconds
+    private LocalDateTime earnedAt;
 
     public Certificate() {
         this.earnedAt = LocalDateTime.now();
+        this.completionTimeSeconds = 0;
     }
-    /**
-     * 
-     * @param certificateId
-     * @param userId
-     * @param puzzleId
-     * @param description
-     * @param difficulty
-     * @param scoreAchieved
-     */
+
     public Certificate(String certificateId, String userId, String puzzleId,
                       String description, String difficulty, int scoreAchieved) {
         this();
@@ -79,6 +73,13 @@ public class Certificate {
     public int getScoreAchieved() { return scoreAchieved; }
 
     /**
+     * Gets the time taken to complete the session in seconds.
+     *
+     * @return the completion time in seconds
+     */
+    public int getCompletionTimeSeconds() { return completionTimeSeconds; }
+
+    /**
      * Gets the timestamp when the certificate was earned.
      *
      * @return the date and time the certificate was earned
@@ -130,6 +131,13 @@ public class Certificate {
     public void setScoreAchieved(int scoreAchieved) { this.scoreAchieved = scoreAchieved; }
 
     /**
+     * Sets the time taken to complete the session in seconds.
+     *
+     * @param completionTimeSeconds the completion time in seconds
+     */
+    public void setCompletionTimeSeconds(int completionTimeSeconds) { this.completionTimeSeconds = completionTimeSeconds; }
+
+    /**
      * Sets the timestamp when the certificate was earned.
      *
      * @param earnedAt the new timestamp
@@ -146,5 +154,26 @@ public class Certificate {
     public String toString() {
         return String.format("Certificate[%s] %s - %s (%s)", 
             certificateId, description, difficulty, earnedAt);
+    }
+    
+    // ==================== HELPER METHODS ====================
+    
+    /**
+     * Check if this is a session certificate (vs legacy puzzle certificate)
+     * @return true if this is a session-based certificate
+     */
+    public boolean isSessionCertificate() {
+        return puzzleId != null && puzzleId.startsWith("SESSION_");
+    }
+    
+    /**
+     * Get formatted completion time as "M:SS"
+     * @return Formatted time string
+     */
+    public String getFormattedTime() {
+        if (completionTimeSeconds <= 0) return "--:--";
+        int minutes = completionTimeSeconds / 60;
+        int seconds = completionTimeSeconds % 60;
+        return String.format("%d:%02d", minutes, seconds);
     }
 }

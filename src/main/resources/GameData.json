@@ -1,11 +1,431 @@
 {
   "puzzles": [
     {
+      "puzzleId": "maze_e1",
+      "puzzleType": "MAZE",
+      "difficulty": "EASY",
+      "title": "Manor Entrance",
+      "description": "Find your way through the garden maze.",
+      "data": {
+        "width": 5.0,
+        "height": 5.0,
+        "grid": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "start": {
+          "row": 1.0,
+          "col": 1.0
+        },
+        "end": {
+          "row": 3.0,
+          "col": 1.0
+        }
+      }
+    },
+    {
+      "puzzleId": "maze_e2",
+      "puzzleType": "MAZE",
+      "difficulty": "EASY",
+      "title": "Servant\u0027s Quarters",
+      "description": "Navigate the simple hallway.",
+      "data": {
+        "width": 5.0,
+        "height": 5.0,
+        "grid": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "start": {
+          "row": 1.0,
+          "col": 1.0
+        },
+        "end": {
+          "row": 1.0,
+          "col": 3.0
+        }
+      }
+    },
+    {
+      "puzzleId": "maze_e3",
+      "puzzleType": "MAZE",
+      "difficulty": "EASY",
+      "title": "Kitchen Path",
+      "description": "Find the way to the pantry.",
+      "data": {
+        "width": 5.0,
+        "height": 5.0,
+        "grid": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "start": {
+          "row": 1.0,
+          "col": 1.0
+        },
+        "end": {
+          "row": 3.0,
+          "col": 3.0
+        }
+      }
+    },
+    {
+      "puzzleId": "maze_m1",
+      "puzzleType": "MAZE",
+      "difficulty": "MEDIUM",
+      "title": "Library Labyrinth",
+      "description": "Navigate through the dusty bookshelves.",
+      "data": {
+        "width": 7.0,
+        "height": 7.0,
+        "grid": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "start": {
+          "row": 1.0,
+          "col": 1.0
+        },
+        "end": {
+          "row": 5.0,
+          "col": 5.0
+        }
+      }
+    },
+    {
+      "puzzleId": "maze_m2",
+      "puzzleType": "MAZE",
+      "difficulty": "MEDIUM",
+      "title": "Wine Cellar",
+      "description": "Find your way through the dark cellar.",
+      "data": {
+        "width": 7.0,
+        "height": 7.0,
+        "grid": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "start": {
+          "row": 1.0,
+          "col": 1.0
+        },
+        "end": {
+          "row": 5.0,
+          "col": 1.0
+        }
+      }
+    },
+    {
+      "puzzleId": "maze_m3",
+      "puzzleType": "MAZE",
+      "difficulty": "MEDIUM",
+      "title": "Attic Passage",
+      "description": "Navigate the cluttered attic.",
+      "data": {
+        "width": 7.0,
+        "height": 7.0,
+        "grid": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "start": {
+          "row": 1.0,
+          "col": 1.0
+        },
+        "end": {
+          "row": 5.0,
+          "col": 5.0
+        }
+      }
+    },
+    {
       "puzzleId": "maze_h1",
       "puzzleType": "MAZE",
       "difficulty": "HARD",
-      "title": "Maze Inferno",
-      "description": "Intense 9x9 maze for veterans.",
+      "title": "Dungeon Depths",
+      "description": "Escape the manor\u0027s secret dungeon.",
       "data": {
         "width": 9.0,
         "height": 9.0,
@@ -124,8 +544,8 @@
       "puzzleId": "maze_h2",
       "puzzleType": "MAZE",
       "difficulty": "HARD",
-      "title": "Maze Twister",
-      "description": "Cunning turns and dead-ends.",
+      "title": "Secret Tunnels",
+      "description": "Navigate the underground passages.",
       "data": {
         "width": 9.0,
         "height": 9.0,
@@ -144,31 +564,9 @@
           [
             1.0,
             0.0,
-            1.0,
             0.0,
-            1.0,
             0.0,
             1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
             0.0,
             1.0,
             0.0,
@@ -178,8 +576,19 @@
             1.0,
             1.0,
             1.0,
+            0.0,
             1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
             1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
             0.0,
             1.0,
             1.0,
@@ -188,8 +597,8 @@
           [
             1.0,
             0.0,
-            0.0,
-            0.0,
+            1.0,
+            1.0,
             1.0,
             0.0,
             0.0,
@@ -201,6 +610,17 @@
             0.0,
             1.0,
             0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
             1.0,
             1.0,
             1.0,
@@ -209,7 +629,7 @@
           ],
           [
             1.0,
-            0.0,
+            1.0,
             1.0,
             0.0,
             0.0,
@@ -244,8 +664,8 @@
       "puzzleId": "maze_h3",
       "puzzleType": "MAZE",
       "difficulty": "HARD",
-      "title": "Labyrinth X",
-      "description": "Only for the brave.",
+      "title": "Catacombs",
+      "description": "Find your way through the ancient catacombs.",
       "data": {
         "width": 9.0,
         "height": 9.0,
@@ -265,29 +685,7 @@
             1.0,
             0.0,
             0.0,
-            0.0,
             1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
             0.0,
             0.0,
             0.0,
@@ -296,10 +694,10 @@
           ],
           [
             1.0,
+            0.0,
             1.0,
             1.0,
-            1.0,
-            1.0,
+            0.0,
             1.0,
             1.0,
             0.0,
@@ -319,12 +717,34 @@
           [
             1.0,
             1.0,
-            1.0,
+            0.0,
             1.0,
             1.0,
             0.0,
             1.0,
             0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
             1.0
           ],
           [
@@ -361,38 +781,698 @@
       }
     },
     {
+      "puzzleId": "maze_h4",
+      "puzzleType": "MAZE",
+      "difficulty": "HARD",
+      "title": "Labyrinth of Souls",
+      "description": "Lost spirits haunt this endless labyrinth.",
+      "data": {
+        "width": 11.0,
+        "height": 11.0,
+        "grid": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "start": {
+          "row": 1.0,
+          "col": 1.0
+        },
+        "end": {
+          "row": 9.0,
+          "col": 9.0
+        }
+      }
+    },
+    {
+      "puzzleId": "maze_h5",
+      "puzzleType": "MAZE",
+      "difficulty": "HARD",
+      "title": "Depths Below",
+      "description": "Ancient passages stretch endlessly beneath the manor.",
+      "data": {
+        "width": 11.0,
+        "height": 11.0,
+        "grid": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "start": {
+          "row": 1.0,
+          "col": 1.0
+        },
+        "end": {
+          "row": 9.0,
+          "col": 9.0
+        }
+      }
+    },
+    {
+      "puzzleId": "maze_h6",
+      "puzzleType": "MAZE",
+      "difficulty": "HARD",
+      "title": "The Final Passage",
+      "description": "The last barrier between you and freedom.",
+      "data": {
+        "width": 11.0,
+        "height": 11.0,
+        "grid": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "start": {
+          "row": 1.0,
+          "col": 1.0
+        },
+        "end": {
+          "row": 9.0,
+          "col": 9.0
+        }
+      }
+    },
+    {
+      "puzzleId": "match_e1",
+      "puzzleType": "MATCHING",
+      "difficulty": "EASY",
+      "title": "Spooky Symbols",
+      "description": "Match the haunted symbols.",
+      "data": {
+        "width": 4.0,
+        "height": 2.0,
+        "cards": [
+          {
+            "value": "👻"
+          },
+          {
+            "value": "🎃"
+          },
+          {
+            "value": "🦇"
+          },
+          {
+            "value": "🕷️"
+          }
+        ]
+      }
+    },
+    {
+      "puzzleId": "match_e2",
+      "puzzleType": "MATCHING",
+      "difficulty": "EASY",
+      "title": "Manor Objects",
+      "description": "Match items found in the manor.",
+      "data": {
+        "width": 4.0,
+        "height": 2.0,
+        "cards": [
+          {
+            "value": "🕯️"
+          },
+          {
+            "value": "🔑"
+          },
+          {
+            "value": "📜"
+          },
+          {
+            "value": "💎"
+          }
+        ]
+      }
+    },
+    {
+      "puzzleId": "match_e3",
+      "puzzleType": "MATCHING",
+      "difficulty": "EASY",
+      "title": "Creature Cards",
+      "description": "Match the mysterious creatures.",
+      "data": {
+        "width": 4.0,
+        "height": 2.0,
+        "cards": [
+          {
+            "value": "🐺"
+          },
+          {
+            "value": "🦉"
+          },
+          {
+            "value": "🐈‍⬛"
+          },
+          {
+            "value": "🐀"
+          }
+        ]
+      }
+    },
+    {
+      "puzzleId": "match_m1",
+      "puzzleType": "MATCHING",
+      "difficulty": "MEDIUM",
+      "title": "Haunted Gallery",
+      "description": "Match the portraits in the gallery.",
+      "data": {
+        "width": 4.0,
+        "height": 3.0,
+        "cards": [
+          {
+            "value": "👑"
+          },
+          {
+            "value": "⚔️"
+          },
+          {
+            "value": "🛡️"
+          },
+          {
+            "value": "🗡️"
+          },
+          {
+            "value": "🏰"
+          },
+          {
+            "value": "👸"
+          }
+        ]
+      }
+    },
+    {
+      "puzzleId": "match_m2",
+      "puzzleType": "MATCHING",
+      "difficulty": "MEDIUM",
+      "title": "Potion Ingredients",
+      "description": "Match the witch\u0027s ingredients.",
+      "data": {
+        "width": 4.0,
+        "height": 3.0,
+        "cards": [
+          {
+            "value": "🍄"
+          },
+          {
+            "value": "🌿"
+          },
+          {
+            "value": "🔮"
+          },
+          {
+            "value": "⚗️"
+          },
+          {
+            "value": "🧪"
+          },
+          {
+            "value": "🌙"
+          }
+        ]
+      }
+    },
+    {
+      "puzzleId": "match_m3",
+      "puzzleType": "MATCHING",
+      "difficulty": "MEDIUM",
+      "title": "Mystic Runes",
+      "description": "Match the ancient runes.",
+      "data": {
+        "width": 4.0,
+        "height": 3.0,
+        "cards": [
+          {
+            "value": "☀️"
+          },
+          {
+            "value": "⭐"
+          },
+          {
+            "value": "🌟"
+          },
+          {
+            "value": "✨"
+          },
+          {
+            "value": "💫"
+          },
+          {
+            "value": "🌀"
+          }
+        ]
+      }
+    },
+    {
       "puzzleId": "match_h1",
       "puzzleType": "MATCHING",
       "difficulty": "HARD",
-      "title": "Flags Frenzy",
-      "description": "Match pairs of obscure world flags.",
+      "title": "Arcane Archives",
+      "description": "Match all the magical artifacts.",
       "data": {
         "width": 4.0,
         "height": 4.0,
         "cards": [
           {
-            "value": "ðŸ‡§ðŸ‡·"
+            "value": "📿"
           },
           {
-            "value": "ðŸ‡¬ðŸ‡·"
+            "value": "🗝️"
           },
           {
-            "value": "ðŸ‡³ðŸ‡±"
+            "value": "📖"
           },
           {
-            "value": "ðŸ‡ºðŸ‡¸"
+            "value": "🎭"
           },
           {
-            "value": "ðŸ‡µðŸ‡±"
+            "value": "⚰️"
           },
           {
-            "value": "ðŸ‡¯ðŸ‡µ"
+            "value": "💀"
           },
           {
-            "value": "ðŸ‡¸ðŸ‡¦"
+            "value": "🕸️"
           },
           {
-            "value": "ðŸ‡ªðŸ‡¬"
+            "value": "👻"
           }
         ]
       }
@@ -401,35 +1481,35 @@
       "puzzleId": "match_h2",
       "puzzleType": "MATCHING",
       "difficulty": "HARD",
-      "title": "Alphabet Pairs",
-      "description": "Find the alphabet matches.",
+      "title": "Zodiac Signs",
+      "description": "Match the celestial symbols.",
       "data": {
         "width": 4.0,
         "height": 4.0,
         "cards": [
           {
-            "value": "A"
+            "value": "♈"
           },
           {
-            "value": "B"
+            "value": "♉"
           },
           {
-            "value": "C"
+            "value": "♊"
           },
           {
-            "value": "D"
+            "value": "♋"
           },
           {
-            "value": "E"
+            "value": "♌"
           },
           {
-            "value": "F"
+            "value": "♍"
           },
           {
-            "value": "G"
+            "value": "♎"
           },
           {
-            "value": "H"
+            "value": "♏"
           }
         ]
       }
@@ -438,115 +1518,349 @@
       "puzzleId": "match_h3",
       "puzzleType": "MATCHING",
       "difficulty": "HARD",
-      "title": "Number Match",
-      "description": "Test your memory of numbers .",
+      "title": "Elemental Forces",
+      "description": "Match the elemental powers.",
       "data": {
         "width": 4.0,
         "height": 4.0,
         "cards": [
           {
-            "value": "1"
+            "value": "🔥"
           },
           {
-            "value": "2"
+            "value": "💧"
           },
           {
-            "value": "3"
+            "value": "🌪️"
           },
           {
-            "value": "4"
+            "value": "🌍"
           },
           {
-            "value": "5"
+            "value": "⚡"
           },
           {
-            "value": "6"
+            "value": "❄️"
           },
           {
-            "value": "7"
+            "value": "☁️"
           },
           {
-            "value": "8"
+            "value": "🌊"
           }
         ]
+      }
+    },
+    {
+      "puzzleId": "cipher_e1",
+      "puzzleType": "CIPHER",
+      "difficulty": "EASY",
+      "title": "Ghost Cipher",
+      "description": "Decode the ghostly word.",
+      "data": {
+        "prompt": "HGOST",
+        "answer": "GHOST",
+        "category": "Manor",
+        "maxAttempts": 5.0
+      }
+    },
+    {
+      "puzzleId": "cipher_e2",
+      "puzzleType": "CIPHER",
+      "difficulty": "EASY",
+      "title": "Creature Code",
+      "description": "What creature lurks in shadows?",
+      "data": {
+        "prompt": "PIDERS",
+        "answer": "SPIDER",
+        "category": "Creatures",
+        "maxAttempts": 5.0
+      }
+    },
+    {
+      "puzzleId": "cipher_e3",
+      "puzzleType": "CIPHER",
+      "difficulty": "EASY",
+      "title": "Room Cipher",
+      "description": "Decode the secret room.",
+      "data": {
+        "prompt": "TICTA",
+        "answer": "ATTIC",
+        "category": "Rooms",
+        "maxAttempts": 5.0
+      }
+    },
+    {
+      "puzzleId": "cipher_m1",
+      "puzzleType": "CIPHER",
+      "difficulty": "MEDIUM",
+      "title": "Manor Mystery",
+      "description": "Decode the manor\u0027s secret.",
+      "data": {
+        "prompt": "HANTPOM",
+        "answer": "PHANTOM",
+        "category": "Spirits",
+        "maxAttempts": 4.0
+      }
+    },
+    {
+      "puzzleId": "cipher_m2",
+      "puzzleType": "CIPHER",
+      "difficulty": "MEDIUM",
+      "title": "Dark Magic",
+      "description": "Decode the spell word.",
+      "data": {
+        "prompt": "RYCEROS",
+        "answer": "SORCERY",
+        "category": "Magic",
+        "maxAttempts": 4.0
+      }
+    },
+    {
+      "puzzleId": "cipher_m3",
+      "puzzleType": "CIPHER",
+      "difficulty": "MEDIUM",
+      "title": "Hidden Message",
+      "description": "What is the manor\u0027s secret?",
+      "data": {
+        "prompt": "YSTMERY",
+        "answer": "MYSTERY",
+        "category": "Secrets",
+        "maxAttempts": 4.0
       }
     },
     {
       "puzzleId": "cipher_h1",
       "puzzleType": "CIPHER",
       "difficulty": "HARD",
-      "title": "Science Cipher",
-      "description": "Decrypt the element. (Shifted +3)",
+      "title": "Ancient Evil",
+      "description": "Decode the dark entity.",
       "data": {
-        "prompt": "RABJHQ",
-        "answer": "OXYGEN",
-        "category": "Science",
-        "maxAttempts": 2.0
+        "prompt": "ECRNOMACNER",
+        "answer": "NECROMANCER",
+        "category": "Beings",
+        "maxAttempts": 3.0
       }
     },
     {
       "puzzleId": "cipher_h2",
       "puzzleType": "CIPHER",
       "difficulty": "HARD",
-      "title": "Galaxy Cipher",
-      "description": "Find the name of a planet. (Shifted +3)",
+      "title": "Forbidden Knowledge",
+      "description": "Decode the forbidden art.",
       "data": {
-        "prompt": "PDUV",
-        "answer": "MARS",
-        "category": "Space",
-        "maxAttempts": 2.0
+        "prompt": "HCYMLEA",
+        "answer": "ALCHEMY",
+        "category": "Arts",
+        "maxAttempts": 3.0
       }
     },
     {
       "puzzleId": "cipher_h3",
       "puzzleType": "CIPHER",
       "difficulty": "HARD",
-      "title": "Composer Cipher",
-      "description": "A famous classical composer. (Shifted +4)",
+      "title": "Final Secret",
+      "description": "The manor\u0027s darkest secret.",
       "data": {
-        "prompt": "FEGL",
-        "answer": "BACH",
-        "category": "Music",
-        "maxAttempts": 2.0
+        "prompt": "PPAARIINTO",
+        "answer": "APPARITION",
+        "category": "Spirits",
+        "maxAttempts": 3.0
+      }
+    },
+    {
+      "puzzleId": "anag_e1",
+      "puzzleType": "ANAGRAM",
+      "difficulty": "EASY",
+      "title": "Night Creature",
+      "description": "Unscramble the night flyer.",
+      "data": {
+        "prompt": "TBA",
+        "answer": "BAT",
+        "category": "Creatures",
+        "maxAttempts": 5.0
+      }
+    },
+    {
+      "puzzleId": "anag_e2",
+      "puzzleType": "ANAGRAM",
+      "difficulty": "EASY",
+      "title": "Manor Light",
+      "description": "Unscramble the light source.",
+      "data": {
+        "prompt": "LEDCAN",
+        "answer": "CANDLE",
+        "category": "Objects",
+        "maxAttempts": 5.0
+      }
+    },
+    {
+      "puzzleId": "anag_e3",
+      "puzzleType": "ANAGRAM",
+      "difficulty": "EASY",
+      "title": "Scary Word",
+      "description": "Unscramble something spooky.",
+      "data": {
+        "prompt": "ARSCE",
+        "answer": "SCARE",
+        "category": "Feelings",
+        "maxAttempts": 5.0
+      }
+    },
+    {
+      "puzzleId": "anag_m1",
+      "puzzleType": "ANAGRAM",
+      "difficulty": "MEDIUM",
+      "title": "Undead Creature",
+      "description": "Unscramble the walking dead.",
+      "data": {
+        "prompt": "MIBZOE",
+        "answer": "ZOMBIE",
+        "category": "Creatures",
+        "maxAttempts": 4.0
+      }
+    },
+    {
+      "puzzleId": "anag_m2",
+      "puzzleType": "ANAGRAM",
+      "difficulty": "MEDIUM",
+      "title": "Dark Place",
+      "description": "Unscramble where spirits rest.",
+      "data": {
+        "prompt": "VERAGEYDR",
+        "answer": "GRAVEYARD",
+        "category": "Places",
+        "maxAttempts": 4.0
+      }
+    },
+    {
+      "puzzleId": "anag_m3",
+      "puzzleType": "ANAGRAM",
+      "difficulty": "MEDIUM",
+      "title": "Witch\u0027s Tool",
+      "description": "Unscramble the flying object.",
+      "data": {
+        "prompt": "OMTSIBCORK",
+        "answer": "BROOMSTICK",
+        "category": "Objects",
+        "maxAttempts": 4.0
       }
     },
     {
       "puzzleId": "anag_h1",
       "puzzleType": "ANAGRAM",
       "difficulty": "HARD",
-      "title": "Astronomy Anagram",
-      "description": "Unscramble the planet.",
+      "title": "Blood Drinker",
+      "description": "Unscramble the immortal creature.",
       "data": {
-        "prompt": "UPJRETI",
-        "answer": "JUPITER",
-        "category": "Space",
-        "maxAttempts": 2.0
+        "prompt": "PREIVAM",
+        "answer": "VAMPIRE",
+        "category": "Creatures",
+        "maxAttempts": 3.0
       }
     },
     {
       "puzzleId": "anag_h2",
       "puzzleType": "ANAGRAM",
       "difficulty": "HARD",
-      "title": "Mythology Mix",
-      "description": "Unscramble a Greek god.",
+      "title": "Haunted House",
+      "description": "Unscramble the spooky dwelling.",
       "data": {
-        "prompt": "IPSODOEN",
-        "answer": "POSEIDON",
-        "category": "Mythology",
-        "maxAttempts": 2.0
+        "prompt": "SIONNAM",
+        "answer": "MANSION",
+        "category": "Places",
+        "maxAttempts": 3.0
       }
     },
     {
       "puzzleId": "anag_h3",
       "puzzleType": "ANAGRAM",
       "difficulty": "HARD",
-      "title": "World City",
-      "description": "Unscramble this world capital.",
+      "title": "Dark Magic User",
+      "description": "Unscramble the evil spellcaster.",
       "data": {
-        "prompt": "RDMDAI",
-        "answer": "MADRID",
-        "category": "Cities",
-        "maxAttempts": 2.0
+        "prompt": "RERSOCES",
+        "answer": "SORCERER",
+        "category": "Beings",
+        "maxAttempts": 3.0
+      }
+    },
+    {
+      "puzzleId": "ridd_e1",
+      "puzzleType": "RIDDLE",
+      "difficulty": "EASY",
+      "title": "Manor Guardian",
+      "description": "What watches over the manor?",
+      "data": {
+        "prompt": "I hoot at night and fly without sound. Who am I?",
+        "answer": "OWL",
+        "category": "Creatures",
+        "maxAttempts": 5.0
+      }
+    },
+    {
+      "puzzleId": "ridd_e2",
+      "puzzleType": "RIDDLE",
+      "difficulty": "EASY",
+      "title": "Light in Darkness",
+      "description": "What lights the manor halls?",
+      "data": {
+        "prompt": "I dance but have no legs, I breathe but have no lungs, and I die when fed. What am I?",
+        "answer": "FIRE",
+        "category": "Elements",
+        "maxAttempts": 5.0
+      }
+    },
+    {
+      "puzzleId": "ridd_e3",
+      "puzzleType": "RIDDLE",
+      "difficulty": "EASY",
+      "title": "Keeper of Secrets",
+      "description": "What opens all doors?",
+      "data": {
+        "prompt": "I have teeth but cannot bite. I open things but am not a hand. What am I?",
+        "answer": "KEY",
+        "category": "Objects",
+        "maxAttempts": 5.0
+      }
+    },
+    {
+      "puzzleId": "ridd_m1",
+      "puzzleType": "RIDDLE",
+      "difficulty": "MEDIUM",
+      "title": "Night Walker",
+      "description": "What creature is this?",
+      "data": {
+        "prompt": "I sleep by day and hunt by night. I hang upside down and use sound to see. What am I?",
+        "answer": "BAT",
+        "category": "Creatures",
+        "maxAttempts": 4.0
+      }
+    },
+    {
+      "puzzleId": "ridd_m2",
+      "puzzleType": "RIDDLE",
+      "difficulty": "MEDIUM",
+      "title": "Invisible Presence",
+      "description": "What haunts the halls?",
+      "data": {
+        "prompt": "I can be seen but not touched. I can walk through walls. The living fear me. What am I?",
+        "answer": "GHOST",
+        "category": "Spirits",
+        "maxAttempts": 4.0
+      }
+    },
+    {
+      "puzzleId": "ridd_m3",
+      "puzzleType": "RIDDLE",
+      "difficulty": "MEDIUM",
+      "title": "Reflective Surface",
+      "description": "What shows the truth?",
+      "data": {
+        "prompt": "I show you yourself but I am not you. I copy your moves but cannot think. What am I?",
+        "answer": "MIRROR",
+        "category": "Objects",
+        "maxAttempts": 4.0
       }
     },
     {
@@ -554,1920 +1868,1644 @@
       "puzzleType": "RIDDLE",
       "difficulty": "HARD",
       "title": "The Endless Room",
-      "description": "A famous thinking riddle.",
+      "description": "A philosophical puzzle.",
       "data": {
-        "prompt": "I have no doors but I can be entered. No rooms but I have space. What am I?",
-        "answer": "KEYBOARD",
-        "category": "Objects",
-        "maxAttempts": 2.0
+        "prompt": "I have no doors but can be entered. No rooms but I have space. No keys yet I can be unlocked. What am I?",
+        "answer": "MIND",
+        "category": "Abstract",
+        "maxAttempts": 3.0
       }
     },
     {
       "puzzleId": "ridd_h2",
       "puzzleType": "RIDDLE",
       "difficulty": "HARD",
-      "title": "Word Riddle",
-      "description": "A riddle about letters.",
+      "title": "Time\u0027s Passage",
+      "description": "What marks the hours?",
       "data": {
-        "prompt": "What comes once in a minute, twice in a moment, but never in a thousand years?",
-        "answer": "M",
-        "category": "Letters",
-        "maxAttempts": 2.0
+        "prompt": "I have hands but cannot clap. I have a face but cannot smile. I tell you something but never speak. What am I?",
+        "answer": "CLOCK",
+        "category": "Objects",
+        "maxAttempts": 3.0
       }
     },
     {
       "puzzleId": "ridd_h3",
       "puzzleType": "RIDDLE",
       "difficulty": "HARD",
-      "title": "Invisible Home",
-      "description": "This riddle will keep you guessing.",
+      "title": "The Final Answer",
+      "description": "The manor\u0027s deepest mystery.",
       "data": {
-        "prompt": "I am not alive, but I grow. I have no lungs, but I need air. what am I?",
+        "prompt": "I am not alive but I grow. I don\u0027t have lungs but I need air. I don\u0027t have a mouth but water kills me. What am I?",
         "answer": "FIRE",
-        "category": "Nature",
-        "maxAttempts": 2.0
-      }
-    },
-    {
-      "puzzleId": "maze_m1",
-      "puzzleType": "MAZE",
-      "difficulty": "MEDIUM",
-      "title": "Maze River",
-      "description": "Can you flow to the end?",
-      "data": {
-        "width": 7.0,
-        "height": 7.0,
-        "grid": [
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ]
-        ],
-        "start": {
-          "row": 1.0,
-          "col": 1.0
-        },
-        "end": {
-          "row": 5.0,
-          "col": 5.0
-        }
-      }
-    },
-    {
-      "puzzleId": "maze_m2",
-      "puzzleType": "MAZE",
-      "difficulty": "MEDIUM",
-      "title": "Maze Fork",
-      "description": "Three possible ways but only one is right.",
-      "data": {
-        "width": 7.0,
-        "height": 7.0,
-        "grid": [
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            0.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ]
-        ],
-        "start": {
-          "row": 1.0,
-          "col": 1.0
-        },
-        "end": {
-          "row": 5.0,
-          "col": 5.0
-        }
-      }
-    },
-    {
-      "puzzleId": "maze_m3",
-      "puzzleType": "MAZE",
-      "difficulty": "MEDIUM",
-      "title": "Maze Islands",
-      "description": "Reach the goal across disconnected lands.",
-      "data": {
-        "width": 7.0,
-        "height": 7.0,
-        "grid": [
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ]
-        ],
-        "start": {
-          "row": 1.0,
-          "col": 1.0
-        },
-        "end": {
-          "row": 5.0,
-          "col": 5.0
-        }
-      }
-    },
-    {
-      "puzzleId": "match_m1",
-      "puzzleType": "MATCHING",
-      "difficulty": "MEDIUM",
-      "title": "Alphabet Pairing",
-      "description": "Pair up the jewels.",
-      "data": {
-        "width": 4.0,
-        "height": 4.0,
-        "cards": [
-          {
-            "value": "A"
-          },
-          {
-            "value": "B"
-          },
-          {
-            "value": "C"
-          },
-          {
-            "value": "D"
-          },
-          {
-            "value": "E"
-          },
-          {
-            "value": "F"
-          },
-          {
-            "value": "G"
-          },
-          {
-            "value": "H"
-          }
-        ]
-      }
-    },
-    {
-      "puzzleId": "match_m2",
-      "puzzleType": "MATCHING",
-      "difficulty": "MEDIUM",
-      "title": "Vehicles Match",
-      "description": "Match transport icons.",
-      "data": {
-        "width": 4.0,
-        "height": 4.0,
-        "cards": [
-          {
-            "value": "HN"
-          },
-          {
-            "value": "TX"
-          },
-          {
-            "value": "AM"
-          },
-          {
-            "value": "BS"
-          },
-          {
-            "value": "CP"
-          },
-          {
-            "value": "DS"
-          },
-          {
-            "value": "TC"
-          },
-          {
-            "value": "TR"
-          }
-        ]
-      }
-    },
-    {
-      "puzzleId": "match_m3",
-      "puzzleType": "MATCHING",
-      "difficulty": "MEDIUM",
-      "title": "Flags Deluxe",
-      "description": "Find all the country flag pairs.",
-      "data": {
-        "width": 4.0,
-        "height": 4.0,
-        "cards": [
-          {
-            "value": "ðŸ‡¨ðŸ‡¦"
-          },
-          {
-            "value": "ðŸ‡²ðŸ‡½"
-          },
-          {
-            "value": "ðŸ‡©ðŸ‡ª"
-          },
-          {
-            "value": "ðŸ‡«ðŸ‡·"
-          },
-          {
-            "value": "ðŸ‡¬ðŸ‡§"
-          },
-          {
-            "value": "ðŸ‡®ðŸ‡¹"
-          },
-          {
-            "value": "ðŸ‡ªðŸ‡¸"
-          },
-          {
-            "value": "ðŸ‡¨ðŸ‡³"
-          }
-        ]
-      }
-    },
-    {
-      "puzzleId": "cipher_m1",
-      "puzzleType": "CIPHER",
-      "difficulty": "MEDIUM",
-      "title": "Planet Cipher",
-      "description": "Decrypt the planet name. (Shifted -2)",
-      "data": {
-        "prompt": "CYPRF",
-        "answer": "EARTH",
-        "category": "Space",
+        "category": "Elements",
         "maxAttempts": 3.0
-      }
-    },
-    {
-      "puzzleId": "cipher_m2",
-      "puzzleType": "CIPHER",
-      "difficulty": "MEDIUM",
-      "title": "River Cipher",
-      "description": "Which river is hidden? (Shifted +1)",
-      "data": {
-        "prompt": "OJMF",
-        "answer": "NILE",
-        "category": "Geography",
-        "maxAttempts": 3.0
-      }
-    },
-    {
-      "puzzleId": "cipher_m3",
-      "puzzleType": "CIPHER",
-      "difficulty": "MEDIUM",
-      "title": "Colorful Cipher",
-      "description": "A color encrypted. (Shifted +1)",
-      "data": {
-        "prompt": "XIJUF",
-        "answer": "WHITE",
-        "category": "Color",
-        "maxAttempts": 3.0
-      }
-    },
-    {
-      "puzzleId": "anag_m1",
-      "puzzleType": "ANAGRAM",
-      "difficulty": "MEDIUM",
-      "title": "Animal Anagram",
-      "description": "Rearrange to get an animal.",
-      "data": {
-        "prompt": "QRRLUISE",
-        "answer": "SQUIRREL",
-        "category": "Animal",
-        "maxAttempts": 3.0
-      }
-    },
-    {
-      "puzzleId": "anag_m2",
-      "puzzleType": "ANAGRAM",
-      "difficulty": "MEDIUM",
-      "title": "Season Anagram",
-      "description": "A time of year.",
-      "data": {
-        "prompt": "WNRETI",
-        "answer": "WINTER",
-        "category": "Season",
-        "maxAttempts": 3.0
-      }
-    },
-    {
-      "puzzleId": "anag_m3",
-      "puzzleType": "ANAGRAM",
-      "difficulty": "MEDIUM",
-      "title": "Capital Anagram",
-      "description": "Capital city name.",
-      "data": {
-        "prompt": "ARPIS",
-        "answer": "PARIS",
-        "category": "Cities",
-        "maxAttempts": 3.0
-      }
-    },
-    {
-      "puzzleId": "ridd_m1",
-      "puzzleType": "RIDDLE",
-      "difficulty": "MEDIUM",
-      "title": "Cold Riddle",
-      "description": "Stay cool to solve.",
-      "data": {
-        "prompt": "What can you catch but not throw?",
-        "answer": "COLD",
-        "category": "Health",
-        "maxAttempts": 3.0
-      }
-    },
-    {
-      "puzzleId": "ridd_m2",
-      "puzzleType": "RIDDLE",
-      "difficulty": "MEDIUM",
-      "title": "Number Riddle",
-      "description": "Math with words.",
-      "data": {
-        "prompt": "What is full of holes but still holds water?",
-        "answer": "SPONGE",
-        "category": "Objects",
-        "maxAttempts": 3.0
-      }
-    },
-    {
-      "puzzleId": "ridd_m3",
-      "puzzleType": "RIDDLE",
-      "difficulty": "MEDIUM",
-      "title": "Travel Riddle",
-      "description": "Movement without leaving.",
-      "data": {
-        "prompt": "What travels the world while staying in a corner?",
-        "answer": "STAMP",
-        "category": "Objects",
-        "maxAttempts": 3.0
-      }
-    },
-    {
-      "puzzleId": "match_e1",
-      "puzzleType": "MATCHING",
-      "difficulty": "EASY",
-      "title": "Alphabet Pairing",
-      "description": "Pair up the jewels.",
-      "data": {
-        "width": 2.0,
-        "height": 4.0,
-        "cards": [
-          {
-            "value": "A"
-          },
-          {
-            "value": "B"
-          },
-          {
-            "value": "C"
-          },
-          {
-            "value": "D"
-          }
-        ]
-      }
-    },
-    {
-      "puzzleId": "match_e2",
-      "puzzleType": "MATCHING",
-      "difficulty": "EASY",
-      "title": "Vehicles Match",
-      "description": "Match transport icons.",
-      "data": {
-        "width": 2.0,
-        "height": 4.0,
-        "cards": [
-          {
-            "value": "HN"
-          },
-          {
-            "value": "TX"
-          },
-          {
-            "value": "AM"
-          },
-          {
-            "value": "BS"
-          }
-        ]
-      }
-    },
-    {
-      "puzzleId": "match_e3",
-      "puzzleType": "MATCHING",
-      "difficulty": "EASY",
-      "title": "Flags Deluxe",
-      "description": "Find all the country flag pairs.",
-      "data": {
-        "width": 2.0,
-        "height": 4.0,
-        "cards": [
-          {
-            "value": "CA"
-          },
-          {
-            "value": "MX"
-          },
-          {
-            "value": "DE"
-          },
-          {
-            "value": "FR"
-          }
-        ]
-      }
-    },
-    {
-      "puzzleId": "maze_e1",
-      "puzzleType": "MAZE",
-      "difficulty": "EASY",
-      "title": "Maze Inferno",
-      "description": "Intense 9x9 maze for veterans.",
-      "data": {
-        "width": 9.0,
-        "height": 9.0,
-        "grid": [
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ]
-        ],
-        "start": {
-          "row": 1.0,
-          "col": 1.0
-        },
-        "end": {
-          "row": 7.0,
-          "col": 7.0
-        }
-      }
-    },
-    {
-      "puzzleId": "maze_e2",
-      "puzzleType": "MAZE",
-      "difficulty": "EASY",
-      "title": "Maze Twister",
-      "description": "Cunning turns and dead-ends.",
-      "data": {
-        "width": 9.0,
-        "height": 9.0,
-        "grid": [
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ]
-        ],
-        "start": {
-          "row": 1.0,
-          "col": 1.0
-        },
-        "end": {
-          "row": 7.0,
-          "col": 7.0
-        }
-      }
-    },
-    {
-      "puzzleId": "maze_e3",
-      "puzzleType": "MAZE",
-      "difficulty": "EASY",
-      "title": "Labyrinth X",
-      "description": "Only for the brave.",
-      "data": {
-        "width": 9.0,
-        "height": 9.0,
-        "grid": [
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            0.0,
-            1.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          [
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ]
-        ],
-        "start": {
-          "row": 1.0,
-          "col": 1.0
-        },
-        "end": {
-          "row": 7.0,
-          "col": 7.0
-        }
-      }
-    },
-    {
-      "puzzleId": "cipher_e1",
-      "puzzleType": "CIPHER",
-      "difficulty": "EASY",
-      "title": "Science Cipher",
-      "description": "Decrypt the element. (Shifted +1)",
-      "data": {
-        "prompt": "PYZHFO",
-        "answer": "OXYGEN",
-        "category": "Science",
-        "maxAttempts": 4.0
-      }
-    },
-    {
-      "puzzleId": "cipher_e2",
-      "puzzleType": "CIPHER",
-      "difficulty": "EASY",
-      "title": "Galaxy Cipher",
-      "description": "Find the name of a planet. (Shifted +1)",
-      "data": {
-        "prompt": "NBST",
-        "answer": "MARS",
-        "category": "Space",
-        "maxAttempts": 4.0
-      }
-    },
-    {
-      "puzzleId": "cipher_e3",
-      "puzzleType": "CIPHER",
-      "difficulty": "EASY",
-      "title": "Composer Cipher",
-      "description": "A famous classical composer. (Shifted +4)",
-      "data": {
-        "prompt": "FEGL",
-        "answer": "BACH",
-        "category": "Music",
-        "maxAttempts": 4.0
-      }
-    },
-    {
-      "puzzleId": "anag_e1",
-      "puzzleType": "ANAGRAM",
-      "difficulty": "EASY",
-      "title": "Astronomy Anagram",
-      "description": "Unscramble the planet.",
-      "data": {
-        "prompt": "SUNUAR",
-        "answer": "URANUS",
-        "category": "Space",
-        "maxAttempts": 4.0
-      }
-    },
-    {
-      "puzzleId": "anag_e2",
-      "puzzleType": "ANAGRAM",
-      "difficulty": "EASY",
-      "title": "Mythology Mix",
-      "description": "Unscramble a Greek god.",
-      "data": {
-        "prompt": "SZEU",
-        "answer": "ZEUS",
-        "category": "Mythology",
-        "maxAttempts": 4.0
-      }
-    },
-    {
-      "puzzleId": "anag_e3",
-      "puzzleType": "ANAGRAM",
-      "difficulty": "EASY",
-      "title": "World City",
-      "description": "Unscramble this world capital.",
-      "data": {
-        "prompt": "OKYOT",
-        "answer": "TOKYO",
-        "category": "Cities",
-        "maxAttempts": 4.0
-      }
-    },
-    {
-      "puzzleId": "ridd_e1",
-      "puzzleType": "RIDDLE",
-      "difficulty": "EASY",
-      "title": "Tool Riddle",
-      "description": "A riddle about an object.",
-      "data": {
-        "prompt": "I shine in the dark but I am not the sun. You carry me in your hand. What am I?",
-        "answer": "FLASHLIGHT",
-        "category": "Objects",
-        "maxAttempts": 4.0
-      }
-    },
-    {
-      "puzzleId": "ridd_e2",
-      "puzzleType": "RIDDLE",
-      "difficulty": "EASY",
-      "title": "Winter Riddle",
-      "description": "A simple riddle.",
-      "data": {
-        "prompt": "I melt when you warm me, but I\u0027m not ice. What am I?",
-        "answer": "SNOW",
-        "category": "Nature",
-        "maxAttempts": 4.0
-      }
-    },
-    {
-      "puzzleId": "ridd_e3",
-      "puzzleType": "RIDDLE",
-      "difficulty": "EASY",
-      "title": "Animal Riddle",
-      "description": "Guess the animal.",
-      "data": {
-        "prompt": "I have wings but I can\u0027t fly. I swim instead. What am I?",
-        "answer": "PENGUIN",
-        "category": "Animals",
-        "maxAttempts": 4.0
       }
     }
   ],
   "hints": [
     {
-      "hintText": "Plan a path before starting.",
-      "puzzleId": "maze_h1",
+      "hintText": "Go right then down.",
+      "puzzleId": "maze_e1",
       "hintPriority": 1
     },
     {
-      "hintText": "Central corridors may link dead ends.",
-      "puzzleId": "maze_h1",
+      "hintText": "Follow the only path.",
+      "puzzleId": "maze_e1",
       "hintPriority": 2
     },
     {
-      "hintText": "Backtrack as needed.",
-      "puzzleId": "maze_h1",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Long dead-ends await careless moves.",
-      "puzzleId": "maze_h2",
+      "hintText": "Go down first.",
+      "puzzleId": "maze_e2",
       "hintPriority": 1
     },
     {
-      "hintText": "Corners are not always helpful.",
-      "puzzleId": "maze_h2",
+      "hintText": "The bottom connects both sides.",
+      "puzzleId": "maze_e2",
       "hintPriority": 2
     },
     {
-      "hintText": "The exit is not near the start.",
-      "puzzleId": "maze_h2",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Balance left and right turns.",
-      "puzzleId": "maze_h3",
+      "hintText": "Diagonal path works best.",
+      "puzzleId": "maze_e3",
       "hintPriority": 1
     },
     {
-      "hintText": "Multiple loops can be deceiving.",
-      "puzzleId": "maze_h3",
+      "hintText": "Go right, then down, then right.",
+      "puzzleId": "maze_e3",
       "hintPriority": 2
     },
     {
-      "hintText": "Look near the bottom edge.",
-      "puzzleId": "maze_h3",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Flags are not typical pairs.",
-      "puzzleId": "match_h1",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Watch for stripes and colors.",
-      "puzzleId": "match_h1",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Some flags have red in common.",
-      "puzzleId": "match_h1",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Some insects have wings.",
-      "puzzleId": "match_h2",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Antennae may help you remember.",
-      "puzzleId": "match_h2",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Careful: some bugs look similar.",
-      "puzzleId": "match_h2",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Balls come in many colors.",
-      "puzzleId": "match_h3",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "One is used in tennis.",
-      "puzzleId": "match_h3",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Think which sports are played outdoors.",
-      "puzzleId": "match_h3",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Atomic number is 8.",
-      "puzzleId": "cipher_h1",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Essential for life.",
-      "puzzleId": "cipher_h1",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "It\u0027s in every breath.",
-      "puzzleId": "cipher_h1",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "It\u0027s the fourth planet.",
-      "puzzleId": "cipher_h2",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Named for the Roman god of war.",
-      "puzzleId": "cipher_h2",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Known as the Red Planet.",
-      "puzzleId": "cipher_h2",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "A German composer.",
-      "puzzleId": "cipher_h3",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Known for fugues.",
-      "puzzleId": "cipher_h3",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "First name is Johann Sebastian.",
-      "puzzleId": "cipher_h3",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "A planet with rings.",
-      "puzzleId": "anag_h1",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "It\u0027s blue and cold.",
-      "puzzleId": "anag_h1",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Discovered in 1781.",
-      "puzzleId": "anag_h1",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Zeus\u0027s brother.",
-      "puzzleId": "anag_h2",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "God of the sea.",
-      "puzzleId": "anag_h2",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Carries a trident.",
-      "puzzleId": "anag_h2",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "The largest city in Japan.",
-      "puzzleId": "anag_h3",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Famous for cherry blossoms.",
-      "puzzleId": "anag_h3",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Hosted the 2020 Olympics.",
-      "puzzleId": "anag_h3",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "It\u0027s on your desk.",
-      "puzzleId": "ridd_h1",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Used for typing.",
-      "puzzleId": "ridd_h1",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Has keys and space.",
-      "puzzleId": "ridd_h1",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "It\u0027s a letter.",
-      "puzzleId": "ridd_h2",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "You say it only once per minute.",
-      "puzzleId": "ridd_h2",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Twice in a moment, never in a thousand years.",
-      "puzzleId": "ridd_h2",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Found in nature, not alive.",
-      "puzzleId": "ridd_h3",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Needs air to grow.",
-      "puzzleId": "ridd_h3",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "It glows in the dark.",
-      "puzzleId": "ridd_h3",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Avoid the center at first.",
+      "hintText": "The center is your friend.",
       "puzzleId": "maze_m1",
       "hintPriority": 1
     },
     {
-      "hintText": "Long corridors can mislead.",
+      "hintText": "Go down before going right.",
       "puzzleId": "maze_m1",
       "hintPriority": 2
     },
     {
-      "hintText": "Backtrack if you reach a wall.",
+      "hintText": "Avoid the top-right corner.",
       "puzzleId": "maze_m1",
       "hintPriority": 3
     },
     {
-      "hintText": "Always check all forks.",
+      "hintText": "Spiral downward.",
       "puzzleId": "maze_m2",
       "hintPriority": 1
     },
     {
-      "hintText": "Dead ends can teach you routes.",
+      "hintText": "The left side has a path.",
       "puzzleId": "maze_m2",
       "hintPriority": 2
     },
     {
-      "hintText": "Goal is far from starting line.",
+      "hintText": "Go all the way down first.",
       "puzzleId": "maze_m2",
       "hintPriority": 3
     },
     {
-      "hintText": "Islands are not always connected.",
+      "hintText": "Use the center corridor.",
       "puzzleId": "maze_m3",
       "hintPriority": 1
     },
     {
-      "hintText": "Seek the longest land path.",
+      "hintText": "Avoid dead ends on the right.",
       "puzzleId": "maze_m3",
       "hintPriority": 2
     },
     {
-      "hintText": "Check every exit on an island.",
+      "hintText": "The bottom row is your highway.",
       "puzzleId": "maze_m3",
       "hintPriority": 3
     },
     {
-      "hintText": "Gems look similar in shape.",
+      "hintText": "Plan your path before moving.",
+      "puzzleId": "maze_h1",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "The bottom row connects to the exit.",
+      "puzzleId": "maze_h1",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Go down, then right, then down again.",
+      "puzzleId": "maze_h1",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Many paths lead nowhere.",
+      "puzzleId": "maze_h2",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "The middle has a passage.",
+      "puzzleId": "maze_h2",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Bottom row is the key.",
+      "puzzleId": "maze_h2",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Watch for dead ends.",
+      "puzzleId": "maze_h3",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Left side then bottom.",
+      "puzzleId": "maze_h3",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "The exit is bottom-right.",
+      "puzzleId": "maze_h3",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Look for the pumpkin first.",
+      "puzzleId": "match_e1",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Ghost and bat are common.",
+      "puzzleId": "match_e1",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "The key unlocks secrets.",
+      "puzzleId": "match_e2",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Candle lights the way.",
+      "puzzleId": "match_e2",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "The owl watches.",
+      "puzzleId": "match_e3",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Wolf and cat are similar colors.",
+      "puzzleId": "match_e3",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Royalty pairs together.",
       "puzzleId": "match_m1",
       "hintPriority": 1
     },
     {
-      "hintText": "Colors are clues for matches.",
+      "hintText": "Weapons are in one area.",
       "puzzleId": "match_m1",
       "hintPriority": 2
     },
     {
-      "hintText": "Shiny ones are rare in real life.",
+      "hintText": "Crown and princess match.",
       "puzzleId": "match_m1",
       "hintPriority": 3
     },
     {
-      "hintText": "Some vehicles are for public transport.",
+      "hintText": "Potions need ingredients.",
       "puzzleId": "match_m2",
       "hintPriority": 1
     },
     {
-      "hintText": "The yellow one is usually a taxi.",
+      "hintText": "Crystal ball sees all.",
       "puzzleId": "match_m2",
       "hintPriority": 2
     },
     {
-      "hintText": "Think about size for matches.",
+      "hintText": "Moon and mushroom are natural.",
       "puzzleId": "match_m2",
       "hintPriority": 3
     },
     {
-      "hintText": "Red flags are not just warnings!",
+      "hintText": "Stars shine together.",
       "puzzleId": "match_m3",
       "hintPriority": 1
     },
     {
-      "hintText": "Some countries share colors.",
+      "hintText": "Sparkles are similar.",
       "puzzleId": "match_m3",
       "hintPriority": 2
     },
     {
-      "hintText": "Look for stripes and circles.",
+      "hintText": "Sun is alone at top.",
       "puzzleId": "match_m3",
       "hintPriority": 3
     },
     {
-      "hintText": "It\u0027s not Mars, but still rocky.",
-      "puzzleId": "cipher_m1",
+      "hintText": "Death symbols group together.",
+      "puzzleId": "match_h1",
       "hintPriority": 1
     },
     {
-      "hintText": "The only planet with life.",
-      "puzzleId": "cipher_m1",
+      "hintText": "Book and mask are theatrical.",
+      "puzzleId": "match_h1",
       "hintPriority": 2
     },
     {
-      "hintText": "Where you stand right now.",
-      "puzzleId": "cipher_m1",
+      "hintText": "Bones and webs are spooky.",
+      "puzzleId": "match_h1",
       "hintPriority": 3
     },
     {
-      "hintText": "Think of Africa.",
-      "puzzleId": "cipher_m2",
+      "hintText": "Zodiac signs are in order.",
+      "puzzleId": "match_h2",
       "hintPriority": 1
     },
     {
-      "hintText": "It\u0027s the longest river in the world.",
-      "puzzleId": "cipher_m2",
+      "hintText": "Aries starts the cycle.",
+      "puzzleId": "match_h2",
       "hintPriority": 2
     },
     {
-      "hintText": "Ancient Egyptians relied on it.",
-      "puzzleId": "cipher_m2",
+      "hintText": "Look for similar shapes.",
+      "puzzleId": "match_h2",
       "hintPriority": 3
     },
     {
-      "hintText": "It\u0027s a very light color.",
-      "puzzleId": "cipher_m3",
+      "hintText": "Fire and ice are opposites.",
+      "puzzleId": "match_h3",
       "hintPriority": 1
     },
     {
-      "hintText": "It\u0027s in the colors of the rainbow.",
-      "puzzleId": "cipher_m3",
+      "hintText": "Water appears twice.",
+      "puzzleId": "match_h3",
       "hintPriority": 2
     },
     {
-      "hintText": "Used in wedding dresses.",
-      "puzzleId": "cipher_m3",
+      "hintText": "Lightning is electric.",
+      "puzzleId": "match_h3",
       "hintPriority": 3
     },
     {
-      "hintText": "Wild, and orange in color.",
-      "puzzleId": "anag_m1",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Fits in a den.",
-      "puzzleId": "anag_m1",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Has a bushy tail.",
-      "puzzleId": "anag_m1",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "The coldest season.",
-      "puzzleId": "anag_m2",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "It has snow, sometimes holidays.",
-      "puzzleId": "anag_m2",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "It\u0027s after autumn.",
-      "puzzleId": "anag_m2",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "It\u0027s in France.",
-      "puzzleId": "anag_m3",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "The city of love.",
-      "puzzleId": "anag_m3",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Famous for a tower.",
-      "puzzleId": "anag_m3",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "It\u0027s related to sickness.",
-      "puzzleId": "ridd_m1",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Sometimes you \u0027catch\u0027 it in winter.",
-      "puzzleId": "ridd_m1",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Rhymes with \u0027sold\u0027.",
-      "puzzleId": "ridd_m1",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "It is porous.",
-      "puzzleId": "ridd_m2",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "You use it in the kitchen.",
-      "puzzleId": "ridd_m2",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Can be made of cellulose or plastic.",
-      "puzzleId": "ridd_m2",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "It gets stuck to envelopes.",
-      "puzzleId": "ridd_m3",
-      "hintPriority": 1
-    },
-    {
-      "hintText": "Once you use it, it can\u0027t travel again.",
-      "puzzleId": "ridd_m3",
-      "hintPriority": 2
-    },
-    {
-      "hintText": "Small but can cross the globe.",
-      "puzzleId": "ridd_m3",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Atomic number is 8.",
+      "hintText": "Letters are scrambled.",
       "puzzleId": "cipher_e1",
       "hintPriority": 1
     },
     {
-      "hintText": "Essential for life.",
+      "hintText": "Something says BOO!",
       "puzzleId": "cipher_e1",
       "hintPriority": 2
     },
     {
-      "hintText": "It\u0027s in every breath.",
+      "hintText": "Eight legs.",
+      "puzzleId": "cipher_e2",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Weaves webs.",
+      "puzzleId": "cipher_e2",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Top of the house.",
+      "puzzleId": "cipher_e3",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Starts with A.",
+      "puzzleId": "cipher_e3",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "A ghostly figure.",
+      "puzzleId": "cipher_m1",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Haunts at night.",
+      "puzzleId": "cipher_m1",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Starts with PH.",
+      "puzzleId": "cipher_m1",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Dark magic practice.",
+      "puzzleId": "cipher_m2",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Witches use it.",
+      "puzzleId": "cipher_m2",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Ends with Y.",
+      "puzzleId": "cipher_m2",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Something unknown.",
+      "puzzleId": "cipher_m3",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Needs solving.",
+      "puzzleId": "cipher_m3",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Starts with M.",
+      "puzzleId": "cipher_m3",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Raises the dead.",
+      "puzzleId": "cipher_h1",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Dark wizard type.",
+      "puzzleId": "cipher_h1",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "NECRO means death.",
       "puzzleId": "cipher_h1",
       "hintPriority": 3
     },
     {
-      "hintText": "It\u0027s the fourth planet.",
-      "puzzleId": "cipher_e2",
+      "hintText": "Turning lead to gold.",
+      "puzzleId": "cipher_h2",
       "hintPriority": 1
     },
     {
-      "hintText": "Named for the Roman god of war.",
-      "puzzleId": "cipher_e2",
+      "hintText": "Ancient science.",
+      "puzzleId": "cipher_h2",
       "hintPriority": 2
     },
     {
-      "hintText": "Known as the Red Planet.",
-      "puzzleId": "cipher_e2",
+      "hintText": "Starts with AL.",
+      "puzzleId": "cipher_h2",
       "hintPriority": 3
     },
     {
-      "hintText": "A German composer.",
-      "puzzleId": "cipher_e3",
+      "hintText": "A ghostly vision.",
+      "puzzleId": "cipher_h3",
       "hintPriority": 1
     },
     {
-      "hintText": "Known for fugues.",
-      "puzzleId": "cipher_e3",
+      "hintText": "Appears and disappears.",
+      "puzzleId": "cipher_h3",
       "hintPriority": 2
     },
     {
-      "hintText": "First name is Johann Sebastian.",
-      "puzzleId": "cipher_e3",
+      "hintText": "Starts with APP.",
+      "puzzleId": "cipher_h3",
       "hintPriority": 3
     },
     {
-      "hintText": "A planet with rings.",
+      "hintText": "Flies at night.",
       "puzzleId": "anag_e1",
       "hintPriority": 1
     },
     {
-      "hintText": "It\u0027s blue and cold.",
+      "hintText": "Only 3 letters.",
       "puzzleId": "anag_e1",
       "hintPriority": 2
     },
     {
-      "hintText": "Discovered in 1781.",
-      "puzzleId": "anag_e1",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Zeus\u0027s brother.",
+      "hintText": "Provides light.",
       "puzzleId": "anag_e2",
       "hintPriority": 1
     },
     {
-      "hintText": "God of the sea.",
+      "hintText": "Made of wax.",
       "puzzleId": "anag_e2",
       "hintPriority": 2
     },
     {
-      "hintText": "Carries a trident.",
-      "puzzleId": "anag_e2",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "The largest city in Japan.",
+      "hintText": "Makes you jump.",
       "puzzleId": "anag_e3",
       "hintPriority": 1
     },
     {
-      "hintText": "Famous for cherry blossoms.",
+      "hintText": "Rhymes with care.",
       "puzzleId": "anag_e3",
       "hintPriority": 2
     },
     {
-      "hintText": "Hosted the 2020 Olympics.",
-      "puzzleId": "anag_e3",
+      "hintText": "Walks like the dead.",
+      "puzzleId": "anag_m1",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Brains are tasty.",
+      "puzzleId": "anag_m1",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Starts with Z.",
+      "puzzleId": "anag_m1",
       "hintPriority": 3
     },
     {
-      "hintText": "It\u0027s battery operated.",
+      "hintText": "Where bodies rest.",
+      "puzzleId": "anag_m2",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Has tombstones.",
+      "puzzleId": "anag_m2",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Also called cemetery.",
+      "puzzleId": "anag_m2",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Witches fly on it.",
+      "puzzleId": "anag_m3",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Made of straw.",
+      "puzzleId": "anag_m3",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Two words combined.",
+      "puzzleId": "anag_m3",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Drinks blood.",
+      "puzzleId": "anag_h1",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Sleeps in coffin.",
+      "puzzleId": "anag_h1",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Dracula is one.",
+      "puzzleId": "anag_h1",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "A large house.",
+      "puzzleId": "anag_h2",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Rich people live here.",
+      "puzzleId": "anag_h2",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Starts with M.",
+      "puzzleId": "anag_h2",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Casts spells.",
+      "puzzleId": "anag_h3",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Male witch.",
+      "puzzleId": "anag_h3",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Ends with ER.",
+      "puzzleId": "anag_h3",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "A bird of prey.",
       "puzzleId": "ridd_e1",
       "hintPriority": 1
     },
     {
-      "hintText": "Used in dark areas.",
+      "hintText": "Says hoot hoot.",
       "puzzleId": "ridd_e1",
       "hintPriority": 2
     },
     {
-      "hintText": "Utility measured in lumens",
-      "puzzleId": "ridd_e1",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Appears in the winter.",
+      "hintText": "Hot and bright.",
       "puzzleId": "ridd_e2",
       "hintPriority": 1
     },
     {
-      "hintText": "It is the color white",
+      "hintText": "Burns wood.",
       "puzzleId": "ridd_e2",
       "hintPriority": 2
     },
     {
-      "hintText": "Frosty the ____man.",
-      "puzzleId": "ridd_e2",
-      "hintPriority": 3
-    },
-    {
-      "hintText": "Found in nature, not alive.",
+      "hintText": "Opens locks.",
       "puzzleId": "ridd_e3",
       "hintPriority": 1
     },
     {
-      "hintText": "Needs air to grow.",
+      "hintText": "Made of metal.",
       "puzzleId": "ridd_e3",
       "hintPriority": 2
     },
     {
-      "hintText": "It glows in the dark.",
-      "puzzleId": "ridd_e3",
+      "hintText": "Uses echolocation.",
+      "puzzleId": "ridd_m1",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Lives in caves.",
+      "puzzleId": "ridd_m1",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Only 3 letters.",
+      "puzzleId": "ridd_m1",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Once was alive.",
+      "puzzleId": "ridd_m2",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Haunts places.",
+      "puzzleId": "ridd_m2",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Says BOO.",
+      "puzzleId": "ridd_m2",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Reflects images.",
+      "puzzleId": "ridd_m3",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Made of glass.",
+      "puzzleId": "ridd_m3",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Snow White\u0027s enemy had one.",
+      "puzzleId": "ridd_m3",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Think abstractly.",
+      "puzzleId": "ridd_h1",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Inside your head.",
+      "puzzleId": "ridd_h1",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Where thoughts live.",
+      "puzzleId": "ridd_h1",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Tells the time.",
+      "puzzleId": "ridd_h2",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Tick tock.",
+      "puzzleId": "ridd_h2",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Has numbers 1-12.",
+      "puzzleId": "ridd_h2",
+      "hintPriority": 3
+    },
+    {
+      "hintText": "Same answer as Easy puzzle.",
+      "puzzleId": "ridd_h3",
+      "hintPriority": 1
+    },
+    {
+      "hintText": "Burns bright.",
+      "puzzleId": "ridd_h3",
+      "hintPriority": 2
+    },
+    {
+      "hintText": "Hot element.",
+      "puzzleId": "ridd_h3",
       "hintPriority": 3
     }
   ],
   "userProgress": [
     {
-      "userId": "remyr",
-      "completedPuzzles": [],
-      "puzzleScores": {},
-      "totalScore": 0
+      "userId": "U2222",
+      "completedPuzzles": [
+        "anag_e3",
+        "maze_e3",
+        "match_e3",
+        "ridd_e3",
+        "cipher_e2",
+        "cipher_h2",
+        "ridd_h2",
+        "match_h3",
+        "anag_h1",
+        "maze_h3",
+        "anag_m3"
+      ],
+      "puzzleScores": {
+        "ridd_h2": 233,
+        "anag_e3": 205,
+        "ridd_e3": 182,
+        "cipher_h2": 213,
+        "match_h3": 190,
+        "maze_h3": 214,
+        "cipher_e2": 215,
+        "match_e3": 224,
+        "anag_m3": 150,
+        "maze_e3": 234,
+        "anag_h1": 204
+      },
+      "totalScore": 2264,
+      "currentPuzzleId": "match_m3",
+      "pausedPuzzleState": {
+        "startTime": 1.764653838657E12,
+        "matched": [
+          [
+            false,
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            false,
+            true,
+            true
+          ],
+          [
+            true,
+            true,
+            false,
+            true
+          ]
+        ],
+        "rows": 3.0,
+        "moveCount": 7.0,
+        "cols": 4.0,
+        "board": [
+          [
+            "✨",
+            "🌀",
+            "🌟",
+            "✨"
+          ],
+          [
+            "💫",
+            "🌟",
+            "☀️",
+            "☀️"
+          ],
+          [
+            "💫",
+            "⭐",
+            "🌀",
+            "⭐"
+          ]
+        ]
+      },
+      "sessionState": {
+        "sessionDifficulty": "MEDIUM",
+        "doorPuzzleMap": {
+          "1": "anag_m3",
+          "2": "match_m3",
+          "3": "ridd_m3",
+          "4": "maze_m1",
+          "5": "cipher_m3"
+        },
+        "completedDoors": [
+          1.0
+        ],
+        "elapsedSeconds": 229.0
+      }
     },
     {
-      "userId": "Nitin",
-      "completedPuzzles": [],
-      "puzzleScores": {},
-      "totalScore": 0
+      "userId": "U5555",
+      "completedPuzzles": [
+        "cipher_e1",
+        "maze_e2",
+        "anag_e2",
+        "ridd_e1",
+        "match_e3",
+        "cipher_e2"
+      ],
+      "puzzleScores": {
+        "anag_e2": 197,
+        "ridd_e1": 226,
+        "cipher_e1": 228,
+        "cipher_e2": 149,
+        "match_e3": 165,
+        "maze_e2": 224
+      },
+      "totalScore": 1189
+    },
+    {
+      "userId": "U4444",
+      "completedPuzzles": [
+        "maze_e3",
+        "cipher_e3",
+        "anag_e3",
+        "ridd_e3",
+        "match_e3",
+        "anag_m1",
+        "anag_e1",
+        "maze_e1",
+        "cipher_e1",
+        "maze_e2",
+        "anag_e2",
+        "cipher_e2",
+        "match_e1",
+        "ridd_e1",
+        "ridd_e2",
+        "match_e2"
+      ],
+      "puzzleScores": {
+        "anag_e3": 211,
+        "ridd_e3": 148,
+        "cipher_e3": 172,
+        "match_e3": 211,
+        "maze_e3": 146,
+        "anag_m1": 147,
+        "anag_e1": 205,
+        "maze_e1": 236,
+        "cipher_e1": 228,
+        "maze_e2": 238,
+        "anag_e2": 232,
+        "cipher_e2": 237,
+        "match_e1": 209,
+        "ridd_e1": 239,
+        "ridd_e2": 150,
+        "match_e2": 216
+      },
+      "totalScore": 3225
+    },
+    {
+      "userId": "U7777",
+      "completedPuzzles": [
+        "anag_e1",
+        "match_e1",
+        "cipher_e2",
+        "maze_e3",
+        "ridd_e2",
+        "match_m3",
+        "anag_m1",
+        "maze_m2",
+        "ridd_m2",
+        "cipher_m3",
+        "ridd_h2",
+        "maze_h1",
+        "match_h1",
+        "anag_h2",
+        "cipher_h1",
+        "anag_e2",
+        "ridd_e3",
+        "maze_e1",
+        "ridd_e1",
+        "match_e2",
+        "maze_e2",
+        "match_e3",
+        "anag_e3",
+        "cipher_e1",
+        "cipher_e3",
+        "match_h2",
+        "cipher_h2",
+        "ridd_h1",
+        "anag_h1",
+        "maze_h2",
+        "cipher_m1",
+        "anag_m3",
+        "match_m2",
+        "ridd_m1",
+        "maze_m3",
+        "match_h3"
+      ],
+      "puzzleScores": {
+        "anag_e1": 243,
+        "match_e1": 222,
+        "cipher_e2": 238,
+        "maze_e3": 241,
+        "ridd_e2": 202,
+        "match_m3": 189,
+        "anag_m1": 240,
+        "maze_m2": 233,
+        "ridd_m2": 178,
+        "cipher_m3": 190,
+        "ridd_h2": 218,
+        "maze_h1": 231,
+        "match_h1": 170,
+        "anag_h2": 222,
+        "cipher_h1": 199,
+        "anag_e2": 233,
+        "ridd_e3": 210,
+        "maze_e1": 144,
+        "ridd_e1": 233,
+        "match_e2": 214,
+        "maze_e2": 144,
+        "match_e3": 209,
+        "anag_e3": 183,
+        "cipher_e1": 241,
+        "cipher_e3": 150,
+        "match_h2": 127,
+        "cipher_h2": 213,
+        "ridd_h1": 199,
+        "anag_h1": 227,
+        "maze_h2": 201,
+        "cipher_m1": 203,
+        "anag_m3": 224,
+        "match_m2": 169,
+        "ridd_m1": 222,
+        "maze_m3": 140,
+        "match_h3": 135
+      },
+      "totalScore": 7237
+    },
+    {
+      "userId": "U6666",
+      "completedPuzzles": [
+        "match_e2",
+        "ridd_e1",
+        "cipher_e3",
+        "maze_e3",
+        "anag_e3",
+        "match_m3",
+        "cipher_m2",
+        "match_e3",
+        "anag_e1",
+        "cipher_e2",
+        "match_e1",
+        "ridd_e2",
+        "anag_e2",
+        "maze_e1",
+        "cipher_e1",
+        "cipher_h1",
+        "maze_e2",
+        "ridd_e3",
+        "ridd_m1",
+        "match_m1",
+        "maze_h3",
+        "cipher_h3",
+        "match_h3",
+        "ridd_h3",
+        "anag_h2",
+        "ridd_h1",
+        "cipher_h2",
+        "maze_h2",
+        "ridd_h2",
+        "match_h1",
+        "anag_h1",
+        "maze_h1",
+        "anag_h3",
+        "match_h2",
+        "maze_h6",
+        "maze_h4",
+        "cipher_m3",
+        "maze_h5"
+      ],
+      "puzzleScores": {
+        "cipher_m2": 157,
+        "anag_e3": 242,
+        "match_m3": 202,
+        "match_e2": 226,
+        "ridd_e1": 209,
+        "cipher_e3": 242,
+        "maze_e3": 241,
+        "match_e3": 226,
+        "anag_e1": 147,
+        "cipher_e2": 225,
+        "match_e1": 211,
+        "ridd_e2": 236,
+        "anag_e2": 243,
+        "maze_e1": 238,
+        "cipher_e1": 243,
+        "cipher_h1": 219,
+        "maze_e2": 229,
+        "ridd_e3": 202,
+        "ridd_m1": 235,
+        "match_m1": 136,
+        "maze_h3": 198,
+        "cipher_h3": 210,
+        "match_h3": 190,
+        "ridd_h3": 242,
+        "anag_h2": 212,
+        "ridd_h1": 210,
+        "cipher_h2": 226,
+        "maze_h2": 212,
+        "ridd_h2": 202,
+        "match_h1": 126,
+        "anag_h1": 225,
+        "maze_h1": 224,
+        "anag_h3": 223,
+        "match_h2": 172,
+        "maze_h6": 130,
+        "maze_h4": 194,
+        "cipher_m3": 233,
+        "maze_h5": 203
+      },
+      "totalScore": 7941,
+      "sessionState": {
+        "sessionDifficulty": "MEDIUM",
+        "doorPuzzleMap": {
+          "1": "cipher_m1",
+          "2": "maze_m1",
+          "3": "ridd_m2",
+          "4": "match_m2",
+          "5": "anag_m3"
+        },
+        "completedDoors": [],
+        "elapsedSeconds": 30.0
+      }
+    },
+    {
+      "userId": "yoshi",
+      "completedPuzzles": [
+        "match_m1",
+        "ridd_m2",
+        "anag_m1",
+        "maze_m3",
+        "cipher_m2",
+        "match_h2",
+        "maze_h6",
+        "cipher_h2",
+        "anag_h2",
+        "ridd_h3"
+      ],
+      "puzzleScores": {
+        "cipher_m2": 209,
+        "maze_m3": 204,
+        "anag_m1": 234,
+        "match_m1": 166,
+        "ridd_m2": 216,
+        "match_h2": 181,
+        "maze_h6": 226,
+        "cipher_h2": 235,
+        "anag_h2": 244,
+        "ridd_h3": 238
+      },
+      "totalScore": 2153
     }
   ],
   "certificates": [
     {
-      "certificateId": "CERT_U1002_ridd_m2_1761446264892",
-      "userId": "U1002",
-      "puzzleId": "ridd_m2",
-      "description": "Completed \u0027Number Riddle\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 156,
-      "earnedAt": "2025-10-25T22:37:44.8960018"
-    },
-    {
-      "certificateId": "CERT_U1002_ridd_m3_1761451822403",
-      "userId": "U1002",
-      "puzzleId": "ridd_m3",
-      "description": "Completed \u0027Travel Riddle\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 223,
-      "earnedAt": "2025-10-26T00:10:22.406639"
-    },
-    {
-      "certificateId": "CERT_U1002_cipher_m3_1761451899898",
-      "userId": "U1002",
-      "puzzleId": "cipher_m3",
-      "description": "Completed \u0027Colorful Cipher\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 187,
-      "earnedAt": "2025-10-26T00:11:39.8980246"
-    },
-    {
-      "certificateId": "CERT_U1002_anag_m1_1761451930986",
-      "userId": "U1002",
-      "puzzleId": "anag_m1",
-      "description": "Completed \u0027Animal Anagram\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 244,
-      "earnedAt": "2025-10-26T00:12:10.9868057"
-    },
-    {
-      "certificateId": "CERT_yoshi_ridd_m1_1761499003304",
-      "userId": "yoshi",
-      "puzzleId": "ridd_m1",
-      "description": "Completed \u0027Cold Riddle\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 247,
-      "earnedAt": "2025-10-26T13:16:43.3079019"
-    },
-    {
-      "certificateId": "CERT_yoshi_ridd_m3_1761499745106",
-      "userId": "yoshi",
-      "puzzleId": "ridd_m3",
-      "description": "Completed \u0027Travel Riddle\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 241,
-      "earnedAt": "2025-10-26T13:29:05.1124951"
-    },
-    {
-      "certificateId": "CERT_yoshi_anag_m2_1761499771626",
-      "userId": "yoshi",
-      "puzzleId": "anag_m2",
-      "description": "Completed \u0027Season Anagram\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 247,
-      "earnedAt": "2025-10-26T13:29:31.6268926"
-    },
-    {
-      "certificateId": "CERT_yoshi_cipher_m3_1761499796505",
-      "userId": "yoshi",
-      "puzzleId": "cipher_m3",
-      "description": "Completed \u0027Colorful Cipher\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 235,
-      "earnedAt": "2025-10-26T13:29:56.5058761"
-    },
-    {
-      "certificateId": "CERT_yoshi_ridd_m2_1761501772630",
-      "userId": "yoshi",
-      "puzzleId": "ridd_m2",
-      "description": "Completed \u0027Number Riddle\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 245,
-      "earnedAt": "2025-10-26T14:02:52.6332275"
-    },
-    {
-      "certificateId": "CERT_yoshi_cipher_m1_1761501808467",
-      "userId": "yoshi",
-      "puzzleId": "cipher_m1",
-      "description": "Completed \u0027Planet Cipher\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 225,
-      "earnedAt": "2025-10-26T14:03:28.4676761"
-    },
-    {
-      "certificateId": "CERT_yoshi_anag_m1_1761501828359",
-      "userId": "yoshi",
-      "puzzleId": "anag_m1",
-      "description": "Completed \u0027Animal Anagram\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 243,
-      "earnedAt": "2025-10-26T14:03:48.3591332"
-    },
-    {
-      "certificateId": "CERT_yoshi_maze_m3_1761501862152",
-      "userId": "yoshi",
-      "puzzleId": "maze_m3",
-      "description": "Completed \u0027Maze Islands\u0027 puzzle",
-      "difficulty": "MEDIUM",
-      "scoreAchieved": 214,
-      "earnedAt": "2025-10-26T14:04:22.1529284"
-    },
-    {
-      "certificateId": "CERT_yoshi_match_e1_1761502831275",
-      "userId": "yoshi",
-      "puzzleId": "match_e1",
-      "description": "Completed \u0027Alphabet Pairing\u0027 puzzle",
+      "certificateId": "CERT_U2222_anag_e3_1764653224238",
+      "userId": "U2222",
+      "puzzleId": "anag_e3",
+      "description": "Completed \u0027Scary Word\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 208,
-      "earnedAt": "2025-10-26T14:20:31.2803059"
+      "scoreAchieved": 205,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:27:04.2450249"
     },
     {
-      "certificateId": "CERT_yoshi_maze_e3_1761503097505",
-      "userId": "yoshi",
+      "certificateId": "CERT_U2222_maze_e3_1764653240582",
+      "userId": "U2222",
       "puzzleId": "maze_e3",
-      "description": "Completed \u0027Labyrinth X\u0027 puzzle",
+      "description": "Completed \u0027Kitchen Path\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 223,
-      "earnedAt": "2025-10-26T14:24:57.5086255"
+      "scoreAchieved": 234,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:27:20.5826131"
     },
     {
-      "certificateId": "CERT_yoshi_match_e2_1761503189473",
-      "userId": "yoshi",
-      "puzzleId": "match_e2",
-      "description": "Completed \u0027Vehicles Match\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 178,
-      "earnedAt": "2025-10-26T14:26:29.4739417"
-    },
-    {
-      "certificateId": "CERT_yoshi_match_e3_1761503413590",
-      "userId": "yoshi",
+      "certificateId": "CERT_U2222_match_e3_1764653268378",
+      "userId": "U2222",
       "puzzleId": "match_e3",
-      "description": "Completed \u0027Flags Deluxe\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 189,
-      "earnedAt": "2025-10-26T14:30:13.5922053"
-    },
-    {
-      "certificateId": "CERT_yoshi_maze_e1_1761503448650",
-      "userId": "yoshi",
-      "puzzleId": "maze_e1",
-      "description": "Completed \u0027Maze Inferno\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 215,
-      "earnedAt": "2025-10-26T14:30:48.6501511"
-    },
-    {
-      "certificateId": "CERT_yoshi_maze_e2_1761503520423",
-      "userId": "yoshi",
-      "puzzleId": "maze_e2",
-      "description": "Completed \u0027Maze Twister\u0027 puzzle",
+      "description": "Completed \u0027Creature Cards\u0027 puzzle",
       "difficulty": "EASY",
       "scoreAchieved": 224,
-      "earnedAt": "2025-10-26T14:32:00.4244098"
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:27:48.3788969"
     },
     {
-      "certificateId": "CERT_yoshi_ridd_h3_1761504399869",
-      "userId": "yoshi",
-      "puzzleId": "ridd_h3",
-      "description": "Completed \u0027Invisible Home\u0027 puzzle",
+      "certificateId": "CERT_U2222_ridd_e3_1764653342132",
+      "userId": "U2222",
+      "puzzleId": "ridd_e3",
+      "description": "Completed \u0027Keeper of Secrets\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 182,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:29:02.1321857"
+    },
+    {
+      "certificateId": "CERT_U2222_cipher_e2_1764653384356",
+      "userId": "U2222",
+      "puzzleId": "cipher_e2",
+      "description": "Completed \u0027Creature Code\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 215,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:29:44.3568873"
+    },
+    {
+      "certificateId": "CERT_U2222_cipher_h2_1764653477169",
+      "userId": "U2222",
+      "puzzleId": "cipher_h2",
+      "description": "Completed \u0027Forbidden Knowledge\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 213,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:31:17.1694774"
+    },
+    {
+      "certificateId": "CERT_U2222_ridd_h2_1764653499256",
+      "userId": "U2222",
+      "puzzleId": "ridd_h2",
+      "description": "Completed \u0027Time\u0027s Passage\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 233,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:31:39.2577303"
+    },
+    {
+      "certificateId": "CERT_U2222_match_h3_1764653551687",
+      "userId": "U2222",
+      "puzzleId": "match_h3",
+      "description": "Completed \u0027Elemental Forces\u0027 puzzle",
       "difficulty": "HARD",
       "scoreAchieved": 190,
-      "earnedAt": "2025-10-26T14:46:39.876733"
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:32:31.6880928"
     },
     {
-      "certificateId": "CERT_nitin_ridd_e1_1762729029532",
-      "userId": "nitin",
-      "puzzleId": "ridd_e1",
-      "description": "Completed \u0027The Endless Room\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 241,
-      "earnedAt": "2025-11-09T17:57:09.53669"
+      "certificateId": "CERT_U2222_anag_h1_1764653601943",
+      "userId": "U2222",
+      "puzzleId": "anag_h1",
+      "description": "Completed \u0027Blood Drinker\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 204,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:33:21.9430438"
     },
     {
-      "certificateId": "CERT_nitin_match_e1_1762729095610",
-      "userId": "nitin",
-      "puzzleId": "match_e1",
-      "description": "Completed \u0027Alphabet Pairing\u0027 puzzle",
-      "difficulty": "EASY",
-      "scoreAchieved": 195,
-      "earnedAt": "2025-11-09T17:58:15.6103795"
+      "certificateId": "CERT_U2222_maze_h3_1764653629341",
+      "userId": "U2222",
+      "puzzleId": "maze_h3",
+      "description": "Completed \u0027Catacombs\u0027 puzzle",
+      "difficulty": "HARD",
+      "scoreAchieved": 214,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:33:49.3417075"
     },
     {
-      "certificateId": "CERT_nitin_cipher_e3_1762729242907",
-      "userId": "nitin",
-      "puzzleId": "cipher_e3",
-      "description": "Completed \u0027Composer Cipher\u0027 puzzle",
-      "difficulty": "EASY",
+      "certificateId": "CERT_U2222_anag_m3_1764653802357",
+      "userId": "U2222",
+      "puzzleId": "anag_m3",
+      "description": "Completed \u0027Witch\u0027s Tool\u0027 puzzle",
+      "difficulty": "MEDIUM",
       "scoreAchieved": 150,
-      "earnedAt": "2025-11-09T18:00:42.9076439"
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T00:36:42.3575236"
     },
     {
-      "certificateId": "CERT_nitin_maze_e2_1762729278001",
-      "userId": "nitin",
-      "puzzleId": "maze_e2",
-      "description": "Completed \u0027Maze Twister\u0027 puzzle",
+      "certificateId": "CERT_U5555_cipher_e1_1764688684205",
+      "userId": "U5555",
+      "puzzleId": "cipher_e1",
+      "description": "Completed \u0027Ghost Cipher\u0027 puzzle",
       "difficulty": "EASY",
       "scoreAchieved": 228,
-      "earnedAt": "2025-11-09T18:01:18.0018952"
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T10:18:04.2105043"
     },
     {
-      "certificateId": "CERT_nitin_anag_e2_1762729289247",
-      "userId": "nitin",
-      "puzzleId": "anag_e2",
-      "description": "Completed \u0027Mythology Mix\u0027 puzzle",
+      "certificateId": "CERT_U5555_maze_e2_1764688729135",
+      "userId": "U5555",
+      "puzzleId": "maze_e2",
+      "description": "Completed \u0027Servant\u0027s Quarters\u0027 puzzle",
       "difficulty": "EASY",
-      "scoreAchieved": 246,
-      "earnedAt": "2025-11-09T18:01:29.2471007"
+      "scoreAchieved": 224,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T10:18:49.1354202"
+    },
+    {
+      "certificateId": "CERT_U5555_anag_e2_1764688808770",
+      "userId": "U5555",
+      "puzzleId": "anag_e2",
+      "description": "Completed \u0027Manor Light\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 197,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T10:20:08.7701468"
+    },
+    {
+      "certificateId": "CERT_U5555_ridd_e1_1764688835918",
+      "userId": "U5555",
+      "puzzleId": "ridd_e1",
+      "description": "Completed \u0027Manor Guardian\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 226,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T10:20:35.9187438"
+    },
+    {
+      "certificateId": "CERT_U5555_match_e3_1764690299020",
+      "userId": "U5555",
+      "puzzleId": "match_e3",
+      "description": "Completed \u0027Creature Cards\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 165,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T10:44:59.0200701"
+    },
+    {
+      "certificateId": "CERT_U5555_cipher_e2_1764690693766",
+      "userId": "U5555",
+      "puzzleId": "cipher_e2",
+      "description": "Completed \u0027Creature Code\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 149,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T10:51:33.7668115"
+    },
+    {
+      "certificateId": "CERT_U4444_maze_e3_1764693438721",
+      "userId": "U4444",
+      "puzzleId": "maze_e3",
+      "description": "Completed \u0027Kitchen Path\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 146,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T11:37:18.7269613"
+    },
+    {
+      "certificateId": "CERT_U4444_cipher_e3_1764693524976",
+      "userId": "U4444",
+      "puzzleId": "cipher_e3",
+      "description": "Completed \u0027Room Cipher\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 172,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T11:38:44.9760887"
+    },
+    {
+      "certificateId": "CERT_U4444_anag_e3_1764693568167",
+      "userId": "U4444",
+      "puzzleId": "anag_e3",
+      "description": "Completed \u0027Scary Word\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 211,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T11:39:28.1677387"
+    },
+    {
+      "certificateId": "CERT_U4444_ridd_e3_1764693731976",
+      "userId": "U4444",
+      "puzzleId": "ridd_e3",
+      "description": "Completed \u0027Keeper of Secrets\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 148,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T11:42:11.9767979"
+    },
+    {
+      "certificateId": "CERT_U4444_match_e3_1764693794921",
+      "userId": "U4444",
+      "puzzleId": "match_e3",
+      "description": "Completed \u0027Creature Cards\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 211,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T11:43:14.9211897"
+    },
+    {
+      "certificateId": "CERT_U4444_anag_m1_1764697128467",
+      "userId": "U4444",
+      "puzzleId": "anag_m1",
+      "description": "Completed \u0027Undead Creature\u0027 puzzle",
+      "difficulty": "MEDIUM",
+      "scoreAchieved": 147,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T12:38:48.4717248"
+    },
+    {
+      "certificateId": "CERT_U4444_anag_e1_1764699958709",
+      "userId": "U4444",
+      "puzzleId": "anag_e1",
+      "description": "Completed \u0027Night Creature\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 205,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T13:25:58.7169951"
+    },
+    {
+      "certificateId": "CERT_U4444_maze_e1_1764700559561",
+      "userId": "U4444",
+      "puzzleId": "maze_e1",
+      "description": "Completed \u0027Manor Entrance\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 236,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T13:35:59.5646806"
+    },
+    {
+      "certificateId": "CERT_U4444_cipher_e1_1764700603828",
+      "userId": "U4444",
+      "puzzleId": "cipher_e1",
+      "description": "Completed \u0027Ghost Cipher\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 228,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T13:36:43.8288707"
+    },
+    {
+      "certificateId": "CERT_U4444_maze_e2_1764700723200",
+      "userId": "U4444",
+      "puzzleId": "maze_e2",
+      "description": "Completed \u0027Servant\u0027s Quarters\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 238,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T13:38:43.2006891"
+    },
+    {
+      "certificateId": "CERT_U4444_anag_e2_1764700776488",
+      "userId": "U4444",
+      "puzzleId": "anag_e2",
+      "description": "Completed \u0027Manor Light\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 232,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T13:39:36.4884253"
+    },
+    {
+      "certificateId": "CERT_U4444_cipher_e2_1764704869667",
+      "userId": "U4444",
+      "puzzleId": "cipher_e2",
+      "description": "Completed \u0027Creature Code\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 237,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T14:47:49.6774235"
+    },
+    {
+      "certificateId": "CERT_U4444_match_e1_1764705160978",
+      "userId": "U4444",
+      "puzzleId": "match_e1",
+      "description": "Completed \u0027Spooky Symbols\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 209,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T14:52:40.9797588"
+    },
+    {
+      "certificateId": "CERT_U4444_maze_e1_1764708690657",
+      "userId": "U4444",
+      "puzzleId": "maze_e1",
+      "description": "Completed \u0027Manor Entrance\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 238,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T15:51:30.6640063"
+    },
+    {
+      "certificateId": "CERT_U4444_anag_e1_1764708702812",
+      "userId": "U4444",
+      "puzzleId": "anag_e1",
+      "description": "Completed \u0027Night Creature\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 243,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T15:51:42.8124462"
+    },
+    {
+      "certificateId": "CERT_U4444_ridd_e1_1764708720354",
+      "userId": "U4444",
+      "puzzleId": "ridd_e1",
+      "description": "Completed \u0027Manor Guardian\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 239,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T15:52:00.3541234"
+    },
+    {
+      "certificateId": "CERT_U4444_ridd_e2_1764709085922",
+      "userId": "U4444",
+      "puzzleId": "ridd_e2",
+      "description": "Completed \u0027Light in Darkness\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 150,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T15:58:05.9225395"
+    },
+    {
+      "certificateId": "CERT_U4444_maze_e1_1764711124827",
+      "userId": "U4444",
+      "puzzleId": "maze_e1",
+      "description": "Completed \u0027Manor Entrance\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 222,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T16:32:04.8320421"
+    },
+    {
+      "certificateId": "CERT_U4444_ridd_e1_1764711604875",
+      "userId": "U4444",
+      "puzzleId": "ridd_e1",
+      "description": "Completed \u0027Manor Guardian\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 150,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T16:40:04.8824531"
+    },
+    {
+      "certificateId": "CERT_U4444_cipher_e2_1764711646071",
+      "userId": "U4444",
+      "puzzleId": "cipher_e2",
+      "description": "Completed \u0027Creature Code\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 216,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T16:40:46.0713381"
+    },
+    {
+      "certificateId": "CERT_U4444_anag_e1_1764711657635",
+      "userId": "U4444",
+      "puzzleId": "anag_e1",
+      "description": "Completed \u0027Night Creature\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 243,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T16:40:57.6366219"
+    },
+    {
+      "certificateId": "CERT_U4444_match_e2_1764711691490",
+      "userId": "U4444",
+      "puzzleId": "match_e2",
+      "description": "Completed \u0027Manor Objects\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 216,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T16:41:31.4903688"
+    },
+    {
+      "certificateId": "CERT_U4444_cipher_e2_1764713948259",
+      "userId": "U4444",
+      "puzzleId": "cipher_e2",
+      "description": "Completed \u0027Creature Code\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 216,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T17:19:08.2681041"
+    },
+    {
+      "certificateId": "CERT_U4444_match_e3_1764714015997",
+      "userId": "U4444",
+      "puzzleId": "match_e3",
+      "description": "Completed \u0027Creature Cards\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 181,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T17:20:15.9971829"
+    },
+    {
+      "certificateId": "CERT_U4444_ridd_e1_1764714033523",
+      "userId": "U4444",
+      "puzzleId": "ridd_e1",
+      "description": "Completed \u0027Manor Guardian\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 239,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T17:20:33.5236781"
+    },
+    {
+      "certificateId": "CERT_U4444_anag_e3_1764714079379",
+      "userId": "U4444",
+      "puzzleId": "anag_e3",
+      "description": "Completed \u0027Scary Word\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 216,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T17:21:19.3795613"
+    },
+    {
+      "certificateId": "CERT_U4444_maze_e1_1764714161955",
+      "userId": "U4444",
+      "puzzleId": "maze_e1",
+      "description": "Completed \u0027Manor Entrance\u0027 puzzle",
+      "difficulty": "EASY",
+      "scoreAchieved": 235,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T17:22:41.9553216"
+    },
+    {
+      "certificateId": "CERT_U7777_SESSION_EASY_1764729956228",
+      "userId": "U7777",
+      "puzzleId": "SESSION_EASY",
+      "description": "Escaped Haunted Manor on EASY difficulty in 2:32",
+      "difficulty": "EASY",
+      "scoreAchieved": 1146,
+      "completionTimeSeconds": 0,
+      "earnedAt": "2025-12-02T21:45:56.2325219"
+    },
+    {
+      "certificateId": "CERT_U7777_SESSION_MEDIUM_1764733094277",
+      "userId": "U7777",
+      "puzzleId": "SESSION_MEDIUM",
+      "description": "Escaped Haunted Manor on MEDIUM difficulty in 4:05",
+      "difficulty": "MEDIUM",
+      "scoreAchieved": 1030,
+      "completionTimeSeconds": 245,
+      "earnedAt": "2025-12-02T22:38:14.2807839"
+    },
+    {
+      "certificateId": "CERT_U7777_SESSION_HARD_1764734671366",
+      "userId": "U7777",
+      "puzzleId": "SESSION_HARD",
+      "description": "Escaped Haunted Manor on HARD difficulty in 4:00",
+      "difficulty": "HARD",
+      "scoreAchieved": 1040,
+      "completionTimeSeconds": 240,
+      "earnedAt": "2025-12-02T23:04:31.3686007"
+    },
+    {
+      "certificateId": "CERT_U7777_SESSION_EASY_1764807162937",
+      "userId": "U7777",
+      "puzzleId": "SESSION_EASY",
+      "description": "Escaped Haunted Manor on EASY difficulty in 3:12",
+      "difficulty": "EASY",
+      "scoreAchieved": 1042,
+      "completionTimeSeconds": 192,
+      "earnedAt": "2025-12-03T19:12:42.942761"
+    },
+    {
+      "certificateId": "CERT_U7777_SESSION_HARD_1764824294460",
+      "userId": "U7777",
+      "puzzleId": "SESSION_HARD",
+      "description": "Escaped Haunted Manor on HARD difficulty in 5:58",
+      "difficulty": "HARD",
+      "scoreAchieved": 967,
+      "completionTimeSeconds": 358,
+      "earnedAt": "2025-12-03T23:58:14.4656235"
+    },
+    {
+      "certificateId": "CERT_U7777_SESSION_MEDIUM_1764825158365",
+      "userId": "U7777",
+      "puzzleId": "SESSION_MEDIUM",
+      "description": "Escaped Haunted Manor on MEDIUM difficulty in 4:55",
+      "difficulty": "MEDIUM",
+      "scoreAchieved": 958,
+      "completionTimeSeconds": 295,
+      "earnedAt": "2025-12-04T00:12:38.3710318"
+    },
+    {
+      "certificateId": "CERT_U7777_SESSION_EASY_1764827254158",
+      "userId": "U7777",
+      "puzzleId": "SESSION_EASY",
+      "description": "Escaped Haunted Manor on EASY difficulty in 4:48",
+      "difficulty": "EASY",
+      "scoreAchieved": 1058,
+      "completionTimeSeconds": 288,
+      "earnedAt": "2025-12-04T00:47:34.1629511"
+    },
+    {
+      "certificateId": "CERT_U6666_SESSION_EASY_1764857988871",
+      "userId": "U6666",
+      "puzzleId": "SESSION_EASY",
+      "description": "Escaped Haunted Manor on EASY difficulty in 1:58",
+      "difficulty": "EASY",
+      "scoreAchieved": 1160,
+      "completionTimeSeconds": 118,
+      "earnedAt": "2025-12-04T09:19:48.8715442"
+    },
+    {
+      "certificateId": "CERT_U6666_SESSION_EASY_1764874005562",
+      "userId": "U6666",
+      "puzzleId": "SESSION_EASY",
+      "description": "Escaped Haunted Manor on EASY difficulty in 1:56",
+      "difficulty": "EASY",
+      "scoreAchieved": 1171,
+      "completionTimeSeconds": 116,
+      "earnedAt": "2025-12-04T13:46:45.5653615"
+    },
+    {
+      "certificateId": "CERT_U6666_SESSION_EASY_1764880546750",
+      "userId": "U6666",
+      "puzzleId": "SESSION_EASY",
+      "description": "Escaped Haunted Manor on EASY difficulty in 2:31",
+      "difficulty": "EASY",
+      "scoreAchieved": 1142,
+      "completionTimeSeconds": 151,
+      "earnedAt": "2025-12-04T15:35:46.7571204"
+    },
+    {
+      "certificateId": "CERT_U6666_SESSION_EASY_1764885270601",
+      "userId": "U6666",
+      "puzzleId": "SESSION_EASY",
+      "description": "Escaped Haunted Manor on EASY difficulty in 4:45",
+      "difficulty": "EASY",
+      "scoreAchieved": 1041,
+      "completionTimeSeconds": 285,
+      "earnedAt": "2025-12-04T16:54:30.6070454"
+    },
+    {
+      "certificateId": "CERT_U6666_SESSION_HARD_1764894131886",
+      "userId": "U6666",
+      "puzzleId": "SESSION_HARD",
+      "description": "Escaped Haunted Manor on HARD difficulty in 5:56",
+      "difficulty": "HARD",
+      "scoreAchieved": 987,
+      "completionTimeSeconds": 356,
+      "earnedAt": "2025-12-04T19:22:11.8917787"
+    },
+    {
+      "certificateId": "CERT_U6666_SESSION_HARD_1764899789104",
+      "userId": "U6666",
+      "puzzleId": "SESSION_HARD",
+      "description": "Escaped Haunted Manor on HARD difficulty in 9:07",
+      "difficulty": "HARD",
+      "scoreAchieved": 1052,
+      "completionTimeSeconds": 547,
+      "earnedAt": "2025-12-04T20:56:29.109157"
+    },
+    {
+      "certificateId": "CERT_U6666_SESSION_HARD_1764904160571",
+      "userId": "U6666",
+      "puzzleId": "SESSION_HARD",
+      "description": "Escaped Haunted Manor on HARD difficulty in 3:04",
+      "difficulty": "HARD",
+      "scoreAchieved": 1020,
+      "completionTimeSeconds": 184,
+      "earnedAt": "2025-12-04T22:09:20.5742433"
+    },
+    {
+      "certificateId": "CERT_yoshi_SESSION_MEDIUM_1764911711214",
+      "userId": "yoshi",
+      "puzzleId": "SESSION_MEDIUM",
+      "description": "Escaped Haunted Manor on MEDIUM difficulty in 3:20",
+      "difficulty": "MEDIUM",
+      "scoreAchieved": 1029,
+      "completionTimeSeconds": 200,
+      "earnedAt": "2025-12-05T00:15:11.2155263"
+    },
+    {
+      "certificateId": "CERT_yoshi_SESSION_HARD_1764967532252",
+      "userId": "yoshi",
+      "puzzleId": "SESSION_HARD",
+      "description": "Escaped Haunted Manor on HARD difficulty in 1:55",
+      "difficulty": "HARD",
+      "scoreAchieved": 1124,
+      "completionTimeSeconds": 115,
+      "earnedAt": "2025-12-05T15:45:32.2541413"
     }
   ],
   "leaderboard": [
     {
+      "userId": "U6666",
+      "userName": "Kevin Smith",
+      "totalScore": 7941,
+      "puzzlesCompleted": 38,
+      "lastUpdated": "2025-12-04T22:56:43.6282971"
+    },
+    {
+      "userId": "U7777",
+      "userName": "Dale Smith",
+      "totalScore": 7237,
+      "puzzlesCompleted": 36,
+      "lastUpdated": "2025-12-04T09:13:02.3685177"
+    },
+    {
+      "userId": "U4444",
+      "userName": "Viva David",
+      "totalScore": 3225,
+      "puzzlesCompleted": 16,
+      "lastUpdated": "2025-12-02T17:22:45.5149853"
+    },
+    {
+      "userId": "U2222",
+      "userName": "Jack Danial",
+      "totalScore": 2264,
+      "puzzlesCompleted": 11,
+      "lastUpdated": "2025-12-02T00:38:48.2811414"
+    },
+    {
       "userId": "yoshi",
       "userName": "yoshi chil",
-      "totalScore": 3324,
-      "puzzlesCompleted": 15,
-      "lastUpdated": "2025-10-26T14:46:39.8825124"
+      "totalScore": 2153,
+      "puzzlesCompleted": 10,
+      "lastUpdated": "2025-12-05T15:45:32.2611415"
     },
     {
-      "userId": "nitin",
-      "userName": "nitin raju",
-      "totalScore": 1060,
-      "puzzlesCompleted": 5,
-      "lastUpdated": "2025-11-09T18:01:29.2490993"
-    },
-    {
-      "userId": "U1002",
-      "userName": "Jane Smith",
-      "totalScore": 810,
-      "puzzlesCompleted": 4,
-      "lastUpdated": "2025-10-26T00:12:10.9909331"
-    },
-    {
-      "userId": "U1001",
-      "userName": "John Doe",
-      "totalScore": 199,
-      "puzzlesCompleted": 1,
-      "lastUpdated": "2025-10-25T18:27:25.4748977"
+      "userId": "U5555",
+      "userName": "Kelly Brown",
+      "totalScore": 1189,
+      "puzzlesCompleted": 6,
+      "lastUpdated": "2025-12-02T11:22:21.0503205"
     }
   ]
 }
