@@ -1,0 +1,508 @@
+/* ===================================
+   HAUNTED MANOR - COMPLETE GAME CONTAINER STYLES
+   Single-view architecture with dynamic panels
+   =================================== */
+
+/* ==================
+   ROOT & GLOBAL
+   ================== */
+
+.root {
+    -fx-background-color: #0A0E2A;
+    -fx-font-family: "Jersey 10";
+}
+
+.game-container {
+    -fx-background-color: #0A0E2A;
+    -fx-min-width: 0;
+    -fx-min-height: 0;
+}
+
+/* ==================
+   LEFT PANEL - BASE STYLES
+   ================== */
+
+.left-panel {
+    -fx-background-color: linear-gradient(to right, #0A0E2A, #151B45);
+    -fx-border-color: rgba(49, 53, 97, 0.6);
+    -fx-border-width: 0 2px 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 20, 0, 5, 0);
+}
+
+/* ==================
+   WELCOME SCREEN STYLES
+   ================== */
+
+.welcome-title {
+    -fx-text-fill: white;
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(255, 165, 0, 0.4), 15, 0, 0, 0);
+}
+
+.welcome-action-button {
+    -fx-background-color: linear-gradient(to bottom, #313561, #252850);
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-border-color: #FFA500;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 12, 0, 0, 5);
+}
+
+.welcome-action-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #3D4270, #313561);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(255, 165, 0, 0.6), 18, 0, 0, 5);
+}
+
+.welcome-action-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #252850, #1A1F3D);
+}
+
+/* ==================
+   FORM STYLES (Login & Registration)
+   ================== */
+
+.form-title {
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.form-label {
+    -fx-text-fill: #CCCCCC;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.form-input {
+    -fx-background-color: #0E1A45;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 10px 12px;
+    -fx-background-radius: 6px;
+    -fx-border-color: #313561;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-prompt-text-fill: #888888;
+}
+
+.form-input:focused {
+    -fx-border-color: #FFA500;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(255, 165, 0, 0.3), 8, 0, 0, 0);
+}
+
+.form-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.form-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.message-label {
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}
+
+/* ==================
+   MAIN MENU STYLES
+   ================== */
+
+.user-info-box {
+    -fx-background-color: rgba(49, 53, 97, 0.4);
+    -fx-background-radius: 6px;
+    -fx-padding: 15px;
+}
+
+.user-name-label {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.user-stat-label {
+    -fx-text-fill: #CCCCCC;
+    -fx-font-size: 16px;
+}
+
+.menu-separator {
+    -fx-background-color: rgba(49, 53, 97, 0.6);
+}
+
+.menu-separator .line {
+    -fx-border-color: rgba(49, 53, 97, 0.6);
+    -fx-border-width: 1px;
+}
+
+.menu-item-button {
+    -fx-background-color: rgba(49, 53, 97, 0.3);
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+    -fx-padding: 12px 20px;
+}
+
+.menu-item-button:hover {
+    -fx-background-color: rgba(49, 53, 97, 0.6);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.menu-item-button:pressed {
+    -fx-background-color: rgba(49, 53, 97, 0.8);
+}
+
+.menu-item-button-info {
+    -fx-background-color: rgba(255, 165, 0, 0.15);
+    -fx-text-fill: #FFA500;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-alignment: center-left;
+    -fx-padding: 12px 20px;
+    -fx-cursor: default;
+}
+
+/* Difficulty Submenu */
+.submenu-item-button {
+    -fx-background-color: rgba(14, 26, 69, 0.6);
+    -fx-text-fill: #DDDDDD;
+    -fx-font-size: 18px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-padding: 10px 15px;
+    -fx-alignment: center-left;
+}
+
+.submenu-item-button:hover {
+    -fx-background-color: rgba(49, 53, 97, 0.7);
+    -fx-text-fill: white;
+}
+
+/* ==================
+   BUTTON STYLES
+   ================== */
+
+.primary-button {
+    -fx-background-color: linear-gradient(to bottom, #313561, #252850);
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-border-color: #FFA500;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 10px 20px;
+}
+
+.primary-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #3D4270, #313561);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.primary-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #252850, #1A1F3D);
+}
+
+.secondary-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-background-radius: 6px;
+    -fx-border-color: rgba(255, 255, 255, 0.5);
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 10px 20px;
+}
+
+.secondary-button:hover {
+    -fx-background-color: rgba(49, 53, 97, 0.4);
+    -fx-border-color: white;
+}
+
+.secondary-button:pressed {
+    -fx-background-color: rgba(49, 53, 97, 0.6);
+}
+
+.logout-button {
+    -fx-background-color: rgba(139, 0, 0, 0.7);
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 12px 20px;
+}
+
+.logout-button:hover {
+    -fx-background-color: rgba(165, 42, 42, 0.8);
+}
+
+.logout-button:pressed {
+    -fx-background-color: rgba(139, 0, 0, 0.9);
+}
+
+/* ==================
+   RIGHT PANEL STYLES
+   ================== */
+
+.right-panel {
+    -fx-background-color: #0A0E2A;
+    -fx-min-width: 0;
+    -fx-min-height: 0;
+}
+
+/* View container for Progress/Leaderboard/Certificates */
+.view-container {
+    -fx-background-color: transparent;
+    -fx-min-width: 0;
+    -fx-min-height: 0;
+}
+
+/* Gameplay Panel */
+.gameplay-panel {
+    -fx-background-color: rgba(10, 14, 42, 0.95);
+}
+
+/* Victory Screen */
+.victory-panel {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+}
+
+.victory-title {
+    -fx-text-fill: #FFD700;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(255, 215, 0, 0.6), 20, 0, 0, 0);
+}
+
+.victory-subtitle {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-style: italic;
+}
+
+.victory-button {
+    -fx-background-color: linear-gradient(to bottom, #FFD700, #FFA500);
+    -fx-text-fill: #0A0E2A;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 15, 0, 0, 5);
+}
+
+.victory-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #FFED4E, #FFB733);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* ==================
+   SCROLL BARS
+   ================== */
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ==================
+   GAME COMPONENTS (for when puzzles load)
+   ================== */
+
+/* Card buttons for matching game */
+.card-button {
+    -fx-min-width: 90px;
+    -fx-min-height: 90px;
+    -fx-max-width: 90px;
+    -fx-max-height: 90px;
+    -fx-pref-width: 90px;
+    -fx-pref-height: 90px;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-content-display: center;
+    -fx-alignment: center;
+    -fx-padding: 0;
+}
+
+.card-face-down {
+    -fx-background-color: linear-gradient(to bottom, #e8e8e8, #d0d0d0);
+    -fx-text-fill: #888888;
+    -fx-font-size: 36px;
+    -fx-border-color: #aaaaaa;
+    -fx-border-width: 2;
+    -fx-border-radius: 8px;
+}
+
+.card-face-down:hover {
+    -fx-background-color: linear-gradient(to bottom, #87CEEB, #5fa8d3);
+    -fx-border-color: #4a90c2;
+    -fx-text-fill: #ffffff;
+}
+
+.card-face-up {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f5f5f5);
+    -fx-text-fill: #333333;
+    -fx-border-color: #4a90c2;
+    -fx-border-width: 2;
+    -fx-border-radius: 8px;
+}
+
+.card-hidden {
+    -fx-background-color: #313561;
+    -fx-text-fill: white;
+}
+
+.card-hidden:hover {
+    -fx-background-color: #3D4270;
+}
+
+.card-revealed {
+    -fx-background-color: #FFA500;
+    -fx-text-fill: white;
+}
+
+.card-matched {
+    -fx-background-color: linear-gradient(to bottom, #2e8b2e, #228B22);
+    -fx-text-fill: white;
+    -fx-border-color: #1a6b1a;
+    -fx-border-width: 2;
+    -fx-border-radius: 8px;
+}
+
+/* Maze cells */
+.maze-cell {
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-width: 30px;
+    -fx-max-height: 30px;
+    -fx-border-color: #333333;
+    -fx-border-width: 1px;
+}
+
+.maze-wall {
+    -fx-background-color: #181A3C;
+}
+
+.maze-path {
+    -fx-background-color: #3a3a4e;
+}
+
+.maze-player {
+    -fx-background-color: #4CAF50;
+}
+
+.maze-exit {
+    -fx-background-color: #FFD700;
+}
+
+/* Word puzzle components */
+.prompt-box {
+    -fx-background-color: #313561;
+    -fx-border-color: #FFA500;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 15px;
+}
+
+.prompt-text {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+}
+
+.answer-field {
+    -fx-background-color: #0E1A45;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-padding: 12px;
+    -fx-background-radius: 6px;
+    -fx-border-color: #313561;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-prompt-text-fill: #888888;
+}
+
+.answer-field:focused {
+    -fx-border-color: #FFA500;
+}
+
+.hint-button {
+    -fx-background-color: #FFA500;
+    -fx-text-fill: white;
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.hint-button:hover {
+    -fx-background-color: #FFB733;
+}
+
+/* ==================
+   UTILITY CLASSES
+   ================== */
+
+.text-white {
+    -fx-text-fill: white;
+}
+
+.text-orange {
+    -fx-text-fill: #FFA500;
+}
+
+.text-success {
+    -fx-text-fill: #44ff44;
+}
+
+.text-error {
+    -fx-text-fill: #ff4444;
+}
+
+/* ==================
+   END OF STYLESHEET
+   ================== */

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<!-- 
+    WordPuzzleView.fxml - Word Puzzle View (Cipher, Anagram, Riddle)
+    Uses StackPane with ImageView background and content overlay
+    Content is padded to fit inside the background frame's inner rectangle
+-->
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:id="rootPane"
+           fx:controller="com.escapegame.controller.WordPuzzleController"
+           minHeight="650" 
+           minWidth="750"
+           style="-fx-background-color: transparent;">
+
+    <!-- Background Image Layer -->
+    <ImageView fx:id="backgroundImage" 
+               preserveRatio="false"
+               pickOnBounds="false"
+               mouseTransparent="true"/>
+
+    <!-- Content Layer - Padded to fit inside frame -->
+    <BorderPane fx:id="contentPane" style="-fx-border-color: #4A5580; -fx-border-width: 2; -fx-border-radius: 14; -fx-background-color: transparent; -fx-background-radius: 14;">
+
+        <!-- Top: Header -->
+        <top>
+            <VBox spacing="8" style="-fx-background-color: rgba(0,0,0,0.6); -fx-background-radius: 14 14 0 0;">
+                <padding>
+                    <Insets top="10" right="15" bottom="10" left="15"/>
+                </padding>
+                
+                <Label fx:id="titleLabel" 
+                       text="Word Puzzle"
+                       style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+                
+                <!-- Category, Attempts, Timer and Hint Availability Row -->
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Label fx:id="categoryLabel" 
+                           text="Category: "
+                           style="-fx-text-fill: #AAAAAA; -fx-font-size: 14px;"/>
+                    <Label fx:id="attemptsLabel" 
+                           text="Attempts: 0/5"
+                           style="-fx-text-fill: #AAAAAA; -fx-font-size: 14px;"/>
+                    <Label fx:id="timerLabel" 
+                           text="Time: 10:00" 
+                           style="-fx-font-size: 16px; -fx-text-fill: #FFD700; -fx-font-weight: bold;"/>
+                    
+                    <!-- Spacer to push hint availability to far right -->
+                    <Region HBox.hgrow="ALWAYS"/>
+                    
+                    <!-- Hint Availability (far right) -->
+                    <Label fx:id="hintAvailabilityLabel" 
+                           style="-fx-text-fill: #FFA500; -fx-font-size: 14px; -fx-font-style: italic;"/>
+                </HBox>
+            </VBox>
+        </top>
+
+        <!-- Center: Puzzle Display -->
+        <center>
+            <ScrollPane fitToWidth="true" 
+                        style="-fx-background: transparent; -fx-background-color: transparent;">
+                
+                <VBox spacing="15" 
+                      style="-fx-background-color: transparent;">
+                    <padding>
+                        <Insets top="15" right="20" bottom="15" left="20"/>
+                    </padding>
+
+                    <!-- Puzzle Prompt Box -->
+                    <VBox styleClass="prompt-box" spacing="8">
+                        <Label text="PUZZLE PROMPT:" styleClass="section-header"/>
+                        <Label fx:id="promptLabel" 
+                               wrapText="true" 
+                               styleClass="prompt-text"/>
+                    </VBox>
+
+                    <!-- Answer Input -->
+                    <VBox spacing="8">
+                        <Label text="Enter your answer:" 
+                               style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+                        
+                        <TextField fx:id="answerField" 
+                                   promptText="Type your answer here..."
+                                   styleClass="answer-field"
+                                   onAction="#handleSubmit"
+                                   prefHeight="38"/>
+                    </VBox>
+
+                    <!-- Hints and Previous Guesses Side by Side -->
+                    <HBox spacing="15" alignment="TOP_CENTER">
+                        
+                        <!-- Hints (Left) -->
+                        <VBox fx:id="hintsSection" 
+                              styleClass="hints-section" 
+                              spacing="6" 
+                              managed="false" 
+                              visible="false"
+                              HBox.hgrow="ALWAYS">
+                            
+                            <Label text="Hints:" styleClass="section-header"/>
+                            <VBox fx:id="hintsList" spacing="4"/>
+                        </VBox>
+
+                        <!-- Previous Guesses (Right) -->
+                        <VBox fx:id="guessesSection" 
+                              styleClass="guesses-section" 
+                              spacing="6" 
+                              managed="false" 
+                              visible="false"
+                              HBox.hgrow="ALWAYS">
+                            
+                            <Label text="Your Previous Guesses:" 
+                                   styleClass="section-header"/>
+                            <VBox fx:id="guessesList" spacing="4"/>
+                        </VBox>
+                        
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </center>
+
+        <!-- Bottom: Buttons -->
+        <bottom>
+            <HBox spacing="10" 
+                  alignment="CENTER"
+                  style="-fx-background-color: rgba(0,0,0,0.6); -fx-background-radius: 0 0 8 8;">
+                
+                <padding>
+                    <Insets top="10" right="15" bottom="10" left="15"/>
+                </padding>
+                
+                <Button fx:id="submitButton" 
+                        text="Submit" 
+                        styleClass="puzzle-primary-button" 
+                        onAction="#handleSubmit"/>
+                
+                <Button fx:id="hintButton" 
+                        text="Hint" 
+                        styleClass="puzzle-hint-button" 
+                        onAction="#handleHint"/>
+                
+                <Button fx:id="saveButton" 
+                        text="Save and Quit" 
+                        styleClass="puzzle-secondary-button" 
+                        onAction="#handleSave"/>
+                
+                <Button fx:id="backButton" 
+                        text="Back" 
+                        styleClass="puzzle-secondary-button" 
+                        onAction="#handleQuitWithoutSaving"/>
+            </HBox>
+        </bottom>
+
+    </BorderPane>
+
+</StackPane>

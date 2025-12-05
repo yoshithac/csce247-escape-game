@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- 
+    ProgressView.fxml - Player Progress Display
+    Loads into RIGHT PANEL of GameContainerView
+    Compact version with smaller fonts to fit inside frame
+-->
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.escapegame.controller.ProgressController"
+      alignment="TOP_CENTER"
+      spacing="10"
+      style="-fx-background-color: transparent;"
+      fillWidth="true">
+
+    <padding>
+        <Insets top="5" right="10" bottom="5" left="10"/>
+    </padding>
+
+    <!-- Header -->
+    <HBox alignment="CENTER" spacing="10" styleClass="progress-header">
+        <Label text="📊" style="-fx-font-size: 36px;"/>
+        <Label text="YOUR PROGRESS" styleClass="progress-title"/>
+        <Label text="📊" style="-fx-font-size: 36px;"/>
+    </HBox>
+
+    <!-- Main Content Area - grows to fill space -->
+    <VBox alignment="CENTER" spacing="12" VBox.vgrow="ALWAYS">
+        
+        <!-- Stats Box -->
+        <VBox styleClass="progress-stats-box" spacing="12" alignment="CENTER">
+            <padding>
+                <Insets top="15" right="25" bottom="15" left="25"/>
+            </padding>
+            
+            <!-- Total Score -->
+            <VBox alignment="CENTER" spacing="3">
+                <Label text="⭐ TOTAL SCORE ⭐" styleClass="stat-title"/>
+                <Label fx:id="totalScoreLabel" text="0" styleClass="score-value"/>
+            </VBox>
+            
+            <!-- Separator -->
+            <Region styleClass="progress-divider" prefWidth="250" prefHeight="1"/>
+            
+            <!-- Stats Grid -->
+            <HBox spacing="30" alignment="CENTER">
+                <!-- Completed -->
+                <VBox alignment="CENTER" spacing="3">
+                    <Label text="✅" style="-fx-font-size: 20px;"/>
+                    <Label fx:id="completedLabel" text="0" styleClass="stat-number-green"/>
+                    <Label text="Completed" styleClass="stat-subtitle"/>
+                </VBox>
+                
+                <!-- Remaining -->
+                <VBox alignment="CENTER" spacing="3">
+                    <Label text="⏳" style="-fx-font-size: 20px;"/>
+                    <Label fx:id="remainingLabel" text="0" styleClass="stat-number-orange"/>
+                    <Label text="Remaining" styleClass="stat-subtitle"/>
+                </VBox>
+                
+                <!-- Percentage -->
+                <VBox alignment="CENTER" spacing="3">
+                    <Label text="📈" style="-fx-font-size: 20px;"/>
+                    <Label fx:id="percentageLabel" text="0%" styleClass="stat-number-blue"/>
+                    <Label text="Complete" styleClass="stat-subtitle"/>
+                </VBox>
+            </HBox>
+            
+            <!-- Progress Bar -->
+            <VBox spacing="5" alignment="CENTER">
+                <Label text="Overall Progress" styleClass="progress-bar-label"/>
+                <ProgressBar fx:id="progressBar" 
+                             prefWidth="280" 
+                             prefHeight="16"
+                             progress="0.0" 
+                             styleClass="custom-progress-bar"/>
+            </VBox>
+        </VBox>
+
+        <!-- Difficulty Breakdown -->
+        <VBox styleClass="difficulty-breakdown" spacing="8" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <Label text="Difficulty Breakdown" styleClass="breakdown-title"/>
+            
+            <HBox spacing="20" alignment="CENTER">
+                <VBox alignment="CENTER" spacing="2" styleClass="diff-stat, diff-easy">
+                    <Label text="🥉" style="-fx-font-size: 16px;"/>
+                    <Label fx:id="easyCompletedLabel" text="0/0" styleClass="diff-value"/>
+                    <Label text="Easy" styleClass="diff-label"/>
+                </VBox>
+                
+                <VBox alignment="CENTER" spacing="2" styleClass="diff-stat, diff-medium">
+                    <Label text="🥈" style="-fx-font-size: 16px;"/>
+                    <Label fx:id="mediumCompletedLabel" text="0/0" styleClass="diff-value"/>
+                    <Label text="Medium" styleClass="diff-label"/>
+                </VBox>
+                
+                <VBox alignment="CENTER" spacing="2" styleClass="diff-stat, diff-hard">
+                    <Label text="🥇" style="-fx-font-size: 16px;"/>
+                    <Label fx:id="hardCompletedLabel" text="0/0" styleClass="diff-value"/>
+                    <Label text="Hard" styleClass="diff-label"/>
+                </VBox>
+            </HBox>
+        </VBox>
+        
+    </VBox>
+
+</VBox>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<!-- 
+    MazeView.fxml - Maze Puzzle View
+    Uses StackPane with ImageView background and content overlay
+    Content is padded to fit inside the background frame's inner rectangle
+-->
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1" 
+           xmlns="http://javafx.com/javafx/13" 
+           fx:id="rootPane"
+           fx:controller="com.escapegame.controller.MazeGameController"
+           minHeight="650" 
+           minWidth="700"
+           style="-fx-background-color: transparent;">
+
+    <!-- Background Image Layer -->
+    <ImageView fx:id="backgroundImage" 
+               preserveRatio="false"
+               pickOnBounds="false"
+               mouseTransparent="true"/>
+
+    <!-- Content Layer - Padded to fit inside frame -->
+    <BorderPane fx:id="contentPane" style="-fx-border-color: #4A5580; -fx-border-width: 2; -fx-border-radius: 14; -fx-background-color: transparent; -fx-background-radius: 14;">
+
+        <!-- Top Header -->
+        <top>
+            <VBox spacing="8" style="-fx-background-color: rgba(0,0,0,0.6); -fx-background-radius: 14 14 0 0;">
+                <padding>
+                    <Insets top="10" right="15" bottom="10" left="15"/>
+                </padding>
+                
+                <Label fx:id="titleLabel" 
+                       text="Maze Game" 
+                       style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+                
+                <!-- Stats and Timer Row -->
+                <HBox alignment="CENTER_LEFT" spacing="30">
+                    <Label fx:id="statsLabel" 
+                           text="Moves: 0" 
+                           style="-fx-text-fill: #CCCCCC; -fx-font-size: 16px;"/>
+                    
+                    <Label fx:id="timerLabel" 
+                           text="Time: 10:00" 
+                           style="-fx-font-size: 16px; -fx-text-fill: #FFD700; -fx-font-weight: bold;"/>
+                </HBox>
+            </VBox>
+        </top>
+
+        <!-- Center: Game Area -->
+        <center>
+            <VBox spacing="15" 
+                  alignment="CENTER"
+                  style="-fx-background-color: transparent;">
+                
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                
+                <!-- Maze Grid Container -->
+                <GridPane fx:id="mazeGrid" 
+                          alignment="CENTER"
+                          hgap="0" 
+                          vgap="0"
+                          styleClass="maze-grid-container" />
+                
+                <!-- Instructions -->
+                <Label text="Controls: W=Up, S=Down, A=Left, D=Right" 
+                       style="-fx-text-fill: #AAAAAA; -fx-font-size: 14px;" />
+                
+            </VBox>
+        </center>
+
+        <!-- Bottom: Buttons -->
+        <bottom>
+            <HBox spacing="15" 
+                  alignment="CENTER" 
+                  style="-fx-background-color: rgba(0,0,0,0.6); -fx-background-radius: 0 0 8 8;">
+                
+                <padding>
+                    <Insets top="12" right="15" bottom="12" left="15"/>
+                </padding>
+                
+                <Button fx:id="saveButton" 
+                        text="Save and Quit" 
+                        onAction="#handleSave"
+                        styleClass="puzzle-secondary-button"/>
+                
+                <Button fx:id="backButton" 
+                        text="Quit Without Saving" 
+                        onAction="#handleQuitWithoutSaving"
+                        styleClass="puzzle-secondary-button"/>
+            </HBox>
+        </bottom>
+
+    </BorderPane>
+
+</StackPane>

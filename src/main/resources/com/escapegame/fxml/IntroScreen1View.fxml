@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+    IntroScreen1View.fxml - First Introduction Screen
+    House exterior with story narration at top
+    Uses CSS classes for Jersey 10 font
+-->
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:id="rootPane"
+           fx:controller="com.escapegame.controller.IntroScreen1Controller"
+           style="-fx-background-color: #000000;">
+
+    <!-- Background Image - Full visibility -->
+    <ImageView fx:id="backgroundImage"
+               preserveRatio="false"
+               pickOnBounds="false"
+               mouseTransparent="true"/>
+
+    <!-- Story Text at Top -->
+    <VBox alignment="TOP_CENTER" 
+          StackPane.alignment="TOP_CENTER"
+          mouseTransparent="false"
+          style="-fx-background-color: transparent;">
+        
+        <padding>
+            <Insets top="50" right="80" bottom="20" left="80"/>
+        </padding>
+
+        <Label fx:id="storyLabel"
+               styleClass="story-text"
+               wrapText="true"
+               maxWidth="900"
+               alignment="CENTER"/>
+
+    </VBox>
+
+    <!-- Continue Button (bottom right) -->
+    <VBox alignment="BOTTOM_RIGHT"
+          StackPane.alignment="BOTTOM_RIGHT"
+          style="-fx-background-color: transparent;">
+        
+        <padding>
+            <Insets top="20" right="40" bottom="40" left="20"/>
+        </padding>
+        
+        <Button fx:id="continueButton"
+                text="Continue ▶"
+                styleClass="intro-button"
+                onAction="#handleContinue"/>
+    </VBox>
+
+</StackPane>

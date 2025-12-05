@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+    CertificatesView.fxml - Achievement Showcase
+    Loads into RIGHT PANEL of GameContainerView
+    Transparent background to show background_frame.png behind
+-->
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="rootPane"
+      fx:controller="com.escapegame.controller.CertificatesController"
+      alignment="TOP_CENTER"
+      spacing="12"
+      style="-fx-background-color: transparent;">
+
+    <padding>
+        <Insets top="10" right="15" bottom="10" left="15"/>
+    </padding>
+
+    <!-- Header with Trophy -->
+    <HBox alignment="CENTER" spacing="10" styleClass="certificates-header">
+        <Label text="🏆" styleClass="header-trophy"/>
+        <VBox alignment="CENTER" spacing="3">
+            <Label text="HALL OF ACHIEVEMENTS" styleClass="certificates-title"/>
+            <Label text="Your Journey Through Hollow Manor" styleClass="certificates-subtitle"/>
+        </VBox>
+        <Label text="🏆" styleClass="header-trophy"/>
+    </HBox>
+
+    <!-- Stats Cards Row -->
+    <HBox spacing="12" alignment="CENTER">
+        <padding>
+            <Insets top="5" bottom="5"/>
+        </padding>
+        
+        <!-- Total Certificates -->
+        <VBox styleClass="stat-card, stat-total" alignment="CENTER" spacing="3">
+            <Label text="🎖️" styleClass="stat-icon"/>
+            <Label fx:id="totalLabel" text="0" styleClass="stat-number"/>
+            <Label text="TOTAL" styleClass="stat-label"/>
+        </VBox>
+        
+        <!-- Easy Certificates -->
+        <VBox styleClass="stat-card, stat-easy" alignment="CENTER" spacing="3">
+            <Label text="🥉" styleClass="stat-icon"/>
+            <Label fx:id="easyCountLabel" text="0" styleClass="stat-number"/>
+            <Label text="EASY" styleClass="stat-label"/>
+        </VBox>
+        
+        <!-- Medium Certificates -->
+        <VBox styleClass="stat-card, stat-medium" alignment="CENTER" spacing="3">
+            <Label text="🥈" styleClass="stat-icon"/>
+            <Label fx:id="mediumCountLabel" text="0" styleClass="stat-number"/>
+            <Label text="MEDIUM" styleClass="stat-label"/>
+        </VBox>
+        
+        <!-- Hard Certificates -->
+        <VBox styleClass="stat-card, stat-hard" alignment="CENTER" spacing="3">
+            <Label text="🥇" styleClass="stat-icon"/>
+            <Label fx:id="hardCountLabel" text="0" styleClass="stat-number"/>
+            <Label text="HARD" styleClass="stat-label"/>
+        </VBox>
+        
+        <!-- Total Score -->
+        <VBox styleClass="stat-card, stat-score" alignment="CENTER" spacing="3">
+            <Label text="⭐" styleClass="stat-icon"/>
+            <Label fx:id="totalScoreLabel" text="0" styleClass="stat-number"/>
+            <Label text="POINTS" styleClass="stat-label"/>
+        </VBox>
+    </HBox>
+
+    <!-- Certificates Section -->
+    <VBox styleClass="certificates-section" spacing="10" alignment="CENTER" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="12" right="15" bottom="15" left="15"/>
+        </padding>
+        
+        <HBox alignment="CENTER" spacing="8">
+            <Label text="📜" style="-fx-font-size: 20px;"/>
+            <Label text="Your Certificates" styleClass="section-header"/>
+        </HBox>
+        
+        <!-- Certificates Scroll Area -->
+        <ScrollPane fx:id="certificatesScroll" 
+                    styleClass="certificates-scroll"
+                    fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    vbarPolicy="AS_NEEDED"
+                    VBox.vgrow="ALWAYS">
+            
+            <FlowPane fx:id="certificatesPane"
+                      styleClass="certificates-flow"
+                      hgap="12"
+                      vgap="12"
+                      alignment="CENTER">
+                <padding>
+                    <Insets top="8" right="8" bottom="8" left="8"/>
+                </padding>
+            </FlowPane>
+        </ScrollPane>
+        
+        <!-- Empty state message -->
+        <Label fx:id="emptyMessage" 
+               text="No certificates yet. Complete puzzles to earn achievements!"
+               styleClass="empty-message"
+               visible="false"
+               managed="false"/>
+    </VBox>
+
+</VBox>

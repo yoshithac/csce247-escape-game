@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<!-- 
+    GameContainerView.fxml - Main Container for Login/Registration/Menu
+    
+    SIMPLIFIED: Game session with hallway doors is handled by GameSessionView
+    
+    Left Panel: Navigation/Forms (switches between states)
+    Right Panel: Static image or loaded views (Progress/Leaderboard/Certificates)
+-->
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.escapegame.controller.GameContainerController"
+      styleClass="game-container">
+
+    <!-- ==================
+         LEFT PANEL - Dynamic Content
+         ================== -->
+    <VBox fx:id="leftPanel" styleClass="left-panel" prefWidth="350" minWidth="350" maxWidth="350">
+        
+        <padding>
+            <Insets top="40" right="30" bottom="40" left="30"/>
+        </padding>
+        
+        <!-- ==================
+             STATE 1: WELCOME BUTTONS
+             ================== -->
+        <VBox fx:id="welcomeButtonsPanel" spacing="30" alignment="CENTER" VBox.vgrow="ALWAYS">
+            
+            <VBox alignment="CENTER" spacing="15">
+                <Label text="WHISPERS OF" styleClass="welcome-title"/>
+                <Label text="HOLLOW MANOR" styleClass="welcome-title"/>
+            </VBox>
+            
+            <Region VBox.vgrow="ALWAYS" minHeight="50"/>
+            
+            <VBox spacing="20" alignment="CENTER">
+                <Button text="LOGIN" onAction="#handleLoginClick" 
+                        styleClass="welcome-action-button" 
+                        prefWidth="250" prefHeight="60"/>
+                
+                <Button text="REGISTER" onAction="#handleRegisterClick" 
+                        styleClass="welcome-action-button" 
+                        prefWidth="250" prefHeight="60"/>
+            </VBox>
+            
+            <Region VBox.vgrow="ALWAYS" minHeight="50"/>
+            
+        </VBox>
+        
+        <!-- ==================
+             STATE 2: LOGIN FORM
+             ================== -->
+        <VBox fx:id="loginFormPanel" spacing="25" alignment="CENTER" VBox.vgrow="ALWAYS" 
+              visible="false" managed="false">
+            
+            <Label text="LOGIN" styleClass="form-title"/>
+            
+            <Region VBox.vgrow="SOMETIMES"/>
+            
+            <VBox spacing="20" maxWidth="280">
+                <VBox spacing="8">
+                    <Label text="User ID:" styleClass="form-label"/>
+                    <TextField fx:id="loginUserId" promptText="Enter User ID" 
+                               styleClass="form-input" prefHeight="40"/>
+                </VBox>
+                
+                <VBox spacing="8">
+                    <Label text="Password:" styleClass="form-label"/>
+                    <PasswordField fx:id="loginPassword" promptText="Enter Password" 
+                                   styleClass="form-input" prefHeight="40"/>
+                </VBox>
+                
+                <Label fx:id="loginMessageLabel" styleClass="message-label" 
+                       minHeight="25" wrapText="true"/>
+                
+                <HBox spacing="15" alignment="CENTER">
+                    <Button text="LOGIN" onAction="#handleLoginSubmit" 
+                            styleClass="primary-button" 
+                            prefWidth="130" prefHeight="45"/>
+                    
+                    <Button text="CANCEL" onAction="#handleCancelToWelcome" 
+                            styleClass="primary-button" 
+                            prefWidth="130" prefHeight="45"/>
+                </HBox>
+            </VBox>
+            
+            <Region VBox.vgrow="SOMETIMES"/>
+            
+        </VBox>
+        
+        <!-- ==================
+             STATE 3: REGISTRATION FORM
+             ================== -->
+        <VBox fx:id="registerFormPanel" spacing="20" alignment="CENTER" VBox.vgrow="ALWAYS" 
+              visible="false" managed="false">
+            
+            <Label text="REGISTER" styleClass="form-title"/>
+            
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="form-scroll">
+                <VBox spacing="15" alignment="CENTER">
+                    <VBox spacing="20" maxWidth="280">
+                        <VBox spacing="8">
+                            <Label text="User ID (5 characters):" styleClass="form-label"/>
+                            <TextField fx:id="registerUserId" promptText="e.g., USER1" 
+                                       styleClass="form-input" prefHeight="38"/>
+                        </VBox>
+                        
+                        <VBox spacing="8">
+                            <Label text="Password (min 4 characters):" styleClass="form-label"/>
+                            <PasswordField fx:id="registerPassword" promptText="Password" 
+                                           styleClass="form-input" prefHeight="38"/>
+                        </VBox>
+                        
+                        <VBox spacing="8">
+                            <Label text="First Name:" styleClass="form-label"/>
+                            <TextField fx:id="registerFirstName" promptText="First Name" 
+                                       styleClass="form-input" prefHeight="38"/>
+                        </VBox>
+                        
+                        <VBox spacing="8">
+                            <Label text="Last Name:" styleClass="form-label"/>
+                            <TextField fx:id="registerLastName" promptText="Last Name" 
+                                       styleClass="form-input" prefHeight="38"/>
+                        </VBox>
+                        
+                        <VBox spacing="8">
+                            <Label text="Email:" styleClass="form-label"/>
+                            <TextField fx:id="registerEmail" promptText="your@email.com" 
+                                       styleClass="form-input" prefHeight="38"/>
+                        </VBox>
+                        
+                        <Label fx:id="registerMessageLabel" styleClass="message-label" 
+                               minHeight="25" wrapText="true"/>
+                        
+                        <HBox spacing="15" alignment="CENTER">
+                            <Button text="REGISTER" onAction="#handleRegisterSubmit" 
+                                    styleClass="primary-button" 
+                                    prefWidth="120" prefHeight="45"/>
+                            
+                            <Button text="CANCEL" onAction="#handleCancelToWelcome" 
+                                    styleClass="secondary-button" 
+                                    prefWidth="120" prefHeight="45"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+            
+        </VBox>
+        
+        <!-- ==================
+             STATE 4: MAIN MENU
+             ================== -->
+        <VBox fx:id="mainMenuPanel" spacing="20" VBox.vgrow="ALWAYS" 
+              visible="false" managed="false">
+            
+            <!-- User Info Header -->
+            <VBox spacing="8" styleClass="user-info-box">
+                <Label fx:id="userNameLabel" text="Player Name" styleClass="user-name-label"/>
+                <HBox spacing="20">
+                    <Label fx:id="userScoreLabel" text="Score: 0" styleClass="user-stat-label"/>
+                    <Label fx:id="userPuzzlesLabel" text="Puzzles: 0" styleClass="user-stat-label"/>
+                </HBox>
+            </VBox>
+            
+            <Separator styleClass="menu-separator"/>
+            
+            <!-- Menu Items -->
+            <VBox spacing="12" VBox.vgrow="ALWAYS">
+                
+                <!-- Start New Game with expandable difficulty -->
+                <VBox spacing="8">
+                    <Button text="Start New Game" onAction="#handleStartNewGame" 
+                            styleClass="menu-item-button" 
+                            prefWidth="290" prefHeight="45" alignment="CENTER_LEFT"/>
+                    
+                    <!-- Difficulty Submenu (expandable) -->
+                    <VBox fx:id="difficultySubmenu" spacing="6" 
+                          visible="false" managed="false">
+                        <padding>
+                            <Insets left="20"/>
+                        </padding>
+                        
+                        <Button text="Easy" onAction="#handleDifficultyEasy" 
+                                styleClass="submenu-item-button" 
+                                prefWidth="260" prefHeight="38"/>
+                        <Button text="Medium" onAction="#handleDifficultyMedium" 
+                                styleClass="submenu-item-button" 
+                                prefWidth="260" prefHeight="38"/>
+                        <Button text="Hard" onAction="#handleDifficultyHard" 
+                                styleClass="submenu-item-button" 
+                                prefWidth="260" prefHeight="38"/>
+                    </VBox>
+                </VBox>
+                
+                <!-- Resume Game -->
+                <Button fx:id="resumeGameButton" text="Resume Game" onAction="#handleResumeGame" 
+                        styleClass="menu-item-button" 
+                        prefWidth="290" prefHeight="45" alignment="CENTER_LEFT"
+                        visible="false" managed="false"/>
+                
+                <!-- Other Menu Items -->
+                <Button text="View Progress" onAction="#handleViewProgress" 
+                        styleClass="menu-item-button" 
+                        prefWidth="290" prefHeight="45" alignment="CENTER_LEFT"/>
+                
+                <Button text="View Leaderboard" onAction="#handleViewLeaderboard" 
+                        styleClass="menu-item-button" 
+                        prefWidth="290" prefHeight="45" alignment="CENTER_LEFT"/>
+                
+                <Button text="View Certificates" onAction="#handleViewCertificates" 
+                        styleClass="menu-item-button" 
+                        prefWidth="290" prefHeight="45" alignment="CENTER_LEFT"/>
+            </VBox>
+            
+            <Separator styleClass="menu-separator"/>
+            
+            <!-- Logout Button -->
+            <Button text="Logout" onAction="#handleLogout" 
+                    styleClass="logout-button" 
+                    prefWidth="290" prefHeight="45"/>
+            
+        </VBox>
+        
+    </VBox>
+    
+    <!-- ==================
+         RIGHT PANEL - Static Image or Views
+         ================== -->
+    <StackPane fx:id="rightPanel" HBox.hgrow="ALWAYS" styleClass="right-panel"
+               minWidth="0" minHeight="0">
+        
+        <!-- Static Image Layer (house_exterior_side.png or background_frame.png) -->
+        <!-- Size binding done in controller to fill panel -->
+        <ImageView fx:id="staticImageView" preserveRatio="false"/>
+        
+        <!-- View Container (for Progress, Leaderboard, Certificates) -->
+        <BorderPane fx:id="gamePlayPane" visible="false" managed="false" 
+                    styleClass="view-container"/>
+        
+    </StackPane>
+
+</HBox>

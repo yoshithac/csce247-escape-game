@@ -1,0 +1,484 @@
+/*
+ * CertificatesStyles.css - Right Panel Views Styling
+ * Includes: Certificates, Progress, Leaderboard
+ * Transparent backgrounds to show background_frame.png
+ */
+
+/* ====================
+   PROGRESS VIEW STYLES
+   ==================== */
+
+.progress-header {
+    -fx-padding: 8 15;
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(255, 215, 0, 0.4);
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+}
+
+.progress-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD700;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 3, 0, 0, 2);
+}
+
+.progress-stats-box {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.stat-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #aaaaaa;
+}
+
+.score-value {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD700;
+    -fx-effect: dropshadow(gaussian, rgba(255, 215, 0, 0.3), 6, 0, 0, 0);
+}
+
+.progress-divider {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+.stat-number-green {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4CAF50;
+}
+
+.stat-number-orange {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FF9800;
+}
+
+.stat-number-blue {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #42A5F5;
+}
+
+.stat-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #aaaaaa;
+}
+
+.progress-bar-label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #cccccc;
+}
+
+.custom-progress-bar {
+    -fx-accent: #FFD700;
+    -fx-control-inner-background: rgba(255, 255, 255, 0.1);
+}
+
+.custom-progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #FFD700, #FFA500);
+    -fx-background-radius: 5;
+}
+
+.custom-progress-bar .track {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 5;
+}
+
+.difficulty-breakdown {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.breakdown-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #cccccc;
+}
+
+.diff-stat {
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+}
+
+.diff-easy {
+    -fx-background-color: rgba(76, 175, 80, 0.2);
+}
+
+.diff-medium {
+    -fx-background-color: rgba(255, 152, 0, 0.2);
+}
+
+.diff-hard {
+    -fx-background-color: rgba(244, 67, 54, 0.2);
+}
+
+.diff-value {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.diff-label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #aaaaaa;
+}
+
+/* ====================
+   LEADERBOARD VIEW STYLES
+   ==================== */
+
+.leaderboard-header {
+    -fx-padding: 10 20;
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255, 215, 0, 0.4);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.leaderboard-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD700;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 3, 0, 0, 2);
+}
+
+.your-rank-box {
+    -fx-background-color: rgba(102, 126, 234, 0.3);
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(102, 126, 234, 0.6);
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+}
+
+.your-rank-label {
+    -fx-font-size: 22px;
+    -fx-text-fill: #cccccc;
+}
+
+.your-rank-value {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD700;
+}
+
+.table-container {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.leaderboard-table {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+}
+
+.leaderboard-table .column-header-background {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.leaderboard-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.leaderboard-table .column-header .label {
+    -fx-text-fill: #FFD700;
+    -fx-font-weight: bold;
+    -fx-font-size: 17px;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.leaderboard-table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.leaderboard-table .table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+.leaderboard-table .table-row-cell:selected {
+    -fx-background-color: rgba(102, 126, 234, 0.4);
+}
+
+.leaderboard-table .table-cell {
+    -fx-text-fill: white;
+    -fx-font-size: 17px;
+    -fx-padding: 8 5;
+    -fx-alignment: CENTER-LEFT;
+}
+
+/* ====================
+   CERTIFICATES HEADER
+   ==================== */
+
+.certificates-header {
+    -fx-padding: 10 20;
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255, 215, 0, 0.4);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.header-trophy {
+    -fx-font-size: 40px;
+    -fx-effect: dropshadow(gaussian, rgba(255, 215, 0, 0.5), 10, 0.4, 0, 0);
+}
+
+.certificates-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD700;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 3, 0, 0, 2);
+}
+
+.certificates-subtitle {
+    -fx-font-size: 17px;
+    -fx-text-fill: #cccccc;
+    -fx-font-style: italic;
+}
+
+/* ==================== STAT CARDS ==================== */
+
+.stat-card {
+    -fx-min-width: 75px;
+    -fx-min-height: 80px;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 6, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.stat-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 10, 0, 0, 0);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.stat-total {
+    -fx-background-color: rgba(45, 52, 54, 0.9);
+    -fx-border-color: #636e72;
+}
+
+.stat-easy {
+    -fx-background-color: rgba(45, 80, 22, 0.9);
+    -fx-border-color: #4CAF50;
+}
+
+.stat-medium {
+    -fx-background-color: rgba(93, 64, 20, 0.9);
+    -fx-border-color: #FF9800;
+}
+
+.stat-hard {
+    -fx-background-color: rgba(93, 20, 20, 0.9);
+    -fx-border-color: #f44336;
+}
+
+.stat-score {
+    -fx-background-color: rgba(74, 63, 20, 0.9);
+    -fx-border-color: #FFD700;
+}
+
+.stat-icon {
+    -fx-font-size: 26px;
+}
+
+.stat-number {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.stat-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #aaaaaa;
+}
+
+/* ==================== CERTIFICATES SECTION ==================== */
+
+.certificates-section {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.section-header {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.certificates-scroll {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-padding: 3;
+}
+
+.certificates-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.certificates-scroll .scroll-bar:vertical {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-pref-width: 8px;
+}
+
+.certificates-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(255, 215, 0, 0.5);
+    -fx-background-radius: 4;
+}
+
+.certificates-scroll .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.certificates-flow {
+    -fx-background-color: transparent;
+}
+
+/* ==================== CERTIFICATE CARDS ==================== */
+
+.certificate-card {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 8, 0, 0, 3);
+    -fx-cursor: hand;
+}
+
+.certificate-card.cert-hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 215, 0, 0.5), 12, 0, 0, 0);
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+/* Easy - Bronze/Green theme */
+.cert-easy {
+    -fx-background-color: linear-gradient(to bottom, rgba(45, 80, 22, 0.95), rgba(26, 48, 15, 0.95));
+    -fx-border-color: #4CAF50;
+}
+
+/* Medium - Silver/Orange theme */
+.cert-medium {
+    -fx-background-color: linear-gradient(to bottom, rgba(93, 64, 20, 0.95), rgba(61, 42, 13, 0.95));
+    -fx-border-color: #FF9800;
+}
+
+/* Hard - Gold/Red theme */
+.cert-hard {
+    -fx-background-color: linear-gradient(to bottom, rgba(93, 20, 20, 0.95), rgba(61, 13, 13, 0.95));
+    -fx-border-color: #f44336;
+}
+
+.cert-medal {
+    -fx-font-size: 36px;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 6, 0, 0, 0);
+}
+
+.cert-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+}
+
+.cert-line {
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+}
+
+.cert-badge {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 3 10;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+}
+
+.badge-easy {
+    -fx-background-color: #4CAF50;
+}
+
+.badge-medium {
+    -fx-background-color: #FF9800;
+}
+
+.badge-hard {
+    -fx-background-color: #f44336;
+}
+
+.cert-score {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD700;
+}
+
+.cert-time {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4CAF50;
+}
+
+.cert-date {
+    -fx-font-size: 14px;
+    -fx-text-fill: #999999;
+    -fx-font-style: italic;
+}
+
+/* ==================== EMPTY STATE ==================== */
+
+.empty-message {
+    -fx-font-size: 20px;
+    -fx-text-fill: #aaaaaa;
+    -fx-font-style: italic;
+    -fx-padding: 30;
+    -fx-text-alignment: center;
+}
+
+/* ==================== BACK BUTTON ==================== */
+
+.back-button {
+    -fx-background-color: rgba(58, 58, 92, 0.9);
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-border-color: #FFD700;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 4, 0, 0, 2);
+}
+
+.back-button:hover {
+    -fx-background-color: rgba(74, 74, 108, 0.95);
+    -fx-effect: dropshadow(gaussian, rgba(255, 215, 0, 0.4), 8, 0, 0, 0);
+}
+
+.back-button:pressed {
+    -fx-background-color: rgba(42, 42, 76, 0.95);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<!-- 
+    GameSessionView.fxml - Sequential Door Puzzle Selection
+    Background image swaps as doors are completed
+    Back to Menu button overlays QUIT text in opened*.png images
+-->
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.escapegame.controller.GameSessionController"
+           fx:id="rootPane"
+           style="-fx-background-color: #1a1a2e;">
+    
+    <!-- Layer 1: Background Image (swapped based on progress) -->
+    <ImageView fx:id="hallwayBackground"
+               preserveRatio="false"
+               pickOnBounds="false"
+               mouseTransparent="true"/>
+    
+    <!-- Layer 2: Clickable Door Buttons + Quit Button (transparent overlays) -->
+    <Pane fx:id="doorButtonPane" 
+          pickOnBounds="false"
+          mouseTransparent="false">
+        
+        <Button fx:id="door1Button" 
+                styleClass="door-button"
+                onAction="#handleDoor1Click"
+                mnemonicParsing="false"/>
+        
+        <Button fx:id="door2Button" 
+                styleClass="door-button"
+                onAction="#handleDoor2Click"
+                mnemonicParsing="false"/>
+        
+        <Button fx:id="door3Button" 
+                styleClass="door-button"
+                onAction="#handleDoor3Click"
+                mnemonicParsing="false"/>
+        
+        <Button fx:id="door4Button" 
+                styleClass="door-button"
+                onAction="#handleDoor4Click"
+                mnemonicParsing="false"/>
+        
+        <Button fx:id="door5Button" 
+                styleClass="door-button"
+                onAction="#handleDoor5Click"
+                mnemonicParsing="false"/>
+        
+        <!-- Back to Menu Button - overlays QUIT text in opened*.png images -->
+        <Button fx:id="backToMenuButton"
+                text="Back to Menu"
+                onAction="#handleBackToMenu"
+                styleClass="back-to-menu-button"
+                mnemonicParsing="false"/>
+    </Pane>
+    
+    <!-- Layer 3: UI Controls (Top Bar) -->
+    <VBox alignment="TOP_CENTER" 
+          pickOnBounds="false"
+          StackPane.alignment="TOP_CENTER">
+        
+        <HBox alignment="CENTER" 
+              spacing="30"
+              style="-fx-background-color: rgba(0, 0, 0, 0.7); -fx-background-radius: 0 0 10 10;">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            
+            <Label fx:id="progressLabel" 
+                   text="Progress: 0/5"
+                   style="-fx-text-fill: #4CAF50; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+            
+            <Label fx:id="timerLabel" 
+                   text="Time: 10:00"
+                   style="-fx-text-fill: #FFD700; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+            
+            <Label fx:id="difficultyLabel" 
+                   text="Difficulty: EASY"
+                   style="-fx-text-fill: #FF9800; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+            
+            <!-- Key Inventory Display -->
+            <HBox fx:id="keyInventoryBox" 
+                  alignment="CENTER" 
+                  spacing="5"
+                  style="-fx-padding: 0 15;">
+                <Label text="Keys:" style="-fx-text-fill: #AAAAAA; -fx-font-size: 18px;"/>
+            </HBox>
+        </HBox>
+    </VBox>
+    
+    <!-- Layer 4: Instructions (Bottom) -->
+    <VBox alignment="BOTTOM_CENTER"
+          pickOnBounds="false"
+          StackPane.alignment="BOTTOM_CENTER">
+        
+        <Label fx:id="instructionLabel"
+               text="Click door 1 to start your escape!"
+               style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-style: italic; -fx-background-color: transparent;">
+            <padding>
+                <Insets bottom="25"/>
+            </padding>
+        </Label>
+    </VBox>
+    
+</StackPane>

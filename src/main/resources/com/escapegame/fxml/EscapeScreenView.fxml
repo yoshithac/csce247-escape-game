@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.*?>
+
+<!--
+    EscapeScreenView.fxml - Final Escape Celebration Screen
+    Background fully visible - celebration text with CSS styles
+    Uses CSS classes for Jersey 10 font
+-->
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:id="rootPane"
+           fx:controller="com.escapegame.controller.EscapeScreenController"
+           style="-fx-background-color: #000000;">
+
+    <!-- Background Image - Full visibility -->
+    <ImageView fx:id="backgroundImage"
+               preserveRatio="false"
+               pickOnBounds="false"
+               mouseTransparent="true">
+        <effect>
+            <ColorAdjust brightness="0.1" saturation="0.1"/>
+        </effect>
+    </ImageView>
+
+    <!-- Celebration Content at Top -->
+    <VBox alignment="TOP_CENTER" 
+          StackPane.alignment="TOP_CENTER"
+          mouseTransparent="false"
+          spacing="15"
+          style="-fx-background-color: transparent;">
+        
+        <padding>
+            <Insets top="50" right="80" bottom="20" left="80"/>
+        </padding>
+
+        <!-- Trophy emoji -->
+        <Label text="🏆" styleClass="trophy-label"/>
+        
+        <!-- Congratulations text -->
+        <Label fx:id="congratsLabel"
+               text="CONGRATULATIONS!"
+               styleClass="congrats-title"/>
+        
+        <Label fx:id="escapeLabel"
+               text="YOU ESCAPED HOLLOW MANOR!"
+               styleClass="escape-subtitle"/>
+        
+        <!-- Stats -->
+        <Label fx:id="statsLabel"
+               styleClass="stats-label"
+               wrapText="true"
+               maxWidth="500"
+               alignment="CENTER">
+            <padding>
+                <Insets top="20"/>
+            </padding>
+        </Label>
+        
+        <!-- Score Display -->
+        <Label fx:id="scoreLabel"
+               styleClass="stats-label"
+               style="-fx-text-fill: #FFD700;"
+               alignment="CENTER"/>
+        
+        <!-- Certificate Earned -->
+        <Label text="📜 Certificate Earned!"
+               style="-fx-text-fill: #87CEEB; -fx-font-size: 20px; -fx-font-weight: bold;">
+            <padding>
+                <Insets top="10"/>
+            </padding>
+        </Label>
+        
+        <!-- Redirect notice -->
+        <Label fx:id="redirectLabel"
+               text="Returning to main menu..."
+               styleClass="redirect-label">
+            <padding>
+                <Insets top="15"/>
+            </padding>
+        </Label>
+
+    </VBox>
+
+</StackPane>

@@ -1,0 +1,398 @@
+/*
+ * GameSessionStyles.css - Styles for Full Screen Hallway Game Session
+ */
+
+/* RootPane */
+.root {
+    -fx-background-color: #1a1a2e;
+}
+
+/* Top Bar */
+.top-bar {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-background-radius: 0 0 10 10;
+}
+
+/* Labels */
+.progress-label, .timer-label, .difficulty-label {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.progress-label {
+    -fx-text-fill: #4CAF50;
+}
+
+.timer-label {
+    -fx-text-fill: #FFD700;
+}
+
+.difficulty-label {
+    -fx-text-fill: #FF9800;
+}
+
+.instruction-label {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 5;
+}
+
+/* Door Knob Buttons - Transparent clickable areas */
+.door-knob-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}
+
+.door-knob-button:hover {
+    -fx-background-color: rgba(255, 215, 0, 0.3);
+    -fx-border-color: #FFD700;
+    -fx-border-width: 2;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+}
+
+.door-knob-button:pressed {
+    -fx-background-color: rgba(255, 215, 0, 0.5);
+}
+
+.door-knob-button:disabled {
+    -fx-opacity: 0.3;
+    -fx-cursor: default;
+}
+
+/* Door button states - Transparent overlays on door knobs */
+
+/* Base door button - completely transparent */
+.door-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 50%;
+    -fx-cursor: hand;
+    -fx-text-fill: transparent;
+    -fx-font-size: 1px;
+}
+
+/* Available door (next to complete) - subtle glow on hover */
+.door-available {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 50%;
+    -fx-cursor: hand;
+    -fx-text-fill: transparent;
+}
+
+.door-available:hover {
+    -fx-background-color: rgba(255, 215, 0, 0.4);
+    -fx-border-color: #FFD700;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, #FFD700, 15, 0.7, 0, 0);
+}
+
+.door-available:pressed {
+    -fx-background-color: rgba(255, 215, 0, 0.6);
+    -fx-effect: dropshadow(gaussian, #FFD700, 20, 0.9, 0, 0);
+}
+
+/* Completed door - subtle green indicator */
+.door-completed {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 50%;
+    -fx-cursor: default;
+    -fx-text-fill: transparent;
+}
+
+.door-completed:hover {
+    -fx-background-color: rgba(0, 255, 0, 0.3);
+    -fx-border-color: #00FF00;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, #00FF00, 10, 0.5, 0, 0);
+}
+
+/* Locked door (future doors) - no visual feedback */
+.door-locked {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 50%;
+    -fx-cursor: default;
+    -fx-text-fill: transparent;
+    -fx-opacity: 1.0;
+}
+
+.door-locked:hover {
+    -fx-background-color: rgba(100, 100, 100, 0.2);
+    -fx-border-color: rgba(150, 150, 150, 0.3);
+    -fx-border-width: 1;
+}
+
+/* ==================== BACK TO MENU BUTTON ==================== */
+/* Overlays QUIT text in opened*.png background images */
+
+.back-to-menu-button {
+    -fx-background-color: linear-gradient(to bottom, #4a4a6a, #3a3a5a);
+    -fx-text-fill: #DAA520;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Jersey 10";
+    -fx-padding: 8 20;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #DAA520;
+    -fx-border-width: 2;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 8, 0, 0, 3);
+}
+
+.back-to-menu-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #5a5a7a, #4a4a6a);
+    -fx-effect: dropshadow(gaussian, rgba(218, 165, 32, 0.5), 12, 0, 0, 0);
+}
+
+.back-to-menu-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #3a3a5a, #2a2a4a);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 2);
+}
+
+/* Menu Button */
+.menu-button {
+    -fx-background-color: linear-gradient(to bottom, #4a4a6a, #3a3a5a);
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #5a5a7a, #4a4a6a);
+}
+
+.menu-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #3a3a5a, #2a2a4a);
+}
+
+/* Puzzle View Container */
+.puzzle-container {
+    -fx-background-color: transparent;
+}
+
+.puzzle-content {
+    -fx-background-color: rgba(30, 30, 50, 0.95);
+    -fx-background-radius: 15;
+    -fx-border-color: #FFD700;
+    -fx-border-width: 3;
+    -fx-border-radius: 15;
+    -fx-padding: 30;
+}
+
+/* Save and Exit Button */
+.save-exit-button {
+    -fx-background-color: linear-gradient(to bottom, #ff6b6b, #ee5a5a);
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 25 10 25;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.save-exit-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff7b7b, #ff6b6b);
+}
+
+/* Victory Screen */
+.victory-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.8);
+}
+
+.victory-content {
+    -fx-background-color: linear-gradient(to bottom, #2d2d44, #1a1a2e);
+    -fx-background-radius: 20;
+    -fx-border-color: #FFD700;
+    -fx-border-width: 3;
+    -fx-border-radius: 20;
+    -fx-padding: 40;
+}
+
+.victory-title {
+    -fx-text-fill: #FFD700;
+    -fx-font-size: 35px;
+    -fx-font-weight: bold;
+}
+
+.victory-message {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+}
+
+/* ==================== INTRO & ESCAPE SCREENS ==================== */
+
+/* Story text for intro screens */
+.story-text {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 35px;
+    -fx-font-family: "Jersey 10";
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.95), 15, 0.8, 0, 3);
+}
+
+/* Congratulations title */
+.congrats-title {
+    -fx-text-fill: #FFD700;
+    -fx-font-size: 60px;
+    -fx-font-family: "Jersey 10";
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.95), 18, 0.8, 0, 4);
+}
+
+/* Escape subtitle */
+.escape-subtitle {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 38px;
+    -fx-font-family: "Jersey 10";
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.95), 15, 0.8, 0, 3);
+}
+
+/* Stats label */
+.stats-label {
+    -fx-text-fill: #E0E0E0;
+    -fx-font-size: 28px;
+    -fx-font-family: "Jersey 10";
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.95), 12, 0.8, 0, 3);
+}
+
+/* Redirect notice */
+.redirect-label {
+    -fx-text-fill: #AAAAAA;
+    -fx-font-size: 22px;
+    -fx-font-family: "Jersey 10";
+    -fx-font-style: italic;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.9), 10, 0.6, 0, 2);
+}
+
+/* Trophy emoji */
+.trophy-label {
+    -fx-font-size: 76px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.95), 20, 0.8, 0, 4);
+}
+
+/* Continue/Begin button */
+.intro-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFD700;
+    -fx-font-size: 24px;
+    -fx-font-family: "Jersey 10";
+    -fx-padding: 12 30;
+    -fx-cursor: hand;
+    -fx-border-color: #FFD700;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.9), 10, 0.6, 0, 2);
+}
+
+.intro-button:hover {
+    -fx-background-color: rgba(255, 215, 0, 0.2);
+}
+
+/* ==================== KEY INVENTORY STYLES ==================== */
+
+.key-icon {
+    -fx-font-size: 28px;
+    -fx-text-fill: #FFD700;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 215, 0, 0.5), 5, 0.3, 0, 0);
+}
+
+.key-icon:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 215, 0, 0.8), 10, 0.5, 0, 0);
+    -fx-scale-x: 1.15;
+    -fx-scale-y: 1.15;
+}
+
+.no-keys-label {
+    -fx-text-fill: #888888;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+.tooltip {
+    -fx-font-size: 14px;
+    -fx-font-family: "Jersey 10";
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-padding: 8;
+}
+
+/* ==================== PUZZLE VIEW BUTTON STYLES ==================== */
+/* Auto-size buttons based on content - no min/pref width constraints */
+
+.puzzle-primary-button {
+    -fx-background-color: #313561;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-min-height: 38px;
+}
+
+.puzzle-primary-button:hover {
+    -fx-background-color: #3D4270;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.puzzle-primary-button:pressed {
+    -fx-background-color: #252850;
+}
+
+.puzzle-secondary-button {
+    -fx-background-color: #0E1A45;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-min-height: 38px;
+}
+
+.puzzle-secondary-button:hover {
+    -fx-background-color: #1A2656;
+}
+
+.puzzle-secondary-button:pressed {
+    -fx-background-color: #0A1030;
+}
+
+.puzzle-hint-button {
+    -fx-background-color: #FFA500;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-min-height: 38px;
+}
+
+.puzzle-hint-button:hover {
+    -fx-background-color: #FFB733;
+}
+
+.puzzle-hint-button:pressed {
+    -fx-background-color: #E69500;
+}
