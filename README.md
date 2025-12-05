@@ -10,7 +10,7 @@ High Fidelity Prototype:
   - Video walkthrough: https://youtu.be/psTQxEjAUnE
   - Prototype: https://yoshithac.github.io/csce247-escape-game/
 
-Final Version Video Walkthrough:
+Final Version Video Walkthrough: https://youtu.be/uiWqcWTOs5o
 
 -----------------------------------------------
 
