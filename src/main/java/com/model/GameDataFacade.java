@@ -33,18 +33,6 @@ public class GameDataFacade {
         loadAllData();
     }
     
-    // Test constructor - allows dependency injection
-    protected GameDataFacade(GameDataLoader loader, GameDataWriter writer) {
-        this.loader = loader;
-        this.writer = writer;
-        loadAllData();
-    }
-
-    // Test method to inject custom instance
-    protected static void setTestInstance(GameDataFacade testInstance) {
-        instance = testInstance;
-    }
-
     /**
      * Get singleton instance
      */

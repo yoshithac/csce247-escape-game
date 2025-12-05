@@ -26,24 +26,24 @@ public class GameDataLoader {
         .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
         .setPrettyPrinting()
         .create();
+    
     private final String userFilePath;
     private final String gameDataFilePath;
 
     protected static final String USER_FILE_NAME = "src/main/resources/users.json";
     protected static final String GAMEDATA_FILE_NAME = "src/main/resources/gamedata.json";
     
-    // Production constructor - uses default paths
-    public GameDataLoader() {
+    //Production constructor -- use default path
+    public GameDataLoader(){
         this(USER_FILE_NAME, GAMEDATA_FILE_NAME);
     }
-    
-    // Test constructor - allows custom paths
-    public GameDataLoader(String userFilePath, String gameDataFilePath) {
+
+    //constructor -- allow custom path
+    public GameDataLoader(String userFilePath, String gameDataFilePath){
         this.userFilePath = userFilePath;
         this.gameDataFilePath = gameDataFilePath;
-    }
-
-
+    } 
+    
     /**
      * Loads the list of user data from users.json
      * @return List of User objects (never null)

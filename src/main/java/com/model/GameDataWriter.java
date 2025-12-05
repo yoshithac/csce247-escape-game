@@ -24,34 +24,20 @@ public class GameDataWriter {
         .setPrettyPrinting()
         .create();
     
-    private final String userFilePath;
-    private final String gameDataFilePath;
-
     protected static final String USER_FILE_NAME = "src/main/resources/users.json";
     protected static final String GAMEDATA_FILE_NAME = "src/main/resources/gamedata.json";
     
-    // Production constructor - uses default paths
-    public GameDataWriter() {
-        this(USER_FILE_NAME, GAMEDATA_FILE_NAME);
-    }
-    
-    // Test constructor - allows custom paths
-    public GameDataWriter(String userFilePath, String gameDataFilePath) {
-        this.userFilePath = userFilePath;
-        this.gameDataFilePath = gameDataFilePath;
-    }
-
     /**
      * Writes the list of users to users.json
      * @param users The list of users to write
      * @return true if write was successful, false otherwise
      */
     public boolean writeUsers(List<User> users) {
-        try (FileWriter writer = new FileWriter(userFilePath)) {
+        try (FileWriter writer = new FileWriter(USER_FILE_NAME)) {
             gson.toJson(users, writer);
             return true;
         } catch (IOException ex) {
-            System.out.println("Could not write to: " + userFilePath);
+            System.out.println("Could not write to: " + USER_FILE_NAME);
             ex.printStackTrace();
             return false;
         }
@@ -63,11 +49,11 @@ public class GameDataWriter {
      * @return true if write was successful, false otherwise
      */
     public boolean writeGameData(GameData gameData) {
-        try (FileWriter writer = new FileWriter(gameDataFilePath)) {
+        try (FileWriter writer = new FileWriter(GAMEDATA_FILE_NAME)) {
             gson.toJson(gameData, writer);
             return true;
         } catch (IOException ex) {
-            System.out.println("Could not write to: " + gameDataFilePath);
+            System.out.println("Could not write to: " + GAMEDATA_FILE_NAME);
             ex.printStackTrace();
             return false;
         }

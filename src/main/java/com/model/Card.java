@@ -11,12 +11,6 @@ public class Card {
     // Constructors
     public Card() {}
     
-    /**
-     * 
-     * @param id
-     * @param value
-     * @param name
-     */
     public Card(String id, String value, String name) {
         this.id = id;
         this.value = value;
